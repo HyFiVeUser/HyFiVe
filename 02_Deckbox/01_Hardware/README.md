@@ -10,7 +10,7 @@ The following parts are needed to manufacture a HyFiVe deckbox.
 | 3   | 1      | pc   | Sim card incl. mobile data                                                                                                  |                                       |
 | 4   | 1      | pc   | Network cable, short, small bending radius (e.g. 0.2 m)                                                                     | e.g. 4052792024371                    |
 |     |        |      | **Internal power supply**                                                                                                   |                                       |
-| 5   | 1      | pc   | Self designed PCB  for power distribution incl. fuse and diodes, see (TODO **LINK TO SCHEMATICS**)                          | self manufactured                     |
+| 5   | 1      | pc   | Self designed PCB  for power distribution incl. fuse and diodes; see [Schematics here](https://github.com/HyFiVeUser/HyFiVe/tree/main/02_Deckbox/01_Hardware/02_electronic/PCB_DC_PowerDistrubution)                          | self manufactured                     |
 | 6   | 1      | pc   | ACDC converter, 12 or 24 V output, min 20 W, e.g. Mean Well LPV-20-12 LED Trafo                                             | 4021087006965                         |
 | 7   | 1      | pc   | DCDC Converter, Input 8-58V, output: 5V, max. 15 W, e.g. K480503                                                            | 8852090466622                         |
 | 8   | 1      | pc   | power plug for RUT955, either cut and reused from ACDC unit                                                                 |                                       |
@@ -18,7 +18,7 @@ The following parts are needed to manufacture a HyFiVe deckbox.
 | 10  | 2      | pc   | 2-core wire ~25 cm, 2 x ~0.5mm², red and black                                                                              | 4040849567070                         |
 | 11  | 6      | pc   | electric wire ferrule 0.5mm² 												    | 9900000247027			    |
 | 12  | 4      | pc   | Heat shrink tubing 20mm x 3mm 												    | 9900000174064			    |
-| 13  | 1      | pc   | USB-C Plug, e.g. recable USB C to C plug 5 strands set (consits of 3 parts: plug, housing and heat shrink tubing)           |		  	                    |
+| 13  | 1      | pc   | USB-C Plug, e.g. [recable USB C](https://recable.eu/products/ersatzteil-usb-c-stecker-5-litzen-usb-2-0?variant=40046555693115) to C plug 5 strands set (consits of 3 parts: plug, housing and heat shrink tubing)           | 4250851617605	  	                    |
 |     |        |      | **External power supply**                                                                                                   |                                       |
 | 14  | 1      | pc   | Power cable, ~15 m, 2 wires, ~1mm², suited for outdoor/deck                                                                 | 2050005621999                         |
 |     |        |      | **For connection to 230  V**                                                                                                |                                       |
@@ -35,8 +35,8 @@ The following parts are needed to manufacture a HyFiVe deckbox.
 | 24  | 1      | pc   | Plug of your coice for connection to low voltage grid                                                                       |                                       |
 |     |        |      | **Case incl. internal mountings**                                                                                           |                                       |
 | 25  | 1      | pc   | FIBOX Case 180x180x150 (Product-No.: 6011323)                                                                               | 6418074052216                         |
-| 26  | 1      | pc   | 3D printed mounting for electronic components, consisting of four parts TODO **Link to STEP files**                         | self manufactured                     |
-| 27  | 1      | pc   | 3D printed mounting for antennas of RUT955, consisting of three layers<br>TODO **Link to STEP files**                       | self manufactured                     |
+| 26  | 1      | pc   | 3D printed mounting for electronic components, consisting of four parts; see [CAD Files here](https://github.com/HyFiVeUser/HyFiVe/tree/main/02_Deckbox/01_Hardware/01_mechanic/01_internal_mounting/mounting_electronics)                         | self manufactured                     |
+| 27  | 1      | pc   | 3D printed mounting for antennas of RUT955, consisting of three layers; see [CAD Files here](https://github.com/HyFiVeUser/HyFiVe/tree/main/02_Deckbox/01_Hardware/01_mechanic/01_internal_mounting/mounting_antennas)                       | self manufactured                     |
 | 28  | 4      | pc   | Threaded inserts to melt into 3D print, M3x5x4                                                                              | e.g. ASIN B09B7F2XM3 or 4260528721160 |
 | 29  | 4      | pc   | Allen screws M3x16                                                                                                          | 4043952175507                         |
 | 30  | 2      | pc   | Cable ties small                                                                                                            | 9900000247645                         |
@@ -46,7 +46,7 @@ The following parts are needed to manufacture a HyFiVe deckbox.
 | 34  | 4      | pc   | (plastic) washers for 3.9 mm with large outer diameter                                                                      | 4043952665589 or 4001796381737        |
 | 35  | 1      | pc   | ~5 cm foam tape (20 x 2 mm)                                                                                                 | 4260396830346                         |
 |     |        |      | **Mounting for box on reeling**                                                                                             |                                       |
-| 36  | 1      | pc   | Mounting plate, watercutted, stainless steel V4A<br>TODO **Link to STEP files**                                             | self manufactured                     |
+| 36  | 1      | pc   | Mounting plate, watercutted, stainless steel V4A; see [CAD files here](https://github.com/HyFiVeUser/HyFiVe/tree/main/02_Deckbox/01_Hardware/01_mechanic/02_external_mounting)                                             | self manufactured                     |
 | 37  | 4      | pc   | Allen screw, M4x16, incl. washer and self-securing nut, stainless steel V4A                                                 | 4043377065032			    |
 | 38  | 2      | pc   | Steel strap for tubes, DIN 3570, nominal width 46 mm, incl. 2 M10 self-securing nuts and 2 M10 washers, stainless steel V4A | 4043952396568                         |
 | 39  | 2      | pc   | Steel strap for tubes, DIN 3570, nominal width 82 mm, incl. 2 M12 self-securing nuts and 2 M12 washers, stainless steel V4A | 4043377302007                         |
@@ -80,7 +80,7 @@ The following components need to be manufactured according to design files provi
    - The function of the PCB is also depicted in the [flow diagram below](#connect-components)
    - To reproduce the PCB, you find all necessary infos in the subfolder [./02_electronic/PCB_DC_PowerDistrubution/](./02_electronic/PCB_DC_PowerDistrubution/). Order the PCB at a manufacturer of your choice and fit the parts included in the Bill of Material.
      TODO **Update PCB Schematics with bigger clams for Cables with "Aderendhülsen"**
-- 3D printed mountings: Use a 3D printer to manufacture 1 x mounting for antennas (consisting of 3 subcomponents called levels) and 1 x mounting for electronic parts (consisting of 4 subcomponents). Use the stl files provided in [./01_mechanic/01_internal_mounting/](./01_mechanic/01_internal_mounting/). Printer settings can be chosen as you like (we used ABS, 20% infill, fast mode on an Ultimaker S5). TODO **Check Subcomponents! Are Settings still up to date?** 
+- 3D printed mountings: Use a 3D printer to manufacture 1 x mounting for antennas (consisting of 3 subcomponents called levels) and 1 x mounting for electronic parts (consisting of 4 subcomponents). Use the stl files provided in [./01_mechanic/01_internal_mounting/](./01_mechanic/01_internal_mounting/). Printer settings can be chosen as you like (we used ABS, 20% infill, fast mode on an Ultimaker S5). 
 - Water-cut mounting: If you want to mount the deckbox on a reeling, you can use a water-cut mounting plate as shown in the picture below. You can use the step file provided in [./01_mechanic/02_external_mounting/](./01_mechanic/02_external_mounting/) and order at a manufacturer of your choice (price approx. 60 €). 
 
 <figure> 
