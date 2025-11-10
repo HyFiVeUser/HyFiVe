@@ -1,361 +1,448 @@
-(kicad_sch (version 20211123) (generator eeschema)
-
-  (uuid e63e39d7-6ac0-4ffd-8aa3-1841a4541b55)
-
-  (paper "A4")
-
-  (lib_symbols
-  )
-
-
-  (wire (pts (xy 177.8 146.05) (xy 205.74 146.05))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 0909c3cb-f8fb-4701-a8bb-a6f1c3a39970)
-  )
-  (wire (pts (xy 177.8 138.43) (xy 198.12 138.43))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 0d8c4115-bf4b-4c80-8bda-49abccca2539)
-  )
-  (wire (pts (xy 200.66 76.2) (xy 200.66 140.97))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 23b89133-987b-47d8-b14b-d50ce2a53088)
-  )
-  (wire (pts (xy 193.04 130.81) (xy 193.04 86.36))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 2cc67956-ffae-459a-b532-2cebe616f2f2)
-  )
-  (wire (pts (xy 177.8 86.36) (xy 193.04 86.36))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 34e967b3-de57-4561-9dd5-96c5dc3a6c07)
-  )
-  (wire (pts (xy 198.12 78.74) (xy 198.12 138.43))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 49eee10f-13be-4d78-9449-afdce737957d)
-  )
-  (wire (pts (xy 203.2 143.51) (xy 177.8 143.51))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 4a14968b-76bc-47d6-bd30-de0564ea7b13)
-  )
-  (wire (pts (xy 195.58 83.82) (xy 195.58 133.35))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 5506e7e2-54fb-4491-9edf-94ad1fd65897)
-  )
-  (wire (pts (xy 203.2 73.66) (xy 203.2 143.51))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 591ef5ca-255f-4f37-b5de-01b63b5891b9)
-  )
-  (wire (pts (xy 205.74 71.12) (xy 177.8 71.12))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 703dc1ea-7477-4521-ad7e-f4dc105755b0)
-  )
-  (wire (pts (xy 177.8 76.2) (xy 200.66 76.2))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 82c9a5d8-d7df-4e74-950d-e2c50e8ea056)
-  )
-  (wire (pts (xy 177.8 149.86) (xy 208.28 149.86))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 8fcbf666-2af0-4f2f-af59-3f61336435e8)
-  )
-  (wire (pts (xy 177.8 83.82) (xy 195.58 83.82))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 99edd07c-6552-43af-91af-ada5a6006611)
-  )
-  (wire (pts (xy 177.8 73.66) (xy 203.2 73.66))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 9afee4d4-bc1d-4907-886d-9a75445c8282)
-  )
-  (wire (pts (xy 208.28 67.31) (xy 208.28 149.86))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 9d1e0703-c48f-4cdb-b9fa-eaeacc08e660)
-  )
-  (wire (pts (xy 177.8 133.35) (xy 195.58 133.35))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 9ed9e5e1-ec32-4559-9e63-9ef43cd4e607)
-  )
-  (wire (pts (xy 200.66 140.97) (xy 177.8 140.97))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid ce47932c-3469-4ba2-81c3-6e55143c92d0)
-  )
-  (wire (pts (xy 177.8 78.74) (xy 198.12 78.74))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid ef570697-6c07-4ce9-bb8e-0122c3431cd0)
-  )
-  (wire (pts (xy 177.8 130.81) (xy 193.04 130.81))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid f8a8b2ba-4542-4d8f-8715-effe5a424c22)
-  )
-  (wire (pts (xy 205.74 146.05) (xy 205.74 71.12))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid fce35ac1-09ea-4c2c-a384-35e2cbda841e)
-  )
-  (wire (pts (xy 177.8 67.31) (xy 208.28 67.31))
-    (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid fe0118d6-b1ae-4081-9b55-ce9a6a8c7b5b)
-  )
-
-  (sheet (at 106.045 127) (size 71.755 25.4) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
-    (fill (color 0 0 0 0.0000))
-    (uuid a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf)
-    (property "Sheet name" "Interface_Analog" (id 0) (at 106.045 126.2884 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheet file" "Interface_Analog.kicad_sch" (id 1) (at 106.045 152.9846 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "Interface_Enable" input (at 177.8 130.81 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid df05fe3c-61b9-4cee-81cc-044137de3924)
-    )
-    (pin "Analog_Input" output (at 177.8 133.35 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 6eb0e27b-deaa-4294-ba5a-1094c195e7e8)
-    )
-    (pin "Interface_GPIO_4" bidirectional (at 177.8 146.05 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 29bec03b-a979-4b48-b911-49e0c7bbb9dd)
-    )
-    (pin "Interface_GPIO_2" bidirectional (at 177.8 140.97 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid c78146a0-f031-4533-b4ee-c2bfe1c4b0af)
-    )
-    (pin "Interface_GPIO_3" bidirectional (at 177.8 143.51 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 6c9bd8c2-4abe-4d5d-a523-33bf62b36c2a)
-    )
-    (pin "Interface_GPIO_1" bidirectional (at 177.8 138.43 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid f9f16e30-6a83-4e02-a02a-80783de041a1)
-    )
-    (pin "Sensor_Lowside_Switch" input (at 177.8 149.86 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 296d21c4-2543-42c4-8ac9-4d3862d17f31)
-    )
-  )
-
-  (sheet (at 106.045 47.625) (size 71.755 43.815) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid) (color 0 0 0 0))
-    (fill (color 0 0 0 0.0000))
-    (uuid d3e133b7-2c84-4206-a2b1-e693cb57fe56)
-    (property "Sheet name" "MCU" (id 0) (at 106.045 46.9134 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheet file" "MCU.kicad_sch" (id 1) (at 106.045 92.0246 0)
-      (effects (font (size 1.27 1.27)) (justify left top))
-    )
-    (pin "Interface_Enable" output (at 177.8 86.36 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid dc2bde57-2c8a-4d2d-908a-f9f099be5847)
-    )
-    (pin "Interface_GPIO_2" bidirectional (at 177.8 76.2 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid d6ecaf21-57b3-4a13-a798-bb851ec91516)
-    )
-    (pin "Interface_Analog" input (at 177.8 83.82 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 54b8ffb7-651a-4721-a9c3-e03031380604)
-    )
-    (pin "Interface_GPIO_3" bidirectional (at 177.8 73.66 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 701e2284-bb3f-43b7-9e4d-b122f2454053)
-    )
-    (pin "Interface_GPIO_4" bidirectional (at 177.8 71.12 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 842a9bae-6fab-4b45-a90e-656b100c2cbd)
-    )
-    (pin "Interface_GPIO_1" bidirectional (at 177.8 78.74 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 9f9a3261-e471-4a05-943c-08cb63c12ac7)
-    )
-    (pin "Sensor_Lowside_Switch" output (at 177.8 67.31 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 57d5bcf0-a5bf-40ea-a841-5ebaec34646b)
-    )
-  )
-
-  (sheet_instances
-    (path "/" (page "1"))
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56" (page "2"))
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf" (page "3"))
-  )
-
-  (symbol_instances
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/5e65dd84-afa1-44ae-b73f-3f47465be2ef"
-      (reference "#PWR0101") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/986568c5-5610-4782-91a3-f8e10ff8db02"
-      (reference "#PWR0102") (unit 1) (value "+12V") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/fade2fb5-faae-473b-89a8-89b423756445"
-      (reference "#PWR0103") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/b0a5352c-9501-4257-b99a-a6b0ad322cf3"
-      (reference "#PWR0104") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/9531c20e-8f01-40b3-9adb-4c7753c33f1b"
-      (reference "#PWR0105") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/1959c563-21ad-451b-ba57-fed55e6b83c6"
-      (reference "#PWR0106") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/c4663993-d9d5-43e2-89bb-d4dfbd63993e"
-      (reference "#PWR0107") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/ea064516-79e6-4d91-9454-5bc2bac9006c"
-      (reference "#PWR0108") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/8d668683-eaba-4dda-9b55-e8c77b10337e"
-      (reference "#PWR0109") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/1ddd77b1-7b84-4ac4-b2fb-8ca0f1d74bc4"
-      (reference "#PWR0110") (unit 1) (value "+3.3V") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/d1e4fc3f-abe5-492d-8acd-5a0650074dc3"
-      (reference "#PWR0111") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/27a87eac-741c-410e-ad79-035cda19bc73"
-      (reference "#PWR0112") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/ce3690cd-ccdb-43b5-86b2-d58fee3f5207"
-      (reference "#PWR0201") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/4f0f9baa-5953-477e-b539-bf845c43a71e"
-      (reference "#PWR0202") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/5b8c0619-8619-4699-8f5a-3f6b3eadd199"
-      (reference "#PWR0203") (unit 1) (value "+12V") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/96e59495-5968-45f8-aa8d-e3197ce045b3"
-      (reference "#PWR0204") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/67ae9fcb-8e80-4963-9499-751d77b77ab7"
-      (reference "#PWR0205") (unit 1) (value "+3.3V") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/fec36162-15d0-482b-a037-f5da73e7afa0"
-      (reference "#PWR0206") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/c6e0a66c-1a0d-4a98-bcfd-2d9fcc773fcc"
-      (reference "#PWR0207") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/28b15c6b-b46d-46b3-833f-698e8183ef90"
-      (reference "#PWR0208") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/24592023-08d9-457c-b332-db6bc02b371d"
-      (reference "#PWR0209") (unit 1) (value "+3.3V") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/b68a34bc-9eb8-4169-8a99-1d7ab68d58b5"
-      (reference "#PWR0210") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/0fa42326-3fa2-4523-b403-e582e228b584"
-      (reference "#PWR0211") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/af2f5001-ef30-4842-b1b1-4273c46ea40e"
-      (reference "#PWR0212") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/34afe4c3-63e7-4a5e-aac6-3f02705386e9"
-      (reference "#PWR0213") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/35c2d33d-e1c7-49e4-86ca-b7362b6bd103"
-      (reference "#PWR0214") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/46b1d229-4fca-4d47-83b2-9252248cf239"
-      (reference "#PWR0215") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/61bc1dea-db43-4e8f-9031-a82794bfa37c"
-      (reference "C201") (unit 1) (value "1nF 6,3V") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/352e55e2-45ad-4d88-b09a-0b5dabb9b558"
-      (reference "C202") (unit 1) (value "1µF, <200m ESR") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/1c75f75d-32e4-4956-b683-81f5cd2ca179"
-      (reference "C203") (unit 1) (value "20pF") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/31df3ba5-45c3-4a37-a752-40860eba9e22"
-      (reference "C204") (unit 1) (value "20pF") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/880e9d50-7c02-4004-b09b-3af70e7fb38a"
-      (reference "C205") (unit 1) (value "100nF 6,3V") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/3285f620-1c27-4d23-bd99-8af51cadfedd"
-      (reference "C206") (unit 1) (value "1µF, <200m ESR") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/3adcdc49-3ba8-44c7-bd47-7092fca73f1c"
-      (reference "C207") (unit 1) (value "4,7µF 6,3V") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/fc41bb7e-6c0d-47cf-8b77-b65681e519f2"
-      (reference "C301") (unit 1) (value "100nF") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/6a216db9-78f6-4c39-a3fd-1de9877af6b8"
-      (reference "C302") (unit 1) (value "100nF") (footprint "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/7758eaa4-23ed-4848-bd47-80c346847841"
-      (reference "D301") (unit 1) (value "82356050101") (footprint "Diode_SMD:D_0603_1608Metric")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/3c177c5e-5e6c-4d9e-b13d-1ade061c5154"
-      (reference "H201") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_2.7mm_M2.5")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/e1c826c3-0d5c-4d50-9f30-f2285e1b0b67"
-      (reference "H202") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_2.7mm_M2.5")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/9e9c83e5-88ec-47ef-af8e-ad52db7404f7"
-      (reference "H203") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_2.7mm_M2.5")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/ac6db401-00fb-401c-a75a-8456969119b4"
-      (reference "H204") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_2.7mm_M2.5")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/eb8dd993-5e26-48ef-89bd-e1ed9bb825f8"
-      (reference "IC201") (unit 1) (value "MSP430FR2673") (footprint "Package_DFN_QFN:VQFN-32-1EP_5x5mm_P0.5mm_EP3.5x3.5mm")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/c17ed9f5-d759-458e-b01b-f35c06fd88c7"
-      (reference "IC301") (unit 1) (value "TXB0104PW") (footprint "Package_SO:TSSOP-14_4.4x5mm_P0.65mm")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/18d227d5-909b-4915-be82-7bab2c82eb83"
-      (reference "K301") (unit 1) (value "SSM3K127TU") (footprint "Package_TO_SOT_SMD:SOT-23")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/6d2f96c2-fb4e-465f-a515-d48330606799"
-      (reference "R201") (unit 1) (value "47k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/ccbe16f7-cb21-406d-8c1d-043a0a475918"
-      (reference "R202") (unit 1) (value "330") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/6946eb7d-932e-48ac-88cf-33eec8b29a6d"
-      (reference "R203") (unit 1) (value "10k NB") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/6d88c462-5ae1-4cb5-9e38-5a159eab54b0"
-      (reference "R204") (unit 1) (value "10k NB") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/b48e1ea0-0962-4b46-88a2-2cee50eda6c1"
-      (reference "R301") (unit 1) (value "20k") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/11e3d896-5508-496c-948c-e19d1a41a9b1"
-      (reference "R302") (unit 1) (value "38,8k/39k 0,1%") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/5869e76f-b9dd-4dfb-9505-d6a145b8a520"
-      (reference "R303") (unit 1) (value "0 NB") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/5ab0daf3-0bc8-47b6-b3e9-02092b1cf4d7"
-      (reference "R304") (unit 1) (value "0") (footprint "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/13949c8c-e17d-4431-8bf8-7bd6e900449e"
-      (reference "SW201") (unit 1) (value "SKRKAEE020") (footprint "Button_Switch_SMD:SW_Push_SPST_NO_Alps_SKRK")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/1e6f195a-352f-4037-96db-5611060b45a5"
-      (reference "SW202") (unit 1) (value "A6H-8101") (footprint "Button_Switch_SMD:SW_DIP_SPSTx08_Slide_Omron_A6H-8101_W6.15mm_P1.27mm")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/58a5315f-da5a-46dc-a291-9585c82143e5"
-      (reference "X201") (unit 1) (value "ESQ-104-14-G-D") (footprint "Connector_PinSocket_2.54mm:PinSocket_2x04_P2.54mm_Vertical")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/be80af8c-9ec7-4140-ae76-895c5d36e30f"
-      (reference "X202") (unit 1) (value "Conn_02x03_Counter_Clockwise") (footprint "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/8b85c31f-9826-4cba-b7c8-3edffefb36dd"
-      (reference "X203") (unit 1) (value "Conn_01x03") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical")
-    )
-    (path "/a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf/df425070-f6bd-4dc2-bc2c-ec8e49ad418d"
-      (reference "X301") (unit 1) (value "Molex Nano-Fit 105314-1*114") (footprint "Connector_Molex:Molex_Nano-Fit_105314-xx14_2x07_P2.50mm_Horizontal")
-    )
-    (path "/d3e133b7-2c84-4206-a2b1-e693cb57fe56/cb3957dd-9687-4a05-9ab3-ac6eabc4b7aa"
-      (reference "Y201") (unit 1) (value "9HT11-32.768KDZF-T ") (footprint "Crystal:Crystal_SMD_TXC_9HT11-2Pin_2.0x1.2mm_HandSoldering")
-    )
-  )
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55")
+	(paper "A4")
+	(lib_symbols)
+	(wire
+		(pts
+			(xy 177.8 146.05) (xy 205.74 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0909c3cb-f8fb-4701-a8bb-a6f1c3a39970")
+	)
+	(wire
+		(pts
+			(xy 177.8 138.43) (xy 198.12 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d8c4115-bf4b-4c80-8bda-49abccca2539")
+	)
+	(wire
+		(pts
+			(xy 200.66 76.2) (xy 200.66 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "23b89133-987b-47d8-b14b-d50ce2a53088")
+	)
+	(wire
+		(pts
+			(xy 193.04 130.81) (xy 193.04 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2cc67956-ffae-459a-b532-2cebe616f2f2")
+	)
+	(wire
+		(pts
+			(xy 177.8 86.36) (xy 193.04 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34e967b3-de57-4561-9dd5-96c5dc3a6c07")
+	)
+	(wire
+		(pts
+			(xy 198.12 78.74) (xy 198.12 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "49eee10f-13be-4d78-9449-afdce737957d")
+	)
+	(wire
+		(pts
+			(xy 203.2 143.51) (xy 177.8 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a14968b-76bc-47d6-bd30-de0564ea7b13")
+	)
+	(wire
+		(pts
+			(xy 195.58 83.82) (xy 195.58 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5506e7e2-54fb-4491-9edf-94ad1fd65897")
+	)
+	(wire
+		(pts
+			(xy 203.2 73.66) (xy 203.2 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "591ef5ca-255f-4f37-b5de-01b63b5891b9")
+	)
+	(wire
+		(pts
+			(xy 205.74 71.12) (xy 177.8 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "703dc1ea-7477-4521-ad7e-f4dc105755b0")
+	)
+	(wire
+		(pts
+			(xy 177.8 76.2) (xy 200.66 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82c9a5d8-d7df-4e74-950d-e2c50e8ea056")
+	)
+	(wire
+		(pts
+			(xy 177.8 149.86) (xy 208.28 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8fcbf666-2af0-4f2f-af59-3f61336435e8")
+	)
+	(wire
+		(pts
+			(xy 177.8 83.82) (xy 195.58 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99edd07c-6552-43af-91af-ada5a6006611")
+	)
+	(wire
+		(pts
+			(xy 177.8 73.66) (xy 203.2 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9afee4d4-bc1d-4907-886d-9a75445c8282")
+	)
+	(wire
+		(pts
+			(xy 208.28 67.31) (xy 208.28 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d1e0703-c48f-4cdb-b9fa-eaeacc08e660")
+	)
+	(wire
+		(pts
+			(xy 177.8 133.35) (xy 195.58 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ed9e5e1-ec32-4559-9e63-9ef43cd4e607")
+	)
+	(wire
+		(pts
+			(xy 200.66 140.97) (xy 177.8 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce47932c-3469-4ba2-81c3-6e55143c92d0")
+	)
+	(wire
+		(pts
+			(xy 177.8 78.74) (xy 198.12 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef570697-6c07-4ce9-bb8e-0122c3431cd0")
+	)
+	(wire
+		(pts
+			(xy 177.8 130.81) (xy 193.04 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8a8b2ba-4542-4d8f-8715-effe5a424c22")
+	)
+	(wire
+		(pts
+			(xy 205.74 146.05) (xy 205.74 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fce35ac1-09ea-4c2c-a384-35e2cbda841e")
+	)
+	(wire
+		(pts
+			(xy 177.8 67.31) (xy 208.28 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fe0118d6-b1ae-4081-9b55-ce9a6a8c7b5b")
+	)
+	(sheet
+		(at 106.045 127)
+		(size 71.755 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "a7e4ce5c-98fb-48d0-9ff3-cdec8a457bcf")
+		(property "Sheetname" "Interface_Analog"
+			(at 106.045 126.2884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Interface_Analog.kicad_sch"
+			(at 106.045 152.9846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Interface_Enable" input
+			(at 177.8 130.81 0)
+			(uuid "df05fe3c-61b9-4cee-81cc-044137de3924")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Analog_Input" output
+			(at 177.8 133.35 0)
+			(uuid "6eb0e27b-deaa-4294-ba5a-1094c195e7e8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_4" bidirectional
+			(at 177.8 146.05 0)
+			(uuid "29bec03b-a979-4b48-b911-49e0c7bbb9dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_2" bidirectional
+			(at 177.8 140.97 0)
+			(uuid "c78146a0-f031-4533-b4ee-c2bfe1c4b0af")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_3" bidirectional
+			(at 177.8 143.51 0)
+			(uuid "6c9bd8c2-4abe-4d5d-a523-33bf62b36c2a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_1" bidirectional
+			(at 177.8 138.43 0)
+			(uuid "f9f16e30-6a83-4e02-a02a-80783de041a1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Sensor_Lowside_Switch" input
+			(at 177.8 149.86 0)
+			(uuid "296d21c4-2543-42c4-8ac9-4d3862d17f31")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "Analog-Adapter"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 106.045 47.625)
+		(size 71.755 43.815)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "d3e133b7-2c84-4206-a2b1-e693cb57fe56")
+		(property "Sheetname" "MCU"
+			(at 106.045 46.9134 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "MCU.kicad_sch"
+			(at 106.045 92.0246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Interface_Enable" output
+			(at 177.8 86.36 0)
+			(uuid "dc2bde57-2c8a-4d2d-908a-f9f099be5847")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_2" bidirectional
+			(at 177.8 76.2 0)
+			(uuid "d6ecaf21-57b3-4a13-a798-bb851ec91516")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_Analog" input
+			(at 177.8 83.82 0)
+			(uuid "54b8ffb7-651a-4721-a9c3-e03031380604")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_3" bidirectional
+			(at 177.8 73.66 0)
+			(uuid "701e2284-bb3f-43b7-9e4d-b122f2454053")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_4" bidirectional
+			(at 177.8 71.12 0)
+			(uuid "842a9bae-6fab-4b45-a90e-656b100c2cbd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Interface_GPIO_1" bidirectional
+			(at 177.8 78.74 0)
+			(uuid "9f9a3261-e471-4a05-943c-08cb63c12ac7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Sensor_Lowside_Switch" output
+			(at 177.8 67.31 0)
+			(uuid "57d5bcf0-a5bf-40ea-a841-5ebaec34646b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "Analog-Adapter"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
 )
