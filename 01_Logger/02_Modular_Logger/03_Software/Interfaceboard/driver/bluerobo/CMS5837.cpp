@@ -26,6 +26,11 @@ CMS5837::~CMS5837()
 uint8_t CMS5837::getParameter(){
     return 0x02;
 }
+
+uint8_t CMS5837::getExternParameter(){
+    return 0xFF;
+}
+
 uint32_t CMS5837::getVersion(){
     return blue_robotics_pressure_bar30;
 }

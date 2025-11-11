@@ -22,6 +22,10 @@ AtlasEZO::~AtlasEZO()
 uint8_t AtlasEZO::getParameter(){
     return 0x04;
 }
+
+uint8_t AtlasEZO::getExternParameter(){
+    return 0xFF;
+}
 //uint32_t AtlasEZO::getVersion(){
 //        return myID;
 //}

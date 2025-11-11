@@ -19,7 +19,7 @@
 // 3               : keller              : pressure                      : series_20                      : 6               : +3.3V    : 2
 // 4               : atlas_scientific    : conductivity                  : k0.1 | k1.0                    : 3 | 10          : +3.3V    : 1
 // 5               : pyroscience         : oxygen                        : oxycap_sub | oxycap_hs_sub     : 9 | 11          : +3.3V    : 1
-// 6               : Turner              : turbidity | phycoerythrin     : C-Flour_TRB | C-Flour_PE       : 12 | 13         : +5.0V    : 1
+// 6               : Turner              : turbidity | phycoerythrin     : C-Flour_TRB | C-Flour_PE       : 12 | 13         : +5.0V    : 3
 
 // SELECTED_SENSOR
 #define SELECTED_SENSOR 6

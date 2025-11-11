@@ -52,8 +52,12 @@ bool Analog::getCalibrated()
 
 uint8_t Analog::getParameter(){
         return 0x05;
-
 }
+
+uint8_t Analog::getExternParameter(){
+        return 0xFF;
+}
+
 uint32_t Analog::getVersion(){
     return (turner_turbidity_CFlour_TRB ) | (turner_phycoerythrin_CFlour_PE << 8);
 }
@@ -72,7 +76,7 @@ bool Analog::init()
     P1DIR |= BIT0; // Output 1.0 als Output setzen
     P1OUT &= ~BIT0; // Output 1.0 als Low setzen
     // Configure ADC A1 pin
-        SYSCFG2 |= 1; // geändert von |= auf = 1
+        SYSCFG2 |= 1; // geï¿½ndert von |= auf = 1
 
      // Check PxSEL Register for Shut Down GPIO
 
@@ -88,22 +92,25 @@ bool Analog::init()
     ADCCTL0 &= ~ADCENC;             // Disable ADC
     ADCCTL0  |= ADCSHT_2;           // ADCON, S&H=16 ADC clks
     ADCCTL1  |= ADCSHP;             // ADCCLK = MODOSC; sampling timer
-    ADCCTL2  |= ADCRES_1; //ADCRES_2;//ADCRES;  // 10-bit conversion results
+
+    ADCCTL2 &= ~ADCRES;
+    ADCCTL2 |= ADCRES_2;            // 12-bit conversion results
+
     ADCMCTL0 |= ADCINCH_0;          // A0 ADC input select; Vref = AVCC
     ADCIE    |= ADCIE0;             // Enable ADC conv complete interrupt
-    ADCCTL0  |= ADCON;               // Turn ADC On
+    ADCCTL0  |= ADCON;              // Turn ADC On
 
     return true;
 }
 
 bool Analog::hibernate(){
-    // Die Masse des Sensors kann über einen Mosfet abgeschaltet werden
+    // Die Masse des Sensors kann ï¿½ber einen Mosfet abgeschaltet werden
     P1OUT &= ~BIT0; // Output 1.0 als Low setzen
     return true;
 }
 
 bool Analog::wakeup(){
-    // Die Masse des Sensors kann über einen Mosfet angeschaltet werden werden
+    // Die Masse des Sensors kann ï¿½ber einen Mosfet angeschaltet werden werden
     P1OUT |= BIT0;
     return true;
 }
@@ -125,7 +132,8 @@ bool Analog::getRAWValue(int64_t *aval){
 bool Analog::getCalculatedValue(int64_t *aval){
 
     float val;
-    val = ((ADC_Value/1024.0)*5 - Co1)*Co2;
+    //val = ((ADC_Value/1024.0)*5 - Co1)*Co2; // 10-biz
+    val = ((ADC_Value/4096.0)*5 - Co1)*Co2; //12-bit
 
     union {
         float float_variable;

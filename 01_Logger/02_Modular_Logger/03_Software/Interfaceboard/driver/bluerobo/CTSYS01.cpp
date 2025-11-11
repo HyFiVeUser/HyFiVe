@@ -22,6 +22,11 @@ CTSYS01::~CTSYS01()
 uint8_t CTSYS01::getParameter(){
     return 0x01;
 }
+
+uint8_t CTSYS01::getExternParameter(){
+    return 0xFF;
+}
+
 uint32_t CTSYS01::getVersion(){
     return blue_robotics_temperature_celsius_fast_response;
 }

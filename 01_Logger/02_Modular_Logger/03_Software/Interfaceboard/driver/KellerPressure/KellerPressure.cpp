@@ -36,6 +36,12 @@ KellerPressure::~KellerPressure()
 uint8_t KellerPressure::getParameter(){
     return 0x02;
 }
+
+
+uint8_t KellerPressure::getExternParameter(){
+    return 0xFF;
+}
+
 uint32_t KellerPressure::getVersion(){
     return keller_pressure_series_20;
 }

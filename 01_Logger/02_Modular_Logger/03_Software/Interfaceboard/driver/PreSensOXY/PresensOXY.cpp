@@ -17,6 +17,12 @@ PresensOXY::~PresensOXY()
 uint8_t PresensOXY::getParameter(){
     return 0xFF;
 }
+
+
+uint8_t PresensOXY::getExternParameter(){
+    return 0xFF;
+}
+
 uint8_t PresensOXY::getVersion(){
     return 0xFF;
 }

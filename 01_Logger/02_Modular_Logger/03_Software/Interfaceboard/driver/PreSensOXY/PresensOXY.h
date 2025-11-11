@@ -22,6 +22,7 @@ public:
     virtual bool getRAWValue(int64_t *aval);
     virtual bool getCalculatedValue(int64_t *aval);
     virtual uint8_t getParameter();
+    virtual uint8_t getExternParameter();
     virtual uint8_t getVersion();
 };
 
