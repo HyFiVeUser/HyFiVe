@@ -113,5 +113,6 @@ enum BMS_REGISTER_LIST{
     Register_Cell_I = 0x71,    
     Register_BATpinVoltage = 0x71,    
     Register_PACKpinVoltage = 0x71,    
-    Register_StateofHealth = 0x4f    
+    Register_StateofHealth = 0x4f,
+    Register_SerialNumber = 0x1C
 };

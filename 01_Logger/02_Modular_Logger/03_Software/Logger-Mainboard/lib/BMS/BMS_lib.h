@@ -62,7 +62,9 @@ public:
     uint16_t getStateofHealth();
     uint16_t getChargingStatus();
     uint8_t getGaugingStatus();
-    void setUndervoltageProtection();
+    void setBmsUndervoltageProtection();
+    void setBmsShutdown();
+    uint16_t getSerialNumber();
     /* uint16_t getFirmwareVersion();
      uint16_t getHardwareVersion();
      uint16_t getInstr_Flash_Signature();

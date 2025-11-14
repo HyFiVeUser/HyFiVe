@@ -90,7 +90,9 @@ void bootFinishedLED()
 
 void batteryCompletelyChargedLED()
 {
-  blinkLED(1, 5000, LedBreak);
+  delay(2000);
+  blinkLED(5, 5000, 500);
+  delay(2000);
 }
 
 void bootFinishedButNtpUpdateNotPossibleLED()
@@ -106,7 +108,7 @@ void connectionOfPowerSupplyBeginChargingOfBatteriesLED()
 
 void loggerDetectsEndOfDeploymentLED()
 {
-  blinkLED(3, LedLong, LedBreak);
+  blinkLED(3, 2000, 500);
 }
 
 void generalAlarmLed()
@@ -115,20 +117,23 @@ void generalAlarmLed()
   processAndTransmitMeasurementData();
   while (1)
   {
-    blinkLED(1, LedUltraShort, LedBreak);
+    blinkLED(1, 10, 500);
   }
 }
 
 void batteryRemainingLowLED()
 {
-  blinkLED(4, LedUltraShort, LedBreak);
+  delay(2000);
+  blinkLED(1, 10, 500);
+  delay(2000);
 }
 
 void loggerTransmittedMeasurementDataLED()
 {
-  blinkLED(1, LedShort, LedBreak);
-  blinkLED(1, LedLong, LedBreak);
-  blinkLED(1, LedShort, LedBreak);
+  blinkLED(1, 500, 500);
+  blinkLED(1, 2000, 500);
+  blinkLED(1, 500, 500);
+  delay(1000);
 }
 
 /**

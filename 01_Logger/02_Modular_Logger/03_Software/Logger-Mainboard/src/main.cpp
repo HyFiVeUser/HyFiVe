@@ -14,6 +14,7 @@
 #include "BMS.h"
 #include "DS3231TimeNtp.h"
 #include "DebuggingSDLog.h"
+#include "DeepSleep.h"
 #include "Led.h"
 #include "MQTTManager.h"
 #include "SDCard.h"
@@ -24,10 +25,11 @@
 void setup()
 {
   Serial.begin(115200);
+  enable3V3(); // Enables power supply.
   initializeLogger();
   initBmsAndRtc();
   initializeSdCard();
-  // programBms(); //* Optional (should only be activated if you want to program BMS, reason: BMS and RTC would use the interface at the same time!)
+  //programBms(); //* Optional (should only be activated if you want to program BMS, reason: BMS and RTC would use the interface at the same time!)
   performFirstBootOperations();
 }
 
@@ -35,7 +37,7 @@ void loop()
 {
   askForConfig();                      //* Configuration request
   checkWetSensorThreshold();           //* Underwater/surface water detection and operations
-  logBmsStatus();                      //* BMS status logging
+  manageBatteryCharging();             //* Battery management
   handleSensorError(30);               //* Sensor and config error detection
   processAndTransmitMeasurementData(); //* MQTT, data processing and transmission
 
@@ -56,13 +58,11 @@ void loop()
   //* Calculation of the minimum waiting time
   minTimeUntilNextFunction = calculateShortestWaitTime(totalElapsedTime, lastConfigUpdateTime, lastStatusUploadTime, lastWetDetectionUploadTime, lastDataUploadRetryTime, isDataUploadRetryEnabled, config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
 
-  //* Battery management
-  batteryCompletelyCharged();
-  connectionOfPowerSupplyBeginChargingOfBatteries();
-
   //* Deep Sleep
   //* The variable currentTimeNow = getCurrentTimeFromRTC(); updates the variable currentTimeNow with the
   //* current time from the real-time clock (RTC) directly before the ESP32 goes into deep sleep.
+  enableExternalWakeup(20); // activate Logger if power supply connection
+  enableExternalWakeup(17); // activate Logger if reed connection
   interfaceSleep();
   currentTimeNow = getCurrentTimeFromRTC();
   esp_sleep_enable_timer_wakeup((minTimeUntilNextFunction) * 1000000);

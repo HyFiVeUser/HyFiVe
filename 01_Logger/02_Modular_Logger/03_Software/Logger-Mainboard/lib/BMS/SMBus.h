@@ -34,7 +34,8 @@ public:
   void write_Word(uint8_t Command, uint16_t Data);
   void write_dWord_BE(uint8_t Command, uint32_t Data);
   void write_Block(uint16_t Data);
-  void undervoltageProtection();
+  void bmsUndervoltageProtection();
+  void bmsShutdown();
   uint8_t read_Word(uint8_t Register, uint8_t length);
   uint8_t read_Block(uint8_t length);
 

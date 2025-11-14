@@ -224,12 +224,12 @@ void LoggerHER::sensorWakeupDetection(uint8_t address)
 
   this->AdapterBus.sensorWakeup(address);
   delay(sensorWakeupDetectionTime);
-  Serial.print("address: ");
-  Serial.print(address);
-  Serial.println("");
-  Serial.print("sensorWakeupDetectionTime: ");
-  Serial.print(sensorWakeupDetectionTime);
-  Serial.println("");
+  // Serial.print("address: ");
+  // Serial.print(address);
+  // Serial.println("");
+  // Serial.print("sensorWakeupDetectionTime: ");
+  // Serial.print(sensorWakeupDetectionTime);
+  // Serial.println("");
 }
 
 void LoggerHER::sensorWakeup(uint8_t address)

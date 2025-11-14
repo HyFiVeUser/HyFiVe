@@ -63,8 +63,20 @@ void SMBus::write_Word(uint8_t Command, uint16_t Data)
 	_i2cPort->endTransmission();
 }
 
-void SMBus::undervoltageProtection()
+void SMBus::bmsShutdown()
 {
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x02);
+	_i2cPort->write(0x10);
+	_i2cPort->write(0x00);
+	_i2cPort->write(0x3B);
+	_i2cPort->endTransmission();
+}
+
+void SMBus::bmsUndervoltageProtection()
+{
+	// "Protections","CUV","Threshold","2500","mV"
 	_i2cPort->beginTransmission(this->BMS_address);
 	_i2cPort->write(0x44);
 	_i2cPort->write(0x22);
@@ -73,12 +85,12 @@ void SMBus::undervoltageProtection()
 	_i2cPort->write(0x00);
 	_i2cPort->write(0x0C);
 	_i2cPort->write(0xC4); // 2500
-	_i2cPort->write(0x09); 
+	_i2cPort->write(0x09);
 	_i2cPort->write(0x02);
 	_i2cPort->write(0xB8);
 	_i2cPort->write(0x0B);
 	_i2cPort->write(0xC4); // 2500
-	_i2cPort->write(0x09); 
+	_i2cPort->write(0x09);
 	_i2cPort->write(0x02);
 	_i2cPort->write(0xB8);
 	_i2cPort->write(0x0B);
@@ -107,6 +119,7 @@ void SMBus::undervoltageProtection()
 
 	delay(100);
 
+	//"Power","Shutdown","Shutdown Voltage","2750","mV"
 	_i2cPort->beginTransmission(this->BMS_address);
 	_i2cPort->write(0x44);
 	_i2cPort->write(0x22);
@@ -135,8 +148,8 @@ void SMBus::undervoltageProtection()
 	_i2cPort->write(0x00);
 	_i2cPort->write(0xB8);
 	_i2cPort->write(0x0B);
-	_i2cPort->write(0x64);
-	_i2cPort->write(0x64);
+	_i2cPort->write(0x64); //! 100 0x64
+	_i2cPort->write(0x64); //! 100 0x64
 	_i2cPort->write(0x00);
 	_i2cPort->write(0x05);
 	_i2cPort->write(0xDE);
@@ -149,6 +162,20 @@ void SMBus::undervoltageProtection()
 
 	delay(100);
 
+	// DF write: start at 0x4AF8, write 2 bytes (0x000A = 10 mA)
+	_i2cPort->beginTransmission(BMS_address);
+	_i2cPort->write(0x44); // ManufacturerBlockAccess
+	_i2cPort->write(0x04); // Länge: 2 (Adresse) + 2 (Daten)
+	_i2cPort->write(0xF8); // Startadresse low  (0x4AF8)
+	_i2cPort->write(0x4A); // Startadresse high
+	_i2cPort->write(0x0A); // Sleep Current LSB = 10
+	_i2cPort->write(0x00); // MSB
+	_i2cPort->endTransmission();
+
+	delay(100);
+
+	// CUVC off
+	// "Settings","Protection","Enabled Protections B","3a","hex"
 	_i2cPort->beginTransmission(this->BMS_address);
 	_i2cPort->write(0x44);
 	_i2cPort->write(0x22);
@@ -172,11 +199,11 @@ void SMBus::undervoltageProtection()
 	_i2cPort->write(0x03);
 	_i2cPort->write(0x96);
 	_i2cPort->write(0x00);
-	_i2cPort->write(0x64);
+	_i2cPort->write(0x64); //! 100 0x64
 	_i2cPort->write(0x00);
 	_i2cPort->write(0x14);
-	_i2cPort->write(0x64);
-	_i2cPort->write(0x64);
+	_i2cPort->write(0x64); //! 100 0x64
+	_i2cPort->write(0x64); //! 100 0x64
 	_i2cPort->write(0x01);
 	_i2cPort->write(0x03);
 	_i2cPort->write(0x0C);
@@ -188,6 +215,156 @@ void SMBus::undervoltageProtection()
 	_i2cPort->write(0x3A);
 	_i2cPort->write(0xED);
 	_i2cPort->endTransmission();
+
+	delay(100);
+
+	// OCVFR off
+	//"Settings","Configuration","IT Gauging Configuration","d1c6","hex"
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x22);
+	_i2cPort->write(0x80);
+	_i2cPort->write(0x4B);
+	_i2cPort->write(0x80);
+	_i2cPort->write(0x0C);
+	_i2cPort->write(0xE4);
+	_i2cPort->write(0x0C);
+	_i2cPort->write(0x06);
+	_i2cPort->write(0x08);
+	_i2cPort->write(0x68);
+	_i2cPort->write(0x10);
+	_i2cPort->write(0x36);
+	_i2cPort->write(0x10);
+	_i2cPort->write(0x64); //! 100 0x64
+	_i2cPort->write(0x5F);
+	_i2cPort->write(0x01);
+	_i2cPort->write(0x6F);
+	_i2cPort->write(0x01);
+	_i2cPort->write(0x02);
+	_i2cPort->write(0x02);
+	_i2cPort->write(0x02);
+	_i2cPort->write(0x02);
+	_i2cPort->write(0x03);
+	_i2cPort->write(0x50);
+	_i2cPort->write(0x46);
+	_i2cPort->write(0x00);
+	_i2cPort->write(0x00);
+	_i2cPort->write(0x50);
+	_i2cPort->write(0x5F);
+	_i2cPort->write(0x3C);
+	_i2cPort->write(0x64); //! 100 0x64
+	_i2cPort->write(0x00);
+	_i2cPort->write(0xC6);
+	_i2cPort->write(0xD1);
+	_i2cPort->write(0xFF);
+	_i2cPort->write(0x96);
+	_i2cPort->endTransmission();
+
+	delay(100);
+
+	// Settings -> Configuration -> SBS Gauging Configuration: 0x4AC9 (H1) von 0x04 auf 0x05
+	//    (bit0 RSOCL gesetzt). Adresse/Typ: H1 @ 0x4AC9.  Count = 2+1 = 0x03
+	//    Ref: Data Flash Table (SBS Gauging Configuration).
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44); // ManufacturerBlockAccess
+	_i2cPort->write(0x03); // Count = 2 (Addr) + 1 (Data)
+	_i2cPort->write(0xC9); // Addr L = 0xC9
+	_i2cPort->write(0x4A); // Addr H = 0x4A
+	_i2cPort->write(0x05); // Wert = 0x05
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// Protections -> COV -> Threshold Low Temp:        0x4BCC (I2) von 4300 auf 4250 mV => 0x109A -> 0x9A 0x10
+	//    Count = 2+2 = 0x04
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04);
+	_i2cPort->write(0xCC);
+	_i2cPort->write(0x4B);
+	_i2cPort->write(0x9A); // 4250 mV L
+	_i2cPort->write(0x10); // 4250 mV H
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// Protections -> COV -> Threshold Standard Temp Low: 0x4BCE (I2) -> 4250 mV
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04);
+	_i2cPort->write(0xCE);
+	_i2cPort->write(0x4B);
+	_i2cPort->write(0x9A);
+	_i2cPort->write(0x10);
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// Protections -> COV -> Threshold Standard Temp High: 0x4BD0 (I2) -> 4250 mV
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04);
+	_i2cPort->write(0xD0);
+	_i2cPort->write(0x4B);
+	_i2cPort->write(0x9A);
+	_i2cPort->write(0x10);
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// Protections -> COV -> Threshold High Temp:        0x4BD2 (I2) -> 4250 mV
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04);
+	_i2cPort->write(0xD2);
+	_i2cPort->write(0x4B);
+	_i2cPort->write(0x9A);
+	_i2cPort->write(0x10);
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// Protections -> COV -> Threshold Rec Temp:         0x4BD4 (I2) -> 4250 mV
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04);
+	_i2cPort->write(0xD4);
+	_i2cPort->write(0x4B);
+	_i2cPort->write(0x9A);
+	_i2cPort->write(0x10);
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// Advanced Charge Algorithm -> Termination Config -> Charge Term Taper Current:
+	//    Adresse 0x4CF3 (I2), von 550 auf 100 mA => 0x0064 -> 0x64 0x00
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04);
+	_i2cPort->write(0xF3);
+	_i2cPort->write(0x4C);
+	_i2cPort->write(0x64); // 100 mA L
+	_i2cPort->write(0x00); // 100 mA H
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// Advanced Charge Algorithm -> Termination Config -> Charge Term Voltage:
+	//    Adresse 0x4CF7 (I2), von 75 auf 10 mV => 0x000A -> 0x0A 0x00
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04);
+	_i2cPort->write(0xF7);
+	_i2cPort->write(0x4C);
+	_i2cPort->write(0x0A); // 10 mV L
+	_i2cPort->write(0x00); // 10 mV H
+	_i2cPort->endTransmission();
+	delay(100);
+
+	// SBS Configuration -> Data -> Serial Number: 0x40CC (H2) von 0x0002 auf 0x0003
+	//    Achtung: H2 ist 2-Byte Hex, trotzdem Little-Endian beim Schreiben.
+	_i2cPort->beginTransmission(this->BMS_address);
+	_i2cPort->write(0x44);
+	_i2cPort->write(0x04); // Count = 2 + 2
+	_i2cPort->write(0xCC); // Addr L = 0xCC
+	_i2cPort->write(0x40); // Addr H = 0x40
+	_i2cPort->write(0x03); // 0x0003 L
+	_i2cPort->write(0x00); // 0x0003 H
+	_i2cPort->endTransmission();
+	delay(100);
 }
 
 void SMBus::write_dWord_BE(uint8_t Command, uint32_t Data)

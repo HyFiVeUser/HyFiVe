@@ -340,22 +340,37 @@ uint8_t BMS_IC::getcheckFETStatus()
     return FET_EN_Status;
 }
 
-void BMS_IC::setUndervoltageProtection()
+uint16_t BMS_IC::getSerialNumber()
 {
-    _SMBus.undervoltageProtection();
+    this->_SMBus.read_Word(Register_SerialNumber, 2);
+    uint8_t byte0 = this->i2c_Buffer[0];
+    uint8_t byte1 = this->i2c_Buffer[1];
+    uint16_t value = (byte1 << 8) | byte0;
+    return value;
+}
+
+void BMS_IC::setBmsUndervoltageProtection()
+{
+    _SMBus.bmsUndervoltageProtection();
+    delay(50);
+}
+
+void BMS_IC::setBmsShutdown()
+{
+    _SMBus.bmsShutdown();
     delay(50);
 }
 
 uint32_t BMS_IC::setRESET()
 {
-    _SMBus.write_dWord_BE(CMD_RESET, 0x02410022); // 0x02410022 -> Big-Endian-Reihenfolge -> 0xE8002202
-    delay(50);
+    _SMBus.write_dWord_BE(MBA_Command, 0x02410022); // 0x02410022 -> Big-Endian-Reihenfolge -> 0xE8002202
+    delay(10000);
     return 0;
 }
 
 uint32_t BMS_IC::setFET_EN()
 {
-    _SMBus.write_dWord_BE(CMD_FET_EN, 0x022200E8); // 0x022200E8 -> Big-Endian-Reihenfolge -> 0xE8002202
+    _SMBus.write_dWord_BE(MBA_Command, 0x022200E8); // 0x022200E8 -> Big-Endian-Reihenfolge -> 0xE8002202
     delay(50);
     return 0;
 }

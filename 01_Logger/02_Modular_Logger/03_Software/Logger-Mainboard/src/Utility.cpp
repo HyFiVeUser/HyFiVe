@@ -358,6 +358,7 @@ void enable3V3()
   digitalWrite(GPIO_NUM_10, HIGH);
   delay(500);
   gpio_hold_en(GPIO_NUM_10);
+  delay(100);
 }
 
 /**
@@ -387,7 +388,7 @@ void enable5V()
 /**
  * @brief Disables 3.3V power supply.
  */
-void disable3V()
+void disable3V3()
 {
   pinMode(GPIO_NUM_10, OUTPUT);
   gpio_hold_dis(GPIO_NUM_10);
@@ -446,16 +447,17 @@ void performFirstBootOperations()
 {
   if (!isFirstBoot)
   {
-    createRequiredFolders();
-    interfaceSleep();
-    firstBootLed();
-    updateFirmware();
-    checkForBatteryErrors();
-    validateAndLoadConfig();
-    connectToWifiAndSyncNTP();
-    interfaceRST();
     Log(LogCategoryGeneral, LogLevelINFO, "-------------------Start System initialization-------------------");
     Log(LogCategoryGeneral, LogLevelINFO, "Logger-Mainboard: FWVersion: ", String(fwVersionLoggerMainboard));
+    firstBootLed();
+    createRequiredFolders();
+    interfaceSleep();
+    updateFirmware();
+    validateAndLoadConfig();
+    connectToWifiAndSyncNTP();
+    manageBatteryCharging();
+    firstBootLed();
+    interfaceRST();
     sensorAvailability();
     statusUploadPeriodeFunktion(0);
     configUpdatePeriodeFunktion(0);
@@ -715,7 +717,7 @@ void getFirmwareUpdate()
     {
       Log(LogCategoryGeneral, LogLevelERROR, "firmware download not successful");
     }
-    transmitUpdateMessage("fw_download_successfull", "hyfive/updateFwSHA256Request");
+    //! transmitUpdateMessage("fw_download_successfull", "hyfive/updateFwSHA256Request");
     updateFirmware();
   }
 }
@@ -900,7 +902,7 @@ void connectionOfPowerSupplyBeginChargingOfBatteries()
     {
       batteryEmpty = false;
       chargingStatus = true;
-      enable3V3();
+      // enable3V3();
     }
 
     connectionOfPowerSupplyBeginChargingOfBatteriesLED();
@@ -914,7 +916,7 @@ void connectionOfPowerSupplyBeginChargingOfBatteries()
   {
     batteryCompletlyCharged = false;
     chargingStatus = false;
-    disable3V();
+    // disable3V();
   }
 }
 
@@ -958,7 +960,7 @@ void batteryRemainingLow(uint8_t batteryCharge)
  */
 void programBms()
 {
-  disable3V();
+  disable3V3();
   Log(LogCategoryBMS, LogLevelINFO, "bmsProg");
   enableExternalWakeup(17); // reed switch
   esp_deep_sleep_start();
@@ -1009,8 +1011,18 @@ bool isPowerSupplyConnected()
  */
 void batteryCompletelyCharged()
 {
-  pinMode(20, INPUT);
+  pinMode(9, INPUT);  // STAT1
+  pinMode(19, INPUT); // STAT2
+  pinMode(20, INPUT); // PG
+
+  int pin9Status = digitalRead(9);
+  int pin19Status = digitalRead(19);
   int pin20Status = digitalRead(20);
+
+  Log(LogCategoryCharger, LogLevelINFO, "STAT1: ", String(pin9Status));
+  Log(LogCategoryCharger, LogLevelINFO, "STAT2: ", String(pin19Status));
+  Log(LogCategoryCharger, LogLevelINFO, "PG: ", String(pin20Status));
+
   if (pin20Status == LOW) // if power supply connected = LOW
   {
     uint8_t wakeUpTime = 0;
@@ -1030,12 +1042,12 @@ void batteryCompletelyCharged()
 
     if (getRemainingBatteryPercentage() >= 100 && !batteryCompletlyCharged)
     {
-      disable3V();
+      // disable3V();
       Log(LogCategoryPowerManagement, LogLevelINFO, "Battery completly charged");
       batteryCompletlyCharged = true;
     }
 
-    if (!batteryCompletlyCharged && getRemainingBatteryPercentage() >= 90 && getCellCurrent())
+    if (!batteryCompletlyCharged && getRemainingBatteryPercentage() >= 91 && getCellCurrent())
     {
       Log(LogCategoryPowerManagement, LogLevelDEBUG, "Battery completly charged > 100%");
       Log(LogCategoryGeneral, LogLevelDEBUG, "batteryRemaining: ", String(getRemainingBatteryPercentage()), " %");
@@ -1128,7 +1140,7 @@ void wetDetPeriodeFunktion(uint32_t wet_det_periode)
   if ((totalElapsedTime - lastWetDetectionUploadTime) >= wet_det_periode)
   {
     bootCounter++;
-    batteryRemainingLow(15); // Battery charge below 15% or 0%
+    // batteryRemainingLow(15); // Battery charge below 15% or 0%
     checkWetSensorThreshold();
     lastWetDetectionUploadTime = totalElapsedTime;
   }
@@ -1192,6 +1204,18 @@ bool checkWetSensorAndNodeRed()
   if (connectToWifiAndSyncNTP())
   {
     uint8_t errorCount = 0;
+
+    if (!getNodeRedBusyCheck)
+    {
+      requestNodeRedBusyStatus();
+      getNodeRedBusyCheck = true;
+    }
+
+    if (isNodeRedBusy)
+    {
+      return false;
+    }
+
     while (1)
     {
       requestNodeRedStatus();

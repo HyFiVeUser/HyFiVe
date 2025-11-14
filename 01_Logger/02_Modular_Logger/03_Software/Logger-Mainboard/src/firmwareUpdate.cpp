@@ -134,6 +134,8 @@ void updateFirmware()
  */
 bool calculateSha256(String received_sha256)
 {
+  received_sha256.trim();
+
   if (SD.exists("/updateFW/firmware.bin"))
   {
     File file = SD.open("/updateFW/firmware.bin", FILE_READ);

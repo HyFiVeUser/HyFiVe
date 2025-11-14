@@ -17,10 +17,9 @@
 extern TwoWire i2c;
 
 void initBmsAndRtc();
-void logBmsStatus();
 void saveBatteryErrorLog();
-void checkForBatteryErrors();
 void bmsReset();
+void manageBatteryCharging();
 
 float getRemainingBatteryPercentage();
 

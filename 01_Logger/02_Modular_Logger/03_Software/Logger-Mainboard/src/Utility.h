@@ -48,7 +48,7 @@ void programBms();
 void enable3V3();
 void enable12V();
 void enable5V();
-void disable3V();
+void disable3V3();
 void disable12V();
 void disable5V();
 void interfaceRST();

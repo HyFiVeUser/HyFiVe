@@ -264,6 +264,14 @@ void handleReceivedMessage(MQTTClient *client, char *topic, char *payload, int l
       messageTemp += (char)payload[i];
     }
 
+    messageTemp.trim();
+
+    if ((messageTemp == String(configRTC.logger_id) + "_0") && isNodeRedStatus)
+    {
+      isNodeRedBusy = false;
+      return;
+    }
+
     if ((messageTemp == String(configRTC.logger_id)) && isNodeRedLogin)
     {
       isNodeRedAvailable = true;
@@ -303,6 +311,7 @@ void handleReceivedMessage(MQTTClient *client, char *topic, char *payload, int l
         if (file)
         {
           String stored_sha256 = file.readStringUntil('\n');
+          stored_sha256.trim();
           file.close();
 
           if (stored_sha256 == received_sha256)
@@ -440,6 +449,7 @@ bool connectToMqtt()
         client.subscribe("hyfive/updateFirmwareSHA256", 2);
         client.subscribe("hyfive/updateFW", 0);
         client.subscribe("hyfive/nodeRedLogin", 2);
+        client.subscribe("hyfive/nodeRedBusyStatus", 2);
 
         // Set up callback function for incoming messages
         client.onMessageAdvanced(handleReceivedMessage);
@@ -563,7 +573,7 @@ void requestNodeRedStatus()
 
     if (isNodeRedAvailable)
     {
-      Log(LogCategoryMQTT, LogLevelDEBUG, "Node-RED is available isNodeRedAvailable");
+      Log(LogCategoryMQTT, LogLevelDEBUG, "Node-RED is available / requestNodeRedStatus");
       break;
     }
 
@@ -571,6 +581,38 @@ void requestNodeRedStatus()
     {
       client.unsubscribe("hyfive/nodeRedLogin");
       isNodeRedLogin = false;
+      break;
+    }
+  }
+}
+
+/**
+ * @brief Requests the busy status of Node-RED.
+ */
+void requestNodeRedBusyStatus()
+{
+  isNodeRedStatus = true;
+  isNodeRedBusy = true;
+  transmitUpdateMessage((String(configRTC.logger_id)).c_str(), "hyfive/nodeRedBusyRequest");
+  lastMessageTime = millis();
+  while (1)
+  {
+    client.loop();
+    delay(10);
+
+    if (!isNodeRedBusy)
+    {
+      Log(LogCategoryMQTT, LogLevelDEBUG, "Node-RED is not busy");
+      client.unsubscribe("hyfive/nodeRedBusyStatus");
+      isNodeRedStatus = false;
+      break;
+    }
+
+    if (millis() - lastMessageTime > 500)
+    {
+      Log(LogCategoryMQTT, LogLevelINFO, "Node-RED is busy");
+      client.unsubscribe("hyfive/nodeRedBusyStatus");
+      isNodeRedStatus = false;
       break;
     }
   }
@@ -589,7 +631,7 @@ bool isNodeRedResponsePositive()
   }
   else
   {
-    Log(LogCategoryMQTT, LogLevelERROR, "Node-RED is not available");
+      Log(LogCategoryMQTT, LogLevelERROR, "Node-RED is not available");
     return false;
   }
 }

@@ -23,7 +23,7 @@ extern std::atomic<bool> ledMeasurementsOff;
 
 // Configuration variables
 
-inline float fwVersionLoggerMainboard = 0.82;
+inline float fwVersionLoggerMainboard = 0.87;
 inline int maxMeasurementCountForLed = 5;           // in count
 inline int sampleCastIntervals = 3;                 // in count
 inline int waitAfterUnderwaterMeasurementTime = 30; // in seconds
@@ -43,6 +43,7 @@ inline bool isNtpSynchronized = false;
 inline bool hasSensorError = false;
 inline RTC_DATA_ATTR LoggerConfigRTC configRTC;
 inline RTC_DATA_ATTR int WifiArraySize = 0;
+inline RTC_DATA_ATTR int lastSuccessfulNetworkIndex = -1;
 inline RTC_DATA_ATTR int SensorArraySize = 0;
 
 // Sensor-specific variables
@@ -84,13 +85,17 @@ inline RTC_DATA_ATTR bool hasMqttLogError = false;
 inline RTC_DATA_ATTR bool hasMqttMeasurementError = false;
 inline RTC_DATA_ATTR bool isDataUploadRetryEnabled = false;
 inline bool isNodeRedAvailable = false;
+inline bool getNodeRedBusyCheck = false;
+inline bool isNodeRedBusy = true;
 inline bool isNodeRedLogin = false;
+inline bool isNodeRedStatus = false;
 inline bool isFirmwareUpdate = false;
 inline bool isfirstBootLed = false;
 inline RTC_DATA_ATTR bool chargingStatus = false;
 inline RTC_DATA_ATTR bool batteryCompletlyCharged = false;
 inline RTC_DATA_ATTR bool wificonfigRtc = false;
 inline RTC_DATA_ATTR bool batteryEmpty = false;
+inline RTC_DATA_ATTR bool bmsConfig = false;
 inline bool interfaceError = false;
 
 // Counter variables
@@ -105,7 +110,6 @@ inline RTC_DATA_ATTR int bootCounter = 0;
 inline RTC_DATA_ATTR uint16_t longestSensorWakeupTime = 0;
 inline RTC_DATA_ATTR uint8_t interfaceRdyErrorCounter = 0;
 inline RTC_DATA_ATTR uint8_t sensorCalibToInterfaceIfRdyErrorCounter = 0;
-inline RTC_DATA_ATTR uint8_t bmsErrorCounter = 0;
 
 // Measurement data variables
 
