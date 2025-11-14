@@ -1,0 +1,5478 @@
+[
+    {
+        "id": "7b9f2a74658bb301",
+        "type": "tab",
+        "label": "ChangeLog",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "32c1e2ca180959a9",
+        "type": "tab",
+        "label": "MainFlows",
+        "disabled": false,
+        "info": "was"
+    },
+    {
+        "id": "aaf7dc69f67f36b7",
+        "type": "tab",
+        "label": "netcdf",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8a79f03ecc1bf041",
+        "type": "tab",
+        "label": "updateConfig",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3bc02760ddb334e6",
+        "type": "tab",
+        "label": "firmware update OTA",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ab0fe76d5f7a7277",
+        "type": "tab",
+        "label": "TestFunctionality",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d053985c0c44ba93",
+        "type": "group",
+        "z": "7b9f2a74658bb301",
+        "name": "",
+        "style": {
+            "fill": "#7fb7df",
+            "label": true,
+            "stroke": "#0070c0"
+        },
+        "nodes": [
+            "019fe0f396b2a1ba",
+            "c5967591115fde9d",
+            "113d46ac17a997a3",
+            "d758a6c898cae615",
+            "453ea85aac12ed94",
+            "72920bbe3182f593",
+            "08f8ccb93bb158c2",
+            "37228853721f72b7",
+            "263e94e132d8d369",
+            "0f4b1654aebbe184"
+        ],
+        "x": 34,
+        "y": 319,
+        "w": 812,
+        "h": 902
+    },
+    {
+        "id": "2381eb4fbbf60d9e",
+        "type": "group",
+        "z": "7b9f2a74658bb301",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "fill": "#7fb7df",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "b85827d640edfdcf",
+            "ea24ec2f3df557c9",
+            "5425abc7de6b0283"
+        ],
+        "x": 34,
+        "y": 39,
+        "w": 402,
+        "h": 238
+    },
+    {
+        "id": "44bc50e932249705",
+        "type": "group",
+        "z": "8a79f03ecc1bf041",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.26",
+            "label": true
+        },
+        "nodes": [
+            "0d8917ea4ea509b9",
+            "5bac181a7527cf74",
+            "4f1dc3e387aa8428",
+            "6b0c6e8bd250deeb",
+            "7dd675183dc6b53d",
+            "8cf411618e874f29",
+            "740e0a856502a11a",
+            "5693c4220bd921d1",
+            "93910fd239bc37b5",
+            "d61bf6489e89b255",
+            "b968aaa4296ce876",
+            "11f64294aaee77c7",
+            "78fe8f15cfd01b64",
+            "18a8a02a866c7a5b",
+            "6cfbc4c9fddaa534",
+            "1f1d7c548c869cef"
+        ],
+        "x": 14,
+        "y": 695,
+        "w": 892,
+        "h": 446
+    },
+    {
+        "id": "e80bf71403163a57",
+        "type": "group",
+        "z": "8a79f03ecc1bf041",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.25",
+            "label": true
+        },
+        "nodes": [
+            "c5e61d82e8fa651a",
+            "da16fbe24ac341f6",
+            "16cd4c6cb5e697de",
+            "03ae4b7d29ed9605"
+        ],
+        "x": 24,
+        "y": 1639,
+        "w": 762,
+        "h": 149.5
+    },
+    {
+        "id": "82ee787fce33e32c",
+        "type": "group",
+        "z": "8a79f03ecc1bf041",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.26",
+            "label": true
+        },
+        "nodes": [
+            "480f5b89af393682",
+            "d96ec57661077fd3",
+            "88c0fac499ad523d",
+            "28da193616d22fb9",
+            "a591bae174664c0b",
+            "34ed551e9d0ec6e4"
+        ],
+        "x": 954,
+        "y": 699,
+        "w": 512,
+        "h": 222
+    },
+    {
+        "id": "42b491bc3f31a12a",
+        "type": "group",
+        "z": "8a79f03ecc1bf041",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "label": true,
+            "fill-opacity": "0.25"
+        },
+        "nodes": [
+            "f8e6c2080916a00a",
+            "451f33e49d6bb84d",
+            "8c046d5e8cb1dfe9",
+            "dacd41f93085eb49",
+            "2e84476edb6469a0",
+            "90925ae178711f03",
+            "c9737401fd6ec32e",
+            "30b18da5a450b8f9",
+            "bac9e4ecd31fdda8",
+            "a6a809c5c659e5c4",
+            "c74166cb28d5089e",
+            "e00f150c81fa392d",
+            "7d6351328e5c6bd3",
+            "517f4fbe7d86b382",
+            "dae144a1b232c658",
+            "abf3437aff5afe16"
+        ],
+        "x": 14,
+        "y": 243,
+        "w": 1412,
+        "h": 405.5
+    },
+    {
+        "id": "cf978177a7a744f6",
+        "type": "group",
+        "z": "8a79f03ecc1bf041",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.25",
+            "label": true
+        },
+        "nodes": [
+            "a0ed6bb025207d9b",
+            "2208688aa1ed66db",
+            "d1bb9273cc6ecd2e",
+            "4ee07257a83d8390"
+        ],
+        "x": 14,
+        "y": 15,
+        "w": 792,
+        "h": 193.5
+    },
+    {
+        "id": "6b2c63dd8de70fea",
+        "type": "group",
+        "z": "aaf7dc69f67f36b7",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.27",
+            "label": true
+        },
+        "nodes": [
+            "443d93e89059e90c",
+            "6e10c13dfdb927ae",
+            "23bce4de22d5f1a0",
+            "4506026094b4445a",
+            "29c9721d45f25d5b",
+            "1f0a794524ef742e",
+            "20f26b356f948574",
+            "5fcc6926b8a683bf",
+            "42ce3dcc5e63ddae",
+            "874b1b17ef647f8c",
+            "1fc7840fb93c65a7"
+        ],
+        "x": 24,
+        "y": 15,
+        "w": 1332,
+        "h": 406
+    },
+    {
+        "id": "309377f4854b5487",
+        "type": "group",
+        "z": "ab0fe76d5f7a7277",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.25",
+            "label": true
+        },
+        "nodes": [
+            "19119739066f0637",
+            "baa4a875388ef645",
+            "7aba235bda7f9d07",
+            "eae2d99d2225a489",
+            "1cf0d8fd402a9036",
+            "3ce61838cac5e9c2",
+            "6a0e6c6179b88846",
+            "b402ed7674b81c09",
+            "2767a7d4227e85cf",
+            "62b1f7c9ef3d9c10",
+            "b968761ad90c13e3",
+            "6f7e77c588053253"
+        ],
+        "x": 34,
+        "y": 19,
+        "w": 1112,
+        "h": 442
+    },
+    {
+        "id": "46273524ab5fbf76",
+        "type": "group",
+        "z": "32c1e2ca180959a9",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.25",
+            "label": true
+        },
+        "nodes": [
+            "f007a2aa0fb46c39",
+            "a0eb8accf85f737c",
+            "24c5c6a8f149add9",
+            "93c43f2caae3a9cf",
+            "ce543ee0d93056db",
+            "be59a0f8149b80b8",
+            "690cdb7885a70b5a"
+        ],
+        "x": 24,
+        "y": 27,
+        "w": 932,
+        "h": 194
+    },
+    {
+        "id": "6b6f5f6a5c82c24c",
+        "type": "group",
+        "z": "32c1e2ca180959a9",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.24",
+            "label": true
+        },
+        "nodes": [
+            "98d4688cd121da6f",
+            "70ca5b01ddc9496e",
+            "4d8fe282f1a9a842",
+            "28fe3205525973c8",
+            "e658246f83876bfd",
+            "a3fc4808269b210d",
+            "66f55d4c43cf96f8",
+            "2d350fec53053e50",
+            "d4f9052c3fad0825",
+            "18d4e0a5aa227bb9",
+            "f3b5ef8eca0a93a7",
+            "d7c5d77e6e792788"
+        ],
+        "x": 24,
+        "y": 247,
+        "w": 1222,
+        "h": 294
+    },
+    {
+        "id": "178a4f41dc7328d4",
+        "type": "group",
+        "z": "32c1e2ca180959a9",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.25",
+            "label": true
+        },
+        "nodes": [
+            "525a21373f3fb6d4",
+            "c140d63eba2e7140",
+            "b0d479a9e4e92f51",
+            "aecb1bbc16d63dc3",
+            "46b889cbc4bbc849",
+            "f8a7d89b7710c3d3",
+            "3da968a3793073e0",
+            "status_timer",
+            "e4f0a7676f558436",
+            "49d76704c64d88d6",
+            "5d94ec779189fdfd",
+            "d879623ef4039d60",
+            "1038bd4f04c39421"
+        ],
+        "x": 24,
+        "y": 799,
+        "w": 642,
+        "h": 382
+    },
+    {
+        "id": "2ec352b390c7cb05",
+        "type": "group",
+        "z": "32c1e2ca180959a9",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.26",
+            "label": true
+        },
+        "nodes": [
+            "50e39e3115ea2edd",
+            "3ec27a49dab59690",
+            "84dc0078e949965f",
+            "f6c30838477de63e",
+            "8964e5478ecc18dc",
+            "19fff76c38bb52e0",
+            "010c8e4ca8a603fb",
+            "3a69d2968a9f6b6a",
+            "f7c1da2dbeea5c21",
+            "a8f07e3e3a6d8bf6"
+        ],
+        "x": 24,
+        "y": 579,
+        "w": 1282,
+        "h": 182
+    },
+    {
+        "id": "301c6fa9cb285a48",
+        "type": "group",
+        "z": "ab0fe76d5f7a7277",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.25",
+            "label": true
+        },
+        "nodes": [
+            "07259f4331e04276",
+            "88df25dcc7992652",
+            "7e59c8eaa905bfc6",
+            "07825987edc77f78",
+            "a1a69c6ebb32aaa8"
+        ],
+        "x": 14,
+        "y": 499,
+        "w": 1202,
+        "h": 142
+    },
+    {
+        "id": "9a320865e704643c",
+        "type": "group",
+        "z": "8a79f03ecc1bf041",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.26",
+            "label": true
+        },
+        "nodes": [
+            "8bf19fce587d973f",
+            "3f789b0266b2b876",
+            "e94ea508da6baafd",
+            "00f4ceb394ab59e0",
+            "d9d01ef9f7372441",
+            "34cf73512b317ce8",
+            "8a1720816507873c",
+            "6add5458191b408d",
+            "059ef1ac0de4f962",
+            "713cd92dde0bd129",
+            "d67fe0912457af45",
+            "1e2664d63b6730f5",
+            "10de9635fbd8077f",
+            "66b79824d2538d8f",
+            "49afad3e5c2c073a",
+            "586bfab4cdb83050"
+        ],
+        "x": 24,
+        "y": 1155,
+        "w": 842,
+        "h": 446
+    },
+    {
+        "id": "ae67b649dbd67e58",
+        "type": "group",
+        "z": "3bc02760ddb334e6",
+        "name": "",
+        "style": {
+            "fill": "#d1d1d1",
+            "fill-opacity": "0.26",
+            "label": true
+        },
+        "nodes": [
+            "8cced0ed979273c7",
+            "f6e988c74dc66053",
+            "759e9134bea10229",
+            "c3c80a7758724c9e",
+            "891fb81fd9da1dbc",
+            "d72a798d0cdab1f3",
+            "4d48e6ed4c46cf9b",
+            "6a0498c326884443",
+            "9e84c509199e9f66",
+            "bdb491675dc7343d",
+            "8006aea035193d50",
+            "b2f191ec5e290eb0",
+            "570486cc68578c18",
+            "4ef7646beb0bc5a8",
+            "7d900f9d5026416b",
+            "5d874c021a783ad9",
+            "3a5c9381531acaa2",
+            "aa444acb2d048f60",
+            "502e2a4d22111d3d",
+            "e9533829ae3f27c3",
+            "f7152db1afedb4db",
+            "8d3ffb11ddc19fe3",
+            "a89ca2e4a6f07e5c",
+            "03a8cc4f2d3117df",
+            "9fd67a8dfbff3b71",
+            "f1bfece59c19909d",
+            "84b29373593c3f94",
+            "4fa834de09d99c72",
+            "87984dd0f76147c1",
+            "47f4bf8b0d0363b4",
+            "6076de9100ae51a1",
+            "64734581523387c7",
+            "bac6b4ea1a03af3d",
+            "9b05c3e4393e9c9b",
+            "69405c1887695578",
+            "6d9c2ba295c9ea34",
+            "6f893cd342660fbb",
+            "77f3760911f172e0",
+            "aad5ea86611e05a7",
+            "ed9230209384c7c3",
+            "2cb2d46e21d7e934",
+            "1582acca9c186e8a",
+            "894b3451bff12089",
+            "716dc0fe81bf6b08",
+            "9c8a54097123b001",
+            "64de126c76f26a60",
+            "deb7ae91bfc62907",
+            "b9b716b0100c946e"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 1372,
+        "h": 1622
+    },
+    {
+        "id": "c650078577625659",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "LocalInflux",
+        "usetls": false,
+        "tls": "c8f010c74bee9135",
+        "influxdbVersion": "2.0",
+        "url": "http://influxDB:8086",
+        "timeout": "",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "ed4cd49e795775da",
+        "type": "mqtt-broker",
+        "name": "RUT955",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c8f010c74bee9135",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "1062df4f6e8d4e3c",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "",
+        "password": ""
+    },
+    {
+        "id": "1510af957dea04fd",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "4e41f0dbfaeb30e2",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a28c5920a6216eb7",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "0adf19cfbb60aa4b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7f445ca17cf754e2",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e1feb3ca28693896",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "8e0afad26e8060cc",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "d3a9cb7b124eeb94",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d5bc607ae6364bf5",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1ad8ce79b221484a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0b4c116fa302a5fe",
+        "type": "influxdb",
+        "hostname": "mqtt-influx.ostseeforschung.info",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "IOW",
+        "usetls": false,
+        "tls": "c8f010c74bee9135",
+        "influxdbVersion": "2.0",
+        "url": "https://mqtt-influx.ostseeforschung.info",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "ae6698d6de6d7f63",
+        "type": "mqtt-broker",
+        "name": "MathisPhone",
+        "broker": "100.99.211.65",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c2f8329459b812c1",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "43e227d5a7e3d711",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "Laptop",
+        "usetls": false,
+        "tls": "c8f010c74bee9135",
+        "influxdbVersion": "2.0",
+        "url": "http://172.17.0.1:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "fe905591c579d7c8",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "5d91884e0a1ba278",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "9818285b979a8514",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "289b39d02de9d5c3",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "42960f7d49201865",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "45a3b4a419220e21",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "093b1b3c1f55bebc",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "2a7d7f357cd358c9",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "883aeebc459475e2",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e43b951b5fb49639",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "bcd2a686c2ae1b0f",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "90dd2bdad400256e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1a1d7b1780194542",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fa0cc7efae604a91",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8ab2403886c90a8a",
+        "type": "influxdb",
+        "hostname": "mqtt-influx.ostseeforschung.info",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "IOW",
+        "usetls": false,
+        "tls": "c8f010c74bee9135",
+        "influxdbVersion": "2.0",
+        "url": "https://mqtt-influx.ostseeforschung.info",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "f5794bc5aafe5619",
+        "type": "mqtt-broker",
+        "name": "MathisPhone",
+        "broker": "100.99.211.65",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "91f48efb0c147d40",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "e82c5487fba28e12",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "Laptop",
+        "usetls": false,
+        "tls": "c8f010c74bee9135",
+        "influxdbVersion": "2.0",
+        "url": "http://172.17.0.1:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "af784df94f7d7f0f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "592217e67e8020db",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "ee4d7964dda133c6",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c5d604a3ff2b2883",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f64c2d8f1f48fc78",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3816b63d8bd98fec",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "26d7c3a1b4c523ae",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "de0d0c7fa416f32e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f4eb4615ffefd018",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f7153034329443f2",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "835c0258fe0a93c6",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3a65b61f9cfa32f9",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "4fdd85ee0b2f4a94",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt.ostseeforschung.info",
+        "port": "8883",
+        "tls": "c8f010c74bee9135",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b4f1cbcbf7c0984a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "283305862bddf51b",
+        "type": "SFTP-credentials",
+        "host": "hyfive.info",
+        "port": "22",
+        "username": "loggermailbox",
+        "password": ""
+    },
+    {
+        "id": "019fe0f396b2a1ba",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "CURRENT VERSION: 06.08.2024",
+        "info": "",
+        "x": 200,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b85827d640edfdcf",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "2381eb4fbbf60d9e",
+        "name": "FLOW FOR HYFIVE DECKBOX",
+        "info": "",
+        "x": 190,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "5425abc7de6b0283",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "2381eb4fbbf60d9e",
+        "name": "After every change: \\n EDIT CHANGE LOG \\n Change date of 'Current Version' \\n Export and commit flow to Github",
+        "info": "",
+        "x": 200,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ea24ec2f3df557c9",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "2381eb4fbbf60d9e",
+        "name": "For detailed info check Github documentation",
+        "info": "",
+        "x": 240,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c5967591115fde9d",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "x",
+        "info": "",
+        "x": 770,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "113d46ac17a997a3",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "Format: Date -      Contributor -       Short description of changes",
+        "info": "",
+        "x": 270,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "d758a6c898cae615",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "05.08.2024 - Mathis Björner - changed the way data is passed after creating the query for GPS",
+        "info": "",
+        "x": 380,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "453ea85aac12ed94",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "04.08.2024 - Stanislas Klein - Clean up and documentation of current version",
+        "info": "",
+        "x": 330,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "72920bbe3182f593",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "06.08.2024 - Frederik Furkert - New Layout, extended docu, testing with Hensel logger, small bug fixes",
+        "info": "",
+        "x": 410,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "08f8ccb93bb158c2",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "CHANGE LOG",
+        "info": "",
+        "x": 140,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "37228853721f72b7",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "11.10.2024 - Stanislas Klein - Log content of the logger is also transmitted",
+        "info": "",
+        "x": 320,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "263e94e132d8d369",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "20.11.2024 - Stanislas Klein - firmware update OTA",
+        "info": "",
+        "x": 250,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "0f4b1654aebbe184",
+        "type": "comment",
+        "z": "7b9f2a74658bb301",
+        "g": "d053985c0c44ba93",
+        "name": "14.11.2025 - Stanislas Klein - Node-RED Multi-client access control",
+        "info": "",
+        "x": 300,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "f007a2aa0fb46c39",
+        "type": "debug",
+        "z": "32c1e2ca180959a9",
+        "g": "46273524ab5fbf76",
+        "name": "GPS",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a0eb8accf85f737c",
+        "type": "udp in",
+        "z": "32c1e2ca180959a9",
+        "g": "46273524ab5fbf76",
+        "name": "",
+        "iface": "",
+        "port": "8500",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "24c5c6a8f149add9"
+            ]
+        ]
+    },
+    {
+        "id": "24c5c6a8f149add9",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "46273524ab5fbf76",
+        "name": "Extract GPS",
+        "func": "//Example of data received:\n//GPRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,\nvar symblat = \"\";\nvar symblong = \"\";\n\nmsg.string = msg.payload.split(\",\");\n\nif(msg.string[1] == \"\"){\n    msg.payload = {};\n    return;\n}\n\n//Find if latitude is south and add minus\nif (msg.string[4] == \"S\") {\n    symblat = \"-\";\n    \n} else {\n}\n//Find if longitude is west and add minus\nif (msg.string[6] == \"W\") {\n    symblong = \"-\";\n    \n} else {\n}\nvar nvals = msg.payload.match(/,(\\d+)(\\d\\d\\.\\d+),(N|S)/);\nvar evals = msg.payload.match(/,(\\d+)(\\d\\d\\.\\d+),(E|W)/);\nvar time = parseInt(msg.string[1]);\nvar time2 = Date.parse(time);\nmsg.payload = {\n    //time:       new Date(time),\n    time:       new Date(),\n    latitude:   parseFloat(symblat + (+nvals[1] + nvals[2]/60).toFixed(6)),\n    longitude:  parseFloat(symblong + (+evals[1] + evals[2]/60).toFixed(6)),\n    speed:      parseFloat(msg.string[7]) || 0,\n    course:     parseFloat(msg.string[8]) || 0\n}\nflow.set(\"latitude\", parseFloat(symblat + (+nvals[1] + nvals[2] / 60).toFixed(6)));\nflow.set(\"longitude\", parseFloat(symblong + (+evals[1] + evals[2] / 60).toFixed(6)));\ndelete msg.string;\nreturn [msg];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 140,
+        "wires": [
+            [
+                "ce543ee0d93056db"
+            ]
+        ]
+    },
+    {
+        "id": "93c43f2caae3a9cf",
+        "type": "comment",
+        "z": "32c1e2ca180959a9",
+        "g": "46273524ab5fbf76",
+        "name": "GPS Buffer \\n Receives GPS from router and store it into database",
+        "info": "",
+        "x": 240,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ce543ee0d93056db",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "46273524ab5fbf76",
+        "name": "Prepare data",
+        "func": "var newMsg = [];\nvar myarray = [];\nvar obj = {\n    measurement: 'Buffer',\n\n    tags: {\n        GpsReceiver: 1,\n    },\n\n    fields: {\n        \n        latitude: parseFloat(msg.payload.latitude),\n        longitude: parseFloat(msg.payload.longitude),\n        speed: parseFloat(msg.payload.speed),\n        course: parseFloat(msg.payload.course),\n    },\n    timestamp: new Date(),\n        \n}\nmyarray.push(obj);\n\n\nnewMsg = { payload: myarray };\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 140,
+        "wires": [
+            [
+                "f007a2aa0fb46c39",
+                "be59a0f8149b80b8"
+            ]
+        ]
+    },
+    {
+        "id": "be59a0f8149b80b8",
+        "type": "influxdb batch",
+        "z": "32c1e2ca180959a9",
+        "g": "46273524ab5fbf76",
+        "influxdb": "c650078577625659",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "Store GPS data",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "hyfive",
+        "bucket": "GpsBuffer",
+        "x": 850,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "690cdb7885a70b5a",
+        "type": "inject",
+        "z": "32c1e2ca180959a9",
+        "g": "46273524ab5fbf76",
+        "name": "GPRMC (1sec)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "GPRMC,123519,A,5529.60,N,1235.03,E,022.4,084.4,230394,003.1,",
+        "payloadType": "str",
+        "x": 180,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "98d4688cd121da6f",
+        "type": "debug",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "debug data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "70ca5b01ddc9496e",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "Prepare data",
+        "func": "var v;\nvar newmsg = [];\n\n//var data = flow.get(\"measured_data\");\nvar data = msg.measured_data\nvar meta = msg.meta_data\n//var meta = flow.get(\"meta_data\");\n\nif (msg.payload.length != 0) {\n    data.latitude = msg.payload[0].latitude,\n    data.longitude = msg.payload[0].longitude,\n    data.speed = msg.payload[0].speed,\n    data.course = msg.payload[0].course\n}else{\n    data.latitude = -999,\n    data.longitude = -999,\n    data.speed = -999,\n    data.course = -999\n}\n\nnewmsg = {\n    payload: [{\n        measurement: 'netcdf',\n        tags: meta,\n        fields: data,\n        //timestamp: new Date(flow.get(\"time\"))\n        timestamp: new Date(msg.time)\n    }]\n}\n\nreturn [newmsg]\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 360,
+        "wires": [
+            [
+                "98d4688cd121da6f",
+                "d7c5d77e6e792788"
+            ]
+        ]
+    },
+    {
+        "id": "4d8fe282f1a9a842",
+        "type": "mqtt in",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "",
+        "topic": "hyfive/data",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "f3b5ef8eca0a93a7"
+            ]
+        ]
+    },
+    {
+        "id": "28fe3205525973c8",
+        "type": "influxdb in",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "influxdb": "c650078577625659",
+        "name": "ReadFromGpsBuffer",
+        "query": "",
+        "rawOutput": false,
+        "precision": "s",
+        "retentionPolicy": "3d",
+        "org": "hyfive",
+        "x": 630,
+        "y": 360,
+        "wires": [
+            [
+                "70ca5b01ddc9496e"
+            ]
+        ]
+    },
+    {
+        "id": "e658246f83876bfd",
+        "type": "debug",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "debug header",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "a3fc4808269b210d",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "Prepare Header",
+        "func": "var newMsg = [];\nvar item;\n\nif(msg.payload.parameter == \"logger\"){\n    item = {\n        measurement: 'attributes',\n        tags: {\n            logger_id: parseInt(msg.payload.logger_id),\n            deployment_id: parseInt(msg.payload.deployment_id),\n            parameter: msg.payload.parameter,\n        },\n        fields: {\n            deckunit_id: parseInt(msg.payload.deckunit_id),\n            platform_id: parseInt(msg.payload.platform_id),\n            vessel_id: parseInt(msg.payload.vessel_id),\n            vessel_name: msg.payload.vessel_name,\n            contact_id: parseInt(msg.payload.deployment_contact_id),\n            contact_f_name: msg.payload.contact_first_name,\n            contact_l_name: msg.payload.contact_last_name\n        },\n        timestamp: new Date()\n    }\n}else{\n    item = {\n        measurement: 'attributes',\n        tags: {\n            logger_id: parseInt(msg.payload.logger_id),\n            deployment_id: parseInt(msg.payload.deployment_id),\n            parameter: msg.payload.sensor_type.parameter,\n        },\n        fields: {\n            unit: msg.payload.sensor_type.unit,\n            long_name: msg.payload.sensor_type.long_name,\n            sensor_id: parseFloat(msg.payload.sensor_id),\n            serial_number: msg.payload.serial_number,\n            sensor_type_id: parseInt(msg.payload.sensor_type.sensor_type_id),\n            k0: msg.payload.calib_coeff[0],\n            k1: msg.payload.calib_coeff[1],\n            k2: msg.payload.calib_coeff[2],\n            k3: msg.payload.calib_coeff[3],\n            k4: msg.payload.calib_coeff[4],\n            k5: msg.payload.calib_coeff[5],\n            k6: msg.payload.calib_coeff[6],\n            k7: msg.payload.calib_coeff[7],\n            k8: msg.payload.calib_coeff[8],\n            k9: msg.payload.calib_coeff[9],\n            manufacturer: msg.payload.sensor_type.manufacturer,\n            model_name: msg.payload.sensor_type.model,\n            accuracy: msg.payload.sensor_type.accuracy,\n            resolution: msg.payload.sensor_type.resolution,\n        },\n        timestamp: new Date()\n    }\n}\n\nnewMsg = {payload: [item]}\n\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 500,
+        "wires": [
+            [
+                "e658246f83876bfd",
+                "d7c5d77e6e792788"
+            ]
+        ]
+    },
+    {
+        "id": "66f55d4c43cf96f8",
+        "type": "influxdb batch",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "influxdb": "c650078577625659",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "Store data",
+        "database": "database",
+        "precisionV18FluxV20": "s",
+        "retentionPolicyV18Flux": "",
+        "org": "hyfive",
+        "bucket": "localhyfive",
+        "x": 1120,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "2d350fec53053e50",
+        "type": "comment",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "Handeling Measuring Data\\n Receives measurement data from logger and merge data with GPS and store it into database",
+        "info": "",
+        "x": 370,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d4f9052c3fad0825",
+        "type": "comment",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "Handling Meta Data (Header)\\n Receives the header data (containing meta information) and stores it into database",
+        "info": "",
+        "x": 340,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "18d4e0a5aa227bb9",
+        "type": "mqtt in",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "",
+        "topic": "hyfive/header",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 500,
+        "wires": [
+            [
+                "a3fc4808269b210d"
+            ]
+        ]
+    },
+    {
+        "id": "525a21373f3fb6d4",
+        "type": "mqtt in",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "",
+        "topic": "hyfive/nodeRedRequest",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 900,
+        "wires": [
+            [
+                "c140d63eba2e7140",
+                "1038bd4f04c39421"
+            ]
+        ]
+    },
+    {
+        "id": "c140d63eba2e7140",
+        "type": "mqtt out",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "",
+        "topic": "hyfive/nodeRedLogin",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed4cd49e795775da",
+        "x": 500,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "b0d479a9e4e92f51",
+        "type": "comment",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "Node-Red availability test for logger",
+        "info": "Befor the logger sends data to the MQTT broker of the router, it is checking via this flow, if Node-Red is listening",
+        "x": 190,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "50e39e3115ea2edd",
+        "type": "mqtt in",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "",
+        "topic": "hyfive/status",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "3ec27a49dab59690",
+                "f7c1da2dbeea5c21"
+            ]
+        ]
+    },
+    {
+        "id": "3ec27a49dab59690",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "prep file and SFTP",
+        "func": "var newMsg = []\nvar date = Date.now()\n\nvar logger_id = parseInt(msg.payload.logger_id)\n\nvar content = {\n    logger_id: logger_id.toString(),\n    battery_remaining: msg.payload.battery_remaining/100,\n    memory_capacity_total: msg.payload.memory_capacity_total,\n    memory_capacity_used: msg.payload.memory_capacity_used,\n    deckbox_position_last: {\n        lat: flow.get(\"latitude\"),\n        lng: flow.get(\"longitude\"),\n        date: date\n    }\n}\n\nvar logger_name = \"logger_\"\nif(logger_id < 10){\n    logger_name += \"0\" + logger_id\n}else{\n    logger_name += logger_id//.toString()\n}\n\nvar file_name = logger_name + \"_status_\" + date + \".json\"\nvar local_path = \"/usr/src/node-red/\" + file_name\nvar remote_path = \"/in/status/\" + logger_name + \"/\" + file_name\n\n\nnewMsg = {\n    payload:        content,\n    filename:       file_name,\n    file_name:      file_name,\n    localFilePath:  local_path,\n    remoteFilePath: remote_path\n}\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 660,
+        "wires": [
+            [
+                "84dc0078e949965f"
+            ]
+        ]
+    },
+    {
+        "id": "84dc0078e949965f",
+        "type": "file",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 540,
+        "y": 660,
+        "wires": [
+            [
+                "f6c30838477de63e"
+            ]
+        ]
+    },
+    {
+        "id": "f6c30838477de63e",
+        "type": "SFTP-main",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "path": "/",
+        "method": "put",
+        "remoteFilePath": "",
+        "localFilePath": "",
+        "remoteDestPath": "/",
+        "useCompression": "",
+        "encoding": "utf8",
+        "mode": "",
+        "recursive": "false",
+        "server": "e43b951b5fb49639",
+        "x": 690,
+        "y": 660,
+        "wires": [
+            [
+                "8964e5478ecc18dc"
+            ]
+        ]
+    },
+    {
+        "id": "8964e5478ecc18dc",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "rm local file",
+        "func": "var newMsg = []\n\nnewMsg = {\n    payload:        \"rm \" + msg.file_name\n}\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 660,
+        "wires": [
+            [
+                "19fff76c38bb52e0"
+            ]
+        ]
+    },
+    {
+        "id": "19fff76c38bb52e0",
+        "type": "exec",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1010,
+        "y": 660,
+        "wires": [
+            [
+                "010c8e4ca8a603fb",
+                "a8f07e3e3a6d8bf6"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "010c8e4ca8a603fb",
+        "type": "debug",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "debug status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "3a69d2968a9f6b6a",
+        "type": "comment",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "Status file transmission and forwarding",
+        "info": "",
+        "x": 200,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "f3b5ef8eca0a93a7",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "Parse data",
+        "func": "var newmsg = [];\n\nvar v;\nvar data = {};\nvar meta = {};\nvar metainformation = [\"logger_id\", \"deployment_id\"];\n\nfor(var i in msg.payload){\n    if(i === \"time\"){\n    }else if (metainformation.indexOf(i) >= 0){\n        meta[i] = parseInt(msg.payload[i])\n    }else{\n        data[i] = parseFloat(msg.payload[i])\n    }\n\n}\n\nvar date = msg.payload.time\nvar date2 = date.substring(0, 19) + '.999Z'\nnewmsg= {\n    time: msg.payload.time,\n    measured_data: data,\n    meta_data: meta,\n    query: 'from(bucket: \"GpsBuffer\") |> range(start:' + date + ' , stop:' + date2 + ') |> filter(fn: (r) => r[\"_measurement\"] == \"Buffer\") |> filter(fn: (r) => r[\"GpsReceiver\"] == \"1\") |> pivot(rowKey: [\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")'}\n\n\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "28fe3205525973c8"
+            ]
+        ]
+    },
+    {
+        "id": "f7c1da2dbeea5c21",
+        "type": "debug",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "hyfive/status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "aecb1bbc16d63dc3",
+        "type": "mqtt in",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "",
+        "topic": "hyfive/nodeRedBusyRequest",
+        "qos": "2",
+        "datatype": "utf8",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 960,
+        "wires": [
+            [
+                "f8a7d89b7710c3d3"
+            ]
+        ]
+    },
+    {
+        "id": "46b889cbc4bbc849",
+        "type": "mqtt out",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "",
+        "topic": "hyfive/nodeRedBusyStatus",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed4cd49e795775da",
+        "x": 520,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "f8a7d89b7710c3d3",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "function 3",
+        "func": "// Node-RED Funktion zur Belegungsprüfung mit Auto-Timeout\n// Speichert den Status und die belegende Zahl/String im Funktionskontext\n\n// Initialisiere den Kontext beim ersten Aufruf\nvar belegt = context.get('belegt') || false;\nvar belegungsZahl = context.get('belegungsZahl') || \"\"; // Speichert den Wert, der den Raum belegt hat\n\n// Überprüfe den Eingang\nif (msg.payload === \"true\") {\n    // Wenn \"offen\" kommt, setze Belegung zurück und gib \"wert_nodered-offen\" zurück\n    context.set('belegt', false);\n    return null;\n\n} else {\n    // Verarbeite Zahlen und Strings\n    var aktuellerWert = msg.payload;\n        \n    // Wenn noch nicht belegt ist\n    if (!belegt) {\n        // Markiere als belegt und gib \"wert_0\" zurück\n        context.set('belegt', true);\n        // Speichere den Wert, der den Raum belegt\n        context.set('belegungsZahl', aktuellerWert);\n        belegungsZahl = aktuellerWert;\n        msg.payload = aktuellerWert + \"_0\";\n    } else {\n        // Prüfe, ob es die gleiche Zahl/Wert ist, die bereits belegt\n        if (aktuellerWert === belegungsZahl) {\n            // Gleiche Zahl/Wert, erlaube Durchgang\n            msg.payload = aktuellerWert + \"_0\";\n        } else {\n            // Andere Zahl/Wert, bereits belegt, gib \"wert_1\" zurück\n            msg.payload = aktuellerWert + \"_1\";\n            return null;\n        }\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1020,
+        "wires": [
+            [
+                "46b889cbc4bbc849",
+                "5d94ec779189fdfd"
+            ]
+        ]
+    },
+    {
+        "id": "3da968a3793073e0",
+        "type": "inject",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "str",
+        "x": 170,
+        "y": 1020,
+        "wires": [
+            [
+                "f8a7d89b7710c3d3"
+            ]
+        ]
+    },
+    {
+        "id": "status_timer",
+        "type": "inject",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "data flow update",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1.5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 1140,
+        "wires": [
+            [
+                "49d76704c64d88d6"
+            ]
+        ]
+    },
+    {
+        "id": "e4f0a7676f558436",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "> 10 sec",
+        "func": "// Function returns the word “true” as msg.payload if number > 10\n\nif (msg.payload > 2) {\n    // Number is greater than 10\n    msg.payload = \"true\";\n\n    // Green status\n    node.status({\n        fill: \"green\",\n        text: \"Größer als 10: \" + msg.payload\n    });\n\n    return msg;\n} else {\n    // Number is less than or equal to 10\n    // Red status\n    node.status({\n        fill: \"red\", \n        text: \"Nicht größer als 10: \" + msg.payload\n    });\n\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 160,
+        "y": 1080,
+        "wires": [
+            [
+                "f8a7d89b7710c3d3"
+            ]
+        ]
+    },
+    {
+        "id": "d7c5d77e6e792788",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "6b6f5f6a5c82c24c",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "a8f07e3e3a6d8bf6",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "2ec352b390c7cb05",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "49d76704c64d88d6",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "no data flow since",
+        "func": "// Retrieve variables from global context\nvar lastDataTimestamp = global.get('lastDataTimestamp') || 0;\nvar dataWasFlowing = global.get('dataWasFlowing') || false;\n\n// Current time\nvar currentTime = new Date().getTime();\nvar timeSinceLastData = currentTime - lastDataTimestamp;\n\nmsg.payload = Math.floor(timeSinceLastData/1000);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 1140,
+        "wires": [
+            [
+                "e4f0a7676f558436"
+            ]
+        ]
+    },
+    {
+        "id": "5d94ec779189fdfd",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "b20604957f498e31",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "name": "packet size in bytes",
+        "func": "let size = 480; // packet size in bytes 480@512MQTT\nlet buffer = Buffer.from(msg.payload);\nlet parts = [];\n\nfor (let i = 0; i < buffer.length; i += size) {\n    let packet = buffer.slice(i, i + size);\n    parts.push({payload: packet});\n}\n\nreturn [parts]; ",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1260,
+        "wires": [
+            [
+                "60f5f17eecd6d0a1"
+            ]
+        ]
+    },
+    {
+        "id": "60f5f17eecd6d0a1",
+        "type": "delay",
+        "z": "32c1e2ca180959a9",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "100",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 1300,
+        "wires": [
+            [
+                "2c2eb38909b2764a"
+            ]
+        ]
+    },
+    {
+        "id": "1b5c22ac4c5091ae",
+        "type": "file in",
+        "z": "32c1e2ca180959a9",
+        "name": "firmware.bin",
+        "filename": "firmware/firmware.bin",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 430,
+        "y": 1260,
+        "wires": [
+            [
+                "b20604957f498e31"
+            ]
+        ]
+    },
+    {
+        "id": "f032d3168015469f",
+        "type": "inject",
+        "z": "32c1e2ca180959a9",
+        "name": "Trigger ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Trigger  ",
+        "payloadType": "str",
+        "x": 110,
+        "y": 1260,
+        "wires": [
+            [
+                "1b5c22ac4c5091ae"
+            ]
+        ]
+    },
+    {
+        "id": "2c2eb38909b2764a",
+        "type": "function",
+        "z": "32c1e2ca180959a9",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "d879623ef4039d60",
+        "type": "inject",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10",
+        "payloadType": "str",
+        "x": 350,
+        "y": 1080,
+        "wires": [
+            [
+                "f8a7d89b7710c3d3"
+            ]
+        ]
+    },
+    {
+        "id": "1038bd4f04c39421",
+        "type": "debug",
+        "z": "32c1e2ca180959a9",
+        "g": "178a4f41dc7328d4",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "443d93e89059e90c",
+        "type": "inject",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "900",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "6e10c13dfdb927ae"
+            ]
+        ]
+    },
+    {
+        "id": "6e10c13dfdb927ae",
+        "type": "exec",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "command": "python python_scripts/create_netcdf.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "60",
+        "winHide": false,
+        "oldrc": false,
+        "name": "create_netcdf.py",
+        "x": 300,
+        "y": 240,
+        "wires": [
+            [],
+            [
+                "874b1b17ef647f8c"
+            ],
+            [
+                "4506026094b4445a",
+                "874b1b17ef647f8c"
+            ]
+        ]
+    },
+    {
+        "id": "23bce4de22d5f1a0",
+        "type": "inject",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "inject manually",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "4506026094b4445a"
+            ]
+        ]
+    },
+    {
+        "id": "4506026094b4445a",
+        "type": "exec",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "command": "./handle_data/push_sftp.sh",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "20",
+        "winHide": false,
+        "oldrc": false,
+        "name": "push_sftp.sh",
+        "x": 540,
+        "y": 240,
+        "wires": [
+            [
+                "1fc7840fb93c65a7"
+            ],
+            [
+                "1fc7840fb93c65a7"
+            ],
+            [
+                "20f26b356f948574",
+                "1fc7840fb93c65a7"
+            ]
+        ]
+    },
+    {
+        "id": "29c9721d45f25d5b",
+        "type": "debug",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "remove .nc files",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1f0a794524ef742e",
+        "type": "exec",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "command": "rm netcdf/*",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Remove files locally",
+        "x": 1000,
+        "y": 240,
+        "wires": [
+            [
+                "29c9721d45f25d5b"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "20f26b356f948574",
+        "type": "function",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "Check for errors",
+        "func": "var newMsg = [];\nif (msg.payload.code == 0){\n    newMsg = {payload:{\n        filename:           \"rm netcdf/*\",\n    }}\n} else{\n    return;\n}\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 240,
+        "wires": [
+            [
+                "1f0a794524ef742e"
+            ]
+        ]
+    },
+    {
+        "id": "5fcc6926b8a683bf",
+        "type": "comment",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "Create netCDF Files and Transmit to Server\\n A Python file creates .nc files which are transmitted to the SFTP server by a bash script.\\n Files are removed after successfull transmission",
+        "info": "",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "42ce3dcc5e63ddae",
+        "type": "comment",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "Please check in regularly, if the python scripts on your deck box are up to date",
+        "info": "",
+        "x": 320,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "874b1b17ef647f8c",
+        "type": "debug",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "Create .nc",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1fc7840fb93c65a7",
+        "type": "debug",
+        "z": "aaf7dc69f67f36b7",
+        "g": "6b2c63dd8de70fea",
+        "name": "push_sftp.sh",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "f8e6c2080916a00a",
+        "type": "mqtt in",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "",
+        "topic": "hyfive/updateConfigRequest",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "7d6351328e5c6bd3",
+                "e00f150c81fa392d"
+            ]
+        ]
+    },
+    {
+        "id": "480f5b89af393682",
+        "type": "mqtt out",
+        "z": "8a79f03ecc1bf041",
+        "g": "82ee787fce33e32c",
+        "name": "",
+        "topic": "hyfive/updateConfig",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed4cd49e795775da",
+        "x": 1080,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "d96ec57661077fd3",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "82ee787fce33e32c",
+        "name": "updateConfig",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1310,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "88c0fac499ad523d",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "82ee787fce33e32c",
+        "name": "packet size in bytes",
+        "func": "let size = 480; // packet size in bytes 480@512MQTT\nlet buffer = Buffer.from(msg.payload);\nlet parts = [];\n\nfor (let i = 0; i < buffer.length; i += size) {\n    let packet = buffer.slice(i, i + size);\n    parts.push({payload: packet});\n}\n\nreturn [parts]; ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 800,
+        "wires": [
+            [
+                "28da193616d22fb9"
+            ]
+        ]
+    },
+    {
+        "id": "28da193616d22fb9",
+        "type": "delay",
+        "z": "8a79f03ecc1bf041",
+        "g": "82ee787fce33e32c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "outputs": 1,
+        "x": 1080,
+        "y": 840,
+        "wires": [
+            [
+                "d96ec57661077fd3",
+                "480f5b89af393682",
+                "34ed551e9d0ec6e4"
+            ]
+        ]
+    },
+    {
+        "id": "0d8917ea4ea509b9",
+        "type": "mqtt in",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "",
+        "topic": "hyfive/ConfigError",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 840,
+        "wires": [
+            [
+                "4f1dc3e387aa8428",
+                "d61bf6489e89b255",
+                "1f1d7c548c869cef"
+            ]
+        ]
+    },
+    {
+        "id": "451f33e49d6bb84d",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "Logger Config Update\\n A logger can ask for a config update by sending the file name of the current config file via MQTT. \\n This flow checks, if a newer config file is available on this deck box for the given logger ID. \\n If so, the file content is prepared and send via MQTT.",
+        "info": "",
+        "x": 370,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "a591bae174664c0b",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "82ee787fce33e32c",
+        "name": "transmission to the logger",
+        "info": "",
+        "x": 1090,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "8c046d5e8cb1dfe9",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "Inject test message",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "logger_02_config_202401151229.json",
+        "payloadType": "str",
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "e00f150c81fa392d"
+            ]
+        ]
+    },
+    {
+        "id": "5bac181a7527cf74",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "Error info\\n if an error message is sent by the logger during config update, it is stored in a file. \\n This file can be read out or deleted manually.",
+        "info": "",
+        "x": 330,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "c5e61d82e8fa651a",
+        "type": "exec",
+        "z": "8a79f03ecc1bf041",
+        "g": "e80bf71403163a57",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 1740,
+        "wires": [
+            [
+                "16cd4c6cb5e697de"
+            ],
+            [
+                "16cd4c6cb5e697de"
+            ],
+            [
+                "16cd4c6cb5e697de"
+            ]
+        ]
+    },
+    {
+        "id": "da16fbe24ac341f6",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "e80bf71403163a57",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ls config/logger_17",
+        "payloadType": "str",
+        "x": 170,
+        "y": 1740,
+        "wires": [
+            [
+                "c5e61d82e8fa651a"
+            ]
+        ]
+    },
+    {
+        "id": "16cd4c6cb5e697de",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "e80bf71403163a57",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "dacd41f93085eb49",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "updateConfigRequest result",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "2e84476edb6469a0",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "list all configs",
+        "func": "var newMsg = [];\n\nvar file_name = msg.payload\nvar index_one = file_name.indexOf(\"_\")\nvar index_two = file_name.indexOf(\"_\", index_one + 1)\nvar index_three = file_name.indexOf(\"_\", index_two + 1)\nvar logger_name = file_name.substring(0, index_two)\nvar date_old = parseInt(file_name.substring(index_three + 1, file_name.indexOf(\".\")))\nflow.set(\"date_old\", date_old)\nnewMsg = {payload: \"ls config/\" + logger_name}\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 460,
+        "wires": [
+            [
+                "90925ae178711f03"
+            ]
+        ]
+    },
+    {
+        "id": "90925ae178711f03",
+        "type": "exec",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 770,
+        "y": 460,
+        "wires": [
+            [
+                "c9737401fd6ec32e"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c9737401fd6ec32e",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "check for newer config",
+        "func": "var newMsg = [];\n\nvar filenames = msg.payload.split(\"\\n\")\nfilenames.pop()\nvar last_file = filenames.pop()         // last in the list and therefore newest date\n\nvar index_one = last_file.indexOf(\"_\")\nvar index_two = last_file.indexOf(\"_\", index_one + 1)\nvar index_three = last_file.indexOf(\"_\", index_two + 1)\nvar date_most_recent = parseInt(last_file.substring(index_three + 1, last_file.indexOf(\".\")))\n\nvar date_old = flow.get(\"date_old\")\n\nvar to_send = \"\"\nif(date_most_recent > date_old){\n    to_send = last_file\n}else{\n    to_send = \"no_update_available\"\n}\n\nnewMsg = { payload: to_send }\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 460,
+        "wires": [
+            [
+                "dacd41f93085eb49",
+                "88c0fac499ad523d"
+            ]
+        ]
+    },
+    {
+        "id": "30b18da5a450b8f9",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "prep config data",
+        "func": "var newMsg = [];\nvar file_name = msg.payload\nvar index_one = file_name.indexOf(\"_\")\nvar index_two = file_name.indexOf(\"_\", index_one + 1)\nvar index_three = file_name.indexOf(\"_\", index_two + 1)\nvar logger_name = file_name.substring(0, index_two)\n\nnewMsg = {payload: \"cat config/\" + logger_name + \"/\" + file_name,\n        filename: \"config/\" + logger_name + \"/\" + file_name\n}\n\nreturn newMsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 600,
+        "wires": [
+            [
+                "bac9e4ecd31fdda8"
+            ]
+        ]
+    },
+    {
+        "id": "bac9e4ecd31fdda8",
+        "type": "exec",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 770,
+        "y": 600,
+        "wires": [
+            [
+                "a6a809c5c659e5c4",
+                "88c0fac499ad523d"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a6a809c5c659e5c4",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "content of new config file",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "c74166cb28d5089e",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "Inject test message",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "logger_02_config_202401291305.json",
+        "payloadType": "str",
+        "x": 170,
+        "y": 560,
+        "wires": [
+            [
+                "dae144a1b232c658"
+            ]
+        ]
+    },
+    {
+        "id": "a0ed6bb025207d9b",
+        "type": "exec",
+        "z": "8a79f03ecc1bf041",
+        "g": "cf978177a7a744f6",
+        "command": "./handle_data/get_configs.sh",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "60",
+        "winHide": false,
+        "oldrc": false,
+        "name": "get_configs.sh",
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [
+                "4ee07257a83d8390"
+            ],
+            [
+                "4ee07257a83d8390"
+            ],
+            [
+                "4ee07257a83d8390"
+            ]
+        ]
+    },
+    {
+        "id": "2208688aa1ed66db",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "cf978177a7a744f6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1800",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "a0ed6bb025207d9b"
+            ]
+        ]
+    },
+    {
+        "id": "d1bb9273cc6ecd2e",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "cf978177a7a744f6",
+        "name": "Download all Config Files to Deck Box \\n All config files, which are available on the server, are downloaded in regular intervals to the deck box. \\n They are stored inside the 'nodeRed' docker container.",
+        "info": "File path to the config files on the Pi:\n/var/lib/docker/overlay2/a925343a104f0c83e49ca8348d71e11d759638b64810a8e31820b800fc8708d4/merged/usr/src/node-red/config/logger_02/logger_02_config_202401081423.json\n",
+        "x": 380,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e00f150c81fa392d",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "if 'logger_...'",
+        "func": "\nif (msg.payload.startsWith(\"logger_\")) {\n    node.send(msg);\n} else {\n    return null;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 460,
+        "wires": [
+            [
+                "2e84476edb6469a0"
+            ]
+        ]
+    },
+    {
+        "id": "7d6351328e5c6bd3",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "if 'update successfull'",
+        "func": "\nif (msg.payload.startsWith(\"update successfull\")) {\n    node.send(msg);\n} else {\n    return null;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 500,
+        "wires": [
+            [
+                "abf3437aff5afe16"
+            ]
+        ]
+    },
+    {
+        "id": "03ae4b7d29ed9605",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "e80bf71403163a57",
+        "name": "Print all config files on this deck box for specific logger id",
+        "info": "",
+        "x": 250,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "517f4fbe7d86b382",
+        "type": "mqtt in",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "",
+        "topic": "hyfive/updateConfigUpload",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 600,
+        "wires": [
+            [
+                "dae144a1b232c658"
+            ]
+        ]
+    },
+    {
+        "id": "dae144a1b232c658",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "if 'logger_...'",
+        "func": "\nif (msg.payload.startsWith(\"logger_\")) {\n    node.send(msg);\n} else {\n    return null;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 600,
+        "wires": [
+            [
+                "30b18da5a450b8f9"
+            ]
+        ]
+    },
+    {
+        "id": "4ee07257a83d8390",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "cf978177a7a744f6",
+        "name": "get_configs.sh",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4f1dc3e387aa8428",
+        "type": "file",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "hyfive_ConfigError",
+        "filename": "hyfive_ConfigError.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 450,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b0c6e8bd250deeb",
+        "type": "file in",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "",
+        "filename": "hyfive_ConfigError.txt",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 420,
+        "y": 940,
+        "wires": [
+            [
+                "7dd675183dc6b53d"
+            ]
+        ]
+    },
+    {
+        "id": "7dd675183dc6b53d",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "read out hyfive_ConfigError.txt",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "8cf411618e874f29",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "read out",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 940,
+        "wires": [
+            [
+                "6b0c6e8bd250deeb"
+            ]
+        ]
+    },
+    {
+        "id": "740e0a856502a11a",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "delete file content",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 160,
+        "y": 1000,
+        "wires": [
+            [
+                "5693c4220bd921d1"
+            ]
+        ]
+    },
+    {
+        "id": "5693c4220bd921d1",
+        "type": "file",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "hyfive_ConfigError",
+        "filename": "hyfive_ConfigError.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 450,
+        "y": 1000,
+        "wires": [
+            [
+                "93910fd239bc37b5"
+            ]
+        ]
+    },
+    {
+        "id": "93910fd239bc37b5",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "delete hyfive_ConfigError.txt",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "d61bf6489e89b255",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "ConfigError",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "abf3437aff5afe16",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "42b491bc3f31a12a",
+        "name": "config update successfull",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8bf19fce587d973f",
+        "type": "mqtt in",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "",
+        "topic": "hyfive/Log",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 1300,
+        "wires": [
+            [
+                "e94ea508da6baafd",
+                "713cd92dde0bd129",
+                "586bfab4cdb83050"
+            ]
+        ]
+    },
+    {
+        "id": "3f789b0266b2b876",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "Log info:\\n If a log message is sent by the logger during an event, it is stored in a file.\\n This file can be read or deleted manually.",
+        "info": "",
+        "x": 310,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "e94ea508da6baafd",
+        "type": "file",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "hyfive_Log.txt",
+        "filename": "hyfive_Log.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 440,
+        "y": 1340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "00f4ceb394ab59e0",
+        "type": "file in",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "",
+        "filename": "hyfive_Log.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 440,
+        "y": 1400,
+        "wires": [
+            [
+                "d9d01ef9f7372441"
+            ]
+        ]
+    },
+    {
+        "id": "d9d01ef9f7372441",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "read out hyfive_Log.txt",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "34cf73512b317ce8",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "read out",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 1400,
+        "wires": [
+            [
+                "00f4ceb394ab59e0"
+            ]
+        ]
+    },
+    {
+        "id": "8a1720816507873c",
+        "type": "inject",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "delete file content",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 160,
+        "y": 1460,
+        "wires": [
+            [
+                "6add5458191b408d"
+            ]
+        ]
+    },
+    {
+        "id": "6add5458191b408d",
+        "type": "file",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "hyfive_Log",
+        "filename": "hyfive_Log.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 430,
+        "y": 1460,
+        "wires": [
+            [
+                "059ef1ac0de4f962"
+            ]
+        ]
+    },
+    {
+        "id": "059ef1ac0de4f962",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "delete hyfive_Log.txt",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "713cd92dde0bd129",
+        "type": "debug",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "d67fe0912457af45",
+        "type": "file in",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "Read hyfive_Log.txt",
+        "filename": "hyfive_Log.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 360,
+        "y": 1560,
+        "wires": [
+            [
+                "1e2664d63b6730f5"
+            ]
+        ]
+    },
+    {
+        "id": "1e2664d63b6730f5",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "Prepare Download",
+        "func": "const buffer = Buffer.from(msg.payload, 'utf8');\n\nmsg.headers = {\n    'Content-Type': 'text/plain',\n    'Content-Disposition': 'attachment; filename=hyfive_Log.csv'\n};\nmsg.payload = buffer;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 1560,
+        "wires": [
+            [
+                "66b79824d2538d8f"
+            ]
+        ]
+    },
+    {
+        "id": "10de9635fbd8077f",
+        "type": "http in",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "GET /download-log",
+        "url": "/download-log",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 1560,
+        "wires": [
+            [
+                "d67fe0912457af45"
+            ]
+        ]
+    },
+    {
+        "id": "66b79824d2538d8f",
+        "type": "http response",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "Send Download",
+        "statusCode": "",
+        "headers": {},
+        "x": 760,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "49afad3e5c2c073a",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "http://10.8.0.xx:1880/download-log",
+        "info": "",
+        "x": 200,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "b968aaa4296ce876",
+        "type": "file in",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "Read hyfive_ConfigError.txt",
+        "filename": "hyfive_ConfigError.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 380,
+        "y": 1100,
+        "wires": [
+            [
+                "11f64294aaee77c7"
+            ]
+        ]
+    },
+    {
+        "id": "11f64294aaee77c7",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "Prepare Download",
+        "func": "const buffer = Buffer.from(msg.payload, 'utf8');\n\nmsg.headers = {\n    'Content-Type': 'text/plain',\n    'Content-Disposition': 'attachment; filename=hyfive_ConfigError.csv'\n};\nmsg.payload = buffer;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 1100,
+        "wires": [
+            [
+                "78fe8f15cfd01b64"
+            ]
+        ]
+    },
+    {
+        "id": "78fe8f15cfd01b64",
+        "type": "http response",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "Send Download",
+        "statusCode": "",
+        "headers": {},
+        "x": 800,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "18a8a02a866c7a5b",
+        "type": "comment",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "http://10.8.0.xx:1880/download-errorlog",
+        "info": "",
+        "x": 210,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "6cfbc4c9fddaa534",
+        "type": "http in",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "GET /download-errorlog",
+        "url": "/download-errorlog",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 1100,
+        "wires": [
+            [
+                "b968aaa4296ce876"
+            ]
+        ]
+    },
+    {
+        "id": "34ed551e9d0ec6e4",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "82ee787fce33e32c",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1340,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "1f1d7c548c869cef",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "44bc50e932249705",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "586bfab4cdb83050",
+        "type": "function",
+        "z": "8a79f03ecc1bf041",
+        "g": "9a320865e704643c",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "8cced0ed979273c7",
+        "type": "mqtt out",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "topic": "hyfive/updateFW",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed4cd49e795775da",
+        "x": 730,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "f6e988c74dc66053",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "packet size in bytes",
+        "func": "let size = 480; // packet size in bytes 480@512MQTT\nlet buffer = Buffer.from(msg.payload);\nlet parts = [];\n\nfor (let i = 0; i < buffer.length; i += size) {\n    let packet = buffer.slice(i, i + size);\n    parts.push({payload: packet});\n}\n\nreturn [parts]; ",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1520,
+        "wires": [
+            [
+                "759e9134bea10229"
+            ]
+        ]
+    },
+    {
+        "id": "759e9134bea10229",
+        "type": "delay",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "20",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 1560,
+        "wires": [
+            [
+                "8cced0ed979273c7",
+                "03a8cc4f2d3117df",
+                "b9b716b0100c946e"
+            ]
+        ]
+    },
+    {
+        "id": "c3c80a7758724c9e",
+        "type": "http request",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "GitHub Firmware SHA256",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://raw.githubusercontent.com/HyFiVeUser/HyFive/main/01_Logger/02_Modular_Logger/03_Software/Logger-Mainboard/firmware/firmware.bin.sha256",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 410,
+        "y": 740,
+        "wires": [
+            [
+                "3a5c9381531acaa2"
+            ]
+        ]
+    },
+    {
+        "id": "891fb81fd9da1dbc",
+        "type": "file",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "save Firmware SHA256",
+        "filename": "firmware/firmware.bin.sha256",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 970,
+        "y": 740,
+        "wires": [
+            [
+                "8d3ffb11ddc19fe3",
+                "9fd67a8dfbff3b71"
+            ]
+        ]
+    },
+    {
+        "id": "d72a798d0cdab1f3",
+        "type": "file",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "save Firmware",
+        "filename": "firmware/firmware.bin",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 940,
+        "y": 660,
+        "wires": [
+            [
+                "e9533829ae3f27c3",
+                "9fd67a8dfbff3b71"
+            ]
+        ]
+    },
+    {
+        "id": "4d48e6ed4c46cf9b",
+        "type": "file in",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "firmware.bin",
+        "filename": "firmware/firmware.bin",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 450,
+        "y": 1520,
+        "wires": [
+            [
+                "f6e988c74dc66053"
+            ]
+        ]
+    },
+    {
+        "id": "6a0498c326884443",
+        "type": "mqtt out",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "topic": "hyfive/updateFirmwareSHA256",
+        "qos": "2",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed4cd49e795775da",
+        "x": 770,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "9e84c509199e9f66",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "packet size in bytes",
+        "func": "let size = 480; // packet size in bytes 480@512MQTT\nlet buffer = Buffer.from(msg.payload);\nlet parts = [];\n\nfor (let i = 0; i < buffer.length; i += size) {\n    let packet = buffer.slice(i, i + size);\n    parts.push({payload: packet});\n}\n\nreturn [parts]; ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1360,
+        "wires": [
+            [
+                "bdb491675dc7343d"
+            ]
+        ]
+    },
+    {
+        "id": "bdb491675dc7343d",
+        "type": "delay",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 740,
+        "y": 1400,
+        "wires": [
+            [
+                "a89ca2e4a6f07e5c",
+                "6a0498c326884443"
+            ]
+        ]
+    },
+    {
+        "id": "8006aea035193d50",
+        "type": "file in",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "firmware.bin.sha256",
+        "filename": "firmware/firmware.bin.sha256",
+        "filenameType": "str",
+        "format": "stream",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 480,
+        "y": 1360,
+        "wires": [
+            [
+                "9e84c509199e9f66"
+            ]
+        ]
+    },
+    {
+        "id": "b2f191ec5e290eb0",
+        "type": "inject",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Trigger ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Trigger  ",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1520,
+        "wires": [
+            [
+                "4d48e6ed4c46cf9b"
+            ]
+        ]
+    },
+    {
+        "id": "570486cc68578c18",
+        "type": "mqtt in",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "topic": "hyfive/updateFWRequest",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 1560,
+        "wires": [
+            [
+                "4d48e6ed4c46cf9b"
+            ]
+        ]
+    },
+    {
+        "id": "4ef7646beb0bc5a8",
+        "type": "mqtt in",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "topic": "hyfive/updateFwSHA256Request",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ed4cd49e795775da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 1100,
+        "wires": [
+            [
+                "bac6b4ea1a03af3d",
+                "84b29373593c3f94",
+                "6d9c2ba295c9ea34",
+                "9b05c3e4393e9c9b"
+            ]
+        ]
+    },
+    {
+        "id": "7d900f9d5026416b",
+        "type": "inject",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Trigger ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Trigger ",
+        "payloadType": "str",
+        "x": 130,
+        "y": 1360,
+        "wires": [
+            [
+                "8006aea035193d50"
+            ]
+        ]
+    },
+    {
+        "id": "5d874c021a783ad9",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Check Response",
+        "func": "if (msg.statusCode === 200) {\n    return [msg, null];\n} else {\n    return [null, msg];\n}",
+        "outputs": 2,
+        "x": 710,
+        "y": 700,
+        "wires": [
+            [
+                "d72a798d0cdab1f3"
+            ],
+            [
+                "aa444acb2d048f60"
+            ]
+        ]
+    },
+    {
+        "id": "3a5c9381531acaa2",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Check Response",
+        "func": "if (msg.statusCode === 200) {\n    return [msg, null];\n} else {\n    return [null, msg];\n}",
+        "outputs": 2,
+        "x": 710,
+        "y": 740,
+        "wires": [
+            [
+                "891fb81fd9da1dbc"
+            ],
+            [
+                "502e2a4d22111d3d"
+            ]
+        ]
+    },
+    {
+        "id": "aa444acb2d048f60",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Firmware Error Log",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1210,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "502e2a4d22111d3d",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Firmware SHA256 Log",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "e9533829ae3f27c3",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Firmware Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "f7152db1afedb4db",
+        "type": "http request",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "GitHub Firmware",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "https://raw.githubusercontent.com/HyFiVeUser/HyFive/main/01_Logger/02_Modular_Logger/03_Software/Logger-Mainboard/firmware/firmware.bin",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 390,
+        "y": 700,
+        "wires": [
+            [
+                "5d874c021a783ad9"
+            ]
+        ]
+    },
+    {
+        "id": "8d3ffb11ddc19fe3",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Firmware SHA256 Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a89ca2e4a6f07e5c",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Upload firmware.bin.sha256",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "03a8cc4f2d3117df",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Upload firmware.bin",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "9fd67a8dfbff3b71",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Compare Inputs",
+        "func": "let currentState = flow.get('currentState') || \"no_firmware_update\";\n\nif (msg.payload === \"fw_download_successfull\") {\n    context.set('firmware', null);\n    context.set('sha256', null);\n    flow.set('currentState', \"no_firmware_update\");\n    currentState = \"no_firmware_update\";\n    node.status({ fill: \"yellow\", shape: \"dot\", text: \"fw_download_successfull\" });\n    return null;\n}\n\nif (msg.payload === \"firstStart\") {\n    currentState = \"firmware_update_available\";\n    msg.payload = currentState;\n    flow.set('currentState', currentState);\n    node.status({ fill: \"blue\", shape: \"dot\", text: \"firstStart\" });\n    context.set('firmware', null);\n    context.set('sha256', null);\n    return [msg, null];\n}\n\nif (msg.payload === \"fwRequest\") {\n    msg.payload = currentState;\n    node.status({ fill: currentState ? \"green\" : \"red\", shape: \"dot\", text: \"Status: \" + currentState });\n    return [msg, msg];\n}\n\nif (msg.filename === \"firmware/firmware.bin\") {\n    context.set('firmware', true);\n    node.status({ fill: \"blue\", shape: \"dot\", text: \"Firmware saved\" });\n} else if (msg.filename === \"firmware/firmware.bin.sha256\") {\n    context.set('sha256', true);\n    node.status({ fill: \"blue\", shape: \"dot\", text: \"SHA256 saved\" });\n}\n\nconst firmwareSaved = context.get('firmware');\nconst sha256Saved = context.get('sha256');\n\nif (firmwareSaved && sha256Saved) {\n    currentState = \"firmware_update_available\";\n    msg.payload = currentState;\n    flow.set('currentState', currentState);\n    node.status({ fill: \"green\", shape: \"dot\", text: \"Files complete\" });\n    context.set('firmware', null);\n    context.set('sha256', null);\n    return [msg, null];\n} else {\n    return null;\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 1200,
+        "wires": [
+            [],
+            [
+                "47f4bf8b0d0363b4",
+                "64734581523387c7"
+            ]
+        ]
+    },
+    {
+        "id": "f1bfece59c19909d",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "if 'fwRequest'",
+        "func": "\nif (msg.payload.startsWith(\"fwRequest\")) {\n    node.send(msg);\n} else {\n    return null;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 1160,
+        "wires": [
+            [
+                "9fd67a8dfbff3b71"
+            ]
+        ]
+    },
+    {
+        "id": "84b29373593c3f94",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "if 'fw_download_successfull'",
+        "func": "\nif (msg.payload.startsWith(\"fw_download_successfull\")) {\n    node.send(msg);\n} else {\n    return null;\n}\nreturn null;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 1200,
+        "wires": [
+            [
+                "9fd67a8dfbff3b71"
+            ]
+        ]
+    },
+    {
+        "id": "4fa834de09d99c72",
+        "type": "inject",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "fwRequest",
+        "payloadType": "str",
+        "x": 140,
+        "y": 1160,
+        "wires": [
+            [
+                "6d9c2ba295c9ea34",
+                "9b05c3e4393e9c9b"
+            ]
+        ]
+    },
+    {
+        "id": "87984dd0f76147c1",
+        "type": "inject",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "fw_download_successfull",
+        "payloadType": "str",
+        "x": 190,
+        "y": 1200,
+        "wires": [
+            [
+                "84b29373593c3f94"
+            ]
+        ]
+    },
+    {
+        "id": "47f4bf8b0d0363b4",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "if 'firmware_update_available'",
+        "func": "if (msg.payload === \"firmware_update_available\") {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 1300,
+        "wires": [
+            [
+                "8006aea035193d50"
+            ]
+        ]
+    },
+    {
+        "id": "6076de9100ae51a1",
+        "type": "inject",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Trigger download",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Trigger download",
+        "payloadType": "str",
+        "x": 140,
+        "y": 740,
+        "wires": [
+            [
+                "f7152db1afedb4db",
+                "c3c80a7758724c9e"
+            ]
+        ]
+    },
+    {
+        "id": "64734581523387c7",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "if 'no_firmware_update'",
+        "func": "if (msg.payload === \"no_firmware_update\") {\n    return msg;\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 1300,
+        "wires": [
+            [
+                "9e84c509199e9f66"
+            ]
+        ]
+    },
+    {
+        "id": "bac6b4ea1a03af3d",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "SHA256Request Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "9b05c3e4393e9c9b",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "firstStart",
+        "func": "if (msg.payload === \"fwRequest\") {\n\n    let firstRequest = context.get('firstRequest');\n\n    if (!firstRequest) {\n        context.set('firstRequest', true);\n        msg.payload = \"firstStart\";\n        return msg;\n    }\n}\nreturn null;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1080,
+        "wires": [
+            [
+                "9fd67a8dfbff3b71",
+                "69405c1887695578"
+            ]
+        ]
+    },
+    {
+        "id": "69405c1887695578",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "firstStart Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "6d9c2ba295c9ea34",
+        "type": "delay",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "deley 100ms",
+        "pauseType": "delay",
+        "timeout": "100",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 1120,
+        "wires": [
+            [
+                "f1bfece59c19909d"
+            ]
+        ]
+    },
+    {
+        "id": "6f893cd342660fbb",
+        "type": "comment",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Firmware Update",
+        "info": "",
+        "x": 120,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "77f3760911f172e0",
+        "type": "comment",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Step 1: Firmware Version Check \\n - Triggered every 30 minutes by a timer (\"Trigger Firmware download 30min\") \\n - Downloads the SHA256 checksum of the firmware from GitHub \\n - Compares it with the locally stored SHA256 checksum \\n - If checksums differ or local file is missing, the download process is initiated",
+        "info": "",
+        "x": 310,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "aad5ea86611e05a7",
+        "type": "http request",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "GitHub Firmware SHA256",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://raw.githubusercontent.com/HyFiVeUser/HyFive/main/01_Logger/02_Modular_Logger/03_Software/Logger-Mainboard/firmware/firmware.bin.sha256",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": true,
+        "headers": [],
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "1582acca9c186e8a"
+            ]
+        ]
+    },
+    {
+        "id": "ed9230209384c7c3",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "SHA256 Compare Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2cb2d46e21d7e934",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Compare SHA256",
+        "func": "if (msg.error) {\n    return [null, msg];\n}\n\nconst sha1 = context.get('sha1') || null;\n\nif(!sha1) {\n    context.set('sha1', msg.payload);\n    return null;\n} else {\n    context.set('sha1', null);\n    const isEqual = sha1.trim() === msg.payload.trim();\n    msg.payload = isEqual;\n    return isEqual ? [msg, null] : [null, msg];\n\n}",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "context.set('sha1', null);",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 360,
+        "wires": [
+            [
+                "ed9230209384c7c3"
+            ],
+            [
+                "f7152db1afedb4db",
+                "c3c80a7758724c9e"
+            ]
+        ]
+    },
+    {
+        "id": "1582acca9c186e8a",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Check Response",
+        "func": "if (msg.statusCode === 200) {\n    return [msg, null];\n} else {\n    return [null, msg];\n}",
+        "outputs": 2,
+        "x": 710,
+        "y": 260,
+        "wires": [
+            [
+                "2cb2d46e21d7e934"
+            ],
+            [
+                "894b3451bff12089"
+            ]
+        ]
+    },
+    {
+        "id": "894b3451bff12089",
+        "type": "debug",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Error Log",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "716dc0fe81bf6b08",
+        "type": "file in",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Read Local SHA256",
+        "filename": "firmware/firmware.bin.sha256",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": true,
+        "encoding": "none",
+        "allProps": false,
+        "x": 420,
+        "y": 360,
+        "wires": [
+            [
+                "2cb2d46e21d7e934"
+            ]
+        ]
+    },
+    {
+        "id": "9c8a54097123b001",
+        "type": "inject",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Trigger Firmware",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1800",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 150,
+        "y": 300,
+        "wires": [
+            [
+                "aad5ea86611e05a7",
+                "716dc0fe81bf6b08"
+            ]
+        ]
+    },
+    {
+        "id": "64de126c76f26a60",
+        "type": "comment",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Step 2: Download and Storage of New Firmware \\n - Downloads the new firmware (firmware.bin) and its SHA256 checksum from  GitHub\\n - Saves both files locally: \\n   - The firmware in \"firmware/firmware.bin\" \\n   - The SHA256 checksum in \"firmware/firmware.bin.sha256\" \\n - Verifies download status and sets system status to \"firmware_update_available\" ",
+        "info": "",
+        "x": 330,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "deb7ae91bfc62907",
+        "type": "comment",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Step 3: Verification and Transmission of Firmware \\n  Logger sends a request (hyfive/updateFwSHA256Request): \\n   The system checks the current state: \\n  For \"firmware_update_available\": \\n - A new firmware is available \\n - Transmission to the logger is executed \\n - After successful transmission, the status is reset to \"no_firmware_update\" \\n  For \"no_firmware_update\": \\n - No new firmware available \\n - System sends a message to the logger \\n - Logger knows that no update is needed",
+        "info": "",
+        "x": 300,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "b9b716b0100c946e",
+        "type": "function",
+        "z": "3bc02760ddb334e6",
+        "g": "ae67b649dbd67e58",
+        "name": "Data receiving node",
+        "func": "// Save timestamp and mark data flow\n\nglobal.set('lastDataTimestamp', new Date().getTime());\nglobal.set('dataWasFlowing', true);\n\nreturn msg;",
+        "outputs": 0,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1200,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "19119739066f0637",
+        "type": "inject",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "Start the test",
+        "props": [
+            {
+                "p": "deployment_id",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "2767a7d4227e85cf"
+            ]
+        ]
+    },
+    {
+        "id": "baa4a875388ef645",
+        "type": "split",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "",
+        "splt": "",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "topic",
+        "x": 470,
+        "y": 280,
+        "wires": [
+            [
+                "6a0e6c6179b88846"
+            ]
+        ]
+    },
+    {
+        "id": "7aba235bda7f9d07",
+        "type": "debug",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "test data",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "eae2d99d2225a489",
+        "type": "split",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "",
+        "splt": "",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "topic",
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "b968761ad90c13e3"
+            ]
+        ]
+    },
+    {
+        "id": "1cf0d8fd402a9036",
+        "type": "mqtt out",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "",
+        "topic": "hyfive/header",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed4cd49e795775da",
+        "x": 1040,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "3ce61838cac5e9c2",
+        "type": "mqtt out",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "",
+        "topic": "hyfive/data",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "ed4cd49e795775da",
+        "x": 1030,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6a0e6c6179b88846",
+        "type": "json",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 850,
+        "y": 280,
+        "wires": [
+            [
+                "62b1f7c9ef3d9c10",
+                "1cf0d8fd402a9036"
+            ]
+        ]
+    },
+    {
+        "id": "b402ed7674b81c09",
+        "type": "json",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 850,
+        "y": 360,
+        "wires": [
+            [
+                "7aba235bda7f9d07",
+                "3ce61838cac5e9c2"
+            ]
+        ]
+    },
+    {
+        "id": "2767a7d4227e85cf",
+        "type": "function",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "test data",
+        "func": "var header = [];\nvar values = []\nvar deployment_id = msg.deployment_id\n\nheader = {\n    payload: [\n        { \"logger_id\": 1, \"deployment_id\": 1, \"parameter\": \"logger\", \"deckunit_id\": 1, \"platform_id\": 1, \"vessel_id\": 1, \"vessel_name\": \"TEST\", \"deployment_contact_id\": deployment_id,\"contact_first_name\":\"Max\",\"contact_last_name\":\"Mustermann\"},\n        { \"sensor_id\": 1, \"sample_periode_multiplier\": \"1\", \"sample_cast_periode_multiplier\": \"1\", \"bus_address\": 1, \"calib_coeff\": { \"1\": 2, \"2\": 1, \"3\": 1, \"4\": 123, \"5\": 12, \"6\": 1, \"7\": 1 }, \"serial_number\": \"nan\", \"sensor_type\": { \"sensor_type_id\": 1, \"parameter\": \"temperature\", \"long_name\": \"temperature_in_sea_water\", \"unit\": \"mbar\", \"manufacturer\": \"test\", \"model\": \"test\", \"parameter_no\": 1, \"accuracy\": 0, \"resolution\": 0 }, \"logger_id\": 1, \"deployment_id\": deployment_id },\n        { \"sensor_id\": 2, \"sample_periode_multiplier\": \"1\", \"sample_cast_periode_multiplier\": \"1\", \"bus_address\": 2, \"calib_coeff\": {}, \"serial_number\": \"nan\", \"sensor_type\": { \"sensor_type_id\": 2, \"parameter\": \"conductivity\", \"long_name\": \"sea_water_conductivity\", \"unit\": \"mS/cm\", \"manufacturer\": \"test\", \"model\": \"test\", \"parameter_no\": 1, \"accuracy\": 5, \"resolution\": 0.01 }, \"logger_id\": 1, \"deployment_id\": deployment_id },\n        { \"sensor_id\": 3, \"sample_periode_multiplier\": \"1\", \"sample_cast_periode_multiplier\": \"1\", \"bus_address\": 4, \"calib_coeff\": {}, \"serial_number\": \"nan\", \"sensor_type\": { \"sensor_type_id\": 3, \"parameter\": \"pressure\", \"long_name\": \"sea_water_pressure\", \"unit\": \"mbar\", \"manufacturer\": \"test\", \"model\": \"test\", \"parameter_no\": 1, \"accuracy\": 5, \"resolution\": 0.01 }, \"logger_id\": 1, \"deployment_id\": deployment_id }\n    ]\n}\n\nvar myarray = []\nvar pressure = 993\nvar temperature = 15\nvar conductivity = 10\nvar factor = 1\nfor(var i = 30; i > 0; i--){\n    pressure += factor * 98\n    temperature += factor * 0.13\n    conductivity += factor * 0.122\n    if(i == 16){\n        factor = -1\n    }\n    var item = { \"logger_id\": 1, \"deployment_id\": deployment_id,\"pressure\": pressure,\"temperature\": temperature,\"conductivity\": conductivity,\"time\": new Date(msg.payload - 1000 * i)}\n    myarray.push(item)\n}\n\nvalues = {\n    payload: myarray\n}\n\nreturn [header, values];\n\n",
+        "outputs": 2,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "baa4a875388ef645"
+            ],
+            [
+                "eae2d99d2225a489"
+            ]
+        ]
+    },
+    {
+        "id": "62b1f7c9ef3d9c10",
+        "type": "debug",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "test header",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b968761ad90c13e3",
+        "type": "delay",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "Limiting to 20 msg/s",
+        "pauseType": "rate",
+        "timeout": "1000",
+        "timeoutUnits": "milliseconds",
+        "rate": "20",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "b402ed7674b81c09"
+            ]
+        ]
+    },
+    {
+        "id": "07259f4331e04276",
+        "type": "influxdb in",
+        "z": "ab0fe76d5f7a7277",
+        "g": "301c6fa9cb285a48",
+        "influxdb": "c650078577625659",
+        "name": "get test data from database",
+        "query": "",
+        "rawOutput": false,
+        "precision": "s",
+        "retentionPolicy": "3d",
+        "org": "hyfive",
+        "x": 540,
+        "y": 600,
+        "wires": [
+            [
+                "7e59c8eaa905bfc6"
+            ]
+        ]
+    },
+    {
+        "id": "88df25dcc7992652",
+        "type": "inject",
+        "z": "ab0fe76d5f7a7277",
+        "g": "301c6fa9cb285a48",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 600,
+        "wires": [
+            [
+                "a1a69c6ebb32aaa8"
+            ]
+        ]
+    },
+    {
+        "id": "7e59c8eaa905bfc6",
+        "type": "debug",
+        "z": "ab0fe76d5f7a7277",
+        "g": "301c6fa9cb285a48",
+        "name": "read test from InfluxDB",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "6f7e77c588053253",
+        "type": "comment",
+        "z": "ab0fe76d5f7a7277",
+        "g": "309377f4854b5487",
+        "name": "TESTING YOUR DECKBOX \\n This flow simulates a logger sending measurement data via MQTT (with logger id 01 and deployment id 01.) \\n Inject \"start the test\" and start the netCDF flow manually.  \\n Check if the netcdf file is sent to the server. \\n ATTENTION: If this test is done once on your box, you need to delete deployment 01-01  \\n from python_scripts/recent_deployments.json in the nodeRed container (check docu on Github for this).",
+        "info": "",
+        "x": 420,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "07825987edc77f78",
+        "type": "comment",
+        "z": "ab0fe76d5f7a7277",
+        "g": "301c6fa9cb285a48",
+        "name": "Check if test deployment is in local InfluxDB",
+        "info": "",
+        "x": 210,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "a1a69c6ebb32aaa8",
+        "type": "function",
+        "z": "ab0fe76d5f7a7277",
+        "g": "301c6fa9cb285a48",
+        "name": "Query",
+        "func": "var newmsg = [];\n\nvar date = String (new Date (msg.payload))\n// var date2 = date.substring(0, 19) + '.999Z'\nnewmsg= {\n    date: date,\n    query: 'from(bucket: \"localhyfive\")|> range(start: 2024-01-01T00:00:00Z)  |> filter(fn: (r) => r[\"deployment_id\"] == \"1\") |> filter(fn: (r) => r[\"logger_id\"] == \"1\")'\n    }\n\nreturn newmsg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 600,
+        "wires": [
+            [
+                "07259f4331e04276"
+            ]
+        ]
+    }
+]
