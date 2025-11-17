@@ -1,70 +1,157 @@
-/*
- * CopyrightText: (C) 2024 Hensel Elektronik GmbH
- *
- * License-Identifier: MPL-2.0
- *
- * Project: Hydrography on Fishing Vessels
- * Project URL: <https://github.com/HyFiVeUser/HyFiVe>, <https://hyfive.info>
- *
- * Description: Main application loop and system initialization
- */
+#include "init.h"
+#include "sensors.h"
+#include "power.h"
+#include "ble_integration.h"
+#include "ble_config.h"          // For bleConfigUploadActive
+#include "ble_sd_card.h"         // For bleSDCardTransferActive
+#include "measurement_storage.h" // For SD logging
+#include "configuration_receiver.h"
+#include "logging.h"
+#include "bms_debug.h"
+#include "led.h"
+#include "deepSleepService.h"
+#include "config.h"
+#include "NVSPreferences.h"
+#include "rtc_second_tick.h"
 
-#include <Arduino.h>
+#include "BQ40Z80.h"
+static BQ40Z80 gauge;
 
-#include "BMS.h"
-#include "DS3231TimeNtp.h"
-#include "DebuggingSDLog.h"
-#include "DeepSleep.h"
-#include "Led.h"
-#include "MQTTManager.h"
-#include "SDCard.h"
-#include "SensorManagement.h"
-#include "SystemVariables.h"
-#include "Utility.h"
+bool ledIsCommunicationActive = 0;
+bool communicationCount = 0;
+uint8_t transferActiveDone = 10;
+
+const bool wokeByGPIO13 =
+    (esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT1) &&
+    (esp_sleep_get_ext1_wakeup_status() & (1ULL << GPIO_NUM_13));
 
 void setup()
 {
-  Serial.begin(115200);
-  enable3V3(); // Enables power supply.
-  initializeLogger();
-  initBmsAndRtc();
-  initializeSdCard();
-  //programBms(); //* Optional (should only be activated if you want to program BMS, reason: BMS and RTC would use the interface at the same time!)
-  performFirstBootOperations();
+    Serial.begin(115200);
+
+    setGPIO_NUM_13();
+
+    ensureChargerPinsInit();
+
+    readPrefs();
+    enableCharger();
+
+    if (!wokeByGPIO13)
+    {
+        if (isPG())
+        {
+            confirmRtcAlarmWake();
+        }
+    }
+    else
+    {
+        LOG_I("wokeByGPIO13");
+    }
+
+    initStatusLed();
+
+    LOG_I("=== OSBK ESP32-S3 MODULAR BLE ===");
+
+    // 1. Initialize hardware system
+    if (!initializeSystem())
+    {
+        LOG_E("CRITICAL SYSTEM ERROR!");
+        ++errorSDCount;
+
+        if (errorSDCount == 2)
+        {
+            esp32Error();
+        }
+
+        esp_deep_sleep(1000000ULL); // 1sec
+    }
+
+    LOG_I("OSBK hardware system started!");
+
+    logBmsSnapshot();
+
+    initMeasurementStorage();
+
+    // 2. Initialize BLE system (modular services)
+    if (initializeBLE() && startBLE())
+    {
+        LOG_I("BLE integration successful (MODULAR)");
+    }
+    else
+    {
+        LOG_W("BLE integration failed");
+    }
+
+    LOG_I("Start loop");
+
+    initGpio13Watch();
+
+    ensureCurrentFile(rtc.now());
+
+    sensorPrepDurationTime();
+
+    updateRtcSecondTick(0);
 }
 
 void loop()
 {
-  askForConfig();                      //* Configuration request
-  checkWetSensorThreshold();           //* Underwater/surface water detection and operations
-  manageBatteryCharging();             //* Battery management
-  handleSensorError(30);               //* Sensor and config error detection
-  processAndTransmitMeasurementData(); //* MQTT, data processing and transmission
+    monitorRtcAlarmForSleep();
 
-  //* The variable totalElapsedTime += difftime(getCurrentTimeFromRTC(), currentTimeNow); is used to,
-  //* update the total time since the start of the program by adding the elapsed
-  //* time elapsed since the last run of the loop is added to the previous total time.
-  totalElapsedTime += difftime(getCurrentTimeFromRTC(), currentTimeNow);
+    manageBatteryCharging();
 
-  //* Execution of the various periodic actions
-  wetDetPeriodeFunktion(wet_det_periode);
-  statusUploadPeriodeFunktion(status_upload_periode);
-  configUpdatePeriodeFunktion(config_update_periode);
-  dataUploadRetryPeriodeFunktion(data_upload_retry_periode);
+    checkCriticalBatteryVoltage();
 
-  //* Determines the largest number from a series of time periods to restart the time loop
-  resetTimePeriodeLoop(config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
+    pollConfigUploadTimeout();
 
-  //* Calculation of the minimum waiting time
-  minTimeUntilNextFunction = calculateShortestWaitTime(totalElapsedTime, lastConfigUpdateTime, lastStatusUploadTime, lastWetDetectionUploadTime, lastDataUploadRetryTime, isDataUploadRetryEnabled, config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
+    if (transferActive())
+    {
+        if (!ledIsCommunicationActive)
+        {
+            ledSetCommunicationActive(1);
+            ledIsCommunicationActive = 1;
+            communicationCount = 0;
+        }
+        notifyMeasurementPaused();
+        transferActiveDone = 10;
+        delay(100);
+        return;
+    }
 
-  //* Deep Sleep
-  //* The variable currentTimeNow = getCurrentTimeFromRTC(); updates the variable currentTimeNow with the
-  //* current time from the real-time clock (RTC) directly before the ESP32 goes into deep sleep.
-  enableExternalWakeup(20); // activate Logger if power supply connection
-  enableExternalWakeup(17); // activate Logger if reed connection
-  interfaceSleep();
-  currentTimeNow = getCurrentTimeFromRTC();
-  esp_sleep_enable_timer_wakeup((minTimeUntilNextFunction) * 1000000);
-  esp_deep_sleep_start();
+    if (ledIsCommunicationActive)
+    {
+        ledSetCommunicationActive(0);
+        ledIsCommunicationActive = 0;
+        communicationCount = 0;
+    }
+
+    if (transferActiveDone == 0)
+    {
+        while (rtcSecondTickElapsed())
+        {
+            manageBatteryCharging();
+            checkCriticalBatteryVoltage();
+
+            if (transferActive())
+            {
+                notifyMeasurementPaused();
+                transferActiveDone = 10;
+                return;
+            }
+
+            // Read sensors
+            readAndCalibrateSensors();
+
+            // Store measurements
+            storeSensorMeasurements();
+            updateRtcSecondTick(measurementCycle);
+
+            // BLE transmission
+            transmitSensorData();
+        }
+    }
+    else if (transferActiveDone > 0)
+    {
+        --transferActiveDone;
+        delay(100);
+    }
 }
