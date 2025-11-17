@@ -72,7 +72,7 @@ In der Bootphase werden folgende Schritte durchgeführt:
   - `config.json`
   - `calib_coeff.json`
 - Firmware-Update wird geprüft  
-  - Repository: <https://github.com/Stanislas-Klein/AWI-FW>
+  - Repository: <https://github.com/HyFiVeUser/HyFiVe/blob/OSBK/01_Logger/02_Modular_Logger/03_Software/Logger-Mainboard/firmware>
 - Uhrzeit wird über WLAN (NTP) konfiguriert und – sofern verfügbar – gesetzt
 - BLE wird mit folgenden Services gestartet:
   - Time Service
