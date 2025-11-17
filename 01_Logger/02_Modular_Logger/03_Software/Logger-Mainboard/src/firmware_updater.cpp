@@ -16,9 +16,10 @@
 namespace
 {
 constexpr const char *CRC_URL =
-    "https://raw.githubusercontent.com/Stanislas-Klein/AWI-FW/main/CRC32.txt";
+    "https://raw.githubusercontent.com/HyFiVeUser/HyFiVe/OSBK/01_Logger/02_Modular_Logger/03_Software/Logger-Mainboard/firmware/CRC32.txt";
+
 constexpr const char *FIRMWARE_URL =
-    "https://raw.githubusercontent.com/Stanislas-Klein/AWI-FW/main/firmware.bin";
+    "https://raw.githubusercontent.com/HyFiVeUser/HyFiVe/OSBK/01_Logger/02_Modular_Logger/03_Software/Logger-Mainboard/firmware/firmware.bin";
 
 constexpr const char *FIRMWARE_DIR = "/firmware_update";
 constexpr const char *CRC_FILE_PATH = "/firmware_update/CRC32.txt";
