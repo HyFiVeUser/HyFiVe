@@ -23,7 +23,7 @@
 
 <a name="Logger-Inhalt"></a>
 ## 0. Logger Inhalt
-<img src="/media/Logger_packaged.jpg" alt="Ladekontakt" width="500">
+<img src="media/Logger_packaged.jpg" alt="Logger_packaged.jpg" width="500">
 
 1. Magnet
 2. 19V 3A Ladegerät
@@ -36,7 +36,7 @@
 ### 1.1 Logger aus dem Deep-Sleep holen (Bootphase starten)
 
 1. Magnet an den Ladekontakt (+ oder −) halten.  
-   <img src="/media/Charging_contact.jpg" alt="Ladekontakt" width="200">
+   <img src="media/Charging_contact.jpg" alt="Ladekontakt" width="200">
 2. Die Status-LED beginnt zu leuchten.
 3. Warten, bis die LED **dreimal** hintereinander geblinkt hat.
 4. Nach dem dritten Blinken wacht der Logger aus dem Deep-Sleep auf und geht in die **Bootphase** über.
