@@ -41,7 +41,8 @@
 #define CONFIG_ACTIVE_DIR "/config"
 #define CONFIG_UPDATE_FILE CONFIG_UPDATE_DIR "/config.json"
 #define CONFIG_FILE CONFIG_ACTIVE_DIR "/config.json"
-#define CALIB_FILE CONFIG_UPDATE_DIR "/calib_coeff.json"
+#define CALIB_UPDATE_FILE CONFIG_UPDATE_DIR "/calib_coeff.json"
+#define CALIB_FILE CONFIG_ACTIVE_DIR "/calib_coeff.json"
 
 // WiFi & NTP Settings
 #define WIFI_TIMEOUT_MS 15000

@@ -775,7 +775,7 @@ void ConfigurationReceiver::logReceivedConfig(const String &configJson)
         }
     }
 
-        LOG_I("Preparing OK response for app...!");
+    LOG_I("Preparing OK response for app...!");
 }
 
 bool moveConfig(const char *srcPath, const char *dstPath)
@@ -872,6 +872,10 @@ void getContentJson()
                     {
                         Serial.println("Config moved successfully ✅");
                         LOG_I("Config update start ");
+                        if (isValidJsonOnSD(CALIB_UPDATE_FILE))
+                        {
+                            moveConfig(CALIB_UPDATE_FILE, CALIB_FILE);
+                        }
                         loadConfiguration();
                         synchronizeTime();
                         verifySystemHealth();
