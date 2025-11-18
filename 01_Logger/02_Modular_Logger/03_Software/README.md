@@ -19,6 +19,7 @@
   - [6.3 Config Service](#config-service)  
   - [6.4 Time Service](#time-service)  
 - [7. Daten zur Sensorkalibrierung](#daten-zur-sensorkalibrierung) 
+- [8. HARD-Reset](#hard-reset) 
 ---
 
 <a name="Logger-Inhalt"></a>
@@ -73,14 +74,15 @@ In der Bootphase werden folgende Schritte durchgeführt:
   - `calib_coeff.json`
 - Firmware-Update wird geprüft  
   - Repository: <https://github.com/HyFiVeUser/HyFiVe/blob/OSBK/01_Logger/02_Modular_Logger/03_Software/Logger-Mainboard/firmware>
-- Uhrzeit wird über WLAN (NTP) konfiguriert und – sofern verfügbar – gesetzt
+  - Sobald das Update durchgeführt wurde, blinkt die LED 20-mal schnell.
+- Uhrzeit wird über WLAN (NTP) konfiguriert und sofern verfügbar gesetzt
 - BLE wird mit folgenden Services gestartet:
   - Time Service
   - Config Service
   - Live Data Service
   - SD Card Service
-- Falls eine `sensorPrepDurationTime` konfiguriert ist, läuft zunächst diese Vorbereitungszeit ab.  
-  **Danach** startet die Messung.
+- Falls eine `sensorPrepDurationTime` konfiguriert ist, läuft zunächst diese Vorbereitungszeit ab. In dieser Zeit pulsiert die LED langsam auf und ab.
+  Danach startet die Messung.
 
 ---
 
@@ -285,3 +287,8 @@ calib_coeff.json
 ```
 
 ---
+
+<a name="hard-reset"></a>
+## 8. HARD-Reset
+
+Magnet für 25 Sekunden an den Ladekontakt (+ oder −) halten.
