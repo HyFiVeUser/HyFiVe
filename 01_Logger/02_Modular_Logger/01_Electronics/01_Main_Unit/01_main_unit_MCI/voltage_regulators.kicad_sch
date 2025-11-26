@@ -2959,6 +2959,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "IRLML5203TRPBF"
+			(at 139.7 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "1b48462d-6701-48e7-9687-4287b61c4893")
 		)
@@ -3024,6 +3033,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 93.98 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "MCWR06X2701FTL"
 			(at 93.98 106.68 0)
 			(effects
 				(font
@@ -3110,6 +3128,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "860020672010"
+			(at 125.73 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "08cba005-c710-455f-8292-cb1ab180be27")
 		)
@@ -3171,6 +3198,15 @@
 		)
 		(property "Description" ""
 			(at 81.28 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "MCWR06X1001FTL"
+			(at 81.28 153.67 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3576,6 +3612,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "MCWR06X1001FTL"
+			(at 129.54 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "091940bc-c9c7-43a0-9347-bfe1cc44304e")
 		)
@@ -3715,6 +3760,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "BSS123"
+			(at 68.58 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "18a4b0f8-1bf2-41ba-b725-a293b8fced8e")
 		)
@@ -3783,6 +3837,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 116.84 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "BSS123"
 			(at 116.84 100.33 0)
 			(effects
 				(font
@@ -3864,6 +3927,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "GRM21BR61A476ME15L"
+			(at 195.58 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "0b846d51-e261-4e03-91d8-1ee797183838")
 		)
@@ -3925,6 +3997,15 @@
 		)
 		(property "Description" ""
 			(at 53.34 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "RC0603FR-0747KL"
+			(at 53.34 160.02 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4058,6 +4139,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 167.64 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "SPBW06F-12"
 			(at 167.64 140.97 0)
 			(effects
 				(font
@@ -4203,6 +4293,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 45.72 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "MCWR06X2701FTL"
 			(at 45.72 166.37 0)
 			(effects
 				(font
@@ -4477,6 +4576,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "RC0603FR-0747KL"
+			(at 101.6 100.33 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e0ca6b90-0894-4b55-b90d-0401351029cd")
 		)
@@ -4605,6 +4713,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 125.73 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "RC0603FR-07680KL"
 			(at 125.73 82.55 0)
 			(effects
 				(font
@@ -4749,6 +4866,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "TSR 1-2450"
+			(at 180.34 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7acbf1b2-395e-40ba-8c48-9874604a1941")
 		)
@@ -4814,6 +4940,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 180.34 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "TSR 1-2433E"
 			(at 180.34 25.4 0)
 			(effects
 				(font
@@ -4895,6 +5030,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "GRM21BR61A476ME15L"
+			(at 195.58 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "f2851f54-5f00-40d4-918e-7a11616ad8e1")
 		)
@@ -4965,6 +5109,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "C2012X5R1V226M125AC"
+			(at 165.1 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "1027e95d-e76f-4aeb-b314-c79331cd7fb5")
 		)
@@ -5027,6 +5180,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 77.47 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "RC0603FR-07680KL"
 			(at 77.47 142.24 0)
 			(effects
 				(font
@@ -5171,6 +5333,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "C2012X5R1V226M125AC"
+			(at 165.1 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e191fb46-dc45-4e26-882d-78bb59922927")
 		)
@@ -5245,6 +5416,15 @@
 		)
 		(property "Bauteilname" ""
 			(at 91.44 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "IRLML5203TRPBF"
+			(at 91.44 138.43 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5332,6 +5512,15 @@
 				(hide yes)
 			)
 		)
+		(property "eurocircuits_MPN" "CC1206JKNPODBN151"
+			(at 168.91 123.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "9bec31ee-54ab-4d9c-8bc8-003e068392b4")
 		)
@@ -5400,6 +5589,15 @@
 			)
 		)
 		(property "Bauteilname" "CC453232A-100KL"
+			(at 138.43 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "eurocircuits_MPN" "CC453232A-100KL"
 			(at 138.43 135.89 0)
 			(effects
 				(font

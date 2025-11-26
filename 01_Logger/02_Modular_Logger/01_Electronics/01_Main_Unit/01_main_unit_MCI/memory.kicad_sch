@@ -1286,15 +1286,6 @@
 				(hide yes)
 			)
 		)
-		(property "eurocircuits_MPN" "693071020811"
-			(at 175.26 86.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(pin "1"
 			(uuid "3cc055f8-209c-4ca0-b3aa-36a5e660fa06")
 		)
@@ -1596,15 +1587,6 @@
 				(hide yes)
 			)
 		)
-		(property "eurocircuits_MPN" "MCWR06X1002FTL"
-			(at 124.46 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(pin "1"
 			(uuid "8f518a9e-2d7e-467d-ac54-d055cf3e9a8a")
 		)
@@ -1732,15 +1714,6 @@
 		)
 		(property "Description" ""
 			(at 151.13 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "eurocircuits_MPN" "MCWR06X1002FTL"
-			(at 151.13 114.3 90)
 			(effects
 				(font
 					(size 1.27 1.27)
