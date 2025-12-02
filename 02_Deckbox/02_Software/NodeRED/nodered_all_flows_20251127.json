@@ -2453,7 +2453,7 @@
         "z": "32c1e2ca180959a9",
         "g": "178a4f41dc7328d4",
         "name": "> 10 sec",
-        "func": "// Function returns the word “true” as msg.payload if number > 10\n\nif (msg.payload > 2) {\n    // Number is greater than 10\n    msg.payload = \"true\";\n\n    // Green status\n    node.status({\n        fill: \"green\",\n        text: \"Größer als 10: \" + msg.payload\n    });\n\n    return msg;\n} else {\n    // Number is less than or equal to 10\n    // Red status\n    node.status({\n        fill: \"red\", \n        text: \"Nicht größer als 10: \" + msg.payload\n    });\n\n    return null;\n}",
+        "func": "// Function returns the word “true” as msg.payload if number > 10\n\nif (msg.payload > 10) {\n    // Number is greater than 10\n    msg.payload = \"true\";\n\n    // Green status\n    node.status({\n        fill: \"green\",\n        text: \"Größer als 10: \" + msg.payload\n    });\n\n    return msg;\n} else {\n    // Number is less than or equal to 10\n    // Red status\n    node.status({\n        fill: \"red\", \n        text: \"Nicht größer als 10: \" + msg.payload\n    });\n\n    return null;\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
