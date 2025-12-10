@@ -154,7 +154,7 @@ static const uint32_t LedLong = 2000;           // ms
 static const uint32_t LedBreak = 500;           // ms
 static const uint32_t LedBreakUltraShort = 100; // ms
 
-static const uint32_t ledSignalLoggerDetectsBeginOfDeployment = 20000; // ms
+static const uint32_t ledSignalLoggerDetectsBeginOfDeployment = 60000; // ms
 static const uint32_t ledSignalShort = 200;                            // ms
 static const uint32_t ledSignalLong = 600;                             // ms
 static const uint32_t ledSignalBreakBetweenLetters = 200;              // ms
@@ -217,7 +217,7 @@ static LedMode runMode(LedMode mode)
       if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
         return incoming;
 
-      if (!isLoggerBusy)
+      if (!statusIsLoggerBusy.load())
       {
         break;
       }

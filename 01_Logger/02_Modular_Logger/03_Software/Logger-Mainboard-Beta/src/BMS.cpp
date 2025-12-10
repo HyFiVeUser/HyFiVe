@@ -212,7 +212,7 @@ void manageBatteryCharging()
 
   if (!digitalRead(20))
   {
-    isLoggerBusy = false;
+    statusIsLoggerBusy.store(false);
   }
 
   for (int i = 0; i < 30; i++)

@@ -22,7 +22,7 @@ extern std::atomic<bool> ledMeasurementsOff;
 
 // Configuration variables
 
-inline float fwVersionLoggerMainboard = 0.01;
+inline float fwVersionLoggerMainboard = 0.02;
 inline int maxMeasurementCountForLed = 5;           // in count
 inline int sampleCastIntervals = 3;                 // in count
 inline int waitAfterUnderwaterMeasurementTime = 30; // in seconds
@@ -91,7 +91,7 @@ inline bool isNodeRedBusy = true;
 inline bool isNodeRedLogin = false;
 inline bool isNodeRedStatus = false;
 inline bool isFirmwareUpdate = false;
-inline bool isLoggerBusy = false;
+// inline bool isLoggerBusy = false;
 inline RTC_DATA_ATTR bool chargingStatus = false;
 inline RTC_DATA_ATTR bool batteryCompletlyCharged = false;
 inline RTC_DATA_ATTR bool wificonfigRtc = false;
@@ -100,6 +100,7 @@ inline RTC_DATA_ATTR bool bmsConfig = false;
 inline bool interfaceError = false;
 inline RTC_DATA_ATTR bool statusDeepSleep = true;
 inline RTC_DATA_ATTR std::atomic<bool> statusReedInput{true};
+inline RTC_DATA_ATTR std::atomic<bool> statusIsLoggerBusy{false};
 
 // Counter variables
 

@@ -451,7 +451,7 @@ void performFirstBootOperations()
     Log(LogCategoryGeneral, LogLevelINFO, "Logger-Mainboard: FWVersion: ", String(fwVersionLoggerMainboard));
 
     statusLED = false;
-    isLoggerBusy = true;
+    statusIsLoggerBusy.store(true);
     ledControl(LedMode::loggerBusyBackgroundProcess);
 
     createRequiredFolders();
@@ -467,7 +467,8 @@ void performFirstBootOperations()
     statusUploadPeriodeFunktion(0);
     configUpdatePeriodeFunktion(0);
 
-    isLoggerBusy = false;
+    statusIsLoggerBusy.store(false);
+
     while (!statusLED)
     {
       delay(10);
@@ -482,6 +483,9 @@ void performFirstBootOperations()
     delay(2000);
 
     statusLED = false;
+
+    statusReedInput.store(false);
+    
     ledControl(LedMode::updateBootComplete);
     while (!statusLED)
     {
@@ -752,7 +756,7 @@ void getFirmwareUpdate()
     }
     if (!isFirmwareUpdate)
     {
-      Log(LogCategoryGeneral, LogLevelERROR, "firmware download not successful");
+      Log(LogCategoryGeneral, LogLevelDEBUG, "firmware download not successful");
     }
     //! transmitUpdateMessage("fw_download_successfull", "hyfive/updateFwSHA256Request");
     updateFirmware();

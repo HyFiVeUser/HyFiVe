@@ -33,41 +33,55 @@ void setup()
   initializeSdCard();
   // programBms(); //* Optional (should only be activated if you want to program BMS, reason: BMS and RTC would use the interface at the same time!)
   performFirstBootOperations();
-
+  Serial.println("-------------------------------------------------0    1");
   if (statusDeepSleep)
   {
     inactiveMeasurement();
+    Serial.println("-------------------------------------------------0    2");
   }
 
   getInactiveMeasurement();
+  Serial.println("-------------------------------------------------0    3");
 }
 
 void loop()
 {
+  Serial.println("-------------------------------------------------0    4");
   checkWetSensorThreshold();           //* Underwater/surface water detection and operations
+  Serial.println("-------------------------------------------------0    5");
   manageBatteryCharging();             //* Battery management
+  Serial.println("-------------------------------------------------0    6");
   handleSensorError(30);               //* Sensor and config error detection
+  Serial.println("-------------------------------------------------0    7");
   processAndTransmitMeasurementData(); //* MQTT, data processing and transmission
+  Serial.println("-------------------------------------------------0    8");
 
   //* The variable totalElapsedTime += difftime(getCurrentTimeFromRTC(), currentTimeNow); is used to,
   //* update the total time since the start of the program by adding the elapsed
   //* time elapsed since the last run of the loop is added to the previous total time.
   totalElapsedTime += difftime(getCurrentTimeFromRTC(), currentTimeNow);
+  Serial.println("-------------------------------------------------0    9");
 
   //* Execution of the various periodic actions
   wetDetPeriodeFunktion(wet_det_periode);
+  Serial.println("-------------------------------------------------0    10");
   statusUploadPeriodeFunktion(status_upload_periode);
+  Serial.println("-------------------------------------------------0    11");
   configUpdatePeriodeFunktion(config_update_periode);
+  Serial.println("-------------------------------------------------0    12");
   dataUploadRetryPeriodeFunktion(data_upload_retry_periode);
+  Serial.println("-------------------------------------------------0    13");
 
   //* Determines the largest number from a series of time periods to restart the time loop
   resetTimePeriodeLoop(config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
+  Serial.println("-------------------------------------------------0    14");
 
   //* Calculation of the minimum waiting time
   minTimeUntilNextFunction = calculateShortestWaitTime(totalElapsedTime, lastConfigUpdateTime, lastStatusUploadTime, lastWetDetectionUploadTime, lastDataUploadRetryTime, isDataUploadRetryEnabled, config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
-
+Serial.println("-------------------------------------------------0    15");
   while (statusReedInput.load())
   {
+    Serial.println("-------------------------------------------------0    16");
     delay(100);
   }
   //* Deep Sleep
@@ -75,9 +89,12 @@ void loop()
   //* current time from the real-time clock (RTC) directly before the ESP32 goes into deep sleep.
   enableExternalWakeup(20); // activate Logger if power supply connection
   enableExternalWakeup(17); // activate Logger if reed connection
+  Serial.println("-------------------------------------------------0    17");
   interfaceSleep();
+  Serial.println("-------------------------------------------------0    18");
   currentTimeNow = getCurrentTimeFromRTC();
   esp_sleep_enable_timer_wakeup((minTimeUntilNextFunction) * 1000000);
+  Serial.println("-------------------------------------------------0    19");
   Serial.println("Deep Sleep");
   esp_deep_sleep_start();
 }

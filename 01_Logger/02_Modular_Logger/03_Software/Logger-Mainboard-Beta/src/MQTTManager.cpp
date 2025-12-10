@@ -663,11 +663,16 @@ void processAndTransmitMeasurementData()
   {
     while (checkWetSensorAndNodeRed())
     {
+
       // Transmit all header data while header files are present
       if (checkFileProperties("/measurements/mqtt_header", 0, ".json"))
       {
         if (connectToMqtt())
         {
+          statusLED = false;
+          statusIsLoggerBusy.store(true);
+          ledControl(LedMode::loggerBusyBackgroundProcess);
+
           transmitHeaderViaMqtt();
         }
       }
@@ -677,6 +682,10 @@ void processAndTransmitMeasurementData()
       {
         if (connectToMqtt())
         {
+          statusLED = false;
+          statusIsLoggerBusy.store(true);
+          ledControl(LedMode::loggerBusyBackgroundProcess);
+
           transmitDataViaMqtt();
         }
       }
@@ -686,6 +695,10 @@ void processAndTransmitMeasurementData()
       {
         if (connectToMqtt())
         {
+          statusLED = false;
+          statusIsLoggerBusy.store(true);
+          ledControl(LedMode::loggerBusyBackgroundProcess);
+
           transmitLogViaMqtt();
         }
       }
@@ -694,6 +707,15 @@ void processAndTransmitMeasurementData()
       if (!checkFileProperties("/measurements/mqtt_header", 0, ".json") && !checkFileProperties("/measurements/mqtt_measurements", 0, ".json"))
       {
         Log(LogCategoryMQTT, LogLevelDEBUG, "Data successfully transmitted");
+
+        statusIsLoggerBusy.store(false);
+
+        while (!statusLED)
+        {
+          delay(10);
+        };
+
+        delay(2000);
 
         statusLED = false;
         ledControl(LedMode::transmissionComplete);
@@ -707,6 +729,10 @@ void processAndTransmitMeasurementData()
       if (mqttErrorCounter == 20)
       {
         Log(LogCategoryMQTT, LogLevelERROR, "bad wifi connection");
+
+        statusIsLoggerBusy.store(false);
+        delay(2000);
+
         break;
       }
     }

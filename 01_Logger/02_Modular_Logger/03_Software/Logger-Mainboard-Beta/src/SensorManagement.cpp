@@ -676,7 +676,7 @@ void detectConnectedSensorDevices()
       Log(LogCategorySensors, LogLevelERROR, "LoggerConfigFile | sensor not found |no bus addresses found");
       transmitUpdateMessage("LoggerConfigFile | sensor not found | no bus addresses found", "hyfive/ConfigError");
       hasSensorError = true;
-      isLoggerBusy = false;
+      statusIsLoggerBusy.store(false);
       generalError();
     }
   }
@@ -1426,7 +1426,6 @@ void terminateUnderwaterMode()
   Log(LogCategoryMeasurement, LogLevelINFO, "Underwater measurement end: ",
       "logger_id: ", String(configRTC.logger_id),
       " deployment_id: ", String(deployment_id));
-
   waitAfterUnderwaterMeasurementTimeNow = getCurrentTimeFromRTC() + waitAfterUnderwaterMeasurementTime;
   Log(LogCategoryMeasurement, LogLevelDEBUG, "getCurrentTimeFromRTC()", String(getCurrentTimeFromRTC()));
   Log(LogCategoryMeasurement, LogLevelDEBUG, "waitAfterUnderwaterMeasurementTimeNow", String(waitAfterUnderwaterMeasurementTimeNow));
@@ -1479,7 +1478,6 @@ void checkWetSensorThreshold()
           ledControl(LedMode::duringDeployment);
           Serial.println("--------------------------------------duringDeployment");
         }
-
       }
 
       performUnderWaterOperations();
@@ -1585,7 +1583,7 @@ void sensorAvailability()
   if (hasSensorError)
   {
     performPeriodicConfigUpdate();
-    isLoggerBusy = false;
+    statusIsLoggerBusy.store(false);
     generalError();
   }
 }
