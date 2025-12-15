@@ -45,8 +45,8 @@ static String readPrefs(bool silent = false)
     String value = prefs.getString(KEY, "NA");
     prefs.end();
 
-    Serial.println("readPrefs: ");
-    Serial.println(value);
+    // Serial.println("readPrefs: ");
+    // Serial.println(value);
 
     return value;
 }

@@ -807,38 +807,6 @@ void detectDryWetCastSensors()
 }
 
 /**
- * @brief Enters deep sleep after measurement.
- */
-void enterDeepSleepAfterMeasurement()
-{
-  // if (!interfaceError){interfaceRdyErrorCounter = 0;}
-  float shortestWaitingTime = shortestSensorWaitingTime;
-  Log(LogCategorySensors, LogLevelDEBUG, "shortestWaitingTime0: ", String(shortestWaitingTime));
-  totalOperationTime += shortestWaitingTime;
-  float endCalculationTime = micros();
-
-  Log(LogCategorySensors, LogLevelDEBUG, "totalOperationTime1: ", String(totalOperationTime));
-  Log(LogCategorySensors, LogLevelDEBUG, "shortestWaitingTime1: ", String(shortestWaitingTime));
-
-  bool calculationTimeOverflow = totalOperationTime * 1000000 < endCalculationTime;
-  bool calculationTimeNegative = ((shortestWaitingTime * 1000000 - micros()) / 1000000) < 0;
-
-  Log(LogCategorySensors, LogLevelDEBUG, "calculationTimeOverflow: ", String(calculationTimeOverflow));
-  Log(LogCategorySensors, LogLevelDEBUG, "calculationTimeNegative: ", String(calculationTimeNegative));
-
-  if (calculationTimeOverflow || calculationTimeNegative)
-  {
-    Log(LogCategorySensors, LogLevelDEBUG, "Measuring time too long");
-    espDeepSleepSec(0);
-  }
-  Log(LogCategorySensors, LogLevelDEBUG, "Restzeit für den Zyklus Sleep: ", String(millis()));
-  Log(LogCategorySensors, LogLevelDEBUG, "Sensor deep sleep time: ", String((shortestWaitingTime * 1000000 - micros()) / 1000000));
-  Log(LogCategorySensors, LogLevelDEBUG, "esp_sleep_enable_timer_wakeup: ", String(shortestWaitingTime * 1000000 - micros()));
-  esp_sleep_enable_timer_wakeup(shortestWaitingTime * 1000000 - micros()); // Mikrosekunden
-  esp_deep_sleep_start();
-}
-
-/**
  * @brief Checks the status of the wet sensor.
  * @return bool True if the sensor is wet, false otherwise.
  */
@@ -1496,7 +1464,7 @@ void checkWetSensorThreshold()
       Serial.print(shortestWaitingTime);
       Serial.println(" sec");
 
-      shortestWaitingTime = (shortestWaitingTime * 1000) - diff;
+      shortestWaitingTime = (shortestWaitingTime * 1000) - (diff+10);
 
       Serial.print("shortestWaitingTimeForDealy: ");
       Serial.print(shortestWaitingTime);
@@ -1511,13 +1479,21 @@ void checkWetSensorThreshold()
       {
         if (shortestWaitingTime > 500)
         {
-          Serial.print("enterDeepSleepAfterMeasurement");
-          enterDeepSleepAfterMeasurement();
+          Serial.println("enterDeepSleepAfterMeasurement----------------------00");
+          Serial.flush();
+          esp_sleep_enable_timer_wakeup(shortestWaitingTime * 1000); // Mikrosekunden
+          // esp_deep_sleep_start();
+          esp_light_sleep_start();
+        }
+        else if (shortestWaitingTime > 0)
+        {
+          Serial.println("enterDeepSleepAfterMeasurement----------------------02");
+          delay(shortestWaitingTime);
         }
       }
-
-      if (shortestWaitingTime > 0)
+      else if (shortestWaitingTime > 0)
       {
+        Serial.println("enterDeepSleepAfterMeasurement----------------------01");
         delay(shortestWaitingTime);
       }
     }

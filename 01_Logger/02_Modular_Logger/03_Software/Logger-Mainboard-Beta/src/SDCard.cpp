@@ -37,7 +37,7 @@ bool initializeSdCard()
   delay(50);
   if (SD.begin(csPin, initSPIclass, 80000000))
   {
-    Serial.println("SD card initialized successfully.");
+    // Serial.println("SD card initialized successfully.");
     return true;
   }
   else

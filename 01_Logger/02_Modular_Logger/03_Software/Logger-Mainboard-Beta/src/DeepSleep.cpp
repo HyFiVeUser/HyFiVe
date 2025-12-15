@@ -13,6 +13,7 @@
 #include "DS3231TimeNtp.h"
 #include "DeepSleep.h"
 #include "SystemVariables.h"
+#include "SensorManagement.h"
 
 #define uS_TO_S_FACTOR 1000000UL
 
@@ -24,6 +25,7 @@ void espDeepSleepSec(uint32_t sleepTimeSec)
 {
   esp_sleep_enable_timer_wakeup(sleepTimeSec * uS_TO_S_FACTOR);
   esp_deep_sleep_start();
+  //esp_light_sleep_start();
 }
 
 int64_t activePinMask = 0;
@@ -79,6 +81,7 @@ void getInactiveMeasurement()
     unsigned long now = getCurrentTimeFromRTC();
     if (secInactivityTimeoutSec <= now)
     {
+      interfaceSleep();
       Serial.println("InactiveMeasurement time >15min go DeepSleep");
       enableExternalWakeup(20); // activate Logger if power supply connection
       enableExternalWakeup(17); // activate Logger if reed connection

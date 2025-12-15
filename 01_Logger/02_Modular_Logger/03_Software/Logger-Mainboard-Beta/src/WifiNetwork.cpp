@@ -143,3 +143,8 @@ void handleNtpSynchronization()
     while(!statusLED){delay(10);};
   }
 }
+
+void wiFiDisconnect()
+{
+  WiFi.disconnect();
+}

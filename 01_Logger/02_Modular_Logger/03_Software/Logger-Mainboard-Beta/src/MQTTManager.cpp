@@ -630,7 +630,7 @@ bool isNodeRedResponsePositive()
   }
   else
   {
-    Log(LogCategoryMQTT, LogLevelERROR, "Node-RED is not available");
+    Log(LogCategoryMQTT, LogLevelDEBUG, "Node-RED is not available");
     return false;
   }
 }

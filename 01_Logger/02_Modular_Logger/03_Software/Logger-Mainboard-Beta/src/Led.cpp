@@ -145,14 +145,8 @@ static void ledPMode()
 }
 
 // ------------------------------------------------------------
-//  Timings (wie bei dir)
+//  Timings
 // ------------------------------------------------------------
-
-static const uint32_t LedUltraShort = 100;      // ms
-static const uint32_t LedShort = 500;           // ms
-static const uint32_t LedLong = 2000;           // ms
-static const uint32_t LedBreak = 500;           // ms
-static const uint32_t LedBreakUltraShort = 100; // ms
 
 static const uint32_t ledSignalLoggerDetectsBeginOfDeployment = 60000; // ms
 static const uint32_t ledSignalShort = 200;                            // ms

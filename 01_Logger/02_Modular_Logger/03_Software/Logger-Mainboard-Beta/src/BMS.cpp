@@ -259,19 +259,19 @@ void manageBatteryCharging()
     Log(LogCategoryBMS, LogLevelERROR, "BMS ", "Log: ", "getSafetyAlertAB: ", String(BMS.getSafetyAlertAB()), " getSafetyStatusAB: ", String(BMS.getSafetyStatusAB()), " getSafetyAlertCD: ", String(BMS.getSafetyAlertCD()), " getSafetyStatusCD: ", String(BMS.getSafetyStatusCD()));
   }
 
-if (digitalRead(20) == HIGH)
-{
-  float battery = getRemainingBatteryPercentage();
+  if (digitalRead(20) == HIGH)
+  {
+    float battery = getRemainingBatteryPercentage();
 
-  if (battery <= 5)
-  {
-    ledControl(LedMode::batterySuperlow);
+    if (battery <= 5)
+    {
+      ledControl(LedMode::batterySuperlow);
+    }
+    else if (battery <= 15)
+    {
+      ledControl(LedMode::batteryLow);
+    }
   }
-  else if (battery <= 15)
-  {
-    ledControl(LedMode::batteryLow);
-  }
-}
 
   if (!digitalRead(20))
   {
@@ -367,6 +367,8 @@ if (digitalRead(20) == HIGH)
     counter++;
     chargeTimer++;
 
+    delay(1000);
+
     ledControl(LedMode::batteryCharging);
 
     for (int i = 0; i < 30; i++)
@@ -418,6 +420,8 @@ if (digitalRead(20) == HIGH)
 
     if (chargeTimer >= 600)
     {
+      Serial.println("-------------------------------------------------0    24");
+
       Log(LogCategoryBMS, LogLevelDEBUG, "BMS ", "Charge: ", "CellVoltage[mV]: ", String(getTotalBatteryCellVoltage()), " Remaining[%]: ", String(getRemainingBatteryPercentage()), " Capacity[mAh]: ", String(getRemainingBatteryCapacity()));
       Log(LogCategoryBMS, LogLevelDEBUG, "BMS ", "Charge: ", "Temp. IntTemp[degC]: ", String((BMS.getIntTemp() / 10) - 273.15));
       Log(LogCategoryBMS, LogLevelDEBUG, "BMS ", "Charge: ", "Temp. Battery[degC]: ", String((BMS.getTS1Temp() / 10) - 273.15));

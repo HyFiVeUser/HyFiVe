@@ -21,6 +21,10 @@
 #include "SensorManagement.h"
 #include "SystemVariables.h"
 #include "Utility.h"
+#include "WifiNetwork.h"
+
+unsigned long tLoopStart = 0;
+unsigned long tLoopEnd = 0;
 
 void setup()
 {
@@ -46,15 +50,9 @@ void setup()
 
 void loop()
 {
+  tLoopStart = millis();
+
   Serial.println("-------------------------------------------------0    4");
-  checkWetSensorThreshold();           //* Underwater/surface water detection and operations
-  Serial.println("-------------------------------------------------0    5");
-  manageBatteryCharging();             //* Battery management
-  Serial.println("-------------------------------------------------0    6");
-  handleSensorError(30);               //* Sensor and config error detection
-  Serial.println("-------------------------------------------------0    7");
-  processAndTransmitMeasurementData(); //* MQTT, data processing and transmission
-  Serial.println("-------------------------------------------------0    8");
 
   //* The variable totalElapsedTime += difftime(getCurrentTimeFromRTC(), currentTimeNow); is used to,
   //* update the total time since the start of the program by adding the elapsed
@@ -72,13 +70,21 @@ void loop()
   dataUploadRetryPeriodeFunktion(data_upload_retry_periode);
   Serial.println("-------------------------------------------------0    13");
 
+  Serial.println("-------------------------------------------------0    5");
+  manageBatteryCharging(); //* Battery management
+  Serial.println("-------------------------------------------------0    6");
+  handleSensorError(30); //* Sensor and config error detection
+  Serial.println("-------------------------------------------------0    7");
+  processAndTransmitMeasurementData(); //* MQTT, data processing and transmission
+  Serial.println("-------------------------------------------------0    8");
+
   //* Determines the largest number from a series of time periods to restart the time loop
   resetTimePeriodeLoop(config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
   Serial.println("-------------------------------------------------0    14");
 
   //* Calculation of the minimum waiting time
   minTimeUntilNextFunction = calculateShortestWaitTime(totalElapsedTime, lastConfigUpdateTime, lastStatusUploadTime, lastWetDetectionUploadTime, lastDataUploadRetryTime, isDataUploadRetryEnabled, config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
-Serial.println("-------------------------------------------------0    15");
+  Serial.println("-------------------------------------------------0    15");
   while (statusReedInput.load())
   {
     Serial.println("-------------------------------------------------0    16");
@@ -96,5 +102,28 @@ Serial.println("-------------------------------------------------0    15");
   esp_sleep_enable_timer_wakeup((minTimeUntilNextFunction) * 1000000);
   Serial.println("-------------------------------------------------0    19");
   Serial.println("Deep Sleep");
-  esp_deep_sleep_start();
+  wiFiDisconnect();
+  Serial.flush();
+  // esp_deep_sleep_start();
+  esp_light_sleep_start();
+
+  // tLoopEnd = millis();
+  // unsigned long loopDiff = tLoopEnd - tLoopStart;
+  //
+  // if ((minTimeUntilNextFunction * 1000) <= loopDiff)
+  // {
+  //   Serial.println("-------------------------------------------------0    20");
+  //   esp_sleep_enable_timer_wakeup(0);
+  //   esp_light_sleep_start();
+  // }
+  // else
+  // {
+  //   uint32_t espSleepWakeupTime = (minTimeUntilNextFunction * 1000) - loopDiff;
+  //   esp_sleep_enable_timer_wakeup(espSleepWakeupTime * 1000);
+  //   Serial.println("-------------------------------------------------0    19");
+  //   Serial.println("Deep Sleep");
+  //   Serial.flush();
+  //   // esp_deep_sleep_start();
+  //   esp_light_sleep_start();
+  // }
 }

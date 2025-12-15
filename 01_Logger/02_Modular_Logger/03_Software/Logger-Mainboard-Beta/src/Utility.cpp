@@ -453,15 +453,13 @@ void performFirstBootOperations()
     statusLED = false;
     statusIsLoggerBusy.store(true);
     ledControl(LedMode::loggerBusyBackgroundProcess);
+    Serial.println("-------------------------------------------------0    21");
 
     createRequiredFolders();
     interfaceSleep();
     updateFirmware();
     validateAndLoadConfig();
     connectToWifiAndSyncNTP();
-
-    manageBatteryCharging(); //!
-
     interfaceRST();
     sensorAvailability();
     statusUploadPeriodeFunktion(0);
@@ -485,7 +483,7 @@ void performFirstBootOperations()
     statusLED = false;
 
     statusReedInput.store(false);
-    
+
     ledControl(LedMode::updateBootComplete);
     while (!statusLED)
     {
@@ -1018,6 +1016,11 @@ void configUpdatePeriodeFunktion(uint32_t config_update_periode)
 {
   if (((totalElapsedTime - lastConfigUpdateTime) >= config_update_periode) || hasTransmissionUpdateError || askForConfigRequest)
   {
+    statusLED = false;
+    statusIsLoggerBusy.store(true);
+    ledControl(LedMode::loggerBusyBackgroundProcess);
+    Serial.println("-------------------------------------------------0    22");
+
     uint8_t errorCount = 0;
     while (1)
     {
@@ -1043,6 +1046,13 @@ void configUpdatePeriodeFunktion(uint32_t config_update_periode)
       errorCount++;
     }
     lastConfigUpdateTime = totalElapsedTime;
+
+    statusIsLoggerBusy.store(false);
+
+    while (!statusLED)
+    {
+      delay(10);
+    };
   }
 }
 
@@ -1054,6 +1064,11 @@ void statusUploadPeriodeFunktion(uint32_t status_upload_periode)
 {
   if (((totalElapsedTime - lastStatusUploadTime) >= status_upload_periode) || hasStatusUploadError == true)
   {
+    statusLED = false;
+    statusIsLoggerBusy.store(true);
+    ledControl(LedMode::loggerBusyBackgroundProcess);
+    Serial.println("-------------------------------------------------0    23");
+
     uint8_t errorCount = 0;
     while (1)
     {
@@ -1077,6 +1092,14 @@ void statusUploadPeriodeFunktion(uint32_t status_upload_periode)
       errorCount++;
     }
     lastStatusUploadTime = totalElapsedTime;
+
+    statusIsLoggerBusy.store(false);
+
+    while (!statusLED)
+    {
+      delay(10);
+    };
+    
   }
 }
 
@@ -1086,7 +1109,7 @@ void statusUploadPeriodeFunktion(uint32_t status_upload_periode)
  */
 void wetDetPeriodeFunktion(uint32_t wet_det_periode)
 {
-  if ((totalElapsedTime - lastWetDetectionUploadTime) >= wet_det_periode)
+  if (((totalElapsedTime - lastWetDetectionUploadTime) >= wet_det_periode) || isLoggerSubmerged)
   {
     ledControl(LedMode::loggerActive);
     bootCounter++;
@@ -1146,7 +1169,7 @@ void dataUploadRetryPeriodeFunktion(uint32_t data_upload_retry_periode)
  */
 bool checkWetSensorAndNodeRed()
 {
-  if (checkWetSensorStatus())
+  if (isLoggerSubmerged)
   {
     return false;
   }
@@ -1266,11 +1289,19 @@ void monitorReedInputTask(void *parameter)
 
         if (lowDurationMs >= 15000 && lowDurationMs <= 20000) // 5 bis 10sec
         {
-          ledControl(LedMode::ntpUpdateFailed);
+
           interfaceSleep();
-          delay(2000);
+
+          statusLED = false;
+          ledControl(LedMode::ntpUpdateFailed);
+          while (!statusLED)
+          {
+            delay(10);
+          };
+
           enableExternalWakeup(20); // activate Logger if power supply connection
           enableExternalWakeup(17); // activate Logger if reed connection
+          statusDeepSleep = true;
           Serial.println("Deep Sleep triggered");
           esp_deep_sleep_start();
         }

@@ -15,5 +15,6 @@
 void handleNtpSynchronization();
 
 bool connectToWifiAndSyncNTP();
+void wiFiDisconnect();
 
 #endif

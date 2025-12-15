@@ -44,7 +44,6 @@ void createConfigHeader();
 // Deep sleep and energy-saving mode
 
 float calculateShortestSensorWaitTime(); // Calculates the shortest waiting time until the next measurement
-void enterDeepSleepAfterMeasurement();
 
 // Underwater and above water mode
 
