@@ -7,10 +7,10 @@
 #include "ble_uuids.h"
 
 // ===== Commands =====
-#define CMD_ALLE_ANZAHL   0x00
-#define CMD_NEUE_ANZAHL   0x01
-#define CMD_ALLE_BEREICH  0x02
-#define CMD_NEUE_BEREICH  0x03
+#define CMD_TOTAL_COUNT   0x00
+#define CMD_NEW_COUNT   0x01
+#define CMD_ALL_RANGES  0x02
+#define CMD_UPLOAD_ALL_DATA  0x03
 
 // ===== Transfer-Paket =====
 struct Transfer_Packet_t {

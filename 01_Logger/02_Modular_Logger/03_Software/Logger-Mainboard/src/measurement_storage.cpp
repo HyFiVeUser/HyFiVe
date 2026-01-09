@@ -128,6 +128,41 @@ IndexSnapshot readIndexSnapshot()
     return snapshot;
 }
 
+static uint32_t countMeasurementFileLines()
+{
+    String measurementPath = buildMeasurementFilePath();
+    if (!SD.exists(measurementPath.c_str()))
+    {
+        return 0;
+    }
+
+    File file = SD.open(measurementPath.c_str(), FILE_READ);
+    if (!file)
+    {
+        LOG_E("Could not read measurement file: %s", measurementPath.c_str());
+        return 0;
+    }
+
+    String header = file.readStringUntil('\n');
+    size_t headerBytes = header.length();
+    if (file.available())
+    {
+        headerBytes += 1;
+    }
+
+    const uint32_t totalBytes = static_cast<uint32_t>(file.size());
+    if (totalBytes <= headerBytes)
+    {
+        file.close();
+        return 0;
+    }
+
+    const uint32_t dataBytes = totalBytes - static_cast<uint32_t>(headerBytes);
+    file.close();
+
+    return dataBytes / MEASUREMENT_RECORD_BYTES;
+}
+
 void writeIndexSnapshot(const IndexSnapshot &snapshot)
 {
     String indexPath = buildIndexFilePath();
@@ -241,6 +276,57 @@ bool openMeasurementFile()
 
     sd_csv_set_path(s_measurementFilePath);
     return true;
+}
+
+bool validateMeasurementIndex()
+{
+    IndexSnapshot snapshot = readIndexSnapshot();
+    uint32_t measuredCount = 0;
+    uint32_t transferredCount = 0;
+    getMeasurementIndexCounts(measuredCount, transferredCount);
+
+    bool ok = true;
+    if (measuredCount < transferredCount)
+    {
+        LOG_E("Error: measured (%u) is smaller than transmitted_measured (%u).",
+              static_cast<unsigned>(measuredCount),
+              static_cast<unsigned>(transferredCount));
+        snapshot.transferredCount = 0;
+        writeIndexSnapshot(snapshot);
+        ok = false;
+    }
+    else
+    {
+        Serial.println("measuredCount and transferredCount: ");
+        Serial.print("measuredCount: ");
+        Serial.println(measuredCount);
+        Serial.print("transferredCount: ");
+        Serial.println(transferredCount);
+    }
+
+    delay(100);
+
+    uint32_t measurementLines = countMeasurementFileLines();
+    if (measurementLines != measuredCount)
+    {
+        LOG_E("Error: datM.csv lines (%u) do not match measured (%u).",
+              static_cast<unsigned>(measurementLines),
+              static_cast<unsigned>(measuredCount));
+        snapshot.measuredCount = measurementLines;
+        snapshot.transferredCount = 0;
+        writeIndexSnapshot(snapshot);
+        ok = false;
+    }
+    else
+    {
+        Serial.println("datM.csv Lines: ");
+        Serial.print("measurementLines: ");
+        Serial.println(measurementLines);
+        Serial.print("measuredCount: ");
+        Serial.println(measuredCount);
+    }
+
+    return ok;
 }
 
 bool ensureCurrentFile(const DateTime &now)

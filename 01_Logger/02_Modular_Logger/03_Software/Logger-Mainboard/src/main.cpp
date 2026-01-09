@@ -51,6 +51,7 @@ void setup()
     initStatusLed();
 
     LOG_I("=== OSBK ESP32-S3 MODULAR BLE ===");
+    LOG_I("=== FW: 0.07 ===");
 
     // 1. Initialize hardware system
     if (!initializeSystem())
@@ -64,6 +65,12 @@ void setup()
         }
 
         esp_deep_sleep(1000000ULL); // 1sec
+    }
+
+    if (SD.exists(MEASUREMENTS_ROOT_DIR))
+    {
+        validateMeasurementIndex();
+        delay(1000);
     }
 
     LOG_I("OSBK hardware system started!");

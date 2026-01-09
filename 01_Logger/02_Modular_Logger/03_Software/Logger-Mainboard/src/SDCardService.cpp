@@ -147,11 +147,11 @@ static uint16_t maxPayloadForPeer(uint16_t connHandle)
   const uint16_t pktHeader = 10; // Transfer_Packet_t header overhead
   uint16_t maxPayload = (attBytes > pktHeader) ? (attBytes - pktHeader) : 0;
 
-  if (maxPayload >= 502)
-    return 502; // large chunk (only if MTU is high enough)
-  if (maxPayload >= 242)
-    return 242;      // safely fits in one LL-PDU
-  return maxPayload; // e.g., ~182 on iOS
+  // if (maxPayload >= 502)
+  //   return 502; // large chunk (only if MTU is high enough)
+  // if (maxPayload >= 242)
+  //   return 242;      // safely fits in one LL-PDU
+  return 170;
 }
 
 void SDCardService::sendChunkedResponse(String response, uint16_t connHandle)
@@ -243,19 +243,23 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
   LOG_I("[BLE SD] process cmd=0x%02X", command);
   switch (command)
   {
-  case CMD_ALLE_ANZAHL:
+  case CMD_TOTAL_COUNT:
   {
-    response += (char)CMD_ALLE_ANZAHL;
+    response += (char)CMD_TOTAL_COUNT;
     uint32_t measured = 0;
     uint32_t transmitted = 0;
     getMeasurementIndexCounts(measured, transmitted);
 
     response += String(measured);
+
+    Serial.println("CMD_TOTAL_COUNT");
+    Serial.println(response);
+
     break;
   }
-  case CMD_NEUE_ANZAHL:
+  case CMD_NEW_COUNT:
   {
-    response += (char)CMD_NEUE_ANZAHL;
+    response += (char)CMD_NEW_COUNT;
     uint32_t measured = 0;
     uint32_t transmitted = 0;
 
@@ -263,12 +267,16 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
 
     uint32_t pending = (measured > transmitted) ? (measured - transmitted) : 0;
     response += String(pending);
+
+    Serial.println("CMD_NEW_COUNT");
+    Serial.println(response);
+
     break;
   }
-  case CMD_ALLE_BEREICH:
+  case CMD_ALL_RANGES:
   {
     // Leading byte for the CLI
-    response += (char)CMD_ALLE_BEREICH;
+    response += (char)CMD_ALL_RANGES;
 
     // Parse range from the most recently received payload
     int start = 0, end = 59;
@@ -329,6 +337,9 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
     response += String(start) + "-" + String(end) + "/" + String(measured);
     response += data;
 
+    Serial.println("CMD_ALL_RANGES");
+    Serial.println(response);
+
     // Update transfer counters
     if (haveCounts && (int)measured > 0 && start <= end)
     {
@@ -348,103 +359,90 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
     }
     break;
   }
-  case CMD_NEUE_BEREICH:
+  case CMD_UPLOAD_ALL_DATA:
   {
-    response += (char)CMD_NEUE_BEREICH;
+    // Leading byte for the CLI
+    response += (char)CMD_UPLOAD_ALL_DATA;
 
-    int requestedStart = 0;
-    int requestedEnd = 59;
+    // Parse range from the most recently received payload
+    int start = 0, end = 59;
     if (_pendingPayload.length())
     {
       int dash = _pendingPayload.indexOf('-');
       if (dash > 0)
       {
-        requestedStart = _pendingPayload.substring(0, dash).toInt();
-        requestedEnd = _pendingPayload.substring(dash + 1).toInt();
+        start = _pendingPayload.substring(0, dash).toInt();
+        end = _pendingPayload.substring(dash + 1).toInt();
       }
     }
 
-    if (requestedStart < 0)
-      requestedStart = 0;
-    if (requestedEnd < requestedStart)
-      requestedEnd = requestedStart;
+    if (start < 0)
+      start = 0;
+    if (end < start)
+      end = start;
 
-    uint32_t measured = 0;
-    uint32_t transmitted = 0;
-    (void)getMeasurementIndexCounts(measured, transmitted);
-
-    const uint32_t availableNew = (measured > transmitted) ? (measured - transmitted) : 0;
-
-    int newStart = requestedStart;
-    int newEnd = requestedEnd;
-
-    if (availableNew == 0)
+    // Clamp bounds based on measured count
+    uint32_t measured = 0, transmitted = 0;
+    bool haveCounts = getMeasurementIndexCounts(measured, transmitted);
+    if (haveCounts && (int)measured > 0)
     {
-      newStart = 0;
-      newEnd = -1;
-    }
-    else
-    {
-      if ((uint32_t)newStart >= availableNew)
-        newStart = (int)(availableNew - 1);
-      if ((uint32_t)newEnd >= availableNew)
-        newEnd = (int)(availableNew - 1);
-      if (newEnd < newStart)
-        newEnd = newStart;
+      int maxIdx = (int)measured - 1;
+      if (start > maxIdx)
+        start = maxIdx;
+      if (end > maxIdx)
+        end = maxIdx;
+      if (start < 0)
+        start = 0;
+      if (end < start)
+        end = start;
     }
 
-    const bool hasData = (availableNew > 0) && (newStart >= 0) && (newEnd >= newStart);
+    // Provide data
+    String data = _getDataCallback(start, end, false);
 
-    const uint32_t transmittedBefore = transmitted;
-    const int absStart = hasData ? int(transmittedBefore + (uint32_t)newStart) : int(transmittedBefore);
-    const int absEnd = hasData ? int(transmittedBefore + (uint32_t)newEnd) : int(transmittedBefore - 1);
-
-    String data = "[]";
-    if (_getDataCallback)
+    if (data == "[]")
     {
-      // Important: read absolute indices, NO onlyNew filter!
-      data = _getDataCallback(absStart, absEnd, /*onlyNew=*/false);
-
-      if (data == "[]")
+      delay(100);
+      for (int i = 0; i < 5; i++)
       {
-        delay(100);
-        for (int i = 0; i < 5; i++)
+        Serial.println("data");
+        Serial.println(data);
+
+        data = _getDataCallback(start, end, false);
+
+        if (data != "[]")
         {
           Serial.println("data");
           Serial.println(data);
-
-          data = _getDataCallback(absStart, absEnd, /*onlyNew=*/false);
-
-          if (data != "[]")
-          {
-            Serial.println("data");
-            Serial.println(data);
-            break;
-          }
-          delay(100);
+          break;
         }
-      }
-
-      // Update transferredCount (as before, just with an absolute end index)
-      if (hasData)
-      {
-        uint32_t newTransmitted = (uint32_t)(absEnd + 1);
-        if (newTransmitted > measured)
-          newTransmitted = measured;
-        if (newTransmitted > transmittedBefore)
-        {
-          int32_t delta = (int32_t)(newTransmitted - transmittedBefore);
-          if (delta > 0)
-          {
-            updateMeasurementIndex(0, delta);
-          }
-        }
+        delay(100);
       }
     }
 
-    // Output the response header consistently as 0-based like ALLE_BEREICH:
-    response += String(absStart) + "-" + String(absEnd) + "/" + String(measured);
+    response += String(start) + "-" + String(end) + "/" + String(measured);
     response += data;
+
+    Serial.println("CMD_UPLOAD_ALL_DATA");
+    Serial.println(response);
+
+    // Update transfer counters
+    if (haveCounts && (int)measured > 0 && start <= end)
+    {
+      uint32_t rangeEndPlusOne = (uint32_t)(end + 1);
+      if (rangeEndPlusOne > measured)
+      {
+        rangeEndPlusOne = measured;
+      }
+      if (rangeEndPlusOne > transmitted)
+      {
+        int32_t delta = (int32_t)(rangeEndPlusOne - transmitted);
+        if (delta > 0)
+        {
+          updateMeasurementIndex(0, delta);
+        }
+      }
+    }
     break;
   }
   default:
@@ -511,22 +509,20 @@ void SDCardService::CommandHandler::onWrite(NimBLECharacteristic *pCharacteristi
   uint8_t command = 0;
   String payloadStr = "";
 
-  if (value.length() >= sizeof(Transfer_Packet_t))
+  auto *packet = (Transfer_Packet_t *)value.data();
+  if (packet->chunk.payload_size > 0)
   {
-    auto *packet = (Transfer_Packet_t *)value.data();
-    if (packet->chunk.payload_size > 0)
-    {
-      const uint8_t *p = packet->chunk.payload;
-      command = p[0];
+    const uint8_t *p = packet->chunk.payload;
+    command = p[0];
 
-      // Collect everything from byte 1 to the first '\0' as ASCII
-      for (uint16_t i = 1; i < packet->chunk.payload_size; ++i)
-      {
-        char c = (char)p[i];
-        if (c == '\0')
-          break;
-        payloadStr += c;
-      }
+    // Collect everything from byte 1 to the first '\0' as ASCII
+    for (uint16_t i = 1; i < packet->chunk.payload_size; ++i)
+
+    {
+      char c = (char)p[i];
+      if (c == '\0')
+        break;
+      payloadStr += c;
     }
   }
   else
@@ -541,7 +537,7 @@ void SDCardService::CommandHandler::onWrite(NimBLECharacteristic *pCharacteristi
     }
   }
 
-    _service->_pendingPayload = payloadStr; // New: store the range
+  _service->_pendingPayload = payloadStr; // New: store the range
   LOG_I("[BLE SD] onWrite cmd=0x%02X, payload='%s'", command, payloadStr.c_str());
   bleSDCardTransferActive = true;
   _service->enqueueCommand(command, connInfo.getConnHandle());

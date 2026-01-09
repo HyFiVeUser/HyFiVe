@@ -95,7 +95,6 @@ namespace
             }
 
             rtc.adjust(parsed);
-            rtcSecondTickElapsed(true);
 
             LOG_I("RTC updated to %04d-%02d-%02dT%02d:%02d:%02dZ",
                   parsed.year(),

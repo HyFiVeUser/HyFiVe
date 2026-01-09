@@ -12,3 +12,4 @@ void storeSensorMeasurements();
 void updateMeasurementIndex(int32_t newDelta, int32_t transferredDelta = 0);
 bool getMeasurementIndexCounts(uint32_t &measuredCount, uint32_t &transferredCount);
 bool ensureCurrentFile(const DateTime &now);
+bool validateMeasurementIndex();
