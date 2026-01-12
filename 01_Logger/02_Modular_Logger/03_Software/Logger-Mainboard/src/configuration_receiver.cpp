@@ -845,6 +845,7 @@ bool isValidJsonOnSD(const char *path, size_t capacity = 2048)
 void getContentJson()
 {
     SD.mkdir(CONFIG_UPDATE_DIR);
+    SD.mkdir(CONFIG_ACTIVE_DIR);
     if (SD.exists(CONFIG_UPDATE_FILE) && !SD.remove(CONFIG_UPDATE_FILE))
 
     {

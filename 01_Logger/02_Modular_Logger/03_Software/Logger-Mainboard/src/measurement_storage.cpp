@@ -252,7 +252,7 @@ bool openMeasurementFile()
 
     closeCurrentFile();
 
-    s_currentFile = SD.open(s_measurementFilePath.c_str(), FILE_WRITE);
+    s_currentFile = SD.open(s_measurementFilePath.c_str(), FILE_APPEND);
     if (!s_currentFile)
     {
         LOG_E("Measurement file could not be opened: %s", s_measurementFilePath.c_str());
@@ -264,10 +264,6 @@ bool openMeasurementFile()
         s_currentFile.println("timestamp,id,lat,lng,nvalue,svalue");
         s_currentFile.flush();
         LOG_I("🆕 Measurement file created: %s", s_measurementFilePath.c_str());
-    }
-    else if (!s_currentFile.seek(s_currentFile.size()))
-    {
-        LOG_W("Could not seek to end of file: %s", s_measurementFilePath.c_str());
     }
     else
     {

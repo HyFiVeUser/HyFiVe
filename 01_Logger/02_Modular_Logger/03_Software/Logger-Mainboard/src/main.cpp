@@ -51,7 +51,7 @@ void setup()
     initStatusLed();
 
     LOG_I("=== OSBK ESP32-S3 MODULAR BLE ===");
-    LOG_I("=== FW: 0.07 ===");
+    LOG_I("=== FW: 0.08 ===");
 
     // 1. Initialize hardware system
     if (!initializeSystem())
