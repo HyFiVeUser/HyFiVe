@@ -1,17 +1,13 @@
 IndentWidth: 2
 ContinuationIndentWidth: 2
 
-# damit überhaupt umgebrochen wird
-ColumnLimit: 300    # z.B. 100/120/140 statt 500
+ColumnLimit: 300 
 
-# damit dann 1 Argument pro Zeile kommt
 BinPackArguments: false
 BinPackParameters: false
 AlignArrayOfStructures: Left
-# damit die Folgezeilen unter dem ersten Argument ausgerichtet werden
 AlignAfterOpenBracket: Align
 
-# optional: Umbruch nach "(" begünstigen
 PenaltyBreakBeforeFirstCallParameter: 0
 
 BreakBeforeBraces: Allman
@@ -19,10 +15,8 @@ BreakBeforeBraces: Allman
 SortIncludes: true
 IncludeBlocks: Regroup
 
-# verhindert, dass "Main Include" (z.B. "DeepSleep.h") separat oben gehalten wird
 IncludeIsMainRegex: 'a^'
 
-# hält maximal 1 Leerzeile am Stück
 MaxEmptyLinesToKeep: 1
 
 IncludeCategories:
