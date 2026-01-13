@@ -18,7 +18,7 @@
 #include "DS3231TimeNtp.h"
 #include "DebuggingSDLog.h"
 #include "DeepSleep.h"
-#include "Led.h"
+#include "LedManager.h"
 #include "LoggerHER.h"
 #include "MQTTManager.h"
 #include "SDCard.h"
@@ -1464,7 +1464,7 @@ void checkWetSensorThreshold()
       Serial.print(shortestWaitingTime);
       Serial.println(" sec");
 
-      shortestWaitingTime = (shortestWaitingTime * 1000) - (diff+10);
+      shortestWaitingTime = (shortestWaitingTime * 1000) - (diff + 10);
 
       Serial.print("shortestWaitingTimeForDealy: ");
       Serial.print(shortestWaitingTime);

@@ -11,7 +11,7 @@
 
 #include "../../src/DebuggingSDLog.h"
 #include "../../src/DeepSleep.h"
-#include "../../src/Led.h"
+#include "../../src/LedManager.h"
 #include "../../src/SystemVariables.h"
 #include "../../src/loggerConfig.h"
 #include <Arduino.h>
@@ -264,7 +264,7 @@ void I2C_Master::startConversion(uint8_t address)
 void I2C_Master::sensorSleep(uint8_t address)
 {
   ;
-  //Serial.println("CMD_SENSOR_SLEEP");
+  // Serial.println("CMD_SENSOR_SLEEP");
   this->Write(CMD_SENSOR_SLEEP, address);
 }
 
@@ -277,7 +277,7 @@ void I2C_Master::interfaceSoftwareReset(uint8_t address)
 void I2C_Master::sensorWakeup(uint8_t address)
 {
   ;
-  //Serial.println("CMD_SENSOR_WAKEUP");
+  // Serial.println("CMD_SENSOR_WAKEUP");
   this->Write(CMD_SENSOR_WAKEUP, address);
 }
 
@@ -367,9 +367,11 @@ uint8_t I2C_Master::WriteRead(uint8_t command, uint8_t address, uint8_t *answer,
 {
   uint8_t ret;
   ret = this->Write(command, address);
-  
-  if (ret != 0) 
-  {return ret;}
+
+  if (ret != 0)
+  {
+    return ret;
+  }
 
   this->Read(address, answer, length);
 

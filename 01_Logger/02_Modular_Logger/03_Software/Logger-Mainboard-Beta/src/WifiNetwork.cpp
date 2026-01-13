@@ -12,7 +12,7 @@
 #include <WiFi.h>
 
 #include "DebuggingSDLog.h"
-#include "Led.h"
+#include "LedManager.h"
 #include "SystemVariables.h"
 
 /**
@@ -52,19 +52,19 @@ bool connectToWifiAndSyncNTP()
     {
       if (strlen(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid) > 0)
       {
-        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to reconnect to last successful network: ", 
+        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to reconnect to last successful network: ",
             String(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid));
-        
+
         for (int attempt = 0; attempt < 2; ++attempt)
         {
-          WiFi.begin(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid, 
-                    configRTC.wificonfig[lastSuccessfulNetworkIndex].pw);
-          
+          WiFi.begin(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid,
+                     configRTC.wificonfig[lastSuccessfulNetworkIndex].pw);
+
           for (int i = 0; i < 2; i++)
           {
             if (WiFi.status() == WL_CONNECTED)
             {
-              Log(LogCategoryWiFi, LogLevelDEBUG, "Reconnected to last successful network: ", 
+              Log(LogCategoryWiFi, LogLevelDEBUG, "Reconnected to last successful network: ",
                   String(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid));
               hasWifiConnection = true;
               synchronizeTimeWithNTP();
@@ -72,7 +72,7 @@ bool connectToWifiAndSyncNTP()
             }
             delay(1000);
           }
-          
+
           Log(LogCategoryWiFi, LogLevelDEBUG, "Reconnection to last network failed, trying all networks");
         }
       }
@@ -82,26 +82,26 @@ bool connectToWifiAndSyncNTP()
     // search through all stored networks from top to bottom
     for (int j = 0; j < WifiArraySize; ++j)
     {
-        
+
       if (strlen(configRTC.wificonfig[j].ssid) > 0)
       {
-        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to connect to network: ", 
+        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to connect to network: ",
             String(configRTC.wificonfig[j].ssid));
-        
+
         for (int attempt = 0; attempt < 2; ++attempt)
         {
           WiFi.begin(configRTC.wificonfig[j].ssid, configRTC.wificonfig[j].pw);
-          
+
           for (int i = 0; i < 2; i++)
           {
             if (WiFi.status() == WL_CONNECTED)
             {
-              Log(LogCategoryWiFi, LogLevelDEBUG, "Connected to network: ", 
+              Log(LogCategoryWiFi, LogLevelDEBUG, "Connected to network: ",
                   String(configRTC.wificonfig[j].ssid));
-              
+
               // Remember this successful network for next time
               lastSuccessfulNetworkIndex = j;
-              
+
               hasWifiConnection = true;
               synchronizeTimeWithNTP();
               return true;
@@ -109,7 +109,7 @@ bool connectToWifiAndSyncNTP()
             delay(1000);
           }
 
-          Log(LogCategoryWiFi, LogLevelDEBUG, "Connection failed for network: ", 
+          Log(LogCategoryWiFi, LogLevelDEBUG, "Connection failed for network: ",
               String(configRTC.wificonfig[j].ssid));
           hasWifiConnection = false;
         }
@@ -121,7 +121,10 @@ bool connectToWifiAndSyncNTP()
 
     statusLED = false;
     ledControl(LedMode::noConnectionToDeckbox);
-    while(!statusLED){delay(10);};
+    while (!statusLED)
+    {
+      delay(10);
+    };
     return false;
   }
 }
@@ -140,7 +143,10 @@ void handleNtpSynchronization()
   {
     statusLED = false;
     ledControl(LedMode::ntpUpdateFailed);
-    while(!statusLED){delay(10);};
+    while (!statusLED)
+    {
+      delay(10);
+    };
   }
 }
 

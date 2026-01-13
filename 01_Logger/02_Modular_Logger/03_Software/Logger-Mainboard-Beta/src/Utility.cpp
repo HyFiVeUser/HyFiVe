@@ -18,7 +18,7 @@
 #include "DS3231TimeNtp.h"
 #include "DebuggingSDLog.h"
 #include "DeepSleep.h"
-#include "LED.h"
+#include "LedManager.h"
 #include "MQTTManager.h"
 #include "SDCard.h"
 #include "SensorManagement.h"
@@ -1099,8 +1099,7 @@ void statusUploadPeriodeFunktion(uint32_t status_upload_periode)
     {
       delay(10);
     };
-    
-  }
+    }
 }
 
 /**
