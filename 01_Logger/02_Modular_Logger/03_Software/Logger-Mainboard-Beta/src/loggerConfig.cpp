@@ -99,7 +99,7 @@ bool JsonFileRead(const String &pfad)
 void configureSensorsFromJson()
 {
   JsonArray sensorsArray = doc["sensors"].as<JsonArray>();
-  SensorArraySize = sensorsArray.size();
+  SensorArraySize        = sensorsArray.size();
 
   if (SensorArraySize > MAX_SENSOR_CREDENTIALS)
     SensorArraySize = MAX_SENSOR_CREDENTIALS; // Limit the size of the arrays
@@ -108,26 +108,26 @@ void configureSensorsFromJson()
   int i = 0;
   for (JsonVariant sensor : sensorsArray)
   {
-    configRTC.sensor[i].sensor_id = sensor["sensor_id"];
-    configRTC.sensor[i].sample_periode_multiplier = sensor["sample_periode_multiplier"];
+    configRTC.sensor[i].sensor_id                      = sensor["sensor_id"];
+    configRTC.sensor[i].sample_periode_multiplier      = sensor["sample_periode_multiplier"];
     configRTC.sensor[i].sample_cast_periode_multiplier = sensor["sample_cast_periode_multiplier"];
-    configRTC.sensor[i].bus_address = sensor["bus_address"];
+    configRTC.sensor[i].bus_address                    = sensor["bus_address"];
 
     // config.sensor[i].calib_coeff_0 = sensor["calib_coeff"]["0"];
-    config.sensor[i].calib_coeff_1 = sensor["calib_coeff"]["1"];
-    config.sensor[i].calib_coeff_2 = sensor["calib_coeff"]["2"];
-    config.sensor[i].calib_coeff_3 = sensor["calib_coeff"]["3"];
-    config.sensor[i].calib_coeff_4 = sensor["calib_coeff"]["4"];
-    config.sensor[i].calib_coeff_5 = sensor["calib_coeff"]["5"];
-    config.sensor[i].calib_coeff_6 = sensor["calib_coeff"]["6"];
-    config.sensor[i].calib_coeff_7 = sensor["calib_coeff"]["7"];
-    config.sensor[i].calib_coeff_8 = sensor["calib_coeff"]["8"];
-    config.sensor[i].calib_coeff_9 = sensor["calib_coeff"]["9"];
+    config.sensor[i].calib_coeff_1  = sensor["calib_coeff"]["1"];
+    config.sensor[i].calib_coeff_2  = sensor["calib_coeff"]["2"];
+    config.sensor[i].calib_coeff_3  = sensor["calib_coeff"]["3"];
+    config.sensor[i].calib_coeff_4  = sensor["calib_coeff"]["4"];
+    config.sensor[i].calib_coeff_5  = sensor["calib_coeff"]["5"];
+    config.sensor[i].calib_coeff_6  = sensor["calib_coeff"]["6"];
+    config.sensor[i].calib_coeff_7  = sensor["calib_coeff"]["7"];
+    config.sensor[i].calib_coeff_8  = sensor["calib_coeff"]["8"];
+    config.sensor[i].calib_coeff_9  = sensor["calib_coeff"]["9"];
     config.sensor[i].calib_coeff_10 = sensor["calib_coeff"]["10"];
 
     strlcpy(config.sensor[i].serial_number, sensor["serial_number"], sizeof(config.sensor[i].serial_number));
 
-    JsonObject sensorType = sensor["sensor_type"];
+    JsonObject sensorType           = sensor["sensor_type"];
     config.sensor[i].sensor_type_id = sensorType["sensor_type_id"];
     strlcpy(configRTC.sensor[i].parameter, sensorType["parameter"], sizeof(configRTC.sensor[i].parameter));
     strlcpy(config.sensor[i].long_name, sensorType["long_name"], sizeof(config.sensor[i].long_name));
@@ -135,8 +135,8 @@ void configureSensorsFromJson()
     strlcpy(config.sensor[i].manufacturer, sensorType["manufacturer"], sizeof(config.sensor[i].manufacturer));
     strlcpy(config.sensor[i].model, sensorType["model"], sizeof(config.sensor[i].model));
     configRTC.sensor[i].parameter_no = sensorType["parameter_no"];
-    config.sensor[i].accuracy = sensorType["accuracy"];
-    config.sensor[i].resolution = sensorType["resolution"];
+    config.sensor[i].accuracy        = sensorType["accuracy"];
+    config.sensor[i].resolution      = sensorType["resolution"];
 
     if (++i >= SensorArraySize)
       break; // Prevent more data from being written than the array can hold
@@ -149,7 +149,7 @@ void configureSensorsFromJson()
 void configureWifiFromJson()
 {
   JsonArray wifiArray = doc["wifi"].as<JsonArray>();
-  WifiArraySize = wifiArray.size();
+  WifiArraySize       = wifiArray.size();
 
   if (WifiArraySize > MAX_WIFI_CREDENTIALS)
     WifiArraySize = MAX_WIFI_CREDENTIALS; // Limit the size of the arrays
@@ -194,25 +194,25 @@ void configureBasicSettingsFromJson()
     config.fw_version[0] = '\0';
   }
 
-  configRTC.num_sensors = doc["num_sensors"];
-  configRTC.config_update_periode = doc["config_update_periode"];
-  configRTC.status_upload_periode = doc["status_upload_periode"];
-  configRTC.sample_periode = doc["sample_periode"];
-  configRTC.sample_cast_enable = doc["sample_cast_enable"];
-  configRTC.sample_cast_periode = doc["sample_cast_periode"];
-  configRTC.cast_det_sensor = doc["cast_det_sensor"];
+  configRTC.num_sensors               = doc["num_sensors"];
+  configRTC.config_update_periode     = doc["config_update_periode"];
+  configRTC.status_upload_periode     = doc["status_upload_periode"];
+  configRTC.sample_periode            = doc["sample_periode"];
+  configRTC.sample_cast_enable        = doc["sample_cast_enable"];
+  configRTC.sample_cast_periode       = doc["sample_cast_periode"];
+  configRTC.cast_det_sensor           = doc["cast_det_sensor"];
   configRTC.cast_det_sensor_threshold = doc["cast_det_sensor_threshold"];
-  configRTC.wet_det_sensor = doc["wet_det_sensor"];
-  configRTC.wet_det_periode = doc["wet_det_periode"];
-  configRTC.wet_det_threshold = doc["wet_det_threshold"];
-  configRTC.dry_det_sensor = doc["dry_det_sensor"];
-  configRTC.dry_det_threshold = doc["dry_det_threshold"];
-  configRTC.dry_det_verify_delay = doc["dry_det_verify_delay"];
+  configRTC.wet_det_sensor            = doc["wet_det_sensor"];
+  configRTC.wet_det_periode           = doc["wet_det_periode"];
+  configRTC.wet_det_threshold         = doc["wet_det_threshold"];
+  configRTC.dry_det_sensor            = doc["dry_det_sensor"];
+  configRTC.dry_det_threshold         = doc["dry_det_threshold"];
+  configRTC.dry_det_verify_delay      = doc["dry_det_verify_delay"];
   configRTC.data_upload_retry_periode = doc["data_upload_retry_periode"];
-  config.deckunit_id = doc["deckunit_id"];
-  config.platform_id = doc["platform_id"];
-  config.vessel_id = doc["vessel_id"];
-  config.deployment_contact_id = doc["deployment_contact_id"];
+  config.deckunit_id                  = doc["deckunit_id"];
+  config.platform_id                  = doc["platform_id"];
+  config.vessel_id                    = doc["vessel_id"];
+  config.deployment_contact_id        = doc["deployment_contact_id"];
 
   if (!doc["contact_first_name"].isNull())
   {

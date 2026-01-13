@@ -23,8 +23,8 @@
 void keepLatestSampleCastLines()
 {
   const char *filePath = "/measurements/sample_cast.txt";
-  int maxLines = sampleCastIntervals + 10;
-  int linesToKeep = sampleCastIntervals + 5;
+  int maxLines         = sampleCastIntervals + 10;
+  int linesToKeep      = sampleCastIntervals + 5;
 
   File file = SD.open(filePath, FILE_READ);
   if (!file)
@@ -34,8 +34,8 @@ void keepLatestSampleCastLines()
   }
 
   // Count the lines
-  int lineCount = 0;
-  long fileSize = file.size();
+  int lineCount               = 0;
+  long fileSize               = file.size();
   long positions[linesToKeep] = {0};
 
   for (long i = fileSize - 1; i >= 0; i--)
@@ -106,13 +106,13 @@ bool performSampleCast()
   std::vector<LogEntry> entries;
   while (file.available())
   {
-    String line = file.readStringUntil('\n');
+    String line    = file.readStringUntil('\n');
     int commaIndex = line.indexOf(',');
     if (commaIndex != -1)
     {
       // Extracts the timestamp and print value from the line
       long timestamp = line.substring(0, commaIndex).toInt();
-      int pressure = line.substring(commaIndex + 1).toInt(); // Skip comma and space
+      int pressure   = line.substring(commaIndex + 1).toInt(); // Skip comma and space
       entries.push_back({String(timestamp), pressure});
     }
   }
@@ -127,12 +127,12 @@ bool performSampleCast()
   }
 
   // Calculate the average speed of the pressure change over the last sampleCastIntervals lines
-  long startTime = entries[entries.size() - sampleCastIntervals - 1].time.toInt();
-  long endTime = entries[entries.size() - 1].time.toInt();
+  long startTime  = entries[entries.size() - sampleCastIntervals - 1].time.toInt();
+  long endTime    = entries[entries.size() - 1].time.toInt();
   double timeDiff = abs(endTime - startTime);
 
-  int startPressure = entries[entries.size() - sampleCastIntervals - 1].pressure;
-  int endPressure = entries[entries.size() - 1].pressure;
+  int startPressure     = entries[entries.size() - sampleCastIntervals - 1].pressure;
+  int endPressure       = entries[entries.size() - 1].pressure;
   double pressureChange = abs(endPressure - startPressure);
 
   double castAverageSpeed = 0;

@@ -43,8 +43,8 @@ bool synchronizeTimeWithNTP()
 {
   if (hasWifiConnection)
   {
-    const char *ntpServer = "192.168.1.1";
-    const long gmtOffset_sec = 0;
+    const char *ntpServer        = "192.168.1.1";
+    const long gmtOffset_sec     = 0;
     const int daylightOffset_sec = 0;
 
     configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);

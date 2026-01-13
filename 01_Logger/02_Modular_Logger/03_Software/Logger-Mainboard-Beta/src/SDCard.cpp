@@ -20,7 +20,7 @@ const uint8_t csPin = 18; // Chip Select Pin
 
 void initializeSpi()
 {
-  uint8_t sckPin = 2;   // Clock Pin
+  uint8_t sckPin  = 2;  // Clock Pin
   uint8_t misoPin = 38; // Master In Slave Out Pin
   uint8_t mosiPin = 1;  // Master Out Slave In Pin
   initSPIclass.begin(sckPin, misoPin, mosiPin, csPin);

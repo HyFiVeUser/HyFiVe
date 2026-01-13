@@ -9,20 +9,20 @@
  * Description: LED control and status indication
  */
 
-#include "LedManager.h"
-#include "SystemVariables.h"
-#include "SensorManagement.h"
-#include "Utility.h"
 #include "DeepSleep.h"
+#include "LedManager.h"
 #include "NVSPreferences.h"
+#include "SensorManagement.h"
+#include "SystemVariables.h"
+#include "Utility.h"
 
 // ------------------------------------------------------------
 //  Hardware / Basis
 // ------------------------------------------------------------
 
 int greenPin = -1;
-int bluePin = -1;
-int redPin = 42;
+int bluePin  = -1;
+int redPin   = 42;
 
 // Bei Common-Anode auf true setzen (Pegel werden invertiert)
 const bool COMMON_ANODE = false;
@@ -119,16 +119,16 @@ static void hwVariante()
   if (readPrefs() == "000001") // if ((readPrefs() == "000001") && (rgbVersion == 1))
   {
     greenPin = 37;
-    bluePin = 36;
-    redPin = 42;
-    ledHw = LedHw::RGB;
+    bluePin  = 36;
+    redPin   = 42;
+    ledHw    = LedHw::RGB;
   }
   else
   {
     greenPin = -1;
-    bluePin = -1;
-    redPin = 42;
-    ledHw = LedHw::RED_ONLY;
+    bluePin  = -1;
+    redPin   = 42;
+    ledHw    = LedHw::RED_ONLY;
   }
 }
 
@@ -149,18 +149,18 @@ static void ledPMode()
 // ------------------------------------------------------------
 
 static const uint32_t ledSignalLoggerDetectsBeginOfDeployment = 60000; // ms
-static const uint32_t ledSignalShort = 200;                            // ms
-static const uint32_t ledSignalLong = 600;                             // ms
-static const uint32_t ledSignalBreakBetweenLetters = 200;              // ms
-static const uint32_t ledSignalPermanent = 2000;                       // ms
-static const uint32_t ledSignalPauseBetweenSignals = 800;              // ms
+static const uint32_t ledSignalShort                          = 200;   // ms
+static const uint32_t ledSignalLong                           = 600;   // ms
+static const uint32_t ledSignalBreakBetweenLetters            = 200;   // ms
+static const uint32_t ledSignalPermanent                      = 2000;  // ms
+static const uint32_t ledSignalPauseBetweenSignals            = 800;   // ms
 
 // ------------------------------------------------------------
 //  Interne Task-Steuerung
 // ------------------------------------------------------------
 
 static TaskHandle_t s_ledTaskHandle = nullptr;
-static QueueHandle_t s_ledQueue = nullptr;
+static QueueHandle_t s_ledQueue     = nullptr;
 
 // Hilfsfunktion: Wartezeit, aber abbrechbar durch neuen Mode
 static bool waitOrNewMode(uint32_t ms, LedMode &newModeOut)
@@ -474,13 +474,13 @@ static LedMode runMode(LedMode mode)
   // -----------------------
   case LedMode::loggerDetectsBeginOfDeployment:
   {
-    sensorStartDone = false;
-    const uint32_t blinkDurationMs = ledSignalLoggerDetectsBeginOfDeployment;
-    const uint32_t firstOnDurationMs = ledSignalShort;
+    sensorStartDone                   = false;
+    const uint32_t blinkDurationMs    = ledSignalLoggerDetectsBeginOfDeployment;
+    const uint32_t firstOnDurationMs  = ledSignalShort;
     const uint32_t firstOffDurationMs = ledSignalBreakBetweenLetters;
 
     TickType_t start = xTaskGetTickCount();
-    TickType_t end = start + pdMS_TO_TICKS(blinkDurationMs);
+    TickType_t end   = start + pdMS_TO_TICKS(blinkDurationMs);
 
     while (xTaskGetTickCount() < end)
     {
@@ -588,14 +588,7 @@ void ledInit()
 
   if (!s_ledTaskHandle)
   {
-    xTaskCreatePinnedToCore(
-        ledTask,
-        "LedServiceTask",
-        4096,
-        nullptr,
-        1,
-        &s_ledTaskHandle,
-        1);
+    xTaskCreatePinnedToCore(ledTask, "LedServiceTask", 4096, nullptr, 1, &s_ledTaskHandle, 1);
   }
 
   // Startzustand
@@ -646,7 +639,4 @@ void generalError()
 /**
  * @brief Sets the reset ESP pin to LOW.
  */
-void setResetEspLow()
-{
-  allOff();
-}
+void setResetEspLow() { allOff(); }

@@ -13,24 +13,23 @@
 // Definiere das Mapping von Log-Kategorien zu Log-Levels
 std::map<LogCategory, LogLevel> logSettings = {
 
-    //! Log-Levels
-    //*  LogLevelDEBUG
-    //*  LogLevelINFO,
-    //*  LogLevelWARNING,
-    //*  LogLevelERROR
+  //! Log-Levels
+  //*  LogLevelDEBUG
+  //*  LogLevelINFO,
+  //*  LogLevelWARNING,
+  //*  LogLevelERROR
 
-    {LogCategoryGeneral, LogLevelINFO},
-    {LogCategorySensors, LogLevelINFO},
-    {LogCategoryBMS, LogLevelINFO},
-    {LogCategoryCharger, LogLevelINFO},
-    {LogCategoryWiFi, LogLevelINFO},
-    {LogCategoryMQTT, LogLevelINFO},
-    {LogCategorySDCard, LogLevelINFO},
-    {LogCategoryRTC, LogLevelINFO},
-    {LogCategoryPowerManagement, LogLevelINFO},
-    {LogCategoryConfiguration, LogLevelINFO},
-    {LogCategoryError, LogLevelINFO},
-    {LogCategoryDebug, LogLevelINFO},
-    {LogCategoryMeasurement, LogLevelINFO}
-
+  {LogCategoryGeneral,         LogLevelINFO},
+  {LogCategorySensors,         LogLevelINFO},
+  {LogCategoryBMS,             LogLevelINFO},
+  {LogCategoryCharger,         LogLevelINFO},
+  {LogCategoryWiFi,            LogLevelINFO},
+  {LogCategoryMQTT,            LogLevelINFO},
+  {LogCategorySDCard,          LogLevelINFO},
+  {LogCategoryRTC,             LogLevelINFO},
+  {LogCategoryPowerManagement, LogLevelINFO},
+  {LogCategoryConfiguration,   LogLevelINFO},
+  {LogCategoryError,           LogLevelINFO},
+  {LogCategoryDebug,           LogLevelINFO},
+  {LogCategoryMeasurement,     LogLevelINFO}
 };

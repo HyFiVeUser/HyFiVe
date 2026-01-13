@@ -111,7 +111,7 @@ void isValidAsciiString(JsonVariant obj, const char *key, size_t maxLaenge, int 
   }
 
   const char *wert = obj[key];
-  size_t laenge = strlen(wert);
+  size_t laenge    = strlen(wert);
 
   if (laenge > maxLaenge)
   {
@@ -396,7 +396,7 @@ void checkBooleanValue(JsonVariant var, const char *key)
  */
 void validateSensorsConfiguration()
 {
-  int i = 0;
+  int i                  = 0;
   JsonArray sensorsArray = docValidation["sensors"].as<JsonArray>();
   for (JsonObject sensorObj : sensorsArray)
   {
@@ -424,7 +424,7 @@ void validateSensorsConfiguration()
  */
 void validateWifiConfiguration()
 {
-  int i = 0;
+  int i               = 0;
   JsonArray wifiArray = docValidation["wifi"].as<JsonArray>();
   for (JsonObject wifiObj : wifiArray)
   {

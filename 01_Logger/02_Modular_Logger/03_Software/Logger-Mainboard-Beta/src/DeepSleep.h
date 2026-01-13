@@ -12,6 +12,8 @@
 #ifndef DEEPSLEEP_H
 #define DEEPSLEEP_H
 
+#include <Arduino.h>
+
 void espDeepSleepSec(uint32_t sleepTimeSec);
 void enableExternalWakeup(uint8_t);
 void disableWakeupPin(uint8_t);

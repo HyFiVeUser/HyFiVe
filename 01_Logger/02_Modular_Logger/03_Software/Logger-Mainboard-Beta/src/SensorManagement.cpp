@@ -34,7 +34,7 @@ int64_t AdapterSensorRawValue[MAX_SENSOR_CREDENTIALS];
 uint8_t AdapterSensorTypeID[MAX_SENSOR_CREDENTIALS];
 uint8_t AdapterConfig_Value_Type[MAX_SENSOR_CREDENTIALS];
 int64_t AdapterSensorCalcValue[MAX_SENSOR_CREDENTIALS];
-uint32_t bootCount = 0;
+uint32_t bootCount      = 0;
 uint8_t MAX_NUM_SENSORS = MAX_SENSOR_CREDENTIALS;
 
 TwoWire i2cBus(0);
@@ -47,8 +47,8 @@ bool measurementSuccessful[MAX_SENSOR_CREDENTIALS];
 float sensorValue[MAX_SENSOR_CREDENTIALS];
 float sensorValueRaw[MAX_SENSOR_CREDENTIALS];
 
-unsigned long tStart = 0;
-unsigned long tEnd = 0;
+unsigned long tStart            = 0;
+unsigned long tEnd              = 0;
 float shortestSensorWaitingTime = 0;
 
 /**
@@ -61,20 +61,11 @@ void initializeLogger()
     delay(5000); // at least 5 seconds are required for initialization when the interface board is started for the first time
   }
 
-  Logger.Init(i2cBus,
-              AdapterSensorTypeID,
-              AdapterConfig_Value_Type,
-              AdapterSensorRawValue,
-              AdapterSensorCalcValue,
-              bootCount,
-              ((int)SD_CS),
-              ((int)SDA_PIN),
-              ((int)SCL_PIN),
-              spi_interface);
+  Logger.Init(i2cBus, AdapterSensorTypeID, AdapterConfig_Value_Type, AdapterSensorRawValue, AdapterSensorCalcValue, bootCount, ((int)SD_CS), ((int)SDA_PIN), ((int)SCL_PIN), spi_interface);
 
   for (int i = 0; i < MAX_NUM_SENSORS; i++)
   {
-    AdapterSensorRawValue[i] = 0;
+    AdapterSensorRawValue[i]  = 0;
     AdapterSensorCalcValue[i] = 0;
   }
 
@@ -147,7 +138,7 @@ void detectConnecteOxygenSensor(uint8_t sensorNumber)
     }
 
     Logger.Measure(temperatureSensorBusAddress, temperatureSensorParameter);
-    uint32_t rawValue = AdapterSensorRawValue[temperatureSensorBusAddress];
+    uint32_t rawValue     = AdapterSensorRawValue[temperatureSensorBusAddress];
     float sensorValueTemp = floatingPointConvert(rawValue);
     Log(LogCategorySensors, LogLevelDEBUG, "sensorValueTemp: ", String(sensorValueTemp));
     setSensorTempToInterface(oxygenSensorBusAddress, sensorValueTemp);
@@ -167,9 +158,9 @@ void performSensorMeasurement(int sensorNumber)
     detectConnecteOxygenSensor(sensorNumber);
   }
 
-  uint64_t start_time = esp_timer_get_time() / 1000; // Start time in milliseconds
+  uint64_t start_time       = esp_timer_get_time() / 1000; // Start time in milliseconds
   bool measuringTimeTooLong = true;
-  bool interfaceErrorRdy2 = false;
+  bool interfaceErrorRdy2   = false;
 
   while ((esp_timer_get_time() / 1000 - start_time) < 5000)
   {
@@ -183,7 +174,7 @@ void performSensorMeasurement(int sensorNumber)
       if (interfaceErrorSensorId == 0 || interfaceErrorSensorId == configRTC.sensor[sensorNumber].sensor_id)
       {
         interfaceRdyErrorCounter = 0;
-        interfaceErrorSensorId = 0;
+        interfaceErrorSensorId   = 0;
       }
       break;
     }
@@ -191,8 +182,8 @@ void performSensorMeasurement(int sensorNumber)
     if (interfaceRDY == 2)
     {
       Log(LogCategorySensors, LogLevelDEBUG, "sensor_id ", String(configRTC.sensor[sensorNumber].sensor_id), " returns no value");
-      interfaceError = true;
-      interfaceErrorRdy2 = true;
+      interfaceError         = true;
+      interfaceErrorRdy2     = true;
       interfaceErrorSensorId = configRTC.sensor[sensorNumber].sensor_id;
 
       if (interfaceRdyErrorCounter >= 5)
@@ -212,7 +203,7 @@ void performSensorMeasurement(int sensorNumber)
   if (measuringTimeTooLong && !interfaceErrorRdy2)
   {
     Log(LogCategorySensors, LogLevelDEBUG, "sensor_id ", String(configRTC.sensor[sensorNumber].sensor_id), " sensor measuring time too long");
-    interfaceError = true;
+    interfaceError         = true;
     interfaceErrorSensorId = configRTC.sensor[sensorNumber].sensor_id;
 
     if (interfaceRdyErrorCounter >= 5)
@@ -229,7 +220,7 @@ void performSensorMeasurement(int sensorNumber)
   if (!measuringTimeTooLong && !interfaceErrorRdy2)
   {
     Logger.Measure(configRTC.sensor[sensorNumber].bus_address, configRTC.sensor[sensorNumber].parameter_no);
-    uint32_t rawValue = AdapterSensorRawValue[configRTC.sensor[sensorNumber].bus_address];
+    uint32_t rawValue         = AdapterSensorRawValue[configRTC.sensor[sensorNumber].bus_address];
     sensorValue[sensorNumber] = floatingPointConvert(rawValue);
 
     Logger.Measure(configRTC.sensor[sensorNumber].bus_address, (configRTC.sensor[sensorNumber].parameter_no) + 2);
@@ -237,7 +228,7 @@ void performSensorMeasurement(int sensorNumber)
   }
   else
   {
-    sensorValue[sensorNumber] = -1;
+    sensorValue[sensorNumber]    = -1;
     sensorValueRaw[sensorNumber] = -1;
   }
   Log(LogCategorySensors, LogLevelDEBUG, "sensor_id: ", String(configRTC.sensor[sensorNumber].sensor_id), " sensor value: ", String(sensorValue[sensorNumber]), " sensor value raw: ", String(sensorValueRaw[sensorNumber]), " sensor parameter: ", String(configRTC.sensor[sensorNumber].parameter));
@@ -426,8 +417,8 @@ void writeMeasurementDataToFile()
 
   StaticJsonDocument<1024> doc;
 
-  doc["time"] = formatLocalTimeAsISOString();
-  doc["logger_id"] = configRTC.logger_id;
+  doc["time"]          = formatLocalTimeAsISOString();
+  doc["logger_id"]     = configRTC.logger_id;
   doc["deployment_id"] = deployment_id;
 
   // Iterate over all sensors and add their data if the measurement was successful
@@ -435,9 +426,9 @@ void writeMeasurementDataToFile()
   {
     if (measurementSuccessful[i])
     {
-      doc[configRTC.sensor[i].parameter] = String(sensorValue[i]);
+      doc[configRTC.sensor[i].parameter]                  = String(sensorValue[i]);
       doc[String(configRTC.sensor[i].parameter) + "_raw"] = String(sensorValueRaw[i]);
-      valuePresent = true;
+      valuePresent                                        = true;
     }
   }
 
@@ -476,10 +467,10 @@ void writeMeasurementDataToFile()
  */
 void detectConnectedSensorDevices()
 {
-  uint8_t SensorArrayCount = 0;
+  uint8_t SensorArrayCount    = 0;
   uint8_t setSensorCalibCount = 0;
-  int64_t sensorTypeId = 0;
-  bool setSensorTypeId = false;
+  int64_t sensorTypeId        = 0;
+  bool setSensorTypeId        = false;
 
   for (int i = 0; i < SensorArraySize; i++)
   {
@@ -496,7 +487,25 @@ void detectConnectedSensorDevices()
 
       Logger.getFwVersion(configRTC.sensor[i].bus_address);
       uint8_t FwVersion = AdapterSensorRawValue[configRTC.sensor[i].bus_address];
-      Log(LogCategorySensors, LogLevelINFO, "Interfaceboard: FWVersion: ", String(FwVersion), " | ", "sensor_id: ", String(configRTC.sensor[i].sensor_id), " | ", "model: ", String(config.sensor[i].model), " | ", "long_name: ", String(config.sensor[i].long_name), " | ", "sensor_type_id: ", String(config.sensor[i].sensor_type_id), " | ", "bus_address: ", String(configRTC.sensor[i].bus_address));
+      Log(LogCategorySensors,
+          LogLevelINFO,
+          "Interfaceboard: FWVersion: ",
+          String(FwVersion),
+          " | ",
+          "sensor_id: ",
+          String(configRTC.sensor[i].sensor_id),
+          " | ",
+          "model: ",
+          String(config.sensor[i].model),
+          " | ",
+          "long_name: ",
+          String(config.sensor[i].long_name),
+          " | ",
+          "sensor_type_id: ",
+          String(config.sensor[i].sensor_type_id),
+          " | ",
+          "bus_address: ",
+          String(configRTC.sensor[i].bus_address));
 
       for (int id = 0; id < 4; id++)
       {
@@ -615,7 +624,7 @@ void detectConnectedSensorDevices()
       if ((interfaceParameterName(configRTC.sensor[i].bus_address)) == "Temperature")
       {
         temperatureSensorBusAddress = configRTC.sensor[i].bus_address;
-        temperatureSensorParameter = configRTC.sensor[i].parameter_no;
+        temperatureSensorParameter  = configRTC.sensor[i].parameter_no;
       }
 
       // find a PyroPicoO2_oxycap_sub_oxycap_hs_sub bus_address
@@ -732,8 +741,8 @@ void sensorCalibToInterface()
  */
 void detectDryWetCastSensors()
 {
-  bool sensorFoundWetDetSensor = false;
-  bool sensorFoundDryDetSensor = false;
+  bool sensorFoundWetDetSensor  = false;
+  bool sensorFoundDryDetSensor  = false;
   bool sensorFoundCastDetSensor = false;
 
   // numberOfActiveSensors = Logger.AdapterNum_Sensors;
@@ -746,8 +755,8 @@ void detectDryWetCastSensors()
       if (configRTC.sensor[i].sensor_id == configRTC.wet_det_sensor)
       {
         waterDetectionSensorBusAddress = configRTC.sensor[i].bus_address;
-        wetDetSensorParameterNo = configRTC.sensor[i].parameter_no;
-        sensorFoundWetDetSensor = true;
+        wetDetSensorParameterNo        = configRTC.sensor[i].parameter_no;
+        sensorFoundWetDetSensor        = true;
         Log(LogCategorySensors, LogLevelDEBUG, "LoggerConfigFile | waterDetectionSensorBusAddress detected | sensor_id: ", String(configRTC.sensor[i].sensor_id), " bus_address: ", String(configRTC.sensor[i].bus_address), " parameter: ", String(configRTC.sensor[i].parameter));
         break;
       }
@@ -768,8 +777,8 @@ void detectDryWetCastSensors()
       if (configRTC.sensor[i].sensor_id == configRTC.dry_det_sensor)
       {
         dryDetectionSensorBusAddress = configRTC.sensor[i].bus_address;
-        dryDetSensorParameterNo = configRTC.sensor[i].parameter_no;
-        sensorFoundDryDetSensor = true;
+        dryDetSensorParameterNo      = configRTC.sensor[i].parameter_no;
+        sensorFoundDryDetSensor      = true;
         Log(LogCategorySensors, LogLevelDEBUG, "LoggerConfigFile | dryDetectionSensorBusAddress detected | sensor_id: ", String(configRTC.sensor[i].sensor_id), " bus_address: ", String(configRTC.sensor[i].bus_address), " parameter: ", String(configRTC.sensor[i].parameter));
         break;
       }
@@ -790,8 +799,8 @@ void detectDryWetCastSensors()
       if (configRTC.sensor[i].sensor_id == configRTC.cast_det_sensor)
       {
         castDetectionSensorBusAddress = configRTC.sensor[i].bus_address;
-        castDetSensorParameterNo = configRTC.sensor[i].parameter_no;
-        sensorFoundCastDetSensor = true;
+        castDetSensorParameterNo      = configRTC.sensor[i].parameter_no;
+        sensorFoundCastDetSensor      = true;
         Log(LogCategorySensors, LogLevelDEBUG, "LoggerConfigFile | castDetectionSensorBusAddress detected | sensor_id: ", String(configRTC.sensor[i].sensor_id), " bus_address: ", String(configRTC.sensor[i].bus_address), " parameter: ", String(configRTC.sensor[i].parameter));
         break;
       }
@@ -828,7 +837,7 @@ bool checkWetSensorStatus()
   }
 
   Logger.Measure(waterDetectionSensorBusAddress, wetDetSensorParameterNo);
-  uint32_t rawValue = AdapterSensorRawValue[waterDetectionSensorBusAddress];
+  uint32_t rawValue    = AdapterSensorRawValue[waterDetectionSensorBusAddress];
   float wetSensorValue = floatingPointConvert(rawValue);
 
   if (wetSensorValue > configRTC.wet_det_threshold)
@@ -862,16 +871,16 @@ void createConfigHeader()
   }
 
   StaticJsonDocument<1000> doc1;
-  doc1["logger_id"] = configRTC.logger_id;
-  doc1["deployment_id"] = deployment_id;
-  doc1["parameter"] = "logger";
-  doc1["deckunit_id"] = config.deckunit_id;
-  doc1["platform_id"] = config.platform_id;
-  doc1["vessel_id"] = config.vessel_id;
-  doc1["vessel_name"] = config.vessel_name;
+  doc1["logger_id"]             = configRTC.logger_id;
+  doc1["deployment_id"]         = deployment_id;
+  doc1["parameter"]             = "logger";
+  doc1["deckunit_id"]           = config.deckunit_id;
+  doc1["platform_id"]           = config.platform_id;
+  doc1["vessel_id"]             = config.vessel_id;
+  doc1["vessel_name"]           = config.vessel_name;
   doc1["deployment_contact_id"] = config.deployment_contact_id;
-  doc1["contact_first_name"] = config.contact_first_name;
-  doc1["contact_last_name"] = config.contact_last_name;
+  doc1["contact_first_name"]    = config.contact_first_name;
+  doc1["contact_last_name"]     = config.contact_last_name;
 
   serializeJson(doc1, file);
   file.println();
@@ -880,40 +889,40 @@ void createConfigHeader()
   for (int sensorNumber = 0; sensorNumber < Logger.AdapterNum_Sensors; sensorNumber++)
   {
 
-    doc2["sensor_id"] = configRTC.sensor[sensorNumber].sensor_id;
-    doc2["sample_periode_multiplier"] = configRTC.sensor[sensorNumber].sample_periode_multiplier;
+    doc2["sensor_id"]                      = configRTC.sensor[sensorNumber].sensor_id;
+    doc2["sample_periode_multiplier"]      = configRTC.sensor[sensorNumber].sample_periode_multiplier;
     doc2["sample_cast_periode_multiplier"] = configRTC.sensor[sensorNumber].sample_cast_periode_multiplier;
-    doc2["bus_address"] = configRTC.sensor[sensorNumber].bus_address;
-    doc2["serial_number"] = config.sensor[sensorNumber].serial_number;
+    doc2["bus_address"]                    = configRTC.sensor[sensorNumber].bus_address;
+    doc2["serial_number"]                  = config.sensor[sensorNumber].serial_number;
 
     // Calibration coefficients
     JsonObject calib_coeff = doc2.createNestedObject("calib_coeff");
 
-    calib_coeff["1"] = config.sensor[sensorNumber].calib_coeff_1;
-    calib_coeff["2"] = config.sensor[sensorNumber].calib_coeff_2;
-    calib_coeff["3"] = config.sensor[sensorNumber].calib_coeff_3;
-    calib_coeff["4"] = config.sensor[sensorNumber].calib_coeff_4;
-    calib_coeff["5"] = config.sensor[sensorNumber].calib_coeff_5;
-    calib_coeff["6"] = config.sensor[sensorNumber].calib_coeff_6;
-    calib_coeff["7"] = config.sensor[sensorNumber].calib_coeff_7;
-    calib_coeff["8"] = config.sensor[sensorNumber].calib_coeff_8;
-    calib_coeff["9"] = config.sensor[sensorNumber].calib_coeff_9;
+    calib_coeff["1"]  = config.sensor[sensorNumber].calib_coeff_1;
+    calib_coeff["2"]  = config.sensor[sensorNumber].calib_coeff_2;
+    calib_coeff["3"]  = config.sensor[sensorNumber].calib_coeff_3;
+    calib_coeff["4"]  = config.sensor[sensorNumber].calib_coeff_4;
+    calib_coeff["5"]  = config.sensor[sensorNumber].calib_coeff_5;
+    calib_coeff["6"]  = config.sensor[sensorNumber].calib_coeff_6;
+    calib_coeff["7"]  = config.sensor[sensorNumber].calib_coeff_7;
+    calib_coeff["8"]  = config.sensor[sensorNumber].calib_coeff_8;
+    calib_coeff["9"]  = config.sensor[sensorNumber].calib_coeff_9;
     calib_coeff["10"] = config.sensor[sensorNumber].calib_coeff_10;
 
     // Sensortyp
-    JsonObject sensor_type = doc2.createNestedObject("sensor_type");
+    JsonObject sensor_type        = doc2.createNestedObject("sensor_type");
     sensor_type["sensor_type_id"] = config.sensor[sensorNumber].sensor_type_id;
-    sensor_type["parameter"] = configRTC.sensor[sensorNumber].parameter;
-    sensor_type["long_name"] = config.sensor[sensorNumber].long_name;
-    sensor_type["unit"] = config.sensor[sensorNumber].unit;
-    sensor_type["manufacturer"] = config.sensor[sensorNumber].manufacturer;
-    sensor_type["model"] = config.sensor[sensorNumber].model;
-    sensor_type["parameter_no"] = configRTC.sensor[sensorNumber].parameter_no;
+    sensor_type["parameter"]      = configRTC.sensor[sensorNumber].parameter;
+    sensor_type["long_name"]      = config.sensor[sensorNumber].long_name;
+    sensor_type["unit"]           = config.sensor[sensorNumber].unit;
+    sensor_type["manufacturer"]   = config.sensor[sensorNumber].manufacturer;
+    sensor_type["model"]          = config.sensor[sensorNumber].model;
+    sensor_type["parameter_no"]   = configRTC.sensor[sensorNumber].parameter_no;
 
-    sensor_type["accuracy"] = config.sensor[sensorNumber].accuracy;
+    sensor_type["accuracy"]   = config.sensor[sensorNumber].accuracy;
     sensor_type["resolution"] = config.sensor[sensorNumber].resolution;
 
-    doc2["logger_id"] = configRTC.logger_id;
+    doc2["logger_id"]     = configRTC.logger_id;
     doc2["deployment_id"] = deployment_id;
 
     serializeJson(doc2, file);
@@ -1007,7 +1016,7 @@ String interfaceVersion(int bus_address)
 void interfaceSensorVoltage(int bus_address)
 {
   Logger.getInterfaceSensorVoltage(bus_address);
-  int64_t voltage = (AdapterSensorRawValue[bus_address]);
+  int64_t voltage            = (AdapterSensorRawValue[bus_address]);
   int64_t currentNeedVoltage = 0;
 
   switch (voltage)
@@ -1089,10 +1098,7 @@ String interfaceParameterName(int bus_address)
  * @param bus_address The I2C bus address of the sensor.
  * @param temp The temperature value to send.
  */
-void setSensorTempToInterface(uint8_t bus_address, float temp)
-{
-  Logger.sendTemperature(bus_address, temp);
-}
+void setSensorTempToInterface(uint8_t bus_address, float temp) { Logger.sendTemperature(bus_address, temp); }
 
 /**
  * @brief Sets calibration data for a sensor interface.
@@ -1100,10 +1106,7 @@ void setSensorTempToInterface(uint8_t bus_address, float temp)
  * @param index The index of the calibration data.
  * @param calib The calibration value to set.
  */
-void setSensorCalibToInterface(uint8_t bus_address, uint8_t index, float calib)
-{
-  Logger.setCalib(bus_address, index, calib);
-}
+void setSensorCalibToInterface(uint8_t bus_address, uint8_t index, float calib) { Logger.setCalib(bus_address, index, calib); }
 
 /**
  * @brief Sets the required voltage for sensors.
@@ -1174,13 +1177,11 @@ void updateSamplingIntervals(bool useFastSampling)
   {
     if (useFastSampling)
     {
-      intervalSensorArray[sensorNumber] = configRTC.sample_cast_periode *
-                                          configRTC.sensor[sensorNumber].sample_cast_periode_multiplier;
+      intervalSensorArray[sensorNumber] = configRTC.sample_cast_periode * configRTC.sensor[sensorNumber].sample_cast_periode_multiplier;
     }
     else
     {
-      intervalSensorArray[sensorNumber] = configRTC.sample_periode *
-                                          configRTC.sensor[sensorNumber].sample_periode_multiplier;
+      intervalSensorArray[sensorNumber] = configRTC.sample_periode * configRTC.sensor[sensorNumber].sample_periode_multiplier;
     }
   }
 }
@@ -1218,7 +1219,7 @@ bool checkDryCondition()
   }
 
   Logger.Measure(dryDetectionSensorBusAddress, dryDetSensorParameterNo);
-  uint32_t rawValue = AdapterSensorRawValue[dryDetectionSensorBusAddress];
+  uint32_t rawValue    = AdapterSensorRawValue[dryDetectionSensorBusAddress];
   float drySensorValue = floatingPointConvert(rawValue);
 
   Log(LogCategorySensors, LogLevelDEBUG, "drySensorValue: ", String(drySensorValue));
@@ -1232,7 +1233,7 @@ bool checkDryCondition()
       {
         if (configRTC.sensor[sensorNumber].sensor_id == configRTC.wet_det_sensor)
         {
-          configRTC.sample_periode = 1;
+          configRTC.sample_periode          = 1;
           intervalSensorArray[sensorNumber] = 1;
         }
       }
@@ -1244,7 +1245,7 @@ bool checkDryCondition()
     }
     else
     {
-      detectionThresholdValue = 0;
+      detectionThresholdValue      = 0;
       thresholdValuewaterDetection = false;
       return false;
     }
@@ -1298,7 +1299,7 @@ void initiateUnderwaterMode()
   }
 
   totalMeasurementCount = 0;
-  isLoggerSubmerged = true;
+  isLoggerSubmerged     = true;
   Logger.sensorWakeupAll();
   espDeepSleepSec(0);
 }
@@ -1332,7 +1333,7 @@ bool isWaterDetected()
       if (interfaceRDY == 1)
       {
         interfaceRdyErrorCounter = 0;
-        interfaceErrorSensorId = 0;
+        interfaceErrorSensorId   = 0;
         Log(LogCategorySensors, LogLevelDEBUG, "wet_det_threshold interfaceRDY == OK");
         break;
       }
@@ -1351,7 +1352,7 @@ bool isWaterDetected()
     }
 
     Logger.Measure(waterDetectionSensorBusAddress, wetDetSensorParameterNo);
-    uint32_t rawValue = AdapterSensorRawValue[waterDetectionSensorBusAddress];
+    uint32_t rawValue    = AdapterSensorRawValue[waterDetectionSensorBusAddress];
     float wetSensorValue = floatingPointConvert(rawValue);
 
     Log(LogCategorySensors, LogLevelDEBUG, "wetSensorValue: ", String(wetSensorValue));
@@ -1359,8 +1360,8 @@ bool isWaterDetected()
 
     if (wetSensorValue >= configRTC.wet_det_threshold)
     {
-      configRTC.sample_periode = saveSamplePeriodeToResetAfterUnderwaterMeasurementsEnd;
-      detectionThresholdValue = 0;
+      configRTC.sample_periode     = saveSamplePeriodeToResetAfterUnderwaterMeasurementsEnd;
+      detectionThresholdValue      = 0;
       thresholdValuewaterDetection = true;
       initiateUnderwaterMode();
       return true;
@@ -1385,15 +1386,13 @@ void terminateUnderwaterMode()
 {
   interfaceSleep();
   moveMeasurementAndData();
-  bootAttemptCount = 0;
+  bootAttemptCount   = 0;
   totalOperationTime = 0;
   memset(lastSensorMeasurementTime, 0, sizeof(lastSensorMeasurementTime));
   isLoggerSubmerged = false;
   setRequiredVoltage(false);
   configRTC.sample_periode = saveSamplePeriodeToResetAfterUnderwaterMeasurementsEnd;
-  Log(LogCategoryMeasurement, LogLevelINFO, "Underwater measurement end: ",
-      "logger_id: ", String(configRTC.logger_id),
-      " deployment_id: ", String(deployment_id));
+  Log(LogCategoryMeasurement, LogLevelINFO, "Underwater measurement end: ", "logger_id: ", String(configRTC.logger_id), " deployment_id: ", String(deployment_id));
   waitAfterUnderwaterMeasurementTimeNow = getCurrentTimeFromRTC() + waitAfterUnderwaterMeasurementTime;
   Log(LogCategoryMeasurement, LogLevelDEBUG, "getCurrentTimeFromRTC()", String(getCurrentTimeFromRTC()));
   Log(LogCategoryMeasurement, LogLevelDEBUG, "waitAfterUnderwaterMeasurementTimeNow", String(waitAfterUnderwaterMeasurementTimeNow));
@@ -1434,7 +1433,7 @@ void checkWetSensorThreshold()
       {
         ledControl(LedMode::loggerDetectsEndOfDeployment);
         setBeginDeployment = true;
-        sensorStartDone = false;
+        sensorStartDone    = false;
         Serial.println("--------------------------------------loggerDetectsEndOfDeployment");
       }
 
@@ -1454,7 +1453,7 @@ void checkWetSensorThreshold()
       shortestSensorWaitingTime = shortestWaitingTime;
       totalOperationTime += shortestWaitingTime;
 
-      tEnd = millis(); // Endzeit in ms
+      tEnd               = millis(); // Endzeit in ms
       unsigned long diff = tEnd - tStart;
       Serial.print("Dauer: ");
       Serial.print(diff);

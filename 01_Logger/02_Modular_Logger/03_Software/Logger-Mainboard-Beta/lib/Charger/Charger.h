@@ -14,37 +14,37 @@
 
 enum ChargerState
 {
-    Charger_RSVD,
-    Charger_CHG,
-    Charger_CHG_Completed,
-    Charger_CHG_Suspended,
-    Charger_CHG_EN,
-    Charger_Undefined_State,
+  Charger_RSVD,
+  Charger_CHG,
+  Charger_CHG_Completed,
+  Charger_CHG_Suspended,
+  Charger_CHG_EN,
+  Charger_Undefined_State,
 };
 
 class Charger_IC
 {
 public:
-    Charger_IC();
-    void Init();
-    uint8_t getState();
-    void setState(uint8_t Charge_State);
-    void setCHG_Enable(uint8_t CE_State);
-    uint8_t getCHG_Enable();
-    uint8_t getPG();
+  Charger_IC();
+  void Init();
+  uint8_t getState();
+  void setState(uint8_t Charge_State);
+  void setCHG_Enable(uint8_t CE_State);
+  uint8_t getCHG_Enable();
+  uint8_t getPG();
 
 private:
-    uint8_t state;
+  uint8_t state;
 
-    uint8_t STAT_1;
-    uint8_t STAT_2;
-    uint8_t PG;
-    uint8_t CHG_Enable; // CE
+  uint8_t STAT_1;
+  uint8_t STAT_2;
+  uint8_t PG;
+  uint8_t CHG_Enable; // CE
 
-    int STAT_1_PIN = 9;  // Status 1 Charger
-    int STAT_2_PIN = 19; // Status 2 Charger
-    int PG_PIN = 20;     // Power Good Charger
-    int CE_Pin = 10;     // Charge Enable
+  int STAT_1_PIN = 9;  // Status 1 Charger
+  int STAT_2_PIN = 19; // Status 2 Charger
+  int PG_PIN     = 20; // Power Good Charger
+  int CE_Pin     = 10; // Charge Enable
 };
 
 void enableCharger();

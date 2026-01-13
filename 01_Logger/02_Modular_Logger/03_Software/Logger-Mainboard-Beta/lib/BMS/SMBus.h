@@ -43,7 +43,7 @@ private:
   TwoWire *_i2cPort;
   uint8_t BMS_address;
 
-  uint8_t MBA_Command = 0x44;
+  uint8_t MBA_Command    = 0x44;
   uint8_t blockBufferLen = 8;
   uint8_t *i2c_Buffer;
   /*

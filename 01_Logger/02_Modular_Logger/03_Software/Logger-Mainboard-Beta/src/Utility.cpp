@@ -40,7 +40,7 @@ String findLatestConfigFileUpdateConfig;
  */
 bool copyFileToDestination(const char *sourceFolder, const char *fileName, const char *destinationFolder)
 {
-  String sourcePath = String(sourceFolder) + "/" + String(fileName);
+  String sourcePath      = String(sourceFolder) + "/" + String(fileName);
   String destinationPath = String(destinationFolder) + "/" + String(fileName);
 
   File sourceFile = SD.open(sourcePath.c_str(), FILE_READ);
@@ -96,7 +96,7 @@ bool moveFileToDestination(const char *sourceFolder, const char *fileName, const
     {
       return false;
     }
-    String sourcePath = String(sourceFolder) + "/" + fileName;
+    String sourcePath  = String(sourceFolder) + "/" + fileName;
     String newFileName = String(destinationFolder) + "/" + "logger_" + configRTC.logger_id + "_" + timestamp + "_" + fileName;
 
     if (!SD.rename(sourcePath.c_str(), newFileName.c_str()))
@@ -109,7 +109,7 @@ bool moveFileToDestination(const char *sourceFolder, const char *fileName, const
   }
   else
   {
-    String sourcePath = String(sourceFolder) + "/" + fileName;
+    String sourcePath      = String(sourceFolder) + "/" + fileName;
     String destinationPath = String(destinationFolder) + "/" + fileName;
 
     if (SD.exists(destinationPath.c_str()))
@@ -162,7 +162,7 @@ void writeDeploymentIdToFile()
     if (file.available())
     {
       String line = file.readStringUntil('\n');
-      int index = line.indexOf("deployment_id = ");
+      int index   = line.indexOf("deployment_id = ");
       if (index != -1)
       {
         String number = line.substring(index + strlen("deployment_id = "));
@@ -310,22 +310,8 @@ void deleteAllFilesInFolder(String path)
  */
 void createRequiredFolders()
 {
-  const char *folders[] = {
-      "/backup",
-      "/backup/config",
-      "/backup/config_error",
-      "/backup/log_error",
-      "/backup/log",
-      "/backup/header",
-      "/backup/measurements",
-      "/loggerConfig",
-      "/log",
-      "/measurements",
-      "/measurements/mqtt_header",
-      "/measurements/mqtt_measurements",
-      "/updateConfig",
-      "/updateFW"};
-  const int numFolders = sizeof(folders) / sizeof(folders[0]);
+  const char *folders[] = {"/backup", "/backup/config", "/backup/config_error", "/backup/log_error", "/backup/log", "/backup/header", "/backup/measurements", "/loggerConfig", "/log", "/measurements", "/measurements/mqtt_header", "/measurements/mqtt_measurements", "/updateConfig", "/updateFW"};
+  const int numFolders  = sizeof(folders) / sizeof(folders[0]);
 
   for (int i = 0; i < numFolders; ++i)
   {
@@ -475,7 +461,7 @@ void performFirstBootOperations()
 
     handleNtpSynchronization();
     currentTimeNow = getCurrentTimeFromRTC();
-    isFirstBoot = true;
+    isFirstBoot    = true;
     Log(LogCategoryGeneral, LogLevelINFO, "---------------------End System initialization-------------------");
 
     delay(2000);
@@ -507,7 +493,7 @@ void moveLogToBackup()
 {
 
   const char *sourceFile = "/log/log.txt";
-  const char *backupDir = "/backup/log";
+  const char *backupDir  = "/backup/log";
   const char *backupFile = "/backup/log/log.txt";
 
   // Check if source file exists
@@ -629,11 +615,13 @@ String findLatestConfigurationFile(const String &pfad)
   }
 
   // Sort the files by timestamp
-  std::sort(configUpdateFileNames.begin(), configUpdateFileNames.end(), [](const String &a, const String &b) -> bool
+  std::sort(configUpdateFileNames.begin(),
+            configUpdateFileNames.end(),
+            [](const String &a, const String &b) -> bool
             {
               // Extract timestamp directly before the .json extension
-              int posA = a.lastIndexOf('_') + 1;
-              int posB = b.lastIndexOf('_') + 1;
+              int posA          = a.lastIndexOf('_') + 1;
+              int posB          = b.lastIndexOf('_') + 1;
               String timestampA = a.substring(posA, a.length() - 5); // -5 to remove “.json”
               String timestampB = b.substring(posB, b.length() - 5); // -5 to remove “.json”
               return timestampA > timestampB;                        // Descending sorting for the most recent timestamp first
@@ -778,15 +766,9 @@ int64_t calculateAvailableSdCardSpace()
   return freeSpace;
 }
 
-int64_t sdCardSpaceTotal()
-{
-  return SD.cardSize();
-}
+int64_t sdCardSpaceTotal() { return SD.cardSize(); }
 
-int64_t sdCardSpaceUsed()
-{
-  return SD.usedBytes();
-}
+int64_t sdCardSpaceUsed() { return SD.usedBytes(); }
 
 /**
  * @brief Calculates the shortest wait time until the next function execution.
@@ -802,16 +784,25 @@ int64_t sdCardSpaceUsed()
  * @param data_upload_retry_periode Data upload retry period.
  * @return uint32_t The shortest wait time in seconds.
  */
-uint32_t calculateShortestWaitTime(uint32_t totalElapsedTime, uint32_t lastConfigUpdateTime, uint32_t lastStatusUploadTime, uint32_t lastWetDetectionUploadTime, uint32_t lastDataUploadRetryTime, bool isDataUploadRetryEnabled, uint32_t config_update_periode, uint32_t status_upload_periode, uint32_t wet_det_periode, uint32_t data_upload_retry_periode)
+uint32_t calculateShortestWaitTime(uint32_t totalElapsedTime,
+                                   uint32_t lastConfigUpdateTime,
+                                   uint32_t lastStatusUploadTime,
+                                   uint32_t lastWetDetectionUploadTime,
+                                   uint32_t lastDataUploadRetryTime,
+                                   bool isDataUploadRetryEnabled,
+                                   uint32_t config_update_periode,
+                                   uint32_t status_upload_periode,
+                                   uint32_t wet_det_periode,
+                                   uint32_t data_upload_retry_periode)
 {
   uint32_t shortestWaitTimePeriode = ULONG_MAX;
   uint32_t intervalPeriodeArray[4] = {config_update_periode, status_upload_periode, wet_det_periode, ULONG_MAX};
-  uint32_t lastMeasurePeriode[4] = {lastConfigUpdateTime, lastStatusUploadTime, lastWetDetectionUploadTime, lastDataUploadRetryTime};
-  int numberOfActiveSensorsCalc = 3;
+  uint32_t lastMeasurePeriode[4]   = {lastConfigUpdateTime, lastStatusUploadTime, lastWetDetectionUploadTime, lastDataUploadRetryTime};
+  int numberOfActiveSensorsCalc    = 3;
 
   if (isDataUploadRetryEnabled)
   {
-    intervalPeriodeArray[3] = data_upload_retry_periode;
+    intervalPeriodeArray[3]   = data_upload_retry_periode;
     numberOfActiveSensorsCalc = 4;
   }
 
@@ -847,7 +838,7 @@ void connectionOfPowerSupplyBeginChargingOfBatteries()
 
     if (!chargingStatus)
     {
-      batteryEmpty = false;
+      batteryEmpty   = false;
       chargingStatus = true;
       // enable3V3();
     }
@@ -862,7 +853,7 @@ void connectionOfPowerSupplyBeginChargingOfBatteries()
   if (pin20Status == HIGH)
   {
     batteryCompletlyCharged = false;
-    chargingStatus = false;
+    chargingStatus          = false;
     // disable3V();
   }
 }
@@ -927,11 +918,11 @@ void resetTimePeriodeLoop(uint32_t config_update_periode, uint32_t status_upload
 
   if (totalElapsedTime >= largestNumber)
   {
-    totalElapsedTime = 0;
-    lastConfigUpdateTime = 0;
-    lastStatusUploadTime = 0;
+    totalElapsedTime           = 0;
+    lastConfigUpdateTime       = 0;
+    lastStatusUploadTime       = 0;
     lastWetDetectionUploadTime = 0;
-    lastDataUploadRetryTime = 0;
+    lastDataUploadRetryTime    = 0;
   }
 }
 
@@ -962,7 +953,7 @@ void batteryCompletelyCharged()
   pinMode(19, INPUT); // STAT2
   pinMode(20, INPUT); // PG
 
-  int pin9Status = digitalRead(9);
+  int pin9Status  = digitalRead(9);
   int pin19Status = digitalRead(19);
   int pin20Status = digitalRead(20);
 
@@ -1099,7 +1090,7 @@ void statusUploadPeriodeFunktion(uint32_t status_upload_periode)
     {
       delay(10);
     };
-    }
+  }
 }
 
 /**
@@ -1233,7 +1224,7 @@ void handleSensorError(uint16_t threshold)
   }
 }
 
-uint8_t REED_INPUT_PIN = 17;
+uint8_t REED_INPUT_PIN   = 17;
 uint8_t CHARGE_INPUT_PIN = 20;
 
 void monitorReedInputTask(void *parameter)
@@ -1241,13 +1232,13 @@ void monitorReedInputTask(void *parameter)
   (void)parameter;
 
   int lastState = HIGH;
-  lowStartMs = 0;
+  lowStartMs    = 0;
 
   while (true)
   {
 
-    const int reedState = digitalRead(REED_INPUT_PIN);
-    const int chargeState = digitalRead(CHARGE_INPUT_PIN);
+    const int reedState     = digitalRead(REED_INPUT_PIN);
+    const int chargeState   = digitalRead(CHARGE_INPUT_PIN);
     const unsigned long now = millis();
 
     // Übergang HIGH -> LOW
@@ -1266,9 +1257,7 @@ void monitorReedInputTask(void *parameter)
       ledControl(LedMode::magnetDetected);
 
       lowDurationMs = now - lowStartMs; // funktioniert auch bei millis()-Overflow
-      Serial.printf("Pin %u state: LOW for %lu ms \n",
-                    REED_INPUT_PIN,
-                    lowDurationMs);
+      Serial.printf("Pin %u state: LOW for %lu ms \n", REED_INPUT_PIN, lowDurationMs);
     }
     else
     {
@@ -1276,9 +1265,7 @@ void monitorReedInputTask(void *parameter)
       if (lastState == LOW)
       {
         const unsigned long lowDurationMs = now - lowStartMs;
-        Serial.printf("Pin %u: HIGH (was LOW for %lu ms\n",
-                      REED_INPUT_PIN,
-                      lowDurationMs);
+        Serial.printf("Pin %u: HIGH (was LOW for %lu ms\n", REED_INPUT_PIN, lowDurationMs);
 
         if (lowDurationMs >= 4000 && lowDurationMs <= 9000) // 5 bis 10sec
         {
@@ -1320,13 +1307,12 @@ void monitorReedInputTask(void *parameter)
 
 void reedMonitorInit()
 {
-  xTaskCreatePinnedToCore(
-      monitorReedInputTask,
-      "ReedMonitor",
-      4096,
-      nullptr,
-      2,
-      nullptr,
-      1 // Core 1
+  xTaskCreatePinnedToCore(monitorReedInputTask,
+                          "ReedMonitor",
+                          4096,
+                          nullptr,
+                          2,
+                          nullptr,
+                          1 // Core 1
   );
 }

@@ -113,8 +113,7 @@ inline std::string LogLevelToString(LogLevel level)
   }
 }
 
-template <typename T>
-inline std::string ToString(const T &value)
+template <typename T> inline std::string ToString(const T &value)
 {
   std::ostringstream oss;
   oss << value;
@@ -122,13 +121,9 @@ inline std::string ToString(const T &value)
 }
 
 // Overload for the Arduino `String` type
-inline std::string ToString(const String &value)
-{
-  return value.c_str();
-}
+inline std::string ToString(const String &value) { return value.c_str(); }
 
-template <typename... Args>
-void Log(LogCategory category, LogLevel level, const std::string &message, Args... args)
+template <typename... Args> void Log(LogCategory category, LogLevel level, const std::string &message, Args... args)
 {
   if (logSettings.find(category) != logSettings.end() && level >= logSettings[category])
   {

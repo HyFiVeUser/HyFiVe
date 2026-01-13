@@ -18,12 +18,7 @@ class I2C_Master
 {
 public:
   I2C_Master();
-  void Init(TwoWire &wirePort,
-            uint8_t *DeviceVersions,
-            int64_t *SensorValue1,
-            int64_t *SensorValue2,
-            int SDA_Pin,
-            int SCL_Pin);
+  void Init(TwoWire &wirePort, uint8_t *DeviceVersions, int64_t *SensorValue1, int64_t *SensorValue2, int SDA_Pin, int SCL_Pin);
   uint8_t Scan_Bus();
   uint8_t getVersion(uint8_t address, uint16_t id);
   uint8_t getSensorVoltage(uint8_t address);

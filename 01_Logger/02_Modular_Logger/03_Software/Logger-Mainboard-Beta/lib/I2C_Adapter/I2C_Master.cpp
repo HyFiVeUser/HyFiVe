@@ -9,43 +9,35 @@
  * Description: Implementation of I2C master communication functions
  */
 
+#include <Arduino.h>
+
+#include <Device_CMD.cpp>
+#include <I2C_Master.h>
+#include <Wire.h>
+
 #include "../../src/DebuggingSDLog.h"
 #include "../../src/DeepSleep.h"
 #include "../../src/LedManager.h"
 #include "../../src/SystemVariables.h"
 #include "../../src/loggerConfig.h"
-#include <Arduino.h>
-#include <Device_CMD.cpp>
-#include <I2C_Master.h>
-#include <Wire.h>
 
-I2C_Master::I2C_Master()
-{
-}
+I2C_Master::I2C_Master() {}
 
-void I2C_Master::Init(TwoWire &wirePort,
-                      uint8_t *DeviceVersions,
-                      int64_t *SensorValue_1,
-                      int64_t *SensorValue_2,
-                      int SDA_Pin,
-                      int SCL_Pin)
+void I2C_Master::Init(TwoWire &wirePort, uint8_t *DeviceVersions, int64_t *SensorValue_1, int64_t *SensorValue_2, int SDA_Pin, int SCL_Pin)
 {
 
   this->_i2cPort = &wirePort;
-  this->SDA_Pin = SDA_Pin;
-  this->SCL_Pin = SCL_Pin;
+  this->SDA_Pin  = SDA_Pin;
+  this->SCL_Pin  = SCL_Pin;
 
-  this->DeviceTypeID = DeviceVersions;
+  this->DeviceTypeID  = DeviceVersions;
   this->SensorValue_1 = SensorValue_1;
   this->SensorValue_2 = SensorValue_2;
 
   _i2cPort->begin(this->SDA_Pin, this->SCL_Pin, this->BusFrequency);
 }
 
-void I2C_Master::begin_I2C()
-{
-  _i2cPort->begin(this->SDA_Pin, this->SCL_Pin, this->BusFrequency);
-}
+void I2C_Master::begin_I2C() { _i2cPort->begin(this->SDA_Pin, this->SCL_Pin, this->BusFrequency); }
 
 uint8_t I2C_Master::getVersion(uint8_t address, uint16_t id)
 {
@@ -381,7 +373,7 @@ uint8_t I2C_Master::WriteRead(uint8_t command, uint8_t address, uint8_t *answer,
 uint8_t I2C_Master::Scan_Bus()
 {
   uint8_t address, answer, DeviceCount;
-  answer = 6;
+  answer      = 6;
   DeviceCount = 0;
 
   for (address = 0; address < MAX_SENSOR_CREDENTIALS; address++)

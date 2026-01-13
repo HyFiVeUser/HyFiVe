@@ -9,11 +9,10 @@
  * Description: Deep sleep management for power saving
  */
 
-#include <Arduino.h>
 #include "DS3231TimeNtp.h"
 #include "DeepSleep.h"
-#include "SystemVariables.h"
 #include "SensorManagement.h"
+#include "SystemVariables.h"
 
 #define uS_TO_S_FACTOR 1000000UL
 
@@ -25,7 +24,7 @@ void espDeepSleepSec(uint32_t sleepTimeSec)
 {
   esp_sleep_enable_timer_wakeup(sleepTimeSec * uS_TO_S_FACTOR);
   esp_deep_sleep_start();
-  //esp_light_sleep_start();
+  // esp_light_sleep_start();
 }
 
 int64_t activePinMask = 0;
@@ -68,7 +67,7 @@ void inactiveMeasurement()
 {
   secInactivityTimeoutSec = inactivityTimeoutSec;
 
-  unsigned long now = getCurrentTimeFromRTC();
+  unsigned long now       = getCurrentTimeFromRTC();
   secInactivityTimeoutSec = now + secInactivityTimeoutSec;
 
   statusDeepSleep = false;

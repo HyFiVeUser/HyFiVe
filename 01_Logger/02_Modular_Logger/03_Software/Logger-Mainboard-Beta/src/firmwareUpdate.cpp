@@ -13,9 +13,9 @@
 #include <SD.h>
 #include <WiFiClientSecure.h>
 
-#include "firmwareUpdate.h"
 #include "LedManager.h"
 #include "SystemVariables.h"
+#include "firmwareUpdate.h"
 
 /**
  * @brief Calculates the SHA-256 hash of the firmware file.
@@ -30,7 +30,7 @@ String calculateCurrentHash()
 
   mbedtls_md_context_t ctx;
   mbedtls_md_type_t md_type = MBEDTLS_MD_SHA256;
-  const size_t hash_size = 32;
+  const size_t hash_size    = 32;
   unsigned char hash[hash_size];
 
   mbedtls_md_init(&ctx);
@@ -158,7 +158,7 @@ bool calculateSha256(String received_sha256)
     // Initialize the SHA-256 algorithm
     mbedtls_md_context_t ctx;
     mbedtls_md_type_t md_type = MBEDTLS_MD_SHA256;
-    const size_t hash_size = 32;
+    const size_t hash_size    = 32;
     unsigned char hash[hash_size];
 
     mbedtls_md_init(&ctx);

@@ -14,26 +14,26 @@
 // Commands list
 enum CMD_LIST
 {
-  CMD_GETVER = 0x00,    // master could enumerate Slaves with get version
-  CMD_UPDATE = 0x01,    // Master wants to send a new firmware -> Slave must write own flash! TODO!
-  CMD_SETSENSOR = 0x02, // Master sets sensor type and i2c slave address (2 byte command)
-  CMD_GETVALUE1 = 0x03,
-  CMD_GETVALUE2 = 0x04,
-  CMD_CONVERT = 0x05,
-  CMD_SENSOR_SLEEP = 0x06,
-  CMD_SENSOR_WAKEUP = 0x07,
-  CMD_SET_TEMP = 0x08, // Master sends last known temperature of the water (3 byte command)
-  CMD_GET_SENSORVOLTAGE = 0x09,
-  CMD_GETRAWVALUE1 = 0x13,
-  CMD_GETRAWVALUE2 = 0x14,
-  CMD_GET_PARAMETER = 0x15,
-  CMD_GET_RDY = 0x16,
-  CMD_SET_CALIB = 0x17, // 6 bytes: cmd, #num, 4byte floating point
-  CMD_GET_CALIBRATED = 0x18,
+  CMD_GETVER                 = 0x00, // master could enumerate Slaves with get version
+  CMD_UPDATE                 = 0x01, // Master wants to send a new firmware -> Slave must write own flash! TODO!
+  CMD_SETSENSOR              = 0x02, // Master sets sensor type and i2c slave address (2 byte command)
+  CMD_GETVALUE1              = 0x03,
+  CMD_GETVALUE2              = 0x04,
+  CMD_CONVERT                = 0x05,
+  CMD_SENSOR_SLEEP           = 0x06,
+  CMD_SENSOR_WAKEUP          = 0x07,
+  CMD_SET_TEMP               = 0x08, // Master sends last known temperature of the water (3 byte command)
+  CMD_GET_SENSORVOLTAGE      = 0x09,
+  CMD_GETRAWVALUE1           = 0x13,
+  CMD_GETRAWVALUE2           = 0x14,
+  CMD_GET_PARAMETER          = 0x15,
+  CMD_GET_RDY                = 0x16,
+  CMD_SET_CALIB              = 0x17, // 6 bytes: cmd, #num, 4byte floating point
+  CMD_GET_CALIBRATED         = 0x18,
   CMD_GET_SENSOR_WAKEUP_TIME = 0x19,
-  CMD_GET_FW_VERSION = 0x20,
-  CMD_SOFTWARE_RESET = 0x21,
-  CMD_PING = 0xAA,      // master wants a answer byte (seems to be unnecessary, because of getver)
+  CMD_GET_FW_VERSION         = 0x20,
+  CMD_SOFTWARE_RESET         = 0x21,
+  CMD_PING                   = 0xAA, // master wants a answer byte (seems to be unnecessary, because of getver)
 
   CMD_1ByteDummyTest = 0xFE,
 

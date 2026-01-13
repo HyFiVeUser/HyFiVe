@@ -26,8 +26,8 @@ uint8_t BufferLen = 64;
 uint8_t i2cBuffer[64];
 uint8_t BMS_address = 0xB;
 
-constexpr float kMinCellVoltageMv = 2850.0f; //! US18650VTC6 Minimum (empfohlen abschalten): ≈ 2.5V
-constexpr float kMaxCellVoltageMv = 4100.0f; //! US18650VTC6 Maximum (Spannung): 4.25V
+constexpr float kMinCellVoltageMv   = 2850.0f; //! US18650VTC6 Minimum (empfohlen abschalten): ≈ 2.5V
+constexpr float kMaxCellVoltageMv   = 4100.0f; //! US18650VTC6 Maximum (Spannung): 4.25V
 constexpr float kCellVoltageRangeMv = kMaxCellVoltageMv - kMinCellVoltageMv;
 
 float cellVoltageToPercent(uint16_t millivolts)
@@ -115,11 +115,11 @@ float getRemainingBatteryPercentage()
 {
   const int stat1 = digitalRead(9);
   const int stat2 = digitalRead(19);
-  const int pg = digitalRead(20);
+  const int pg    = digitalRead(20);
 
   const uint16_t cellVoltages[] = {BMS.getCell1_V(), BMS.getCell2_V(), BMS.getCell3_V(), BMS.getCell4_V()};
-  const int16_t cellCurrents[] = {BMS.getCell1_I(), BMS.getCell2_I(), BMS.getCell3_I(), BMS.getCell4_I()};
-  float cellPercentages[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+  const int16_t cellCurrents[]  = {BMS.getCell1_I(), BMS.getCell2_I(), BMS.getCell3_I(), BMS.getCell4_I()};
+  float cellPercentages[4]      = {0.0f, 0.0f, 0.0f, 0.0f};
 
   size_t highestVoltageIndex = 0U;
   for (size_t index = 0; index < 4; ++index)
@@ -131,9 +131,9 @@ float getRemainingBatteryPercentage()
     }
   }
 
-  const uint16_t packVoltage = getTotalBatteryCellVoltage();
+  const uint16_t packVoltage     = getTotalBatteryCellVoltage();
   const float packVoltageAverage = static_cast<float>(packVoltage) / 4.0f;
-  const float socFromVoltage = cellVoltageToPercent(static_cast<uint16_t>(packVoltageAverage));
+  const float socFromVoltage     = cellVoltageToPercent(static_cast<uint16_t>(packVoltageAverage));
 
   // Serial.print("[INFO] [BMS] STAT1:");
   // Serial.print(stat1);
@@ -200,11 +200,11 @@ uint16_t getRemainingBatteryCapacity()
 
 void manageBatteryCharging()
 {
-  bool setEnable3V3 = false;
-  int counter = 0;
-  int chargeTimer = 0;
+  bool setEnable3V3            = false;
+  int counter                  = 0;
+  int chargeTimer              = 0;
   int erroerBatteryCellVoltage = 0;
-  int erreorBatteryPercentage = 0;
+  int erreorBatteryPercentage  = 0;
 
   pinMode(9, INPUT);  // STAT1
   pinMode(19, INPUT); // STAT2

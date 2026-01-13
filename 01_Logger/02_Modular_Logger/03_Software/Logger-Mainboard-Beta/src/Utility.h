@@ -54,7 +54,16 @@ void interfaceRST();
 
 // Time control
 
-uint32_t calculateShortestWaitTime(uint32_t totalElapsedTime, uint32_t lastConfigUpdateTime, uint32_t lastStatusUploadTime, uint32_t lastWetDetectionUploadTime, uint32_t lastDataUploadRetryTime, bool isDataUploadRetryEnabled, uint32_t config_update_periode, uint32_t status_upload_periode, uint32_t wet_det_periode, uint32_t data_upload_retry_periode);
+uint32_t calculateShortestWaitTime(uint32_t totalElapsedTime,
+                                   uint32_t lastConfigUpdateTime,
+                                   uint32_t lastStatusUploadTime,
+                                   uint32_t lastWetDetectionUploadTime,
+                                   uint32_t lastDataUploadRetryTime,
+                                   bool isDataUploadRetryEnabled,
+                                   uint32_t config_update_periode,
+                                   uint32_t status_upload_periode,
+                                   uint32_t wet_det_periode,
+                                   uint32_t data_upload_retry_periode);
 void resetTimePeriodeLoop(uint32_t config_update_periode, uint32_t status_upload_periode, uint32_t wet_det_periode, uint32_t data_upload_retry_periode);
 void configUpdatePeriodeFunktion(uint32_t config_update_periode);
 void statusUploadPeriodeFunktion(uint32_t status_upload_periode);

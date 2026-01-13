@@ -24,7 +24,7 @@
 #include "WifiNetwork.h"
 
 unsigned long tLoopStart = 0;
-unsigned long tLoopEnd = 0;
+unsigned long tLoopEnd   = 0;
 
 void setup()
 {

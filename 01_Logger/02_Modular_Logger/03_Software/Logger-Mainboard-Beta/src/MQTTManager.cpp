@@ -31,10 +31,10 @@
 WiFiClient wifi;
 MQTTClient client(512, 512); // Read/write buffer size = 512
 
-const char *mqttHost = "192.168.1.1";
-const int mqttPort = 1883;
-const char *mqttName = "HyFiVe";
-const char *mqttUser = "";
+const char *mqttHost     = "192.168.1.1";
+const int mqttPort       = 1883;
+const char *mqttName     = "HyFiVe";
+const char *mqttUser     = "";
 const char *mqttPassword = "";
 
 /**
@@ -95,10 +95,10 @@ void uploadStatus()
 
   StaticJsonDocument<200> doc;
 
-  doc["logger_id"] = configRTC.logger_id;
-  doc["battery_remaining"] = getRemainingBatteryPercentage();
+  doc["logger_id"]             = configRTC.logger_id;
+  doc["battery_remaining"]     = getRemainingBatteryPercentage();
   doc["memory_capacity_total"] = sdCardSpaceTotal();
-  doc["memory_capacity_used"] = sdCardSpaceUsed();
+  doc["memory_capacity_used"]  = sdCardSpaceUsed();
 
   char payload[MMMS];
 
@@ -145,7 +145,7 @@ void uploadStatus()
  */
 bool moveFileWithTimestamp(const char *sourceFolder, const char *fileName, const char *destinationFolder)
 {
-  String sourcePath = String(sourceFolder) + "/" + fileName;
+  String sourcePath      = String(sourceFolder) + "/" + fileName;
   String destinationPath = String(destinationFolder) + "/" + fileName;
 
   if (!SD.rename(sourcePath.c_str(), destinationPath.c_str()))
@@ -228,7 +228,7 @@ bool checkAndExtractNumbers(const std::string &nachricht, std::string &loggerID,
   if (std::regex_match(nachricht, treffer, muster))
   {
     // Extract the numbers from the groups
-    loggerID = treffer[1].str();
+    loggerID  = treffer[1].str();
     timestamp = treffer[2].str();
     return true;
   }
@@ -236,14 +236,14 @@ bool checkAndExtractNumbers(const std::string &nachricht, std::string &loggerID,
 }
 
 bool timestampError = false;
-bool loggerIDError = false;
+bool loggerIDError  = false;
 
-bool noUpdateAvaiable = true;
-bool configUpdateAvaiable = true;
-bool FWUpdateAvaiable = true;
-bool messageMqttReceive = false;
+bool noUpdateAvaiable         = true;
+bool configUpdateAvaiable     = true;
+bool FWUpdateAvaiable         = true;
+bool messageMqttReceive       = false;
 unsigned long lastMessageTime = 0;
-bool readFileIn = false;
+bool readFileIn               = false;
 File dataFile;
 String received_sha256 = "";
 
@@ -281,7 +281,7 @@ void handleReceivedMessage(MQTTClient *client, char *topic, char *payload, int l
     if (messageTemp == "no_firmware_update")
     {
       messageMqttReceive = true;
-      isFirmwareUpdate = true;
+      isFirmwareUpdate   = true;
       Log(LogCategoryMQTT, LogLevelDEBUG, "no_firmware_update");
       return;
     }
@@ -300,7 +300,7 @@ void handleReceivedMessage(MQTTClient *client, char *topic, char *payload, int l
     if (String(topic) == "hyfive/updateFirmwareSHA256")
     {
       messageMqttReceive = true;
-      noUpdateAvaiable = false;
+      noUpdateAvaiable   = false;
 
       received_sha256 = messageTemp;
 
@@ -324,7 +324,7 @@ void handleReceivedMessage(MQTTClient *client, char *topic, char *payload, int l
       }
 
       FWUpdateAvaiable = false;
-      readFileIn = true;
+      readFileIn       = true;
 
       dataFile = SD.open("/updateFW/firmware.bin", FILE_APPEND);
       if (!dataFile)
@@ -366,7 +366,7 @@ void handleReceivedMessage(MQTTClient *client, char *topic, char *payload, int l
       if (isFirstFileOlder(std::string(findLatestConfigurationFile("/loggerConfig").c_str()), std::string(messageTemp.c_str())))
       {
         configUpdateAvaiable = false;
-        readFileIn = true;
+        readFileIn           = true;
 
         deleteAllFilesInFolder("/updateConfig");
 
@@ -508,9 +508,9 @@ void updateConfigViaMqtt()
  */
 void updateFWViaMqtt()
 {
-  isFirmwareUpdate = false;
+  isFirmwareUpdate     = false;
   configUpdateAvaiable = false;
-  lastMessageTime = millis();
+  lastMessageTime      = millis();
   while (1)
   {
     client.loop();
@@ -561,7 +561,7 @@ void updateFWViaMqtt()
  */
 void requestNodeRedStatus()
 {
-  isNodeRedLogin = true;
+  isNodeRedLogin     = true;
   isNodeRedAvailable = false;
   transmitUpdateMessage((String(configRTC.logger_id)).c_str(), "hyfive/nodeRedRequest");
   lastMessageTime = millis();
@@ -591,7 +591,7 @@ void requestNodeRedStatus()
 void requestNodeRedBusyStatus()
 {
   isNodeRedStatus = true;
-  isNodeRedBusy = true;
+  isNodeRedBusy   = true;
   transmitUpdateMessage((String(configRTC.logger_id)).c_str(), "hyfive/nodeRedBusyRequest");
   lastMessageTime = millis();
   while (1)
@@ -758,10 +758,7 @@ RTC_DATA_ATTR TransmissionState rtcLogState;
  *
  * @param state The saved transmission state.
  */
-void saveHeaderTransmissionState(const TransmissionState &state)
-{
-  rtcHeaderState = state;
-}
+void saveHeaderTransmissionState(const TransmissionState &state) { rtcHeaderState = state; }
 
 /**
  * @brief Saves the current transmission status for log data.
@@ -771,10 +768,7 @@ void saveHeaderTransmissionState(const TransmissionState &state)
  *
  * @param state The saved transmission state.
  */
-void saveLogTransmissionState(const TransmissionState &state)
-{
-  rtcLogState = state;
-}
+void saveLogTransmissionState(const TransmissionState &state) { rtcLogState = state; }
 
 /**
  * @brief Loads the saved transmission status for header data.
@@ -812,10 +806,7 @@ bool loadLogTransmissionState(TransmissionState &state)
  *
  * @param state The saved transmission state.
  */
-void saveDataTransmissionState(const TransmissionState &state)
-{
-  rtcDataState = state;
-}
+void saveDataTransmissionState(const TransmissionState &state) { rtcDataState = state; }
 
 /**
  * @brief Loads the saved transmission status for measurement data.
@@ -838,7 +829,7 @@ bool loadDataTransmissionState(TransmissionState &state)
 bool transmitHeaderViaMqtt()
 {
   char mqtt_topic[] = "hyfive/header";
-  bool pass = true;
+  bool pass         = true;
 
   File dir = SD.open("/measurements/mqtt_header");
   if (!dir)
@@ -858,7 +849,7 @@ bool transmitHeaderViaMqtt()
   if (loadHeaderTransmissionState(headerState))
   {
     // Saved transmission status for header found
-    String basePath = "/measurements/mqtt_header/";
+    String basePath   = "/measurements/mqtt_header/";
     currentHeaderFile = SD.open(basePath + headerState.filename);
     if (currentHeaderFile)
     {
@@ -952,7 +943,7 @@ bool transmitHeaderViaMqtt()
 bool transmitLogViaMqtt()
 {
   char mqtt_topic[] = "hyfive/Log";
-  bool pass = true;
+  bool pass         = true;
 
   File dir = SD.open("/log");
   if (!dir)
@@ -973,7 +964,7 @@ bool transmitLogViaMqtt()
   {
     // Saved transmission status for log found
     String basePath = "/log/";
-    currentLogFile = SD.open(basePath + LogState.filename);
+    currentLogFile  = SD.open(basePath + LogState.filename);
     if (currentLogFile)
     {
       // Jump to the saved line number
@@ -1064,7 +1055,7 @@ bool transmitLogViaMqtt()
 bool transmitDataViaMqtt()
 {
   char mqtt_topic[] = "hyfive/data";
-  bool pass = true;
+  bool pass         = true;
 
   File dir = SD.open("/measurements/mqtt_measurements");
   if (!dir)
@@ -1083,7 +1074,7 @@ bool transmitDataViaMqtt()
   TransmissionState dataState;
   if (loadDataTransmissionState(dataState))
   {
-    String basePath = "/measurements/mqtt_measurements/";
+    String basePath        = "/measurements/mqtt_measurements/";
     currentMeasurementFile = SD.open(basePath + dataState.filename);
     if (currentMeasurementFile)
     {

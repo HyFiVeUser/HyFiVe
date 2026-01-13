@@ -31,7 +31,7 @@ bool connectToWifiAndSyncNTP()
   {
     Log(LogCategoryWiFi, LogLevelWARNING, "No WLAN configuration found in the RTC memory");
     hasWifiConnection = false;
-    wificonfigRtc = false;
+    wificonfigRtc     = false;
     return false;
   }
   else
@@ -52,20 +52,17 @@ bool connectToWifiAndSyncNTP()
     {
       if (strlen(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid) > 0)
       {
-        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to reconnect to last successful network: ",
-            String(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid));
+        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to reconnect to last successful network: ", String(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid));
 
         for (int attempt = 0; attempt < 2; ++attempt)
         {
-          WiFi.begin(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid,
-                     configRTC.wificonfig[lastSuccessfulNetworkIndex].pw);
+          WiFi.begin(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid, configRTC.wificonfig[lastSuccessfulNetworkIndex].pw);
 
           for (int i = 0; i < 2; i++)
           {
             if (WiFi.status() == WL_CONNECTED)
             {
-              Log(LogCategoryWiFi, LogLevelDEBUG, "Reconnected to last successful network: ",
-                  String(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid));
+              Log(LogCategoryWiFi, LogLevelDEBUG, "Reconnected to last successful network: ", String(configRTC.wificonfig[lastSuccessfulNetworkIndex].ssid));
               hasWifiConnection = true;
               synchronizeTimeWithNTP();
               return true;
@@ -85,8 +82,7 @@ bool connectToWifiAndSyncNTP()
 
       if (strlen(configRTC.wificonfig[j].ssid) > 0)
       {
-        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to connect to network: ",
-            String(configRTC.wificonfig[j].ssid));
+        Log(LogCategoryWiFi, LogLevelDEBUG, "Trying to connect to network: ", String(configRTC.wificonfig[j].ssid));
 
         for (int attempt = 0; attempt < 2; ++attempt)
         {
@@ -96,8 +92,7 @@ bool connectToWifiAndSyncNTP()
           {
             if (WiFi.status() == WL_CONNECTED)
             {
-              Log(LogCategoryWiFi, LogLevelDEBUG, "Connected to network: ",
-                  String(configRTC.wificonfig[j].ssid));
+              Log(LogCategoryWiFi, LogLevelDEBUG, "Connected to network: ", String(configRTC.wificonfig[j].ssid));
 
               // Remember this successful network for next time
               lastSuccessfulNetworkIndex = j;
@@ -109,8 +104,7 @@ bool connectToWifiAndSyncNTP()
             delay(1000);
           }
 
-          Log(LogCategoryWiFi, LogLevelDEBUG, "Connection failed for network: ",
-              String(configRTC.wificonfig[j].ssid));
+          Log(LogCategoryWiFi, LogLevelDEBUG, "Connection failed for network: ", String(configRTC.wificonfig[j].ssid));
           hasWifiConnection = false;
         }
       }
@@ -150,7 +144,4 @@ void handleNtpSynchronization()
   }
 }
 
-void wiFiDisconnect()
-{
-  WiFi.disconnect();
-}
+void wiFiDisconnect() { WiFi.disconnect(); }

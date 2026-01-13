@@ -13,16 +13,18 @@
 #define LOGGERHER_H
 #include "Arduino.h"
 // #include "config.h"
-#include "I2C_Master.h"
 #include <FS.h>
 #include <SD.h>
 #include <time.h>
+
+#include "I2C_Master.h"
 // #include <ESP32Time.h>
+#include <Wire.h>
+
 #include "../../src/SensorManagement.h"
 #include "../../src/SystemVariables.h"
 #include "../../src/loggerConfig.h"
 #include "../../src/loggerConfigValidation.h"
-#include <Wire.h>
 
 enum LoggerState
 {
@@ -36,16 +38,7 @@ class LoggerHER
 {
 public:
   LoggerHER();
-  void Init(TwoWire &wirePort,
-            uint8_t *DeviceVersions,
-            uint8_t *Config_Value_Type,
-            int64_t *SensorRawValue,
-            int64_t *SensorCalcValue,
-            uint8_t bootCountt,
-            int SD_CS,
-            int SDA_Pin,
-            int SCL_Pin,
-            SPIClass *spi_interface);
+  void Init(TwoWire &wirePort, uint8_t *DeviceVersions, uint8_t *Config_Value_Type, int64_t *SensorRawValue, int64_t *SensorCalcValue, uint8_t bootCountt, int SD_CS, int SDA_Pin, int SCL_Pin, SPIClass *spi_interface);
 
   void Measure_All(uint8_t Value_Nr);
   void Measure(uint8_t address, uint8_t Value_Nr);
