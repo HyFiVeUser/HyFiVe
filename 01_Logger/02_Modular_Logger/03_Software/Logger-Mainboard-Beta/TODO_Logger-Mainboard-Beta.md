@@ -8,7 +8,6 @@
 - [ ] Zyklusabweichung prüfen: Differenz zwischen konfiguriertem und tatsächlichem Zyklus
 - [ ] anpassen der README.md (https://github.com/HyFiVeUser/HyFiVe/tree/main/01_Logger/02_Modular_Logger/03_Software)
 - [x] generalError: LED-Signal soll nicht dauerhaft aktiv bleiben. Stattdessen den generalError LED-Event 10× ausführen (dauer ca.30sec), danach Software-Reboot. Wenn der Fehler nach insgesamt 2 Reboot-Versuchen weiterhin besteht, soll der Logger in Deep-Sleep gehen.
-generalError LED-Signal soll 10x den Led-Event durchführen danach gibt es einen Software-Reboot nach zwei fehlfersuchen get der Logger in DeepSleep
 - [x] Interfaceboard: ADC-Auflösung auf 12 Bit umstellen
 - [x] WetDet-Sensor weniger häufig abfragen
 - [x] LED-Anzeige in separaten Thread auf zweiten Core auslagern
