@@ -59,6 +59,20 @@ bool moveFileConfig(const char *sourcePath, const char *destinationPath)
   return SD.remove(sourcePath);
 }
 
+bool sdCardIsAvailable()
+{
+  if (SD.exists("/loggerConfig"))
+  {
+    return true;
+  }
+  else
+  {
+    Log(LogCategorySDCard, LogLevelERROR, "no SD card");
+    generalError();
+    return false;
+  }
+}
+
 /**
  * @brief Reads and parses a JSON configuration file.
  * @param pfad Path to the JSON file.

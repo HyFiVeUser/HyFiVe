@@ -14,10 +14,10 @@
 std::map<LogCategory, LogLevel> logSettings = {
 
   //! Log-Levels
-  //*  LogLevelDEBUG
-  //*  LogLevelINFO,
-  //*  LogLevelWARNING,
-  //*  LogLevelERROR
+  //*  LogLevelDEBUG      Log only: LogLevelDEBUG,LogLevelINFO,LogLevelWARNING,LogLevelERROR
+  //*  LogLevelINFO       Log only: LogLevelINFO,LogLevelWARNING,LogLevelERROR
+  //*  LogLevelWARNING    Log only: LogLevelWARNING,LogLevelERROR
+  //*  LogLevelERROR      Log only: LogLevelERROR
 
   {LogCategoryGeneral,         LogLevelINFO},
   {LogCategorySensors,         LogLevelINFO},

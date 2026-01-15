@@ -1,0 +1,51 @@
+# TODO Software
+
+## Kritisch
+- [x] Akku-Ladevorgang erreicht nicht immer 100 %.
+
+## Wichtig
+- [ ] RGB-LED Prioritäten prüfen, weil es noch Überlagerungen gibt
+- [ ] Zyklusabweichung prüfen: Differenz zwischen konfiguriertem und tatsächlichem Zyklus
+- [ ] anpassen der README.md (https://github.com/HyFiVeUser/HyFiVe/tree/main/01_Logger/02_Modular_Logger/03_Software)
+- [x] generalError: LED-Signal soll nicht dauerhaft aktiv bleiben. Stattdessen den generalError LED-Event 10× ausführen (dauer ca.30sec), danach Software-Reboot. Wenn der Fehler nach insgesamt 2 Reboot-Versuchen weiterhin besteht, soll der Logger in Deep-Sleep gehen.
+generalError LED-Signal soll 10x den Led-Event durchführen danach gibt es einen Software-Reboot nach zwei fehlfersuchen get der Logger in DeepSleep
+- [x] Interfaceboard: ADC-Auflösung auf 12 Bit umstellen
+- [x] WetDet-Sensor weniger häufig abfragen
+- [x] LED-Anzeige in separaten Thread auf zweiten Core auslagern
+(Config Parameter)
+- [x] Light-Sleep statt Deep-Sleep
+- [x] Statusmeldungen während des Ladevorgangs alle 10min
+- [x] Logger geht nach Ablauf der Zeit inactive_Measurement_periode (Config-Parameter) in Deep-Sleep, sofern keine Datenübertragung oder Messungen stattfinden.
+- [x] Firmware soll kompatibel sein und sowohl eine 1-farbige als auch eine 3-farbige LED ansteuern können (wenn hwVariante() == 000001, wird die 3-farbige LED verwendet, sonst die 1-farbige).
+- [x] LED Fraben über Config Parameter setzen
+- [x] LED-Anzeige (LED_signals_rev1_4.xlsx)
+    - [x] Magnet detected 
+        - [x] 0-5 sec Logger goes active 
+        - [x] 5-10 sec start Config update
+        - [x] 10-15 sec Logger Software-Reboot
+        - [x] 16-20 sec Logger go to DeepSleep
+        - [x] more 25 sec Logger Hardware-Reboot
+    - [x] logger active
+    - [x] Logger detects begin of deployment
+    - [x] during deployment (after 1. minute)
+    - [x] Logger detects end of deployment
+    - [x] Transmission complete
+    - [x] charging complete
+    - [x] battery charging
+    - [x] start config update
+    - [x] start reboot
+    - [x] Logger busy (background process)
+    - [x] update / boot complete
+    - [x] Battery low (15%)
+    - [x] Battery superlow (5%)
+    - [x] no connection to Deckbox
+    - [x] general error
+    - [x] NTP Update failed
+    - [x] Config rejected
+    
+
+## Nice To Have
+- [ ] Loglevel (Logging/Debugging) ohne Neukompilieren über einen Config-Parameter konfigurierbar machen
+- [ ] Status des Loggers (der an den Server übertragen wird) um Fehlerausgaben erweitern.
+    - LED-Blinkcodes oder ID zum Blinkcode verwenden?
+    - Die ID könnte als Bitposition genutzt werden → eine Zahl kann mehrere aktive Stati enthalten.

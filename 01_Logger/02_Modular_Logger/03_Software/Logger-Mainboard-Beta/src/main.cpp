@@ -29,13 +29,19 @@ unsigned long tLoopEnd   = 0;
 void setup()
 {
   Serial.begin(115200);
+
+  if (startKey != 0x47454D31)
+  {
+    generalErrorCounter = 0;
+    startKey            = 0x47454D31;
+  }
+
   ledInit();
   reedMonitorInit();
   enable3V3(); // Enables power supply.
   initializeLogger();
   initBmsAndRtc();
   initializeSdCard();
-  // programBms(); //* Optional (should only be activated if you want to program BMS, reason: BMS and RTC would use the interface at the same time!)
   performFirstBootOperations();
   Serial.println("-------------------------------------------------0    1");
   if (statusDeepSleep)
@@ -50,6 +56,13 @@ void setup()
 
 void loop()
 {
+  Serial.println("generalErrorCounter");
+  Serial.println(generalErrorCounter);
+  Serial.println("startKey");
+  Serial.println(startKey);
+
+  sdCardIsAvailable();
+
   tLoopStart = millis();
 
   Serial.println("-------------------------------------------------0    4");
@@ -85,11 +98,22 @@ void loop()
   //* Calculation of the minimum waiting time
   minTimeUntilNextFunction = calculateShortestWaitTime(totalElapsedTime, lastConfigUpdateTime, lastStatusUploadTime, lastWetDetectionUploadTime, lastDataUploadRetryTime, isDataUploadRetryEnabled, config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);
   Serial.println("-------------------------------------------------0    15");
-  while (statusReedInput.load())
+
+  //* Magnetic switch monitoring
+  if (statusReedInput.load())
   {
-    Serial.println("-------------------------------------------------0    16");
-    delay(100);
+    uint32_t startMs = millis();
+    while (statusReedInput.load() && (millis() - startMs < 30000UL))
+    {
+      Serial.println("-------------------------------------------------0    16");
+      delay(100);
+    }
+    if (statusReedInput.load() && (millis() - startMs >= 30000UL))
+    {
+      statusReedInput.store(false);
+    }
   }
+
   //* Deep Sleep
   //* The variable currentTimeNow = getCurrentTimeFromRTC(); updates the variable currentTimeNow with the
   //* current time from the real-time clock (RTC) directly before the ESP32 goes into deep sleep.

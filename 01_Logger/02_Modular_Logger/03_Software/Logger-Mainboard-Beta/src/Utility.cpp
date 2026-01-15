@@ -892,19 +892,6 @@ void batteryRemainingLow(uint8_t batteryCharge)
 }
 
 /**
- * @brief Programs the BMS (Battery Management System).
- *
- * Can only be programmed if battery is above 11.2V and power supply is connected charging does not have to be.
- */
-void programBms()
-{
-  disable3V3();
-  Log(LogCategoryBMS, LogLevelDEBUG, "bmsProg");
-  enableExternalWakeup(17); // reed switch
-  esp_deep_sleep_start();
-}
-
-/**
  * @brief Resets time period loop when total elapsed time exceeds the largest period.
  *
  * @param config_update_periode Configuration update period.
@@ -942,61 +929,6 @@ bool isPowerSupplyConnected()
   {
     return false;
   }
-}
-
-/**
- * @brief Handles scenarios when the battery is completely charged.
- */
-void batteryCompletelyCharged()
-{
-  pinMode(9, INPUT);  // STAT1
-  pinMode(19, INPUT); // STAT2
-  pinMode(20, INPUT); // PG
-
-  int pin9Status  = digitalRead(9);
-  int pin19Status = digitalRead(19);
-  int pin20Status = digitalRead(20);
-
-  Log(LogCategoryCharger, LogLevelDEBUG, "STAT1: ", String(pin9Status));
-  Log(LogCategoryCharger, LogLevelDEBUG, "STAT2: ", String(pin19Status));
-  Log(LogCategoryCharger, LogLevelDEBUG, "PG: ", String(pin20Status));
-
-  if (pin20Status == LOW) // if power supply connected = LOW
-  {
-    uint8_t wakeUpTime = 0;
-    disableWakeupPin(20);
-
-    if (minTimeUntilNextFunction > wakeUpTime)
-    {
-      minTimeUntilNextFunction = wakeUpTime;
-    }
-
-    if (batteryCompletlyCharged)
-    {
-      ledControl(LedMode::chargingComplete);
-    }
-
-    Log(LogCategoryGeneral, LogLevelDEBUG, "batteryRemaining: ", String(getRemainingBatteryPercentage()), " %");
-
-    if (getRemainingBatteryPercentage() >= 100 && !batteryCompletlyCharged)
-    {
-      // disable3V();
-      Log(LogCategoryPowerManagement, LogLevelDEBUG, "Battery completly charged");
-      batteryCompletlyCharged = true;
-    }
-
-    if (!batteryCompletlyCharged && getRemainingBatteryPercentage() >= 91 && getCellCurrent())
-    {
-      Log(LogCategoryPowerManagement, LogLevelDEBUG, "Battery completly charged > 100%");
-      Log(LogCategoryGeneral, LogLevelDEBUG, "batteryRemaining: ", String(getRemainingBatteryPercentage()), " %");
-      bmsReset();
-    }
-  }
-  else
-  {
-    enableExternalWakeup(20); // Activate power supply connection
-  }
-  enableExternalWakeup(17); // Activate reed connection
 }
 
 /**
@@ -1267,13 +1199,33 @@ void monitorReedInputTask(void *parameter)
         const unsigned long lowDurationMs = now - lowStartMs;
         Serial.printf("Pin %u: HIGH (was LOW for %lu ms\n", REED_INPUT_PIN, lowDurationMs);
 
-        if (lowDurationMs >= 4000 && lowDurationMs <= 9000) // 5 bis 10sec
+        if (lowDurationMs >= 4000 && lowDurationMs <= 9000)
         {
+          statusLED = false;
           ledControl(LedMode::startConfigUpdate);
+          while (!statusLED)
+          {
+            delay(10);
+          };
+
           configUpdatePeriodeFunktion(0);
         }
 
-        if (lowDurationMs >= 15000 && lowDurationMs <= 20000) // 5 bis 10sec
+        if (lowDurationMs >= 9000 && lowDurationMs <= 14000)
+        {
+          statusLED = false;
+          ledControl(LedMode::startReboot);
+          while (!statusLED)
+          {
+            delay(10);
+          };
+
+          delay(2000);
+
+          ESP.restart();
+        }
+
+        if (lowDurationMs > 15000)
         {
 
           interfaceSleep();
@@ -1289,6 +1241,7 @@ void monitorReedInputTask(void *parameter)
           enableExternalWakeup(17); // activate Logger if reed connection
           statusDeepSleep = true;
           Serial.println("Deep Sleep triggered");
+          esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER);
           esp_deep_sleep_start();
         }
 
@@ -1307,12 +1260,6 @@ void monitorReedInputTask(void *parameter)
 
 void reedMonitorInit()
 {
-  xTaskCreatePinnedToCore(monitorReedInputTask,
-                          "ReedMonitor",
-                          4096,
-                          nullptr,
-                          2,
-                          nullptr,
-                          1 // Core 1
+  xTaskCreatePinnedToCore(monitorReedInputTask, "ReedMonitor", 4096, nullptr, 2, nullptr, 1 // Core 1
   );
 }

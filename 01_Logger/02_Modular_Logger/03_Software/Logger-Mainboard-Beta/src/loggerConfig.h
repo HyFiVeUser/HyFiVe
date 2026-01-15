@@ -102,5 +102,6 @@ void configureSensorsFromJson();
 void configureWifiFromJson();
 void configureBasicSettingsFromJson();
 void validateAndLoadConfig();
+bool sdCardIsAvailable();
 
 #endif

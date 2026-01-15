@@ -261,6 +261,8 @@ static LedMode runMode(LedMode mode)
     if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
       return incoming;
 
+    statusLED = true;
+
     allOff();
     return LedMode::Off;
   }
@@ -610,7 +612,7 @@ void ledControl(LedMode mode)
 
 void generalError()
 {
-  while (true)
+  for (int y = 0; y < 10; y++)
   {
     for (int i = 0; i < 3; i++)
     {
@@ -634,6 +636,21 @@ void generalError()
       delay(ledSignalBreakBetweenLetters);
     }
   }
+
+  ++generalErrorCounter;
+
+  if (generalErrorCounter >= 3)
+  {
+    generalErrorCounter = 0;
+    enableExternalWakeup(20); // activate Logger if power supply connection
+    enableExternalWakeup(17); // activate Logger if reed connection
+    statusDeepSleep = true;
+    Serial.println("Deep Sleep generalError");
+    esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER);
+    esp_deep_sleep_start();
+  }
+
+  ESP.restart();
 }
 
 /**

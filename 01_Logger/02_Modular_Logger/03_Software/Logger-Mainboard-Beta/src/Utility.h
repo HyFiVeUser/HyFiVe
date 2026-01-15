@@ -42,8 +42,6 @@ void moveLogToBackup();
 
 void connectionOfPowerSupplyBeginChargingOfBatteries();
 void batteryRemainingLow(uint8_t batteryCharge);
-void batteryCompletelyCharged();
-void programBms();
 void enable3V3();
 void enable12V();
 void enable5V();
