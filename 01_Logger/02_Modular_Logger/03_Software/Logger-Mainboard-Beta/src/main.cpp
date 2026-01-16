@@ -122,14 +122,22 @@ void loop()
   Serial.println("-------------------------------------------------0    17");
   interfaceSleep();
   Serial.println("-------------------------------------------------0    18");
+
+  if (statusConfigUpdate.load())
+  {
+    Serial.println("configUpdatePeriodeFunktion");
+    configUpdatePeriodeFunktion(0);
+    statusConfigUpdate.store(false);
+  }
+
   currentTimeNow = getCurrentTimeFromRTC();
   esp_sleep_enable_timer_wakeup((minTimeUntilNextFunction) * 1000000);
   Serial.println("-------------------------------------------------0    19");
   Serial.println("Deep Sleep");
   wiFiDisconnect();
   Serial.flush();
-  // esp_deep_sleep_start();
-  esp_light_sleep_start();
+  esp_deep_sleep_start(); //! wichtig für MQTT Parameter reset
+  //esp_light_sleep_start();
 
   // tLoopEnd = millis();
   // unsigned long loopDiff = tLoopEnd - tLoopStart;

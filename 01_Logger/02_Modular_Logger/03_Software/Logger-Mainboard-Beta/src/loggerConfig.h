@@ -97,6 +97,7 @@ extern LoggerConfig config;
 
 bool compareRtcWithJsonConfig();
 bool JsonFileRead(const String &pfad);
+bool loadLedColorConfigFromLatestFile();
 
 void configureSensorsFromJson();
 void configureWifiFromJson();

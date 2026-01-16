@@ -1416,6 +1416,8 @@ void checkWetSensorThreshold()
     }
     while (isWaterDetected())
     {
+      sdCardIsAvailable();
+
       if (interfaceRdyErrorCounter > 0 || sensorCalibToInterfaceIfRdyErrorCounter > 0)
       {
         validateAndLoadConfig();

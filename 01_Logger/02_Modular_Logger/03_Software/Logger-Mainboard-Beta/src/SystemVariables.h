@@ -23,7 +23,7 @@ extern std::atomic<bool> ledMeasurementsOff;
 
 // Configuration variables
 
-inline float fwVersionLoggerMainboard         = 0.05;
+inline float fwVersionLoggerMainboard         = 0.06;
 inline int maxMeasurementCountForLed          = 5;  // in count
 inline int sampleCastIntervals                = 3;  // in count
 inline int waitAfterUnderwaterMeasurementTime = 30; // in seconds
@@ -102,6 +102,7 @@ inline bool interfaceError                        = false;
 inline RTC_DATA_ATTR bool statusDeepSleep         = true;
 inline RTC_DATA_ATTR std::atomic<bool> statusReedInput{true};
 inline RTC_DATA_ATTR std::atomic<bool> statusIsLoggerBusy{false};
+inline RTC_DATA_ATTR std::atomic<bool> statusConfigUpdate{false};
 
 // Counter variables
 

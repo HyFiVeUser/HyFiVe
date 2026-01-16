@@ -108,6 +108,49 @@ bool JsonFileRead(const String &pfad)
 }
 
 /**
+ * @brief Loads the LED color configuration from the latest config file, if present.
+ * @return bool True if the value was found and applied, false otherwise.
+ */
+bool loadLedColorConfigFromLatestFile()
+{
+  String latestConfigFile = findLatestConfigurationFile("/loggerConfig");
+  if (latestConfigFile.isEmpty())
+  {
+    Log(LogCategoryConfiguration, LogLevelDEBUG, "No configuration file found for LED color config.");
+    return false;
+  }
+
+  String configPath = "/loggerConfig/" + latestConfigFile;
+  File configFile   = SD.open(configPath.c_str(), FILE_READ);
+  if (!configFile)
+  {
+    Log(LogCategoryConfiguration, LogLevelDEBUG, "Failed to open config file for LED color config: ", configPath);
+    return false;
+  }
+
+  StaticJsonDocument<64> filter;
+  filter["led_Color_Config"] = true;
+
+  StaticJsonDocument<128> colorDoc;
+  DeserializationError error = deserializeJson(colorDoc, configFile, DeserializationOption::Filter(filter));
+  configFile.close();
+
+  if (error)
+  {
+    Log(LogCategoryConfiguration, LogLevelDEBUG, "Failed to parse LED color config from: ", configPath);
+    return false;
+  }
+
+  if (colorDoc["led_Color_Config"].isNull())
+  {
+    return false;
+  }
+
+  ledColorConfig = colorDoc["led_Color_Config"].as<uint16_t>();
+  return true;
+}
+
+/**
  * @brief Configures sensors from JSON data.
  */
 void configureSensorsFromJson()

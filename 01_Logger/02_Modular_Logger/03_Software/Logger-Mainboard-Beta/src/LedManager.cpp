@@ -159,8 +159,9 @@ static const uint32_t ledSignalPauseBetweenSignals            = 800;   // ms
 //  Interne Task-Steuerung
 // ------------------------------------------------------------
 
-static TaskHandle_t s_ledTaskHandle = nullptr;
-static QueueHandle_t s_ledQueue     = nullptr;
+static TaskHandle_t s_ledTaskHandle    = nullptr;
+static QueueHandle_t s_ledQueue        = nullptr;
+static bool s_ledTaskSuspendedForError = false;
 
 // Hilfsfunktion: Wartezeit, aber abbrechbar durch neuen Mode
 static bool waitOrNewMode(uint32_t ms, LedMode &newModeOut)
@@ -490,14 +491,14 @@ static LedMode runMode(LedMode mode)
       if (waitOrNewMode(firstOnDurationMs, incoming))
       {
         allOff();
-        sensorStartDone = true; // <-- wichtig!
+        sensorStartDone = true;
         return incoming;
       }
 
       allOff();
       if (waitOrNewMode(firstOffDurationMs, incoming))
       {
-        sensorStartDone = true; // <-- wichtig!
+        sensorStartDone = true;
         return incoming;
       }
     }
@@ -612,6 +613,12 @@ void ledControl(LedMode mode)
 
 void generalError()
 {
+  if (s_ledTaskHandle && !s_ledTaskSuspendedForError)
+  {
+    vTaskSuspend(s_ledTaskHandle);
+    s_ledTaskSuspendedForError = true;
+  }
+
   for (int y = 0; y < 10; y++)
   {
     for (int i = 0; i < 3; i++)
@@ -642,6 +649,8 @@ void generalError()
   if (generalErrorCounter >= 3)
   {
     generalErrorCounter = 0;
+    interfaceSleep();
+    delay(1000);
     enableExternalWakeup(20); // activate Logger if power supply connection
     enableExternalWakeup(17); // activate Logger if reed connection
     statusDeepSleep = true;

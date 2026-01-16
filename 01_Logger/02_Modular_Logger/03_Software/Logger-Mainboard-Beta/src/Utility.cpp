@@ -431,6 +431,7 @@ void interfaceRST()
  */
 void performFirstBootOperations()
 {
+  loadLedColorConfigFromLatestFile();
   if (!isFirstBoot)
   {
     Log(LogCategoryGeneral, LogLevelINFO, "-------------------Start System initialization-------------------");
@@ -1190,6 +1191,10 @@ void monitorReedInputTask(void *parameter)
 
       lowDurationMs = now - lowStartMs; // funktioniert auch bei millis()-Overflow
       Serial.printf("Pin %u state: LOW for %lu ms \n", REED_INPUT_PIN, lowDurationMs);
+
+      lastState = reedState;
+      vTaskDelay(pdMS_TO_TICKS(1000));
+      continue;
     }
     else
     {
@@ -1208,7 +1213,7 @@ void monitorReedInputTask(void *parameter)
             delay(10);
           };
 
-          configUpdatePeriodeFunktion(0);
+          statusConfigUpdate.store(true);
         }
 
         if (lowDurationMs >= 9000 && lowDurationMs <= 14000)
