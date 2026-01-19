@@ -48,8 +48,6 @@ enum LogCategory
   LogCategoryRTC,
   LogCategoryPowerManagement,
   LogCategoryConfiguration,
-  LogCategoryError,
-  LogCategoryDebug,
   LogCategoryMeasurement,
 };
 
@@ -85,10 +83,6 @@ inline std::string LogCategoryToString(LogCategory category)
     return "PowerManagement";
   case LogCategoryConfiguration:
     return "Configuration";
-  case LogCategoryError:
-    return "Error";
-  case LogCategoryDebug:
-    return "Debug";
   case LogCategoryMeasurement:
     return "Measurement";
   default:

@@ -71,5 +71,6 @@ void getFirmwareUpdate();
 
 void askForConfigReq();
 void reedMonitorInit();
+void holdOnReedInputPressed();
 
 #endif

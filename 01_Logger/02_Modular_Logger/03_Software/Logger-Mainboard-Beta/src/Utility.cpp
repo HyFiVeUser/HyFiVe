@@ -17,6 +17,7 @@
 #include "Charger.h"
 #include "DS3231TimeNtp.h"
 #include "DebuggingSDLog.h"
+#include "DebuggingSDSetLog.h"
 #include "DeepSleep.h"
 #include "LedManager.h"
 #include "MQTTManager.h"
@@ -446,6 +447,7 @@ void performFirstBootOperations()
     interfaceSleep();
     updateFirmware();
     validateAndLoadConfig();
+    applyLogLevelSettings();
     connectToWifiAndSyncNTP();
     interfaceRST();
     sensorAvailability();
@@ -1230,7 +1232,7 @@ void monitorReedInputTask(void *parameter)
           ESP.restart();
         }
 
-        if (lowDurationMs > 15000)
+        if (lowDurationMs >= 14000 && lowDurationMs <= 19000)
         {
 
           interfaceSleep();
@@ -1267,4 +1269,15 @@ void reedMonitorInit()
 {
   xTaskCreatePinnedToCore(monitorReedInputTask, "ReedMonitor", 4096, nullptr, 2, nullptr, 1 // Core 1
   );
+}
+
+void holdOnReedInputPressed()
+{
+  if (!isFirstBoot)
+  {
+    while (digitalRead(REED_INPUT_PIN) == LOW)
+    {
+      delay(500);
+    }
+  }
 }

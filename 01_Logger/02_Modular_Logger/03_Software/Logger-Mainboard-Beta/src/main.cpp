@@ -14,6 +14,7 @@
 #include "BMS.h"
 #include "DS3231TimeNtp.h"
 #include "DebuggingSDLog.h"
+#include "DebuggingSDSetLog.h"
 #include "DeepSleep.h"
 #include "LedManager.h"
 #include "MQTTManager.h"
@@ -29,6 +30,8 @@ unsigned long tLoopEnd   = 0;
 void setup()
 {
   Serial.begin(115200);
+  
+  holdOnReedInputPressed();
 
   if (startKey != 0x47454D31)
   {
@@ -43,6 +46,7 @@ void setup()
   initBmsAndRtc();
   initializeSdCard();
   performFirstBootOperations();
+  applyLogLevelSettings();
   Serial.println("-------------------------------------------------0    1");
   if (statusDeepSleep)
   {
@@ -60,6 +64,12 @@ void loop()
   Serial.println(generalErrorCounter);
   Serial.println("startKey");
   Serial.println(startKey);
+
+  Serial.println("inactive_Measurement_periode");
+  Serial.println(inactivityTimeoutSec);
+
+  Serial.println("logGeneral");
+  Serial.println(generalLogLevel);
 
   sdCardIsAvailable();
 
@@ -137,7 +147,7 @@ void loop()
   wiFiDisconnect();
   Serial.flush();
   esp_deep_sleep_start(); //! wichtig für MQTT Parameter reset
-  //esp_light_sleep_start();
+  // esp_light_sleep_start();
 
   // tLoopEnd = millis();
   // unsigned long loopDiff = tLoopEnd - tLoopStart;

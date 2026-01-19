@@ -29,7 +29,5 @@ std::map<LogCategory, LogLevel> logSettings = {
   {LogCategoryRTC,             LogLevelINFO},
   {LogCategoryPowerManagement, LogLevelINFO},
   {LogCategoryConfiguration,   LogLevelINFO},
-  {LogCategoryError,           LogLevelINFO},
-  {LogCategoryDebug,           LogLevelINFO},
   {LogCategoryMeasurement,     LogLevelINFO}
 };

@@ -12,6 +12,7 @@
 #include <ArduinoJson.h>
 #include <MQTT.h>
 #include <WiFi.h>
+#include <cstring>
 #include <regex>
 
 #include "BMS.h"
@@ -45,6 +46,12 @@ const char *mqttPassword = "";
  */
 bool transmitUpdateMessage(const char *updateInfo, const char *mqtt_topic)
 {
+  String updatePayload = updateInfo;
+  if (strcmp(mqtt_topic, "hyfive/ConfigError") == 0)
+  {
+    updatePayload = "[Logger ID: " + String(configRTC.logger_id) + "]; " + updatePayload;
+  }
+
   uint8_t errorCount = 0;
   while (1)
   {
@@ -53,7 +60,7 @@ bool transmitUpdateMessage(const char *updateInfo, const char *mqtt_topic)
     {
       if (client.connected())
       {
-        if (client.publish(mqtt_topic, updateInfo, false, 2) == 0)
+        if (client.publish(mqtt_topic, updatePayload.c_str(), false, 2) == 0)
         {
           hasTransmissionUpdateError = true;
           Log(LogCategoryMQTT, LogLevelDEBUG, "The message could not be sent");
@@ -1025,6 +1032,15 @@ bool transmitLogViaMqtt()
       }
       else
       {
+        if (buf.indexOf("[ERROR]") >= 0)
+        {
+          const char config_error_topic[] = "hyfive/ConfigError";
+          if (client.publish(config_error_topic, payload, false, 2) == 0)
+          {
+            Log(LogCategoryMQTT, LogLevelDEBUG, "ConfigError could not be transmitted");
+            mqttErrorCounter++;
+          }
+        }
         LogState.lineNumber++;
         saveLogTransmissionState(LogState);
         hasMqttLogError = false;

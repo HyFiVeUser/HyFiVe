@@ -22,21 +22,18 @@
 extern std::atomic<bool> ledMeasurementsOff;
 
 // Configuration variables
-
-inline float fwVersionLoggerMainboard         = 0.06;
+inline float fwVersionLoggerMainboard         = 0.07;
 inline int maxMeasurementCountForLed          = 5;  // in count
 inline int sampleCastIntervals                = 3;  // in count
 inline int waitAfterUnderwaterMeasurementTime = 30; // in seconds
 
 // Variables for the periods
-
 inline uint32_t config_update_periode     = configRTC.config_update_periode;     // configRTC.config_update_periode;
 inline uint32_t status_upload_periode     = configRTC.status_upload_periode;     // configRTC.status_upload_periode;
 inline uint32_t wet_det_periode           = configRTC.wet_det_periode;           // configRTC.wet_det_periode;
 inline uint32_t data_upload_retry_periode = configRTC.data_upload_retry_periode; // configRTC.data_upload_retry_periode;
 
 // General variables
-
 inline uint32_t minTimeUntilNextFunction = 0;
 inline bool hasWifiConnection            = false;
 inline bool isNtpSynchronized            = false;
@@ -47,7 +44,6 @@ inline RTC_DATA_ATTR int lastSuccessfulNetworkIndex = -1;
 inline RTC_DATA_ATTR int SensorArraySize            = 0;
 
 // Sensor-specific variables
-
 inline RTC_DATA_ATTR uint8_t needVoltage                                             = 0;
 inline RTC_DATA_ATTR uint8_t temperatureSensorBusAddress                             = 255;
 inline RTC_DATA_ATTR uint8_t temperatureSensorParameter                              = 255;
@@ -63,7 +59,6 @@ inline RTC_DATA_ATTR uint8_t errorSkipSensor[32]                                
 inline RTC_DATA_ATTR uint8_t errorSkipSensorSize                                     = 0;
 
 // Time-related variables
-
 inline RTC_DATA_ATTR uint32_t totalElapsedTime                    = 0;
 inline RTC_DATA_ATTR uint32_t lastConfigUpdateTime                = 0; // configRTC.config_update_periode;
 inline RTC_DATA_ATTR uint32_t lastStatusUploadTime                = 0; // configRTC.status_upload_periode;
@@ -77,7 +72,6 @@ inline RTC_DATA_ATTR uint32_t secInactivityTimeoutSec             = 0;
 inline RTC_DATA_ATTR uint32_t inactivityTimeoutSec                = 900; // seconds
 
 // Status information
-
 inline RTC_DATA_ATTR bool isFirstBoot                = false;
 inline RTC_DATA_ATTR bool isLoggerSubmerged          = false;
 inline RTC_DATA_ATTR bool hasStatusUploadError       = false;
@@ -92,6 +86,7 @@ inline bool isNodeRedBusy                            = true;
 inline bool isNodeRedLogin                           = false;
 inline bool isNodeRedStatus                          = false;
 inline bool isFirmwareUpdate                         = false;
+
 // inline bool isLoggerBusy = false;
 inline RTC_DATA_ATTR bool chargingStatus          = false;
 inline RTC_DATA_ATTR bool batteryCompletlyCharged = false;
@@ -105,7 +100,6 @@ inline RTC_DATA_ATTR std::atomic<bool> statusIsLoggerBusy{false};
 inline RTC_DATA_ATTR std::atomic<bool> statusConfigUpdate{false};
 
 // Counter variables
-
 inline RTC_DATA_ATTR int bootAttemptCount                            = 0;
 inline RTC_DATA_ATTR int detectionThresholdValue                     = 0;
 inline RTC_DATA_ATTR int numberOfActiveSensors                       = 0;
@@ -120,7 +114,6 @@ RTC_NOINIT_ATTR inline uint32_t startKey;
 RTC_NOINIT_ATTR inline uint8_t generalErrorCounter;
 
 // Measurement data variables
-
 inline RTC_DATA_ATTR float totalOperationTime                                = 0;
 inline RTC_DATA_ATTR float lastSensorMeasurementTime[MAX_SENSOR_CREDENTIALS] = {};
 inline RTC_DATA_ATTR float intervalSensorArray[MAX_SENSOR_CREDENTIALS];
@@ -129,7 +122,6 @@ inline RTC_DATA_ATTR uint32_t deployment_id            = 0;
 inline RTC_DATA_ATTR uint32_t interfaceErrorSensorId   = 0;
 
 // File processing variables
-
 inline RTC_DATA_ATTR long totalMeasurementLines      = 0;
 inline RTC_DATA_ATTR bool countTotalMeasurementLines = true;
 
@@ -142,5 +134,20 @@ inline RTC_DATA_ATTR uint32_t lowDurationMs  = 0;
 inline RTC_DATA_ATTR uint32_t lowStartMs     = 0;
 inline RTC_DATA_ATTR uint16_t ledColorConfig = 231; // RGB color selection (hundreds: normal, tens: interaction, ones: errors)
 inline RTC_DATA_ATTR uint8_t rgbVersion      = 0;   // RGB hardware version selector
+
+// Debugging
+inline RTC_DATA_ATTR uint8_t generalLogLevel         = 3;
+inline RTC_DATA_ATTR uint8_t sensorsLogLevel         = 3;
+inline RTC_DATA_ATTR uint8_t underwaterLogLevel      = 3;
+inline RTC_DATA_ATTR uint8_t aboveWaterLogLevel      = 3;
+inline RTC_DATA_ATTR uint8_t bmsLogLevel             = 3;
+inline RTC_DATA_ATTR uint8_t chargerLogLevel         = 3;
+inline RTC_DATA_ATTR uint8_t wiFiLogLevel            = 3;
+inline RTC_DATA_ATTR uint8_t mqttLogLevel            = 3;
+inline RTC_DATA_ATTR uint8_t sdCardLogLevel          = 3;
+inline RTC_DATA_ATTR uint8_t rtcLogLevel             = 3;
+inline RTC_DATA_ATTR uint8_t powerManagementLogLevel = 3;
+inline RTC_DATA_ATTR uint8_t configurationLogLevel   = 3;
+inline RTC_DATA_ATTR uint8_t measurementLogLevel     = 3;
 
 #endif

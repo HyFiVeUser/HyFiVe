@@ -471,16 +471,4 @@ void validateBasicConfiguration()
   validateNumericValue(docValidation, "deployment_contact_id", 0, 65535);
   isValidAsciiString(docValidation, "contact_first_name", 45);
   isValidAsciiString(docValidation, "contact_last_name", 45);
-  if (docValidation.containsKey("led_Color_Config"))
-  {
-    validateNumericValue(docValidation, "led_Color_Config", 0, 999);
-  }
-  if (docValidation.containsKey("inactive_Measurement_periode"))
-  {
-    validateNumericValue(docValidation, "inactive_Measurement_periode", 0, 86400);
-  }
-  if (docValidation.containsKey("rgb_version"))
-  {
-    validateNumericValue(docValidation, "rgb_version", 0, 255);
-  }
 }

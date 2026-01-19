@@ -42,6 +42,7 @@ bool initializeSdCard()
   }
   else
   {
+    Serial.println("SD card initialized fail");
     generalError();
     return false;
   }

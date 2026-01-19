@@ -19,6 +19,7 @@
 #include "Utility.h"
 #include "loggerConfig.h"
 #include "loggerConfigValidation.h"
+#include "DebuggingSDSetLog.h"
 
 LoggerConfig config;
 
@@ -324,6 +325,20 @@ void configureBasicSettingsFromJson()
   {
     rgbVersion = 0;
   }
+
+if (!doc["logGeneral"].isNull())  {    generalLogLevel         = doc["logGeneral"];  }  else  {    generalLogLevel         = 1;  }
+if (!doc["logSensors"].isNull())  {    sensorsLogLevel         = doc["logSensors"];  }  else  {    sensorsLogLevel         = 1;  }
+if (!doc["logUnderwater"].isNull())  {    underwaterLogLevel      = doc["logUnderwater"];  }  else  {    underwaterLogLevel      = 1;  }
+if (!doc["logAboveWater"].isNull())  {    aboveWaterLogLevel      = doc["logAboveWater"];  }  else  {    aboveWaterLogLevel      = 1;  }
+if (!doc["logBMS"].isNull())  {    bmsLogLevel             = doc["logBMS"];  }  else  {    bmsLogLevel             = 1;  }
+if (!doc["logCharger"].isNull())  {    chargerLogLevel         = doc["logCharger"];  }  else  {    chargerLogLevel         = 1;  }
+if (!doc["logWiFi"].isNull())  {    wiFiLogLevel            = doc["logWiFi"];  }  else  {    wiFiLogLevel            = 1;  }
+if (!doc["logMQTT"].isNull())  {    mqttLogLevel            = doc["logMQTT"];  }  else  {    mqttLogLevel            = 1;  }
+if (!doc["logSDCard"].isNull())  {    sdCardLogLevel          = doc["logSDCard"];  }  else  {    sdCardLogLevel          = 1;  }
+if (!doc["logRTC"].isNull())  {    rtcLogLevel             = doc["logRTC"];  }  else  {    rtcLogLevel             = 1;  }
+if (!doc["logPowerManagement"].isNull())  {    powerManagementLogLevel = doc["logPowerManagement"];  }  else  {    powerManagementLogLevel = 1;  }
+if (!doc["logConfiguration"].isNull())  {    configurationLogLevel   = doc["logConfiguration"];  }  else  {    configurationLogLevel   = 1;  }
+if (!doc["logMeasurement"].isNull())  {    measurementLogLevel     = doc["logMeasurement"];  }  else  {    measurementLogLevel     = 1;  }
 
   saveSamplePeriodeToResetAfterUnderwaterMeasurementsEnd = configRTC.sample_periode;
 }
