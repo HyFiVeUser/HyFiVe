@@ -39,8 +39,11 @@ static size_t computeConfigPayloadCapacity()
         return 0;
     }
 
-    const size_t available = attBytes - headerSize;
-    return (available < structCapacity) ? available : structCapacity;
+    // const size_t available = attBytes - headerSize;
+    // return (available < structCapacity) ? available : structCapacity;
+
+    // for now max payload is always 170
+    return 170;
 }
 
 // Packet receiver for chunked transfer
@@ -275,7 +278,9 @@ public:
     {
         std::string value = pCharacteristic->getValue();
 
-        if (value.length() == sizeof(ConfigTransferPacket))
+        // Messages don't have to be padded to max length. So check, that at
+        // least 10 header bytes are there
+        if (value.length() >= 10)
         {
             ConfigTransferPacket *packet = (ConfigTransferPacket *)value.data();
 
@@ -545,7 +550,6 @@ void pollConfigUploadTimeout()
         bleConfigUploadActive = false;
     }
 }
-
 
 bool isConfigUploadActive()
 {

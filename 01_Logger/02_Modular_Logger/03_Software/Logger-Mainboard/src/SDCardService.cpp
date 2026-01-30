@@ -239,6 +239,8 @@ bool SDCardService::sendToApp(String response, uint16_t connHandle)
 
 void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
 {
+  // workaround to check when the last batch for the current transmission is sent
+  static uint32_t lastCount = UINT32_MAX;
   String response;
   LOG_I("[BLE SD] process cmd=0x%02X", command);
   switch (command)
@@ -251,6 +253,9 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
     getMeasurementIndexCounts(measured, transmitted);
 
     response += String(measured);
+
+    // remember the last count sent to the app.
+    lastCount = measured;
 
     Serial.println("CMD_TOTAL_COUNT");
     Serial.println(response);
@@ -267,6 +272,9 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
 
     uint32_t pending = (measured > transmitted) ? (measured - transmitted) : 0;
     response += String(pending);
+
+    // remember the last count sent to the app.
+    lastCount = measured;
 
     Serial.println("CMD_NEW_COUNT");
     Serial.println(response);
@@ -341,7 +349,11 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
     Serial.println(response);
 
     // Update transfer counters
-    if (haveCounts && (int)measured > 0 && start <= end)
+
+    // Only update the transfer counters after the last batch of measurements is sent.
+    // The app only requests the measurements included in the last count request.
+    // So lastCount-1 is the last index the app is requesting in this transmission.
+    if (end >= lastCount - 1 && haveCounts && (int)measured > 0 && start <= end)
     {
       uint32_t rangeEndPlusOne = (uint32_t)(end + 1);
       if (rangeEndPlusOne > measured)
@@ -384,6 +396,14 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
     // Clamp bounds based on measured count
     uint32_t measured = 0, transmitted = 0;
     bool haveCounts = getMeasurementIndexCounts(measured, transmitted);
+
+    // For getting new measurements the app is expecting index 0 to be the first
+    // "new" measurement. So shift the indices by the number of already transmitted
+    // measurements.
+    // That's why you can only update the transmitted count after the last batch.
+    // transmitted needs to stay the same for all the batches in this transmission.
+    start += transmitted;
+    end += transmitted;
     if (haveCounts && (int)measured > 0)
     {
       int maxIdx = (int)measured - 1;
@@ -427,7 +447,9 @@ void SDCardService::processCommand(uint8_t command, uint16_t connHandle)
     Serial.println(response);
 
     // Update transfer counters
-    if (haveCounts && (int)measured > 0 && start <= end)
+
+    // Same as above. Only update transfer counters after the last batch.
+    if (end >= lastCount - 1 && haveCounts && (int)measured > 0 && start <= end)
     {
       uint32_t rangeEndPlusOne = (uint32_t)(end + 1);
       if (rangeEndPlusOne > measured)
