@@ -6,7 +6,6 @@
 - [x] Akku-Ladevorgang erreicht nicht immer 100 %.
 
 ## Wichtig
-- [ ] anpassen der README.md (https://github.com/HyFiVeUser/HyFiVe/tree/main/01_Logger/02_Modular_Logger/03_Software)
 - [x] RGB-LED Prioritäten prüfen, weil es noch Überlagerungen gibt
 - [x] Zyklusabweichung prüfen: Differenz zwischen konfiguriertem und tatsächlichem Zyklus:
     Ja es gib Abweichungen.
