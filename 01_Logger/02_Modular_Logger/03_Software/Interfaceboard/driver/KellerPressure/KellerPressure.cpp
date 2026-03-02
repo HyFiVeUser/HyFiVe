@@ -13,64 +13,70 @@
 #include <driver/KellerPressure/KellerPressure.h>
 #include "sensor_config.h"
 
-#define LD_REQUEST                  0xAC
-#define LD_CUST_ID0                 0x00
-#define LD_CUST_ID1                 0x01
-#define LD_SCALING0                 0x12
-#define LD_SCALING1                 0x13
-#define LD_SCALING2                 0x14
-#define LD_SCALING3                 0x15
-#define LD_SCALING4                 0x16
+#define LD_REQUEST 0xAC
+#define LD_CUST_ID0 0x00
+#define LD_CUST_ID1 0x01
+#define LD_SCALING0 0x12
+#define LD_SCALING1 0x13
+#define LD_SCALING2 0x14
+#define LD_SCALING3 0x15
+#define LD_SCALING4 0x16
 
-//KellerPressure::KellerPressure()
+// KellerPressure::KellerPressure()
 //{
-//    // TODO Auto-generated constructor stub
-//}
+//     // TODO Auto-generated constructor stub
+// }
 
 KellerPressure::~KellerPressure()
 {
-//    delete m_keller;
-//    delete m_i2c;
+    //    delete m_keller;
+    //    delete m_i2c;
 }
 
-uint8_t KellerPressure::getParameter(){
+uint8_t KellerPressure::getParameter()
+{
     return 0x02;
 }
 
-
-uint8_t KellerPressure::getExternParameter(){
+uint8_t KellerPressure::getExternParameter()
+{
     return 0xFF;
 }
 
-uint32_t KellerPressure::getVersion(){
+uint32_t KellerPressure::getVersion()
+{
     return keller_pressure_series_20;
 }
 
 bool KellerPressure::setCalib(float cal, uint8_t coeffToSet)
 {
-    //no calibration possible until now
-    return true;
+    if (coeffToSet == 1)
+    { // 1 = Pressure Offset [mbar]
+        pressure_offset_mbar = cal;
+        calibrated = true;
+        return true;
+    }
+    return false;
 }
 
 bool KellerPressure::getCalibrated()
 {
-    //sensor does not need to get calibrated
-    return true;
+    return calibrated;
 }
 
 bool KellerPressure::init()
 {
-//    m_i2c = new TwoWire();
-//    if (m_i2c == nullptr) {
-//        return false;
-//    }
-//    m_keller = new KellerLD();
-//    if (m_keller == nullptr) {
-//        delete m_i2c;
-//        return false;
-//    }
-//    m_keller.init(this);
-//    return m_keller.isInitialized();
+    //    m_i2c = new TwoWire();
+    //    if (m_i2c == nullptr) {
+    //        return false;
+    //    }
+    //    m_keller = new KellerLD();
+    //    if (m_keller == nullptr) {
+    //        delete m_i2c;
+    //        return false;
+    //    }
+    //    m_keller.init(this);
+    //    return m_keller.isInitialized();
 
     fluidDensity = 1029;
 
@@ -92,13 +98,18 @@ bool KellerPressure::init()
 
     // handle P-mode pressure offset (to vacuum pressure)
 
-    if (mode == 0) {
+    if (mode == 0)
+    {
         // PA mode, Vented Gauge. Zero at atmospheric pressure
         P_mode = 1.01325;
-    } else if (mode == 1) {
+    }
+    else if (mode == 1)
+    {
         // PR mode, Sealed Gauge. Zero at 1.0 bar
         P_mode = 1.0;
-    } else {
+    }
+    else
+    {
         // PAA mode, Absolute. Zero at vacuum
         // (or undefined mode)
         P_mode = 0;
@@ -106,11 +117,11 @@ bool KellerPressure::init()
 
     uint32_t scaling12 = (uint32_t(readMemoryMap(LD_SCALING1)) << 16) | readMemoryMap(LD_SCALING2);
 
-    P_min = *reinterpret_cast<float*>(&scaling12);
+    P_min = *reinterpret_cast<float *>(&scaling12);
 
     uint32_t scaling34 = (uint32_t(readMemoryMap(LD_SCALING3)) << 16) | readMemoryMap(LD_SCALING4);
 
-    P_max = *reinterpret_cast<float*>(&scaling34);
+    P_max = *reinterpret_cast<float *>(&scaling34);
 
     return isInitialized();
 }
@@ -133,9 +144,9 @@ bool KellerPressure::startConversion()
 
 bool KellerPressure::getRAWValue(int64_t *aval)
 {
-    //for now we send -1, no valid raw value
-    aval[0] = -1; //P;
-    aval[1] = -1; //T;
+    // for now we send -1, no valid raw value
+    aval[0] = -1; // P;
+    aval[1] = -1; // T;
     return true;
 }
 
@@ -143,10 +154,12 @@ bool KellerPressure::getCalculatedValue(int64_t *aval)
 {
     float fPressure = 0;
 
-    fPressure = pressure(1);
+    // fPressure = pressure(1);
+    fPressure = pressure(1) + pressure_offset_mbar;
     //*aval = static_cast<uint64_t>(fPressure);
 
-    union {
+    union
+    {
         float float_variable;
         unsigned char temp_array[4];
     } u;
@@ -159,11 +172,13 @@ bool KellerPressure::getCalculatedValue(int64_t *aval)
     return true;
 }
 
-void KellerPressure::setFluidDensity(float density) {
+void KellerPressure::setFluidDensity(float density)
+{
     fluidDensity = density;
 }
 
-bool KellerPressure::read() {
+bool KellerPressure::read()
+{
     bool bResult;
     uint8_t answer[5];
     uint8_t status;
@@ -171,7 +186,7 @@ bool KellerPressure::read() {
 
     bResult = sendBytes_i2c(1, &byteLo);
 
-    __delay_cycles(200000); //25ms
+    __delay_cycles(200000); // 25ms
 
     bResult = readBytes_i2c(sizeof(answer), answer);
     status = answer[0];
@@ -182,13 +197,14 @@ bool KellerPressure::read() {
     byteLo = answer[4];
     T = (byteHi << 8) | byteLo;
 
-    P_bar = (float(P)-16384)*(P_max-P_min)/32768 + P_min + P_mode;
-    T_degc = ((T>>4)-24)*0.05-50;
+    P_bar = (float(P) - 16384) * (P_max - P_min) / 32768 + P_min + P_mode;
+    T_degc = ((T >> 4) - 24) * 0.05 - 50;
 
     return bResult;
 }
 
-uint16_t KellerPressure::readMemoryMap(uint8_t mtp_address) {
+uint16_t KellerPressure::readMemoryMap(uint8_t mtp_address)
+{
     bool bResult;
     uint8_t answer[3];
     uint8_t status;
@@ -205,35 +221,44 @@ uint16_t KellerPressure::readMemoryMap(uint8_t mtp_address) {
     return ((byteHi << 8) | byteLo);
 }
 
-bool KellerPressure::status() {
-    if (equipment <= 62 ) {
+bool KellerPressure::status()
+{
+    if (equipment <= 62)
+    {
         return true;
-    } else {
+    }
+    else
+    {
         return false;
     }
 }
 
-float KellerPressure::range() {
-    return P_max-P_min;
+float KellerPressure::range()
+{
+    return P_max - P_min;
 }
 
-float KellerPressure::pressure(float conversion) {
-    return P_bar*1000.0f*conversion;
+float KellerPressure::pressure(float conversion)
+{
+    return P_bar * 1000.0f * conversion;
 }
 
-float KellerPressure::temperature() {
+float KellerPressure::temperature()
+{
     return T_degc;
 }
 
-float KellerPressure::depth() {
-    return (pressure(KellerPressure::Pa)-101325)/(fluidDensity*9.80665);
+float KellerPressure::depth()
+{
+    return (pressure(KellerPressure::Pa) - 101325) / (fluidDensity * 9.80665);
 }
 
-float KellerPressure::altitude() {
-    return (1-pow((pressure()/1013.25),0.190284))*145366.45*.3048;
+float KellerPressure::altitude()
+{
+    return (1 - pow((pressure() / 1013.25), 0.190284)) * 145366.45 * .3048;
 }
 
-bool KellerPressure::isInitialized() {
+bool KellerPressure::isInitialized()
+{
     return (cust_id0 >> 10) != 63; // If not connected, equipment code == 63
 }
-

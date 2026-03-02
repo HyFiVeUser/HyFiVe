@@ -6,7 +6,7 @@
  * Project: Hydrography on Fishing Vessels
  * Project URL: <https://github.com/HyFiVeUser/HyFiVe>, <https://hyfive.info>
  *
-* Description: Driver to read from Keller Sensor via I2C
+ * Description: Driver to read from Keller Sensor via I2C
  */
 
 #ifndef DRIVER_KELLERPRESSURE_KELLERPRESSURE_H_
@@ -21,7 +21,7 @@ public:
     static constexpr float bar = 0.001f;
     static constexpr float mbar = 1.0f;
 
-    KellerPressure(uint8_t address) : Csensor_i2c(address) {}; //use constructor of base class
+    KellerPressure(uint8_t address) : Csensor_i2c(address) {}; // use constructor of base class
     virtual ~KellerPressure();
     virtual bool init();
     virtual bool hibernate();
@@ -89,15 +89,15 @@ public:
     float P_max;
 
 private:
-    //TwoWire     m_i2c;
-    //KellerLD    m_keller;
+    // TwoWire     m_i2c;
+    // KellerLD    m_keller;
     float fluidDensity;
     float T_degc;
-
     uint16_t cust_id0;
     uint16_t cust_id1;
-
     uint16_t readMemoryMap(uint8_t mtp_address);
+    bool calibrated = false;
+    float pressure_offset_mbar = 0.0f;
 };
 
 #endif /* DRIVER_KELLERPRESSURE_KELLERPRESSURE_H_ */

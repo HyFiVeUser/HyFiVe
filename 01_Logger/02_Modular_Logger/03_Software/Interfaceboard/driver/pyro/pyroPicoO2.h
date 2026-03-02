@@ -45,7 +45,8 @@ private:
     char answer[40];
     char cal[K01CALCOEFF][12];
     int32_t dphi;
-    float val;
+    float oxygenUMol;
+    float oxygenMBar;
 };
 
 #endif /* DRIVER_PYRO_PYROPICOO2_H_ */

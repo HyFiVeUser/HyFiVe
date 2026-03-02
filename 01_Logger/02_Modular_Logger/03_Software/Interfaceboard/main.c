@@ -384,7 +384,7 @@ int main(void)
     CTSYS01 sensor(0x77);
 
 #elif SELECTED_SENSOR == 3
-    FW_VERSION = 2;
+    FW_VERSION = 3;
     sensorWakeUpTime = 1000;
     KellerPressure sensor(0x40);
 
@@ -394,7 +394,7 @@ int main(void)
     AtlasEZO::AtlasEZO sensor(0);
 
 #elif SELECTED_SENSOR == 5
-    FW_VERSION = 1;
+    FW_VERSION = 2;
     sensorWakeUpTime = 1000;
     pyroPicoO2 sensor(0);
 

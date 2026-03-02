@@ -16,13 +16,13 @@
 //-----------------:---------------------:-------------------------------:--------------------------------:-----------------:----------:-----
 // 1               : blue_robotics       : pressure                      : bar30                          : 1               : +3.3V    : 1
 // 2               : blue_robotics       : temperature                   : celsius_fast_response          : 2               : +3.3V    : 1
-// 3               : keller              : pressure                      : series_20                      : 6               : +3.3V    : 2
+// 3               : keller              : pressure                      : series_20                      : 6               : +3.3V    : 3
 // 4               : atlas_scientific    : conductivity                  : k0.1 | k1.0                    : 3 | 10          : +3.3V    : 1
-// 5               : pyroscience         : oxygen                        : oxycap_sub | oxycap_hs_sub     : 9 | 11          : +3.3V    : 1
+// 5               : pyroscience         : oxygen                        : oxycap_sub | oxycap_hs_sub     : 9 | 11          : +3.3V    : 2
 // 6               : Turner              : turbidity | phycoerythrin     : C-Flour_TRB | C-Flour_PE       : 12 | 13         : +5.0V    : 3
 
 // SELECTED_SENSOR
-#define SELECTED_SENSOR 6
+#define SELECTED_SENSOR 5
 
 //in code:
 enum SENSOR_LIST{

@@ -140,7 +140,7 @@ bool pyroPicoO2::getRAWValue(int64_t *aval)
     {
         // searching for measurement command tag, receiving pointer to corresponding segment of c string
         char *pch = strstr((const char *)data, "MEA");
-        // float val; //oxygenUMolar member!
+        // float oxygenUMol; //oxygenUMolar member!
         const char delim[2] = " ";
         if (pch != NULL)
         {
@@ -158,8 +158,8 @@ bool pyroPicoO2::getRAWValue(int64_t *aval)
             // setting relevant measurement outputs
             int interpreteErrInt = (atoi(measArray[4 - 1]));
             dphi = (atoi(measArray[4 + 1 - 1]));
-            val = strtof(measArray[4 + 2 - 1], NULL) * 0.001;
-            float oxygenMBar = strtof(measArray[4 + 3 - 1], NULL) * 0.001;
+            oxygenUMol = strtof(measArray[4 + 2 - 1], NULL) * 0.001;
+            oxygenMBar = strtof(measArray[4 + 3 - 1], NULL) * 0.001;
             float humidityInCase = strtof(measArray[4 + 10 - 1], NULL) * 0.001;
             float tempSample = strtof(measArray[4 + 5 - 1], NULL) * 0.001;
             float tempCase = strtof(measArray[4 + 6 - 1], NULL) * 0.001;
@@ -185,7 +185,7 @@ bool pyroPicoO2::getCalculatedValue(int64_t *aval)
         float float_variable;
         unsigned char temp_array[4];
     } u;
-    u.float_variable = val;
+    u.float_variable = oxygenMBar;
     memcpy(&aval[0], u.temp_array, 4);
 
     return true;
