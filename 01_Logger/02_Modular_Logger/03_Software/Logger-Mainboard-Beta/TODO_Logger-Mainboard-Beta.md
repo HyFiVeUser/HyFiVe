@@ -1,6 +1,8 @@
-# TODO Software V0.07
+# TODO Software
 
 ## Kritisch
+- [ ] Keller PAA-20D: Interfaceboard Offset Korrektur per Config in mbar
+- [ ] PICO-O2-SUB: Interfaceboard Ausgabe auf Partialdruck umstellen
 - [x] Akku-Ladevorgang erreicht nicht immer 100 %.
 
 ## Wichtig
