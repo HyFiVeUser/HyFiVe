@@ -134,54 +134,34 @@
 
 #### Standard Connection Configuration
 1. Ensure the Interfaceboard is unpowered.
-2. Place a jumper on X203 between Pin 1 and Pin 2, [see JTAG Connector for Interfaceboard](../01_Electronics/README.md).
-3. Connect +3.3V to the pin header X201 (Pin1: +3.3V, Pin4: GND), [see Pinout of Interfaceboard Connector](../01_Electronics/README.md).
-4. Connect the TI MSP-FET Flash Emulation Tool (programming connector) correctly, [see JTAG Connector for Interfaceboard](../01_Electronics/README.md).
-5. Turn on the power supply.
-
-#### Alternative Connection Configuration
-> ⚠️ Caution is advised with this configuration to avoid potential overload of the programmer. Ensure the programmer is designed for the required current output.
-
-1. Ensure the Interfaceboard is unpowered.
-2. Place a jumper on X203 between Pin 2 and Pin 3, [see JTAG Connector for Interfaceboard](../01_Electronics/README.md).
-3. Connect the TI MSP-FET Flash Emulation Tool (programming connector) correctly, [see JTAG Connector for Interfaceboard](../01_Electronics/README.md).
-4. Turn on the power supply.
+2. Connect the TI MSP-FET Flash Emulation Tool (programming connector) correctly, [see JTAG Connector for Interfaceboard](../01_Electronics/README.md).
 
 ### 2. Software Installation and Setup
 
 1. Download Code Composer Studio (CCS): [https://www.ti.com/tool/CCSTUDIO#downloads](https://www.ti.com/tool/CCSTUDIO#downloads).
-2. Select "CCSTUDIO — Code Composer Studio™ IDE" (tested with versions 10.4.0 and 12.8.0).
+2. Select "CCSTUDIO — Code Composer Studio™ IDE" (tested with versions CCS 20.4.1).
 3. Perform a full installation.
-4. On first launch, create a workspace (do not create it in the project folder).
+4. On first launch, MSP430Ware is required. Please download “MSP430Ware - 3.80.14.01” via View -> Resource Explorer.
+
 
 ### 3. Importing the Project
 
-1. Navigate to: `File` -> `Import...`
-2. Select: `C/C++` -> `CCS Projects` -> `Next`
-3. Use `Browse...` to select the Interfaceboard folder containing the `main.c` file.
-4. The project will appear under `Discovered projects` and should already be marked.
-5. Click `Finish` to complete the import.
+1. Navigate to: `File` → `Open Workspace from File…`
+2. Select: `Interfaceboard.theia-workspace`
+3. Navigate to: `Project` →  `Build Configurations` → `Release-MSP430`
+![Release-MSP430](media/Release-MSP430.jpg)
+
 
 ### 4. Compiling the Project
 
-1. Go to the "Build" menu.
-2. Select "Debug_TI(2)".
- ![Build Debug_TI(2)](media/Build_Debug_TI(2).jpg)
+1 Navigate to: Project → Clean Projects
+2 Navigate to: Project → Build All.
 
-3. The project will now compile and should run without errors.
-> - if msp430ware is not installed, install it offline via `View` -> `Resource Explorer`. 
-> - if libmath.a is not found, change it through `Project` -> `Properties` -> `MSP430 Linker` -> `File Search Path` -> libmath.a to C:\ti\ccs1281\ccs\ccs_base\msp430\lib\5xx_6xx_FRxx\libmath.a. Make sure the path is correct on your system -> Apply and Close
-### 5. Flashing Firmware and Debugging
 
-![Debug Flash](media/Debug_Flash.jpg)
-1. Use the Flash icon to transfer the created firmware to the Interfaceboard.
-2. Use the Debug function to analyze and test the program.
+### 5. Flashing Firmware
 
-### 6. After Programming
+1 Navigate to: Run → Flash Project
 
-1. Turn off the power supply.
-2. Remove the programming connector.
-3. Remove the jumper from X203.
 
 [Return to content](#content)
 
