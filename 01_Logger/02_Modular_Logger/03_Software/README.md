@@ -143,8 +143,10 @@
 3. Perform a full installation.
 4. On first launch, MSP430Ware is required. Please download “MSP430Ware - 3.80.14.01” via View -> Resource Explorer.
 
-
 ### 3. Importing the Project
+
+> Important: Run CCS as administrator
+CCS must be started with administrator rights to ensure proper operation. Otherwise, the device connection or flashing may fail.
 
 1. Navigate to: `File` → `Open Workspace from File…`
 2. Select: `Interfaceboard.theia-workspace`
@@ -153,6 +155,8 @@
 
 
 ### 4. Compiling the Project
+
+> In the project directory, the sensor_config.h file specifies which interfaceboard is used by setting SELECTED_SENSOR before compilation via #define SELECTED_SENSOR x
 
 1 Navigate to: Project → Clean Projects
 2 Navigate to: Project → Build All.
