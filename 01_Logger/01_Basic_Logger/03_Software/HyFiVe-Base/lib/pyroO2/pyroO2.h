@@ -51,7 +51,7 @@ class pyroO2
             SampleSal shall be given in g/l. 
             Value only required for use of output unit: umolar (mg/l)*/
             void writeSampleSal (float sampleSal); 
-            /* Set sample salinity.
+            /* Set sample temperature.
             Sample Temp shall be given in °C.
             Hand over no argument (SampleTemp = -299.999) to set sensor to use own temperature sensor inside sensor case.
             Hand over SampleTemp = -300 to set sensor to use own external temp sensor Pt100 (usually not connected in HyFiVe logger). */
