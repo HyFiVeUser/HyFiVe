@@ -148,7 +148,7 @@ static void ledPMode()
 //  Timings
 // ------------------------------------------------------------
 
-static const uint32_t ledSignalLoggerDetectsBeginOfDeployment = 60000; // ms
+static const uint32_t ledSignalLoggerDetectsBeginOfDeployment = 30000; // ms
 static const uint32_t ledSignalShort                          = 200;   // ms
 static const uint32_t ledSignalLong                           = 600;   // ms
 static const uint32_t ledSignalBreakBetweenLetters            = 200;   // ms
