@@ -1194,6 +1194,12 @@ void monitorReedInputTask(void *parameter)
       lowDurationMs = now - lowStartMs; // funktioniert auch bei millis()-Overflow
       Serial.printf("Pin %u state: LOW for %lu ms \n", REED_INPUT_PIN, lowDurationMs);
 
+      if (lowDurationMs >= 25000)
+      {
+        ledControl(LedMode::Off);
+        ESP.restart();
+      }
+
       lastState = reedState;
       vTaskDelay(pdMS_TO_TICKS(1000));
       continue;
