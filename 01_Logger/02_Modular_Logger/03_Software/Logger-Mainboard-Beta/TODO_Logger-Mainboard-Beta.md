@@ -8,7 +8,7 @@
 
 ## Wichtig
 - [ ] Logger wachen gelegentlich ohne Magnet auf: Sofern dieses Verhalten bei allen Loggern auftritt, müsste eine Softwareanpassung erfolgen
-- [ ] Neustart per Magnet ist unzuverlässig: Softwareanpassung
+- [X] HW-Reset per Magnet ist unzuverlässig. Der Magnet zum Reed-Schalters darf nicht kurzzeitig entfernt werden, da sich die HW-Resetzeit dann zurücksetzt.
 - [X] Wartezeit im Wasser vor der Messung von 60 auf 30 Sekunden verkürzen: Softwareanpassung
 - [ ] Neuer Blinkcode für „mindestens ein Sensor in der Skip List“: Softwareanpassung
 - [X] Defaultwert des Log-Levels passt nicht zu bisherigen Loggern: wird softwareseitig überprüft (zumindest mqqt transmit der messung wird nicht mehr geloggt)
