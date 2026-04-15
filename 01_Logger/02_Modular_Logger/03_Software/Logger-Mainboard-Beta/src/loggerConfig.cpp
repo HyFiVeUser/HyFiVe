@@ -305,7 +305,7 @@ void configureBasicSettingsFromJson()
   }
   else
   {
-    ledColorConfig = 231;
+    ledColorConfig = 241;
   }
 
   if (!doc["inactive_Measurement_periode"].isNull())
