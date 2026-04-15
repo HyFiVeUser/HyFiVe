@@ -9,9 +9,9 @@
 ## Wichtig
 - [ ] Logger wachen gelegentlich ohne Magnet auf: Sofern dieses Verhalten bei allen Loggern auftritt, müsste eine Softwareanpassung erfolgen
 - [ ] Neustart per Magnet ist unzuverlässig: Softwareanpassung
-- [ ] Wartezeit im Wasser vor der Messung von 60 auf 30 Sekunden verkürzen: Softwareanpassung
+- [X] Wartezeit im Wasser vor der Messung von 60 auf 30 Sekunden verkürzen: Softwareanpassung
 - [ ] Neuer Blinkcode für „mindestens ein Sensor in der Skip List“: Softwareanpassung
-- [ ] Defaultwert des Log-Levels passt nicht zu bisherigen Loggern: wird softwareseitig überprüft (zumindest mqqt transmit der messung wird nicht mehr geloggt)
+- [X] Defaultwert des Log-Levels passt nicht zu bisherigen Loggern: wird softwareseitig überprüft (zumindest mqqt transmit der messung wird nicht mehr geloggt)
 - [ ] Im Status sollen aktive „Signale“ als Bitmaske ausgegeben werden: hierzu stimmen wir uns vorher noch ab
 - [ ] Blinkpausen zwischen den Signalen anpassen: hierzu stimmen wir uns vorher noch ab
 - [x] RGB-LED Prioritäten prüfen, weil es noch Überlagerungen gibt
