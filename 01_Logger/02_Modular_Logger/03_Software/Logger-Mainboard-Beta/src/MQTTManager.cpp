@@ -930,7 +930,7 @@ bool transmitHeaderViaMqtt()
       {
         String basePath = "/measurements/mqtt_header";
         moveFileWithTimestamp("/measurements/mqtt_header", headerState.filename, "/backup/header");
-        Log(LogCategoryMQTT, LogLevelDEBUG, "header lines transmitted: ", "filename: ", String(headerState.filename), " | ", String(headerState.lineNumber), "/", String(headerState.totalLines));
+        Log(LogCategoryMQTT, LogLevelINFO, "header lines transmitted: ", "filename: ", String(headerState.filename), " | ", String(headerState.lineNumber), "/", String(headerState.totalLines));
         memset(headerState.filename, '\0', sizeof(headerState.filename));
         headerState.lineNumber = 0;
         headerState.totalLines = 0;
@@ -1163,7 +1163,7 @@ bool transmitDataViaMqtt()
       {
         String basePath = "/measurements/mqtt_measurements";
         moveFileWithTimestamp("/measurements/mqtt_measurements", dataState.filename, "/backup/measurements");
-        Log(LogCategoryMQTT, LogLevelDEBUG, "data lines transmitted: ", "filename: ", String(dataState.filename), " | ", String(dataState.lineNumber), "/", String(dataState.totalLines));
+        Log(LogCategoryMQTT, LogLevelINFO, "data lines transmitted: ", "filename: ", String(dataState.filename), " | ", String(dataState.lineNumber), "/", String(dataState.totalLines));
         memset(dataState.filename, '\0', sizeof(dataState.filename));
         dataState.lineNumber = 0;
         dataState.totalLines = 0;
