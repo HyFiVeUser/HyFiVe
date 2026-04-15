@@ -4,8 +4,16 @@
 - [x] Keller PAA-20D: Interfaceboard Offset Korrektur per Config in mbar
 - [x] PICO-O2-SUB: Interfaceboard Ausgabe auf Partialdruck umstellen
 - [x] Akku-Ladevorgang erreicht nicht immer 100 %.
+- [x] nach einem Reset kann die Deckbox vorübergehend eine falsche Uhrzeit zurückgeben, die vom Logger übernommen wird
 
 ## Wichtig
+- [ ] Logger wachen gelegentlich ohne Magnet auf: Sofern dieses Verhalten bei allen Loggern auftritt, müsste eine Softwareanpassung erfolgen
+- [ ] Neustart per Magnet ist unzuverlässig: Softwareanpassung
+- [ ] Wartezeit im Wasser vor der Messung von 60 auf 30 Sekunden verkürzen: Softwareanpassung
+- [ ] Neuer Blinkcode für „mindestens ein Sensor in der Skip List“: Softwareanpassung
+- [ ] Defaultwert des Log-Levels passt nicht zu bisherigen Loggern: wird softwareseitig überprüft
+- [ ] Im Status sollen aktive „Signale“ als Bitmaske ausgegeben werden: hierzu stimmen wir uns vorher noch ab
+- [ ] Blinkpausen zwischen den Signalen anpassen: hierzu stimmen wir uns vorher noch ab
 - [x] RGB-LED Prioritäten prüfen, weil es noch Überlagerungen gibt
 - [x] Zyklusabweichung prüfen: Differenz zwischen konfiguriertem und tatsächlichem Zyklus:
     Ja es gib Abweichungen.
