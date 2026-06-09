@@ -394,7 +394,7 @@ int main(void)
     AtlasEZO::AtlasEZO sensor(0);
 
 #elif SELECTED_SENSOR == 5
-    FW_VERSION = 2;
+    FW_VERSION = 3;
     sensorWakeUpTime = 1000;
     pyroPicoO2 sensor(0);
 
