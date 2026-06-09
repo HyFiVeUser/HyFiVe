@@ -165,10 +165,9 @@ bool pyroPicoO2::getRAWValue(int64_t *aval)
             float tempCase = strtof(measArray[4 + 6 - 1], NULL) * 0.001;
         }
 
-        // dphi: Phase shift of optical measurement (raw data)
-        // for now we send -1, so valid raw value
-        int64_t valInt = -1; // dphi;
-        aval[0] = valInt;
+        // raw-value: oxygen partial pressure in mbar
+        aval[0] = static_cast<int64_t>(oxygenMBar);
+
         return true;
     }
     else
@@ -179,13 +178,12 @@ bool pyroPicoO2::getRAWValue(int64_t *aval)
 
 bool pyroPicoO2::getCalculatedValue(int64_t *aval)
 {
-    // send mol/l
     union
     {
         float float_variable;
         unsigned char temp_array[4];
     } u;
-    u.float_variable = oxygenMBar;
+    u.float_variable = oxygenUMol;
     memcpy(&aval[0], u.temp_array, 4);
 
     return true;
