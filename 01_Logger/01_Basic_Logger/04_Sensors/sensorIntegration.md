@@ -12,6 +12,8 @@
 - connect it to a UART-USB-Adapter
 - you can send and recive informations according to [EZO ec datasheet](https://files.atlas-scientific.com/EZO-EC-complete-datasheet.pdf)
 
+**NOTE: The result value may be 0 if the measured value is out of range.**
+
 ## BlueRobotics TSYS01
 - this sensor is equiped with a I2C bus
 - the sensor is the slave, so you need to connected it to an existing I2C Bus
