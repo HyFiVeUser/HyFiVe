@@ -143,10 +143,10 @@
 |target|command|example response|decimal value|
 |---|---|---|---|
 |Coefficient k0|0xAA|0x8545|34117|
-|Coefficient k0|0xA8|0x5865|22629|
-|Coefficient k0|0xA6|0x3E7C|15996|
-|Coefficient k0|0xA4|0x1CAA|7338|
-|Coefficient k0|0xA2|0x1652|5714|
+|Coefficient k1|0xA8|0x5865|22629|
+|Coefficient k2|0xA6|0x3E7C|15996|
+|Coefficient k3|0xA4|0x1CAA|7338|
+|Coefficient k4|0xA2|0x1652|5714|
 
 <br><br>**TODO: images**<br><br>
 
