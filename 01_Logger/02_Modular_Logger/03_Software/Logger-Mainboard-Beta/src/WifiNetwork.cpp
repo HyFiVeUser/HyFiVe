@@ -114,6 +114,8 @@ bool connectToWifiAndSyncNTP()
     hasWifiConnection = false;
 
     statusLED = false;
+    Serial.println("Event: 15	no connection to Deckbox");
+    ledBitMask |= 0b0000000000000010000;
     ledControl(LedMode::noConnectionToDeckbox);
     while (!statusLED)
     {
@@ -136,6 +138,8 @@ void handleNtpSynchronization()
   else
   {
     statusLED = false;
+    Serial.println("Event: 18	NTP Update failed 02");
+    ledBitMask |= 0b0000000000000000010;
     ledControl(LedMode::ntpUpdateFailed);
     while (!statusLED)
     {

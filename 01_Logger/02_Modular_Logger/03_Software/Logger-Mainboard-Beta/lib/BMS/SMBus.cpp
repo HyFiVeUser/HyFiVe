@@ -42,7 +42,7 @@ void SMBus::Init(TwoWire &wirePort, uint8_t *blockBuffer, uint8_t blockBufferLen
   if (!_i2cPort->begin(21, 14, (uint32_t)100000))
   {
     logError("[BMS];[ERROR];;;BMS not found");
-    generalError();
+    fatalError();
     // ESP.restart();
   }
 }

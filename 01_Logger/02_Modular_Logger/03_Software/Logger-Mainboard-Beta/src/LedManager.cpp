@@ -16,10 +16,6 @@
 #include "SystemVariables.h"
 #include "Utility.h"
 
-// ------------------------------------------------------------
-//  Hardware / Basis
-// ------------------------------------------------------------
-
 int greenPin = -1;
 int bluePin  = -1;
 int redPin   = 42;
@@ -94,6 +90,20 @@ static void applyColorFromCode(uint8_t colorCode, void (*fallback)())
   }
 }
 
+String printBits(uint32_t value)
+{
+  String result = "";
+
+  for (int i = 18; i >= 0; i--)
+  {
+    result += String((value >> i) & 1);
+  }
+
+  return result;
+}
+
+void resetLedBitMask() { ledBitMask = 0; }
+
 void normalUsage()
 {
   uint8_t normalColorCode = (ledColorConfig / 100) % 10;
@@ -153,7 +163,8 @@ static const uint32_t ledSignalShort                          = 200;   // ms
 static const uint32_t ledSignalLong                           = 600;   // ms
 static const uint32_t ledSignalBreakBetweenLetters            = 200;   // ms
 static const uint32_t ledSignalPermanent                      = 2000;  // ms
-static const uint32_t ledSignalPauseBetweenSignals            = 800;   // ms
+static const uint32_t ledSignalPauseBetweenSignals            = 3000;  // ms
+static const uint32_t ledSignalPauseBetweenSignalsEvent1to5   = 800;   // ms
 
 // ------------------------------------------------------------
 //  Interne Task-Steuerung
@@ -231,7 +242,7 @@ static LedMode runMode(LedMode mode)
     if (waitOrNewMode(ledSignalShort, incoming))
       return incoming;
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
+    if (waitOrNewMode(ledSignalPauseBetweenSignalsEvent1to5, incoming))
       return incoming;
 
     allOff();
@@ -245,7 +256,7 @@ static LedMode runMode(LedMode mode)
     if (waitOrNewMode(ledSignalShort, incoming))
       return incoming;
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
+    if (waitOrNewMode(ledSignalPauseBetweenSignalsEvent1to5, incoming))
       return incoming;
 
     allOff();
@@ -298,6 +309,8 @@ static LedMode runMode(LedMode mode)
     allOff();
     delay(ledSignalPauseBetweenSignals);
 
+    statusLED = true;
+
     allOff();
     return LedMode::Off;
   }
@@ -319,6 +332,8 @@ static LedMode runMode(LedMode mode)
     delay(ledSignalLong);
     allOff();
     delay(ledSignalPauseBetweenSignals);
+
+    statusLED = true;
 
     allOff();
     return LedMode::Off;
@@ -391,6 +406,36 @@ static LedMode runMode(LedMode mode)
 
     errors();
     delay(ledSignalShort);
+    allOff();
+    delay(ledSignalPauseBetweenSignals);
+
+    statusLED = true;
+
+    allOff();
+    return LedMode::Off;
+  }
+
+  case LedMode::skipSensorError:
+  {
+    Serial.println("skipSensorError");
+
+    errors();
+    delay(ledSignalShort);
+    allOff();
+    delay(ledSignalBreakBetweenLetters);
+
+    errors();
+    delay(ledSignalShort);
+    allOff();
+    delay(ledSignalBreakBetweenLetters);
+
+    errors();
+    delay(ledSignalLong);
+    allOff();
+    delay(ledSignalBreakBetweenLetters);
+
+    errors();
+    delay(ledSignalLong);
     allOff();
     delay(ledSignalPauseBetweenSignals);
 
@@ -487,12 +532,27 @@ static LedMode runMode(LedMode mode)
 
     while (xTaskGetTickCount() < end)
     {
-      normalUsage();
-      if (waitOrNewMode(firstOnDurationMs, incoming))
+      if (!skipSensor)
       {
-        allOff();
-        sensorStartDone = true;
-        return incoming;
+        normalUsage();
+        if (waitOrNewMode(firstOnDurationMs, incoming))
+        {
+          allOff();
+          sensorStartDone = true;
+          return incoming;
+        }
+      }
+      else
+      {
+        {
+          errors();
+          if (waitOrNewMode(firstOnDurationMs, incoming))
+          {
+            allOff();
+            sensorStartDone = true;
+            return incoming;
+          }
+        }
       }
 
       allOff();
@@ -511,12 +571,24 @@ static LedMode runMode(LedMode mode)
   case LedMode::duringDeployment:
     ledMeasurementsOff.store(false);
 
-    normalUsage();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
-    allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    if (!skipSensor)
+    {
+      normalUsage();
+      if (waitOrNewMode(ledSignalShort, incoming))
+        return incoming;
+      allOff();
+      if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
+        return incoming;
+    }
+    else
+    {
+      errors();
+      if (waitOrNewMode(ledSignalShort, incoming))
+        return incoming;
+      allOff();
+      if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
+        return incoming;
+    }
 
     ledMeasurementsOff.store(true);
 
@@ -611,7 +683,7 @@ void ledControl(LedMode mode)
   xQueueOverwrite(s_ledQueue, &mode);
 }
 
-void generalError()
+void fatalError()
 {
   if (s_ledTaskHandle && !s_ledTaskSuspendedForError)
   {
@@ -654,7 +726,7 @@ void generalError()
     enableExternalWakeup(20); // activate Logger if power supply connection
     enableExternalWakeup(17); // activate Logger if reed connection
     statusDeepSleep = true;
-    Serial.println("Deep Sleep generalError");
+    Serial.println("Deep Sleep fatalError");
     esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER);
     esp_deep_sleep_start();
   }

@@ -105,6 +105,7 @@ void addSensorToErrorSkip(int sensorNumber)
   {
     errorSkipSensor[errorSkipSensorSize++] = sensorNumber;
     Log(LogCategorySensors, LogLevelERROR, "sensor_id ", String(configRTC.sensor[sensorNumber].sensor_id), " added to errorSkipSensor");
+    skipSensor = true;
   }
   else
   {
@@ -262,7 +263,7 @@ void updateSensorMeasurements()
         if (configRTC.sensor[sensorNumber].bus_address == waterDetectionSensorBusAddress || configRTC.sensor[sensorNumber].bus_address == dryDetectionSensorBusAddress || configRTC.sensor[sensorNumber].bus_address == castDetectionSensorBusAddress)
         {
           Log(LogCategorySensors, LogLevelERROR, " I2C|detection Sensor not found, bus address: ", String(configRTC.sensor[sensorNumber].bus_address));
-          generalError();
+          fatalError();
         }
 
         Log(LogCategorySensors, LogLevelDEBUG, "Skipping sensor: ", String(sensorNumber));
@@ -370,7 +371,7 @@ void performInitialMeasurement()
       if (configRTC.sensor[sensorNumber].bus_address == waterDetectionSensorBusAddress || configRTC.sensor[sensorNumber].bus_address == dryDetectionSensorBusAddress || configRTC.sensor[sensorNumber].bus_address == castDetectionSensorBusAddress)
       {
         Log(LogCategorySensors, LogLevelERROR, " I2C|detection Sensor not found, bus address: ", String(configRTC.sensor[sensorNumber].bus_address));
-        generalError();
+        fatalError();
       }
 
       Log(LogCategorySensors, LogLevelDEBUG, "Skipping sensor: ", String(sensorNumber));
@@ -686,7 +687,7 @@ void detectConnectedSensorDevices()
       transmitUpdateMessage("LoggerConfigFile | sensor not found | no bus addresses found", "hyfive/ConfigError");
       hasSensorError = true;
       statusIsLoggerBusy.store(false);
-      generalError();
+      fatalError();
     }
   }
 }
@@ -1427,12 +1428,16 @@ void checkWetSensorThreshold()
       if ((setBeginDeployment) && (detectionThresholdValue == 0))
       {
         setBeginDeployment = false;
+        Serial.println("Event: 3	Logger detects begin of deployment");
+        ledBitMask |= 0b0010000000000000000;
         ledControl(LedMode::loggerDetectsBeginOfDeployment);
         Serial.println("--------------------------------------loggerDetectsBeginOfDeployment");
       }
 
       if (detectionThresholdValue > 0)
       {
+        Serial.println("Event: 5	Logger detects end of deployment");
+        ledBitMask |= 0b0000100000000000000;
         ledControl(LedMode::loggerDetectsEndOfDeployment);
         setBeginDeployment = true;
         sensorStartDone    = false;
@@ -1444,6 +1449,8 @@ void checkWetSensorThreshold()
         ledSensorTrue = false;
         if (detectionThresholdValue == 0)
         {
+          Serial.println("Event: 4	during deployment (after 1. minute)");
+          ledBitMask |= 0b0001000000000000000;
           ledControl(LedMode::duringDeployment);
           Serial.println("--------------------------------------duringDeployment");
         }
@@ -1554,13 +1561,13 @@ void sensorAvailability()
 
   if (hasSensorError && isFirstBoot)
   {
-    generalError();
+    fatalError();
   }
 
   if (hasSensorError)
   {
     performPeriodicConfigUpdate();
     statusIsLoggerBusy.store(false);
-    generalError();
+    fatalError();
   }
 }

@@ -12,6 +12,7 @@
 #include <ArduinoJson.h>
 
 #include "DebuggingSDLog.h"
+#include "DebuggingSDSetLog.h"
 #include "DeepSleep.h"
 #include "LedManager.h"
 #include "SDCard.h"
@@ -19,7 +20,6 @@
 #include "Utility.h"
 #include "loggerConfig.h"
 #include "loggerConfigValidation.h"
-#include "DebuggingSDSetLog.h"
 
 LoggerConfig config;
 
@@ -69,7 +69,7 @@ bool sdCardIsAvailable()
   else
   {
     Log(LogCategorySDCard, LogLevelERROR, "no SD card");
-    generalError();
+    fatalError();
     return false;
   }
 }
@@ -317,6 +317,15 @@ void configureBasicSettingsFromJson()
     inactivityTimeoutSec = 900;
   }
 
+  if (!doc["led_bit_mask_last_cycle"].isNull())
+  {
+    ledBitMaskLastCycle = doc["led_bit_mask_last_cycle"];
+  }
+  else
+  {
+    ledBitMaskLastCycle = 0;
+  }
+
   if (!doc["rgb_version"].isNull())
   {
     rgbVersion = doc["rgb_version"];
@@ -326,19 +335,110 @@ void configureBasicSettingsFromJson()
     rgbVersion = 0;
   }
 
-if (!doc["logGeneral"].isNull())  {    generalLogLevel         = doc["logGeneral"];  }  else  {    generalLogLevel         = 1;  }
-if (!doc["logSensors"].isNull())  {    sensorsLogLevel         = doc["logSensors"];  }  else  {    sensorsLogLevel         = 1;  }
-if (!doc["logUnderwater"].isNull())  {    underwaterLogLevel      = doc["logUnderwater"];  }  else  {    underwaterLogLevel      = 1;  }
-if (!doc["logAboveWater"].isNull())  {    aboveWaterLogLevel      = doc["logAboveWater"];  }  else  {    aboveWaterLogLevel      = 1;  }
-if (!doc["logBMS"].isNull())  {    bmsLogLevel             = doc["logBMS"];  }  else  {    bmsLogLevel             = 1;  }
-if (!doc["logCharger"].isNull())  {    chargerLogLevel         = doc["logCharger"];  }  else  {    chargerLogLevel         = 1;  }
-if (!doc["logWiFi"].isNull())  {    wiFiLogLevel            = doc["logWiFi"];  }  else  {    wiFiLogLevel            = 1;  }
-if (!doc["logMQTT"].isNull())  {    mqttLogLevel            = doc["logMQTT"];  }  else  {    mqttLogLevel            = 1;  }
-if (!doc["logSDCard"].isNull())  {    sdCardLogLevel          = doc["logSDCard"];  }  else  {    sdCardLogLevel          = 1;  }
-if (!doc["logRTC"].isNull())  {    rtcLogLevel             = doc["logRTC"];  }  else  {    rtcLogLevel             = 1;  }
-if (!doc["logPowerManagement"].isNull())  {    powerManagementLogLevel = doc["logPowerManagement"];  }  else  {    powerManagementLogLevel = 1;  }
-if (!doc["logConfiguration"].isNull())  {    configurationLogLevel   = doc["logConfiguration"];  }  else  {    configurationLogLevel   = 1;  }
-if (!doc["logMeasurement"].isNull())  {    measurementLogLevel     = doc["logMeasurement"];  }  else  {    measurementLogLevel     = 1;  }
+  if (!doc["logGeneral"].isNull())
+  {
+    generalLogLevel = doc["logGeneral"];
+  }
+  else
+  {
+    generalLogLevel = 1;
+  }
+  if (!doc["logSensors"].isNull())
+  {
+    sensorsLogLevel = doc["logSensors"];
+  }
+  else
+  {
+    sensorsLogLevel = 1;
+  }
+  if (!doc["logUnderwater"].isNull())
+  {
+    underwaterLogLevel = doc["logUnderwater"];
+  }
+  else
+  {
+    underwaterLogLevel = 1;
+  }
+  if (!doc["logAboveWater"].isNull())
+  {
+    aboveWaterLogLevel = doc["logAboveWater"];
+  }
+  else
+  {
+    aboveWaterLogLevel = 1;
+  }
+  if (!doc["logBMS"].isNull())
+  {
+    bmsLogLevel = doc["logBMS"];
+  }
+  else
+  {
+    bmsLogLevel = 1;
+  }
+  if (!doc["logCharger"].isNull())
+  {
+    chargerLogLevel = doc["logCharger"];
+  }
+  else
+  {
+    chargerLogLevel = 1;
+  }
+  if (!doc["logWiFi"].isNull())
+  {
+    wiFiLogLevel = doc["logWiFi"];
+  }
+  else
+  {
+    wiFiLogLevel = 1;
+  }
+  if (!doc["logMQTT"].isNull())
+  {
+    mqttLogLevel = doc["logMQTT"];
+  }
+  else
+  {
+    mqttLogLevel = 1;
+  }
+  if (!doc["logSDCard"].isNull())
+  {
+    sdCardLogLevel = doc["logSDCard"];
+  }
+  else
+  {
+    sdCardLogLevel = 1;
+  }
+  if (!doc["logRTC"].isNull())
+  {
+    rtcLogLevel = doc["logRTC"];
+  }
+  else
+  {
+    rtcLogLevel = 1;
+  }
+  if (!doc["logPowerManagement"].isNull())
+  {
+    powerManagementLogLevel = doc["logPowerManagement"];
+  }
+  else
+  {
+    powerManagementLogLevel = 1;
+  }
+  if (!doc["logConfiguration"].isNull())
+  {
+    configurationLogLevel = doc["logConfiguration"];
+  }
+  else
+  {
+    configurationLogLevel = 1;
+  }
+  if (!doc["logMeasurement"].isNull())
+  {
+    measurementLogLevel = doc["logMeasurement"];
+  }
+  else
+  {
+    measurementLogLevel = 1;
+  }
 
   saveSamplePeriodeToResetAfterUnderwaterMeasurementsEnd = configRTC.sample_periode;
 }
@@ -358,7 +458,7 @@ bool compareRtcWithJsonConfig()
   {
     Log(LogCategoryGeneral, LogLevelERROR, "Error: No configuration file found.");
     compareRtcError = true;
-    generalError();
+    fatalError();
   }
 
   // Open the latest configuration file
@@ -367,7 +467,7 @@ bool compareRtcWithJsonConfig()
   {
     Log(LogCategoryGeneral, LogLevelERROR, "Error when opening the configuration file: ", String(latestConfigFile));
     compareRtcError = true;
-    generalError();
+    fatalError();
   }
 
   DeserializationError error = deserializeJson(doc, configFile);
@@ -377,7 +477,7 @@ bool compareRtcWithJsonConfig()
   {
     Log(LogCategoryConfiguration, LogLevelERROR, "Error parsing the configuration file: ", String(latestConfigFile));
     compareRtcError = true;
-    generalError();
+    fatalError();
   }
 
   if (configRTC.logger_id != doc["logger_id"])
@@ -442,7 +542,7 @@ bool compareRtcWithJsonConfig()
   else
   {
     Log(LogCategoryConfiguration, LogLevelERROR, "The RTC values do not match the config.json file.");
-    generalError();
+    fatalError();
   }
 
   return compareRtcError;
@@ -464,7 +564,7 @@ void validateAndLoadConfig()
 
   if (configUpdateError)
   {
-    generalError();
+    fatalError();
   }
 
   JsonFileRead("/loggerConfig/" + findLatestConfigurationFile("/loggerConfig"));

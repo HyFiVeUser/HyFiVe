@@ -222,7 +222,7 @@ int64_t I2C_Master::getValue(uint8_t command, uint8_t address)
   // if (address == waterDetectionSensorBusAddress || address == dryDetectionSensorBusAddress || address == castDetectionSensorBusAddress)
   // {
   //   Log(LogCategorySensors, LogLevelERROR, " I2C|detection Sensor not found, bus address: ", String(address));
-  //   generalError();
+  //   fatalError();
   // }
   return 0;
 }

@@ -29,7 +29,7 @@ bool initRTC(TwoWire *wireInstance)
   if (!rtcDS3231.begin(wireInstance))
   {
     Log(LogCategoryRTC, LogLevelERROR, "DS3231 not found!");
-    generalError();
+    fatalError();
   }
 
   return true;

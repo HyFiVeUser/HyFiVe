@@ -22,7 +22,7 @@
 extern std::atomic<bool> ledMeasurementsOff;
 
 // Configuration variables
-inline float fwVersionLoggerMainboard         = 0.08;
+inline float fwVersionLoggerMainboard         = 0.10;
 inline int maxMeasurementCountForLed          = 5;  // in count
 inline int sampleCastIntervals                = 3;  // in count
 inline int waitAfterUnderwaterMeasurementTime = 30; // in seconds
@@ -42,6 +42,7 @@ inline RTC_DATA_ATTR LoggerConfigRTC configRTC;
 inline RTC_DATA_ATTR int WifiArraySize              = 0;
 inline RTC_DATA_ATTR int lastSuccessfulNetworkIndex = -1;
 inline RTC_DATA_ATTR int SensorArraySize            = 0;
+inline RTC_DATA_ATTR uint32_t ledBitMask            = 0b0000000000000000000;
 
 // Sensor-specific variables
 inline RTC_DATA_ATTR uint8_t needVoltage                                             = 0;
@@ -80,6 +81,7 @@ inline RTC_DATA_ATTR bool hasMqttHeaderError         = false;
 inline RTC_DATA_ATTR bool hasMqttLogError            = false;
 inline RTC_DATA_ATTR bool hasMqttMeasurementError    = false;
 inline RTC_DATA_ATTR bool isDataUploadRetryEnabled   = false;
+inline RTC_DATA_ATTR bool ledBitMaskLastCycle        = 0;
 inline bool isNodeRedAvailable                       = false;
 inline bool getNodeRedBusyCheck                      = false;
 inline bool isNodeRedBusy                            = true;
@@ -98,6 +100,7 @@ inline RTC_DATA_ATTR bool statusDeepSleep         = true;
 inline RTC_DATA_ATTR std::atomic<bool> statusReedInput{true};
 inline RTC_DATA_ATTR std::atomic<bool> statusIsLoggerBusy{false};
 inline RTC_DATA_ATTR std::atomic<bool> statusConfigUpdate{false};
+inline RTC_DATA_ATTR std::atomic<bool> skipSensor{false};
 
 // Counter variables
 inline RTC_DATA_ATTR int bootAttemptCount                            = 0;

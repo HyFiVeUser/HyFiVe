@@ -81,7 +81,7 @@ void getInactiveMeasurement()
     if (secInactivityTimeoutSec <= now)
     {
       interfaceSleep();
-      Serial.println("InactiveMeasurement time >15min go DeepSleep");
+      Serial.println("InactiveMeasurement time go DeepSleep");
       enableExternalWakeup(20); // activate Logger if power supply connection
       enableExternalWakeup(17); // activate Logger if reed connection
       statusDeepSleep = true;

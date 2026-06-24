@@ -38,6 +38,7 @@ enum class LedMode : uint32_t
   // Errors
   batterySuperlow,
   noConnectionToDeckbox,
+  skipSensorError,
   ntpUpdateFailed,
   configRejected,
 };
@@ -47,10 +48,14 @@ void ledControl(LedMode mode);
 
 void askForConfig();
 void goDeepSleep();
-void generalError();
+void fatalError();
 
 void normalUsage();
 void interaction();
 void errors();
+
+String printBits(uint32_t);
+
+void resetLedBitMask();
 
 #endif

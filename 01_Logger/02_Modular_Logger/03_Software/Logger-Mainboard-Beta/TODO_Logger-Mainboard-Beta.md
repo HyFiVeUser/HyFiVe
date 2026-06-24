@@ -27,7 +27,7 @@
     Beispiel: MQTT sendet 120sec lang Daten. Währenddessen wären z.b. wetDetPeriodeFunktion und configUpdatePeriodeFunktion fällig. 
     Da die loop-Schleife erst nach Abschluss von MQTT wieder weiterläuft, wird wetDetPeriodeFunktion und configUpdatePeriodeFunktion beim nächstmöglichen Zeitpunkt sofort auslösen da die Wartezeit ja bei beiden abgelaufen wehre.
     Und nach dem Auslösen der Perioden wird diesen die neue Periodendauer aus dem Configfile zugewiesen.  
-- [x] generalError: LED-Signal soll nicht dauerhaft aktiv bleiben. Stattdessen den generalError LED-Event 10× ausführen (dauer ca.30sec), danach Software-Reboot. Wenn der Fehler nach insgesamt 2 Reboot-Versuchen weiterhin besteht, soll der Logger in Deep-Sleep gehen.
+- [x] fatalError: LED-Signal soll nicht dauerhaft aktiv bleiben. Stattdessen den fatalError LED-Event 10× ausführen (dauer ca.30sec), danach Software-Reboot. Wenn der Fehler nach insgesamt 2 Reboot-Versuchen weiterhin besteht, soll der Logger in Deep-Sleep gehen.
 - [x] Interfaceboard: ADC-Auflösung auf 12 Bit umstellen
 - [x] WetDet-Sensor weniger häufig abfragen
 - [x] LED-Anzeige in separaten Thread auf zweiten Core auslagern

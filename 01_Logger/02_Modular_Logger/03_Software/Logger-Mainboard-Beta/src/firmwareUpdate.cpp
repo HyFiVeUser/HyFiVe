@@ -102,6 +102,8 @@ void updateFirmware()
             delay(1000);
 
             statusLED = false;
+            Serial.println("Event: 10	start reboot 01");
+            ledBitMask |= 0b0000000001000000000;
             ledControl(LedMode::startReboot);
             while (!statusLED)
             {

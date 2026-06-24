@@ -100,12 +100,13 @@ void uploadStatus()
 {
   char mqtt_topic[] = "hyfive/status";
 
-  StaticJsonDocument<200> doc;
+  StaticJsonDocument<500> doc;
 
   doc["logger_id"]             = configRTC.logger_id;
   doc["battery_remaining"]     = getRemainingBatteryPercentage();
   doc["memory_capacity_total"] = sdCardSpaceTotal();
   doc["memory_capacity_used"]  = sdCardSpaceUsed();
+  doc["led_Bit_Mask"]          = printBits(ledBitMask);
 
   char payload[MMMS];
 
@@ -126,6 +127,7 @@ void uploadStatus()
       {
         hasStatusUploadError = false;
         Log(LogCategoryMQTT, LogLevelDEBUG, "statusUpload successfully transferred");
+        resetLedBitMask();
         return;
       }
     }
@@ -678,6 +680,8 @@ void processAndTransmitMeasurementData()
         {
           statusLED = false;
           statusIsLoggerBusy.store(true);
+          Serial.println("Event: 11	Logger busy (background process 01)");
+          ledBitMask |= 0b0000000000100000000;
           ledControl(LedMode::loggerBusyBackgroundProcess);
 
           transmitHeaderViaMqtt();
@@ -691,6 +695,8 @@ void processAndTransmitMeasurementData()
         {
           statusLED = false;
           statusIsLoggerBusy.store(true);
+          Serial.println("Event: 11	Logger busy (background process 02)");
+          ledBitMask |= 0b0000000000100000000;
           ledControl(LedMode::loggerBusyBackgroundProcess);
 
           transmitDataViaMqtt();
@@ -704,6 +710,8 @@ void processAndTransmitMeasurementData()
         {
           statusLED = false;
           statusIsLoggerBusy.store(true);
+          Serial.println("Event: 11	Logger busy (background process 03)");
+          ledBitMask |= 0b0000000000100000000;
           ledControl(LedMode::loggerBusyBackgroundProcess);
 
           transmitLogViaMqtt();
@@ -725,6 +733,8 @@ void processAndTransmitMeasurementData()
         delay(2000);
 
         statusLED = false;
+        Serial.println("Event: 6	Transmission complete");
+        ledBitMask |= 0b0000010000000000000;
         ledControl(LedMode::transmissionComplete);
         while (!statusLED)
         {

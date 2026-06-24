@@ -30,7 +30,7 @@ unsigned long tLoopEnd   = 0;
 void setup()
 {
   Serial.begin(115200);
-  
+
   holdOnReedInputPressed();
 
   if (startKey != 0x47454D31)
@@ -68,6 +68,9 @@ void loop()
   Serial.println("inactive_Measurement_periode");
   Serial.println(inactivityTimeoutSec);
 
+  Serial.println("ledBitMaskLastCycle");
+  Serial.println(ledBitMaskLastCycle);
+
   Serial.println("logGeneral");
   Serial.println(generalLogLevel);
 
@@ -85,8 +88,7 @@ void loop()
 
   //* Execution of the various periodic actions
   wetDetPeriodeFunktion(wet_det_periode);
-  Serial.println("-------------------------------------------------0    10");
-  statusUploadPeriodeFunktion(status_upload_periode);
+
   Serial.println("-------------------------------------------------0    11");
   configUpdatePeriodeFunktion(config_update_periode);
   Serial.println("-------------------------------------------------0    12");
@@ -100,6 +102,13 @@ void loop()
   Serial.println("-------------------------------------------------0    7");
   processAndTransmitMeasurementData(); //* MQTT, data processing and transmission
   Serial.println("-------------------------------------------------0    8");
+
+  Serial.println("-------------------------------------------------0    10");
+  statusUploadPeriodeFunktion(status_upload_periode);
+  if (ledBitMaskLastCycle == 0)
+  {
+    resetLedBitMask();
+  }
 
   //* Determines the largest number from a series of time periods to restart the time loop
   resetTimePeriodeLoop(config_update_periode, status_upload_periode, wet_det_periode, data_upload_retry_periode);

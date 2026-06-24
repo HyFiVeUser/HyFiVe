@@ -221,7 +221,7 @@ void manageBatteryCharging()
       if (i == 29)
       {
         Log(LogCategoryBMS, LogLevelERROR, "BMS is not available");
-        generalError();
+        fatalError();
       }
       // enable3V3();
       // disable3V3();
@@ -264,11 +264,25 @@ void manageBatteryCharging()
 
     if (battery <= 5)
     {
+      Serial.println("Event: 14	Battery superlow (5%)");
+      statusLED = false;
+      ledBitMask |= 0b0000000000000100000;
       ledControl(LedMode::batterySuperlow);
+      while (!statusLED)
+      {
+        delay(10);
+      };
     }
     else if (battery <= 15)
     {
+      Serial.println("Event: 13	Battery low (15%)");
+      statusLED = false;
+      ledBitMask |= 0b0000000000001000000;
       ledControl(LedMode::batteryLow);
+      while (!statusLED)
+      {
+        delay(10);
+      };
     }
   }
 
@@ -288,7 +302,7 @@ void manageBatteryCharging()
         Log(LogCategoryBMS, LogLevelDEBUG, "BMS Safety-Error");
         // disable3V3();
         Log(LogCategoryPowerManagement, LogLevelINFO, "charging switched off");
-        generalError();
+        fatalError();
       }
       if (BMS.getSafetyAlertAB() != 0 || BMS.getSafetyStatusAB() != 0 || BMS.getSafetyAlertCD() != 0 || BMS.getSafetyStatusCD() != 0)
       {
@@ -320,6 +334,8 @@ void manageBatteryCharging()
 
     delay(1000);
 
+    Serial.println("Event: 8	battery charging 01");
+    ledBitMask |= 0b0000000100000000000;
     ledControl(LedMode::batteryCharging);
 
     for (int i = 0; i < 30; i++)
@@ -329,7 +345,7 @@ void manageBatteryCharging()
         if (i == 20)
         {
           Log(LogCategoryBMS, LogLevelERROR, "BMS output incorrect");
-          generalError();
+          fatalError();
         }
         delay(500);
       }
@@ -374,7 +390,7 @@ void manageBatteryCharging()
         // disable3V3();
         Log(LogCategoryPowerManagement, LogLevelERROR, "charging switched off");
         Log(LogCategoryPowerManagement, LogLevelERROR, "Battery cannot be charged");
-        generalError();
+        fatalError();
         return;
       }
 
@@ -405,6 +421,8 @@ void manageBatteryCharging()
         while (!digitalRead(20))
         {
           statusLED = false;
+          Serial.println("Event: 7	charging complete");
+          ledBitMask |= 0b0000001000000000000;
           ledControl(LedMode::chargingComplete);
           while (!statusLED)
           {

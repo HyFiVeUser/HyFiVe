@@ -329,7 +329,7 @@ void createRequiredFolders()
       else
       {
         Log(LogCategoryGeneral, LogLevelERROR, "Error when creating the folder ", folders[i]);
-        generalError();
+        fatalError();
       }
     }
   }
@@ -440,6 +440,8 @@ void performFirstBootOperations()
 
     statusLED = false;
     statusIsLoggerBusy.store(true);
+    Serial.println("Event: 11	Logger busy (background process 04)");
+    ledBitMask |= 0b0000000000100000000;
     ledControl(LedMode::loggerBusyBackgroundProcess);
     Serial.println("-------------------------------------------------0    21");
 
@@ -473,6 +475,8 @@ void performFirstBootOperations()
 
     statusReedInput.store(false);
 
+    Serial.println("Event: 12	update / boot complete");
+    ledBitMask |= 0b0000000000010000000;
     ledControl(LedMode::updateBootComplete);
     while (!statusLED)
     {
@@ -695,6 +699,8 @@ void performPeriodicConfigUpdate()
           copyFileToDestination("/loggerConfig/", (findLatestConfigurationFile("/loggerConfig")).c_str(), "/backup/config");
 
           statusLED = false;
+          Serial.println("Event: 10	start reboot 02");
+          ledBitMask |= 0b0000000000000000000;
           ledControl(LedMode::startReboot);
           while (!statusLED)
           {
@@ -711,6 +717,8 @@ void performPeriodicConfigUpdate()
         {
 
           statusLED = false;
+          Serial.println("Event: 19	Config rejected");
+          ledBitMask |= 0b0000000000000000001;
           ledControl(LedMode::configRejected);
           while (!statusLED)
           {
@@ -846,6 +854,8 @@ void connectionOfPowerSupplyBeginChargingOfBatteries()
       // enable3V3();
     }
 
+    Serial.println("Event: 8	battery charging 02");
+    ledBitMask |= 0b0000000100000000000;
     ledControl(LedMode::batteryCharging);
 
     if (minTimeUntilNextFunction > wakeUpTime)
@@ -944,6 +954,8 @@ void configUpdatePeriodeFunktion(uint32_t config_update_periode)
   {
     statusLED = false;
     statusIsLoggerBusy.store(true);
+    Serial.println("Event: 11	Logger busy (background process 05)");
+    ledBitMask |= 0b0000000000100000000;
     ledControl(LedMode::loggerBusyBackgroundProcess);
     Serial.println("-------------------------------------------------0    22");
 
@@ -992,6 +1004,8 @@ void statusUploadPeriodeFunktion(uint32_t status_upload_periode)
   {
     statusLED = false;
     statusIsLoggerBusy.store(true);
+    Serial.println("Event: 11	Logger busy (background process 06)");
+    ledBitMask |= 0b0000000000100000000;
     ledControl(LedMode::loggerBusyBackgroundProcess);
     Serial.println("-------------------------------------------------0    23");
 
@@ -1036,6 +1050,8 @@ void wetDetPeriodeFunktion(uint32_t wet_det_periode)
 {
   if (((totalElapsedTime - lastWetDetectionUploadTime) >= wet_det_periode) || isLoggerSubmerged)
   {
+    Serial.println("Event: 2	logger active");
+    ledBitMask |= 0b0100000000000000000;
     ledControl(LedMode::loggerActive);
     bootCounter++;
     // batteryRemainingLow(15); // Battery charge below 15% or 0%
@@ -1189,6 +1205,8 @@ void monitorReedInputTask(void *parameter)
 
       statusReedInput.store(true);
 
+      Serial.println("Event: 1	Magnet detected");
+      ledBitMask |= 0b1000000000000000000;
       ledControl(LedMode::magnetDetected);
 
       lowDurationMs = now - lowStartMs; // funktioniert auch bei millis()-Overflow
@@ -1196,6 +1214,7 @@ void monitorReedInputTask(void *parameter)
 
       if (lowDurationMs >= 25000)
       {
+        Serial.println("Event: LedMode::Off");
         ledControl(LedMode::Off);
         ESP.restart();
       }
@@ -1215,6 +1234,8 @@ void monitorReedInputTask(void *parameter)
         if (lowDurationMs >= 4000 && lowDurationMs <= 9000)
         {
           statusLED = false;
+          Serial.println("Event: 9	start config update");
+          ledBitMask |= 0b0000000001000000000;
           ledControl(LedMode::startConfigUpdate);
           while (!statusLED)
           {
@@ -1227,6 +1248,8 @@ void monitorReedInputTask(void *parameter)
         if (lowDurationMs >= 9000 && lowDurationMs <= 14000)
         {
           statusLED = false;
+          Serial.println("Event: 10	start reboot 03");
+          ledBitMask |= 0b0000000001000000000;
           ledControl(LedMode::startReboot);
           while (!statusLED)
           {
@@ -1244,6 +1267,8 @@ void monitorReedInputTask(void *parameter)
           interfaceSleep();
 
           statusLED = false;
+          Serial.println("Event: 18	NTP Update failed 01");
+          ledBitMask |= 0b0000000000000000010;
           ledControl(LedMode::ntpUpdateFailed);
           while (!statusLED)
           {
