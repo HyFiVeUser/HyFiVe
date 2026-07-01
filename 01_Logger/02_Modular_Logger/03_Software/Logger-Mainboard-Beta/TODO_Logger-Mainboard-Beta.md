@@ -7,13 +7,14 @@
 - [x] nach einem Reset kann die Deckbox vorübergehend eine falsche Uhrzeit zurückgeben, die vom Logger übernommen wird
 
 ## Wichtig
-- [ ] Logger wachen gelegentlich ohne Magnet auf: Sofern dieses Verhalten bei allen Loggern auftritt, müsste eine Softwareanpassung erfolgen
 - [X] HW-Reset per Magnet ist unzuverlässig. Der Magnet zum Reed-Schalters darf nicht kurzzeitig entfernt werden, da sich die HW-Resetzeit dann zurücksetzt.
 - [X] Wartezeit im Wasser vor der Messung von 60 auf 30 Sekunden verkürzen: Softwareanpassung
-- [ ] Neuer Blinkcode für „mindestens ein Sensor in der Skip List“: Softwareanpassung
+- [x] Neuer Blinkcode für „mindestens ein Sensor in der Skip List“: Softwareanpassung
 - [X] Defaultwert des Log-Levels passt nicht zu bisherigen Loggern: wird softwareseitig überprüft (zumindest mqqt transmit der messung wird nicht mehr geloggt)
-- [ ] Im Status sollen aktive „Signale“ als Bitmaske ausgegeben werden: hierzu stimmen wir uns vorher noch ab
-- [ ] Blinkpausen zwischen den Signalen anpassen: hierzu stimmen wir uns vorher noch ab
+- [x] Im Status sollen aktive „Signale“ als Bitmaske ausgegeben werden
+        - led_bit_mask_last_cycle = 0 [Standart] // Zeigt die aktiven Signale des aktuellen Durchlaufs.
+        - led_bit_mask_last_cycle = 1 [muss in der Konfiguration gesetzt werden] // Stellt den letzten gespeicherten Stand seit der letzten Statusübertragung.
+- [x] Blinkpausen zwischen den Signalen anpassen
 - [x] RGB-LED Prioritäten prüfen, weil es noch Überlagerungen gibt
 - [x] Zyklusabweichung prüfen: Differenz zwischen konfiguriertem und tatsächlichem Zyklus:
     Ja es gib Abweichungen.
