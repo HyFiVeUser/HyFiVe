@@ -737,6 +737,11 @@ void fatalError()
     enableExternalWakeup(17); // activate Logger if reed connection
     statusDeepSleep = true;
     Serial.println("Deep Sleep fatalError");
+
+    Serial.println("Event: 17	fatal error");
+    statusLED = false;
+    ledBitMask |= 0b0000000000000000100;
+
     esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER);
     esp_deep_sleep_start();
   }
