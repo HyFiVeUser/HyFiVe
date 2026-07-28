@@ -32,7 +32,6 @@
 - [x] Interfaceboard: ADC-Auflösung auf 12 Bit umstellen
 - [x] WetDet-Sensor weniger häufig abfragen
 - [x] LED-Anzeige in separaten Thread auf zweiten Core auslagern
-(Config Parameter)
 - [x] Light-Sleep statt Deep-Sleep
 - [x] Statusmeldungen während des Ladevorgangs alle 10min
 - [x] Logger geht nach Ablauf der Zeit inactive_Measurement_periode (Config-Parameter) in Deep-Sleep, sofern keine Datenübertragung oder Messungen stattfinden.
@@ -91,5 +90,3 @@
             "logConfiguration": 0,
             "logMeasurement": 0,
 
-- [ ] Status des Loggers (der an den Server übertragen wird) um Fehlerausgaben erweitern.
-    - Die ID könnte als Bitposition genutzt werden → eine Zahl kann mehrere aktive Stati enthalten.
