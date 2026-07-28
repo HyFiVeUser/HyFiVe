@@ -107,6 +107,8 @@ void loop()
   statusUploadPeriodeFunktion(status_upload_periode);
   if (ledBitMaskLastCycle == 0)
   {
+    Serial.print("ledBitMask: ");
+    Serial.println(printBits(ledBitMask));
     resetLedBitMask();
   }
 

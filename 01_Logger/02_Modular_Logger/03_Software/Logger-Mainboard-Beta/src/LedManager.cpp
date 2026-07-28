@@ -546,6 +546,11 @@ static LedMode runMode(LedMode mode)
       {
         {
           errors();
+
+          Serial.println("Event: 16	skip sensor error");
+          statusLED = false;
+          ledBitMask |= 0b0000000000000001000;
+
           if (waitOrNewMode(firstOnDurationMs, incoming))
           {
             allOff();
@@ -583,6 +588,11 @@ static LedMode runMode(LedMode mode)
     else
     {
       errors();
+
+      Serial.println("Event: 16	skip sensor error");
+      statusLED = false;
+      ledBitMask |= 0b0000000000000001000;
+
       if (waitOrNewMode(ledSignalShort, incoming))
         return incoming;
       allOff();

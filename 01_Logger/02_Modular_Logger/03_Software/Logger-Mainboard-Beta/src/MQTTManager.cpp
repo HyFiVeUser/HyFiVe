@@ -127,6 +127,8 @@ void uploadStatus()
       {
         hasStatusUploadError = false;
         Log(LogCategoryMQTT, LogLevelDEBUG, "statusUpload successfully transferred");
+        Serial.print("ledBitMask: ");
+        Serial.println(printBits(ledBitMask));
         resetLedBitMask();
         return;
       }
