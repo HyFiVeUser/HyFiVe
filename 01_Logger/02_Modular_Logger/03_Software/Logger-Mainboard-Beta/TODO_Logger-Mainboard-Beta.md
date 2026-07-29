@@ -7,6 +7,12 @@
 - [x] nach einem Reset kann die Deckbox vorübergehend eine falsche Uhrzeit zurückgeben, die vom Logger übernommen wird
 
 ## Wichtig
+
+- [ ] es muss entschieden wrden ob der der Datenübertragung WetDet durchgefürt werden soll
+- [ ] zu Prüfen: es scheint so zu sein das nach der retry-periode die Messdaten nicht neu gesendet werden, wenn vorher der "bad wifi" fehler auftrat, sondern erst nach einem neustart
+- [X] Blinkcode 16 korrigiert
+- [X] fatalError: LED-Signal korrigiert siehe FW: 0.12
+- [X] mqttErrorCounter wird nach erfolgreichem Senden zurückgesetzt 
 - [X] HW-Reset per Magnet ist unzuverlässig. Der Magnet zum Reed-Schalters darf nicht kurzzeitig entfernt werden, da sich die HW-Resetzeit dann zurücksetzt.
 - [X] Wartezeit im Wasser vor der Messung von 60 auf 30 Sekunden verkürzen: Softwareanpassung
 - [x] Neuer Blinkcode für „mindestens ein Sensor in der Skip List“: Softwareanpassung
