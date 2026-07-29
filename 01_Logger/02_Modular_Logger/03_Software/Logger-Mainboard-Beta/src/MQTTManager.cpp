@@ -930,6 +930,7 @@ bool transmitHeaderViaMqtt()
       }
       else
       {
+        mqttErrorCounter = 0;
         headerState.lineNumber++;
         saveHeaderTransmissionState(headerState);
         hasMqttHeaderError = false;
@@ -1044,6 +1045,7 @@ bool transmitLogViaMqtt()
       }
       else
       {
+        mqttErrorCounter = 0;
         if (buf.indexOf("[ERROR]") >= 0)
         {
           const char config_error_topic[] = "hyfive/ConfigError";
@@ -1163,6 +1165,7 @@ bool transmitDataViaMqtt()
       }
       else
       {
+        mqttErrorCounter = 0;
         dataState.lineNumber++;
         saveDataTransmissionState(dataState);
         hasMqttMeasurementError = false;
