@@ -8,7 +8,7 @@
 
 ## Wichtig
 
-- [ ] Es muss entschieden werden, ob die Datenübertragung über WetDet durchgeführt werden soll.
+- [ ] Es muss entschieden werden, ob bei der Datenübertragung WetDet durchgeführt werden soll.
 - [ ] zu Prüfen: es scheint so zu sein das nach der retry-periode die Messdaten nicht neu gesendet werden, wenn vorher der "bad wifi" fehler auftrat, sondern erst nach einem neustart
 - [X] Blinkcode 16 korrigiert
 - [X] fatalError: LED-Signal korrigiert siehe FW: 0.12
