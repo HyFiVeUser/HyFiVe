@@ -9,8 +9,6 @@
  * Description: LED control and status indication
  */
 
-#include <atomic>
-
 #include "DeepSleep.h"
 #include "LedManager.h"
 #include "NVSPreferences.h"
@@ -175,50 +173,6 @@ static const uint32_t ledSignalPauseBetweenSignalsEvent1to5   = 800;   // ms
 static TaskHandle_t s_ledTaskHandle    = nullptr;
 static QueueHandle_t s_ledQueue        = nullptr;
 static bool s_ledTaskSuspendedForError = false;
-static std::atomic<bool> s_fatalErrorActive{false};
-static std::atomic<bool> s_magnetDetectedDuringFatalError{false};
-static std::atomic<LedMode> s_activeMode{LedMode::Off};
-static std::atomic<LedMode> s_queuedMode{LedMode::Off};
-static portMUX_TYPE s_ledControlMux = portMUX_INITIALIZER_UNLOCKED;
-
-static void markModeDequeued(LedMode mode)
-{
-  portENTER_CRITICAL(&s_ledControlMux);
-  if (uxQueueMessagesWaiting(s_ledQueue) == 0 && s_queuedMode.load() == mode)
-    s_queuedMode.store(LedMode::Off);
-  portEXIT_CRITICAL(&s_ledControlMux);
-}
-
-static void showMagnetDetectedDuringFatalError()
-{
-  Serial.println("magnetDetected (fatalError priority override)");
-  normalUsage();
-  delay(ledSignalShort);
-  allOff();
-  delay(ledSignalPauseBetweenSignalsEvent1to5);
-}
-
-// Keep the fatal-error pattern interruptible so magnetDetected can take priority.
-static void waitDuringFatalError(uint32_t ms)
-{
-  const uint32_t startedAt = millis();
-
-  while (millis() - startedAt < ms)
-  {
-    if (s_magnetDetectedDuringFatalError.exchange(false))
-    {
-      showMagnetDetectedDuringFatalError();
-      continue;
-    }
-
-    const uint32_t elapsed = millis() - startedAt;
-    if (elapsed >= ms)
-      break;
-
-    const uint32_t remaining = ms - elapsed;
-    delay(remaining < 10 ? remaining : 10);
-  }
-}
 
 // Hilfsfunktion: Wartezeit, aber abbrechbar durch neuen Mode
 static bool waitOrNewMode(uint32_t ms, LedMode &newModeOut)
@@ -230,10 +184,7 @@ static bool waitOrNewMode(uint32_t ms, LedMode &newModeOut)
   }
 
   if (xQueueReceive(s_ledQueue, &newModeOut, pdMS_TO_TICKS(ms)) == pdTRUE)
-  {
-    markModeDequeued(newModeOut);
     return true;
-  }
 
   return false;
 }
@@ -288,9 +239,11 @@ static LedMode runMode(LedMode mode)
   {
     Serial.println("magnetDetected");
     normalUsage();
-    delay(ledSignalShort);
+    if (waitOrNewMode(ledSignalShort, incoming))
+      return incoming;
     allOff();
-    delay(ledSignalPauseBetweenSignalsEvent1to5);
+    if (waitOrNewMode(ledSignalPauseBetweenSignalsEvent1to5, incoming))
+      return incoming;
 
     allOff();
     return LedMode::Off;
@@ -330,11 +283,9 @@ static LedMode runMode(LedMode mode)
   {
     Serial.println("batteryCharging");
     interaction();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
+    delay(ledSignalShort);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     allOff();
     return LedMode::Off;
@@ -344,25 +295,19 @@ static LedMode runMode(LedMode mode)
   {
     Serial.println("batteryLow");
     interaction();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     interaction();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     interaction();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     statusLED = true;
 
@@ -374,25 +319,19 @@ static LedMode runMode(LedMode mode)
   {
     Serial.println("batterySuperlow");
     errors();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     errors();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     errors();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     statusLED = true;
 
@@ -407,25 +346,19 @@ static LedMode runMode(LedMode mode)
     for (int i = 0; i < 3; i++)
     {
       errors();
-      if (waitOrNewMode(ledSignalShort, incoming))
-        return incoming;
+      delay(ledSignalShort);
       allOff();
-      if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-        return incoming;
+      delay(ledSignalBreakBetweenLetters);
 
       errors();
-      if (waitOrNewMode(ledSignalShort, incoming))
-        return incoming;
+      delay(ledSignalShort);
       allOff();
-      if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-        return incoming;
+      delay(ledSignalBreakBetweenLetters);
 
       errors();
-      if (waitOrNewMode(ledSignalShort, incoming))
-        return incoming;
+      delay(ledSignalShort);
       allOff();
-      if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-        return incoming;
+      delay(ledSignalPauseBetweenSignals);
     }
 
     statusLED = true;
@@ -441,18 +374,14 @@ static LedMode runMode(LedMode mode)
     for (int i = 0; i < 3; i++)
     {
       errors();
-      if (waitOrNewMode(ledSignalLong, incoming))
-        return incoming;
+      delay(ledSignalLong);
       allOff();
-      if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-        return incoming;
+      delay(ledSignalBreakBetweenLetters);
 
       errors();
-      if (waitOrNewMode(ledSignalLong, incoming))
-        return incoming;
+      delay(ledSignalLong);
       allOff();
-      if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-        return incoming;
+      delay(ledSignalPauseBetweenSignals);
     }
 
     statusLED = true;
@@ -466,25 +395,19 @@ static LedMode runMode(LedMode mode)
     Serial.println("noConnectionToDeckbox");
 
     errors();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
+    delay(ledSignalShort);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     errors();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     errors();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
+    delay(ledSignalShort);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     statusLED = true;
 
@@ -497,32 +420,24 @@ static LedMode runMode(LedMode mode)
     Serial.println("skipSensorError");
 
     errors();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
+    delay(ledSignalShort);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     errors();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
+    delay(ledSignalShort);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     errors();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     errors();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     statusLED = true;
 
@@ -535,11 +450,9 @@ static LedMode runMode(LedMode mode)
     Serial.println("updateBootComplete");
 
     interaction();
-    if (waitOrNewMode(ledSignalPermanent, incoming))
-      return incoming;
+    delay(ledSignalPermanent);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     statusLED = true;
 
@@ -552,18 +465,14 @@ static LedMode runMode(LedMode mode)
     Serial.println("startConfigUpdate");
 
     interaction();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
+    delay(ledSignalShort);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     interaction();
-    if (waitOrNewMode(ledSignalShort, incoming))
-      return incoming;
+    delay(ledSignalShort);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     statusLED = true;
 
@@ -576,18 +485,14 @@ static LedMode runMode(LedMode mode)
     Serial.println("startReboot");
 
     interaction();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalBreakBetweenLetters, incoming))
-      return incoming;
+    delay(ledSignalBreakBetweenLetters);
 
     interaction();
-    if (waitOrNewMode(ledSignalLong, incoming))
-      return incoming;
+    delay(ledSignalLong);
     allOff();
-    if (waitOrNewMode(ledSignalPauseBetweenSignals, incoming))
-      return incoming;
+    delay(ledSignalPauseBetweenSignals);
 
     statusLED = true;
 
@@ -643,7 +548,6 @@ static LedMode runMode(LedMode mode)
           errors();
 
           Serial.println("Event: 16	skip sensor error");
-          statusLED = false;
           ledBitMask |= 0b0000000000000001000;
 
           if (waitOrNewMode(firstOnDurationMs, incoming))
@@ -685,7 +589,6 @@ static LedMode runMode(LedMode mode)
       errors();
 
       Serial.println("Event: 16	skip sensor error");
-      statusLED = false;
       ledBitMask |= 0b0000000000000001000;
 
       if (waitOrNewMode(ledSignalShort, incoming))
@@ -743,14 +646,11 @@ static void ledTask(void *pvParameters)
       allOff();
       // Warte auf neuen Mode
       xQueueReceive(s_ledQueue, &mode, portMAX_DELAY);
-      markModeDequeued(mode);
+      continue;
     }
 
     // Mode ausführen (one-shot oder blockierend)
-    s_activeMode.store(mode);
-    const LedMode nextMode = runMode(mode);
-    s_activeMode.store(nextMode);
-    mode = nextMode;
+    mode = runMode(mode);
   }
 }
 
@@ -776,8 +676,6 @@ void ledInit()
 
   // Startzustand
   LedMode off = LedMode::Off;
-  s_activeMode.store(LedMode::Off);
-  s_queuedMode.store(LedMode::Off);
   xQueueOverwrite(s_ledQueue, &off);
 }
 
@@ -788,42 +686,13 @@ void ledInit()
  */
 void ledControl(LedMode mode)
 {
-  if (mode == LedMode::magnetDetected && s_fatalErrorActive.load())
-  {
-    s_magnetDetectedDuringFatalError.store(true);
-    return;
-  }
-
   if (!s_ledQueue)
     return;
-
-  portENTER_CRITICAL(&s_ledControlMux);
-
-  const LedMode activeMode        = s_activeMode.load();
-  const LedMode queuedMode        = s_queuedMode.load();
-  const uint8_t requestedPriority = ledModePriority(mode);
-  const uint8_t activePriority    = activeMode == LedMode::Off ? 0 : ledModePriority(activeMode);
-  const uint8_t queuedPriority    = queuedMode == LedMode::Off ? 0 : ledModePriority(queuedMode);
-
-  // Lower-priority requests must neither interrupt the running pattern nor
-  // replace a more important request that is already waiting in the queue.
-  // Modes with equal priority retain the previous "latest request wins"
-  // behaviour.
-  if (mode != LedMode::Off && (requestedPriority < activePriority || requestedPriority < queuedPriority))
-  {
-    portEXIT_CRITICAL(&s_ledControlMux);
-    return;
-  }
-
-  s_queuedMode.store(mode);
   xQueueOverwrite(s_ledQueue, &mode);
-  portEXIT_CRITICAL(&s_ledControlMux);
 }
 
 void fatalError()
 {
-  s_fatalErrorActive.store(true);
-
   if (s_ledTaskHandle && !s_ledTaskSuspendedForError)
   {
     vTaskSuspend(s_ledTaskHandle);
@@ -835,23 +704,23 @@ void fatalError()
     for (int i = 0; i < 3; i++)
     {
       errors();
-      waitDuringFatalError(ledSignalShort);
+      delay(ledSignalShort);
       allOff();
-      waitDuringFatalError(ledSignalBreakBetweenLetters);
+      delay(ledSignalBreakBetweenLetters);
     }
     for (int i = 0; i < 3; i++)
     {
       errors();
-      waitDuringFatalError(ledSignalLong);
+      delay(ledSignalLong);
       allOff();
-      waitDuringFatalError(ledSignalBreakBetweenLetters);
+      delay(ledSignalBreakBetweenLetters);
     }
     for (int i = 0; i < 3; i++)
     {
       errors();
-      waitDuringFatalError(ledSignalShort);
+      delay(ledSignalShort);
       allOff();
-      waitDuringFatalError(ledSignalBreakBetweenLetters);
+      delay(ledSignalBreakBetweenLetters);
     }
   }
 
@@ -867,8 +736,7 @@ void fatalError()
     statusDeepSleep = true;
     Serial.println("Deep Sleep fatalError");
 
-    Serial.println("Event: 17	fatal error");
-    statusLED = false;
+    Serial.println("Event: 17 fatal error");
     ledBitMask |= 0b0000000000000000100;
 
     esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER);
