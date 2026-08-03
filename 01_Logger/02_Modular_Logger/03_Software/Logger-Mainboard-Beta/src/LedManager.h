@@ -43,6 +43,63 @@ enum class LedMode : uint32_t
   configRejected,
 };
 
+/**
+ * Priority of an LED mode.
+
+ */
+constexpr uint8_t ledModePriority(LedMode mode)
+{
+  switch (mode)
+  {
+  case LedMode::Off:
+    return 255; // Explicitly switching the LED off must always be possible.
+
+  // normal usage
+  case LedMode::magnetDetected:
+    return 19;
+  case LedMode::loggerActive:
+    return 18;
+  case LedMode::loggerDetectsBeginOfDeployment:
+    return 17;
+  case LedMode::duringDeployment:
+    return 16;
+  case LedMode::loggerDetectsEndOfDeployment:
+    return 15;
+  case LedMode::transmissionComplete:
+    return 14;
+  case LedMode::chargingComplete:
+    return 13;
+
+  // interaction
+  case LedMode::batteryCharging:
+    return 12;
+  case LedMode::startConfigUpdate:
+    return 11;
+  case LedMode::startReboot:
+    return 10;
+  case LedMode::loggerBusyBackgroundProcess:
+    return 9;
+  case LedMode::updateBootComplete:
+    return 8;
+  case LedMode::batteryLow:
+    return 7;
+
+  // errors
+  case LedMode::batterySuperlow:
+    return 6;
+  case LedMode::noConnectionToDeckbox:
+    return 5;
+  case LedMode::skipSensorError:
+    return 4;
+  case LedMode::ntpUpdateFailed:
+    return 2;
+  case LedMode::configRejected:
+    return 1;
+  }
+
+  return 0;
+}
+
 void ledInit();
 void ledControl(LedMode mode);
 
