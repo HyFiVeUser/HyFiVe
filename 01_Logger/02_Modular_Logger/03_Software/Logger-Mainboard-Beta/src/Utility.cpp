@@ -1231,6 +1231,12 @@ void monitorReedInputTask(void *parameter)
         const unsigned long lowDurationMs = now - lowStartMs;
         Serial.printf("Pin %u: HIGH (was LOW for %lu ms\n", REED_INPUT_PIN, lowDurationMs);
 
+        if (lowDurationMs >= 1000 && lowDurationMs <= 4000)
+        {
+          Serial.println(" < 4 sec.");
+          statusLED = true;
+        }
+
         if (lowDurationMs >= 4000 && lowDurationMs <= 9000)
         {
           statusLED = false;
