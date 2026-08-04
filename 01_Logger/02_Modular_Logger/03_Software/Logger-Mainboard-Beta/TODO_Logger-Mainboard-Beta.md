@@ -7,7 +7,9 @@
 - [x] nach einem Reset kann die Deckbox vorübergehend eine falsche Uhrzeit zurückgeben, die vom Logger übernommen wird
 
 ## Wichtig
-
+- [ ] Batterie unter 15 %: Soll von „Interaction“ zu „Error“ geändert werden.
+- [ ] "bad wifi" Nach Ablauf der Retry-Periode muss der Übertragungsfehlerzähler "mqttErrorCounter" zurückgesetzt werden.
+- [ ] Das Magnet-Blinken muss auch bei „Fatal Error“ und „Logger Busy“ sichtbar sein.
 - [ ] Es muss entschieden werden, ob bei der Datenübertragung WetDet durchgeführt werden soll.
 - [X] Blinkcode 16 korrigiert
 - [X] fatalError: LED-Signal korrigiert siehe FW: 0.12
