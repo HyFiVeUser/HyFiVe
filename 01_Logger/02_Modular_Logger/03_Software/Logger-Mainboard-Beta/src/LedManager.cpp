@@ -36,7 +36,12 @@ static LedHw ledHw = LedHw::RED_ONLY;
 //  Low-Level: Setzen der LED-Farben
 // ------------------------------------------------------------
 
-static void setRGB(bool r, bool g, bool b)
+static volatile bool s_magnetOverlayActive = false;
+static bool s_baseR                        = false;
+static bool s_baseG                        = false;
+static bool s_baseB                        = false;
+
+static void writeRGBHardware(bool r, bool g, bool b)
 {
   if (ledHw == LedHw::RED_ONLY)
   {
@@ -48,6 +53,55 @@ static void setRGB(bool r, bool g, bool b)
   digitalWrite(redPin, r ? ON() : OFF());
   digitalWrite(greenPin, g ? ON() : OFF());
   digitalWrite(bluePin, b ? ON() : OFF());
+}
+
+static void setRGB(bool r, bool g, bool b)
+{
+  // Basiszustand immer aktualisieren. Während des Magnet-Overlays
+  // läuft das eigentliche LED-Signal dadurch intern zeitlich weiter.
+  s_baseR = r;
+  s_baseG = g;
+  s_baseB = b;
+
+  if (s_magnetOverlayActive)
+    return;
+
+  writeRGBHardware(r, g, b);
+}
+
+// Magnet verwendet dieselbe Farbe wie normalUsage(), schreibt aber direkt
+// auf die Hardware und verändert den Basiszustand des laufenden Signals nicht.
+static void writeMagnetOverlayOn()
+{
+  uint8_t colorCode = (ledColorConfig / 100) % 10;
+
+  switch (colorCode)
+  {
+  case 1:
+    writeRGBHardware(true, false, false);
+    break;
+  case 2:
+    writeRGBHardware(false, true, false);
+    break;
+  case 3:
+    writeRGBHardware(true, true, false);
+    break;
+  case 4:
+    writeRGBHardware(false, false, true);
+    break;
+  case 5:
+    writeRGBHardware(true, false, true);
+    break;
+  case 6:
+    writeRGBHardware(false, true, true);
+    break;
+  case 7:
+    writeRGBHardware(true, true, true);
+    break;
+  default:
+    writeRGBHardware(false, true, false); // Fallback wie normalUsage()
+    break;
+  }
 }
 
 static void allOff() { setRGB(false, false, false); }
@@ -170,9 +224,10 @@ static const uint32_t ledSignalPauseBetweenSignalsEvent1to5   = 800;   // ms
 //  Interne Task-Steuerung
 // ------------------------------------------------------------
 
-static TaskHandle_t s_ledTaskHandle    = nullptr;
-static QueueHandle_t s_ledQueue        = nullptr;
-static bool s_ledTaskSuspendedForError = false;
+static TaskHandle_t s_ledTaskHandle           = nullptr;
+static TaskHandle_t s_magnetOverlayTaskHandle = nullptr;
+static QueueHandle_t s_ledQueue               = nullptr;
+static bool s_ledTaskSuspendedForError        = false;
 
 // Hilfsfunktion: Wartezeit, aber abbrechbar durch neuen Mode
 static bool waitOrNewMode(uint32_t ms, LedMode &newModeOut)
@@ -189,32 +244,70 @@ static bool waitOrNewMode(uint32_t ms, LedMode &newModeOut)
   return false;
 }
 
+// Separater Overlay-Task:
+// - magnetDetected verdrängt keinen LedMode aus s_ledQueue
+// - der laufende LedMode setzt seinen Basiszustand weiter
+// - sichtbar ist während des Overlays ausschließlich das Magnet-Signal
+static void magnetOverlayTask(void *pvParameters)
+{
+  while (true)
+  {
+    // Warten, bis ledControl(LedMode::magnetDetected) das Overlay startet.
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+
+    while (true)
+    {
+      Serial.println("magnetDetected (overlay)");
+      s_magnetOverlayActive = true;
+
+      // Bestehendes Magnet-Signal: kurz EIN ...
+      writeMagnetOverlayOn();
+
+      // Ein erneutes Magnet-Event startet das Overlay von vorne.
+      if (ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(ledSignalShort)) > 0)
+        continue;
+
+      // ... danach die bisherige Event-Pause. Auch diese Pause überblendet
+      // das Hintergrundsignal, die LED bleibt hier also bewusst aus.
+      writeRGBHardware(false, false, false);
+
+      if (ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(ledSignalPauseBetweenSignalsEvent1to5)) > 0)
+        continue;
+
+      // Overlay beendet: den Zustand sichtbar machen, den der im Hintergrund
+      // weitergelaufene LED-Modus inzwischen erreicht hat.
+      s_magnetOverlayActive = false;
+      setRGB(s_baseR, s_baseG, s_baseB);
+      break;
+    }
+  }
+}
+
 extern uint8_t REED_INPUT_PIN;
 
-static bool fatalErrorDelay(uint32_t ms)
+static void fatalErrorDelay(uint32_t ms)
 {
-  const uint32_t stepMs = 20;
+  const uint32_t stepMs     = 20;
+  static bool magnetLatched = false;
 
   for (uint32_t elapsed = 0; elapsed < ms; elapsed += stepMs)
   {
-    if (digitalRead(REED_INPUT_PIN) == LOW)
+    const bool magnetNow = (digitalRead(REED_INPUT_PIN) == LOW);
+
+    // Nur auf die LOW-Flanke reagieren. So startet ein dauerhaft angelegter
+    // Magnet das Overlay nicht alle 20 ms erneut.
+    if (magnetNow && !magnetLatched)
     {
       Serial.println("Event: 1	Magnet detected");
       ledBitMask |= 0b1000000000000000000;
-      if (s_ledTaskHandle && s_ledTaskSuspendedForError)
-      {
-        s_ledTaskSuspendedForError = false;
-        vTaskResume(s_ledTaskHandle);
-      }
+
+      // Nur überblenden; fatalError() und sein Muster laufen weiter.
       ledControl(LedMode::magnetDetected);
-      normalUsage();
-      return true;
     }
 
+    magnetLatched = magnetNow;
     delay(min(stepMs, ms - elapsed));
   }
-
-  return false;
 }
 
 // ------------------------------------------------------------
@@ -323,17 +416,12 @@ static LedMode runMode(LedMode mode)
   {
     Serial.println("batteryLow");
     errors();
-    delay(ledSignalLong);
+    delay(ledSignalShort);
     allOff();
     delay(ledSignalBreakBetweenLetters);
 
     errors();
-    delay(ledSignalLong);
-    allOff();
-    delay(ledSignalBreakBetweenLetters);
-
-    errors();
-    delay(ledSignalLong);
+    delay(ledSignalShort);
     allOff();
     delay(ledSignalPauseBetweenSignals);
 
@@ -346,11 +434,6 @@ static LedMode runMode(LedMode mode)
   case LedMode::batterySuperlow:
   {
     Serial.println("batterySuperlow");
-    errors();
-    delay(ledSignalLong);
-    allOff();
-    delay(ledSignalBreakBetweenLetters);
-
     errors();
     delay(ledSignalLong);
     allOff();
@@ -401,6 +484,11 @@ static LedMode runMode(LedMode mode)
 
     for (int i = 0; i < 3; i++)
     {
+      errors();
+      delay(ledSignalLong);
+      allOff();
+      delay(ledSignalBreakBetweenLetters);
+
       errors();
       delay(ledSignalLong);
       allOff();
@@ -702,6 +790,13 @@ void ledInit()
     xTaskCreatePinnedToCore(ledTask, "LedServiceTask", 4096, nullptr, 1, &s_ledTaskHandle, 1);
   }
 
+  if (!s_magnetOverlayTaskHandle)
+  {
+    // Höhere Priorität als der normale LED-Task, damit das Overlay sofort
+    // sichtbar wird, ohne den laufenden Modus anzuhalten.
+    xTaskCreatePinnedToCore(magnetOverlayTask, "LedMagnetOverlay", 2048, nullptr, 2, &s_magnetOverlayTaskHandle, 1);
+  }
+
   // Startzustand
   LedMode off = LedMode::Off;
   xQueueOverwrite(s_ledQueue, &off);
@@ -714,8 +809,18 @@ void ledInit()
  */
 void ledControl(LedMode mode)
 {
+  // magnetDetected ist ein Overlay und darf den aktuell laufenden Modus
+  // nicht aus der Queue verdrängen.
+  if (mode == LedMode::magnetDetected)
+  {
+    if (s_magnetOverlayTaskHandle)
+      xTaskNotifyGive(s_magnetOverlayTaskHandle);
+    return;
+  }
+
   if (!s_ledQueue)
     return;
+
   xQueueOverwrite(s_ledQueue, &mode);
 }
 
@@ -732,29 +837,23 @@ void fatalError()
     for (int i = 0; i < 3; i++)
     {
       errors();
-      if (fatalErrorDelay(ledSignalShort))
-        return;
+      fatalErrorDelay(ledSignalShort);
       allOff();
-      if (fatalErrorDelay(ledSignalBreakBetweenLetters))
-        return;
+      fatalErrorDelay(ledSignalBreakBetweenLetters);
     }
     for (int i = 0; i < 3; i++)
     {
       errors();
-      if (fatalErrorDelay(ledSignalLong))
-        return;
+      fatalErrorDelay(ledSignalLong);
       allOff();
-      if (fatalErrorDelay(ledSignalBreakBetweenLetters))
-        return;
+      fatalErrorDelay(ledSignalBreakBetweenLetters);
     }
     for (int i = 0; i < 3; i++)
     {
       errors();
-      if (fatalErrorDelay(ledSignalShort))
-        return;
+      fatalErrorDelay(ledSignalShort);
       allOff();
-      if (fatalErrorDelay(ledSignalBreakBetweenLetters))
-        return;
+      fatalErrorDelay(ledSignalBreakBetweenLetters);
     }
   }
 
