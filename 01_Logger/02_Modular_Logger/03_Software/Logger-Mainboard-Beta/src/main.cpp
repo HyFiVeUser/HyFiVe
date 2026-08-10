@@ -60,19 +60,13 @@ void setup()
 
 void loop()
 {
-  Serial.println("generalErrorCounter");
-  Serial.println(generalErrorCounter);
-  Serial.println("startKey");
-  Serial.println(startKey);
-
-  Serial.println("inactive_Measurement_periode");
-  Serial.println(inactivityTimeoutSec);
-
-  Serial.println("ledBitMaskLastCycle");
-  Serial.println(ledBitMaskLastCycle);
-
-  Serial.println("logGeneral");
-  Serial.println(generalLogLevel);
+  Serial.printf("mqttErrorCounter: %d\n", mqttErrorCounter);
+  Serial.printf("isDataUploadRetryEnabled: %d\n", isDataUploadRetryEnabled);
+  Serial.printf("generalErrorCounter: %d\n", generalErrorCounter);
+  Serial.printf("startKey: %d\n", startKey);
+  Serial.printf("inactive_Measurement_periode: %d\n", inactivityTimeoutSec);
+  Serial.printf("ledBitMaskLastCycle: %d\n", ledBitMaskLastCycle);
+  Serial.printf("logGeneral: %d\n", generalLogLevel);
 
   sdCardIsAvailable();
 
@@ -84,6 +78,7 @@ void loop()
   //* update the total time since the start of the program by adding the elapsed
   //* time elapsed since the last run of the loop is added to the previous total time.
   totalElapsedTime += difftime(getCurrentTimeFromRTC(), currentTimeNow);
+
   Serial.println("-------------------------------------------------0    9");
 
   //* Execution of the various periodic actions

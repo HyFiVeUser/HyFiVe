@@ -33,9 +33,9 @@ enum class LedMode : uint32_t
   startReboot,
   loggerBusyBackgroundProcess,
   updateBootComplete,
-  batteryLow,
 
   // Errors
+  batteryLow,
   batterySuperlow,
   noConnectionToDeckbox,
   skipSensorError,

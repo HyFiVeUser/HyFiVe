@@ -27,6 +27,12 @@ bool connectToWifiAndSyncNTP()
     return false;
   }
 
+  if (waitAfterWifiErrorTimeNow >= getCurrentTimeFromRTC())
+  {
+    Log(LogCategoryWiFi, LogLevelDEBUG, "getCurrentTimeFromRTC");
+    return false;
+  }
+
   if (strlen(configRTC.wificonfig[0].ssid) == 0 || strlen(configRTC.wificonfig[0].pw) == 0)
   {
     Log(LogCategoryWiFi, LogLevelWARNING, "No WLAN configuration found in the RTC memory");
@@ -138,7 +144,7 @@ void handleNtpSynchronization()
   else
   {
     statusLED = false;
-    Serial.println("Event: 18	NTP Update failed 02");
+    Serial.println("Event: 18	NTP Update failed");
     ledBitMask |= 0b0000000000000000010;
     ledControl(LedMode::ntpUpdateFailed);
     while (!statusLED)

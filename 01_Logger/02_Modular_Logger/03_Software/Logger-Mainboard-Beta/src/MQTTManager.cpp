@@ -745,11 +745,20 @@ void processAndTransmitMeasurementData()
 
         break;
       }
-      if (mqttErrorCounter == 20)
+
+      if (mqttErrorCounter >= 20)
       {
         Log(LogCategoryMQTT, LogLevelERROR, "bad wifi connection");
+        Log(LogCategoryGeneral, LogLevelERROR, "data_upload_retry_periode || wifiConnectionPeriode");
+
+        Serial.printf("data_upload_retry_periode: %d\n", data_upload_retry_periode);
+
+        waitAfterWifiErrorTimeNow = getCurrentTimeFromRTC() + data_upload_retry_periode;
 
         statusIsLoggerBusy.store(false);
+
+        mqttErrorCounter = 0;
+
         delay(2000);
 
         break;

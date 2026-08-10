@@ -22,7 +22,7 @@
 extern std::atomic<bool> ledMeasurementsOff;
 
 // Configuration variables
-inline float fwVersionLoggerMainboard         = 0.16;
+inline float fwVersionLoggerMainboard         = 0.17;
 inline int maxMeasurementCountForLed          = 5;  // in count
 inline int sampleCastIntervals                = 3;  // in count
 inline int waitAfterUnderwaterMeasurementTime = 30; // in seconds
@@ -67,7 +67,8 @@ inline RTC_DATA_ATTR uint32_t lastWetDetectionUploadTime          = 0; // config
 inline RTC_DATA_ATTR uint32_t lastDataUploadRetryTime             = 0; // data_upload_retry_periode
 inline RTC_DATA_ATTR time_t currentTimeNow                        = 0;
 inline RTC_DATA_ATTR time_t waitAfterUnderwaterMeasurementTimeNow = 0;
-inline uint8_t mqttErrorCounter                                   = 0;
+inline RTC_DATA_ATTR time_t waitAfterWifiErrorTimeNow             = 0;
+inline RTC_DATA_ATTR uint8_t mqttErrorCounter                     = 0;
 inline RTC_DATA_ATTR uint8_t currentIncorrectNumberOfsensors      = 0;
 inline RTC_DATA_ATTR uint32_t secInactivityTimeoutSec             = 0;
 inline RTC_DATA_ATTR uint32_t inactivityTimeoutSec                = 900; // seconds

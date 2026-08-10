@@ -1273,8 +1273,6 @@ void monitorReedInputTask(void *parameter)
           interfaceSleep();
 
           statusLED = false;
-          Serial.println("Event: 18	NTP Update failed 01");
-          ledBitMask |= 0b0000000000000000010;
           ledControl(LedMode::ntpUpdateFailed);
           while (!statusLED)
           {

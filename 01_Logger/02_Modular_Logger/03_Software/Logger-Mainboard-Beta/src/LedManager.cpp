@@ -189,6 +189,34 @@ static bool waitOrNewMode(uint32_t ms, LedMode &newModeOut)
   return false;
 }
 
+extern uint8_t REED_INPUT_PIN;
+
+static bool fatalErrorDelay(uint32_t ms)
+{
+  const uint32_t stepMs = 20;
+
+  for (uint32_t elapsed = 0; elapsed < ms; elapsed += stepMs)
+  {
+    if (digitalRead(REED_INPUT_PIN) == LOW)
+    {
+      Serial.println("Event: 1	Magnet detected");
+      ledBitMask |= 0b1000000000000000000;
+      if (s_ledTaskHandle && s_ledTaskSuspendedForError)
+      {
+        s_ledTaskSuspendedForError = false;
+        vTaskResume(s_ledTaskHandle);
+      }
+      ledControl(LedMode::magnetDetected);
+      normalUsage();
+      return true;
+    }
+
+    delay(min(stepMs, ms - elapsed));
+  }
+
+  return false;
+}
+
 // ------------------------------------------------------------
 //  Pattern-Runner: gibt den nächsten Mode zurück
 //  - entweder Off (wenn fertig)
@@ -294,17 +322,17 @@ static LedMode runMode(LedMode mode)
   case LedMode::batteryLow:
   {
     Serial.println("batteryLow");
-    interaction();
+    errors();
     delay(ledSignalLong);
     allOff();
     delay(ledSignalBreakBetweenLetters);
 
-    interaction();
+    errors();
     delay(ledSignalLong);
     allOff();
     delay(ledSignalBreakBetweenLetters);
 
-    interaction();
+    errors();
     delay(ledSignalLong);
     allOff();
     delay(ledSignalPauseBetweenSignals);
@@ -704,23 +732,29 @@ void fatalError()
     for (int i = 0; i < 3; i++)
     {
       errors();
-      delay(ledSignalShort);
+      if (fatalErrorDelay(ledSignalShort))
+        return;
       allOff();
-      delay(ledSignalBreakBetweenLetters);
+      if (fatalErrorDelay(ledSignalBreakBetweenLetters))
+        return;
     }
     for (int i = 0; i < 3; i++)
     {
       errors();
-      delay(ledSignalLong);
+      if (fatalErrorDelay(ledSignalLong))
+        return;
       allOff();
-      delay(ledSignalBreakBetweenLetters);
+      if (fatalErrorDelay(ledSignalBreakBetweenLetters))
+        return;
     }
     for (int i = 0; i < 3; i++)
     {
       errors();
-      delay(ledSignalShort);
+      if (fatalErrorDelay(ledSignalShort))
+        return;
       allOff();
-      delay(ledSignalBreakBetweenLetters);
+      if (fatalErrorDelay(ledSignalBreakBetweenLetters))
+        return;
     }
   }
 
