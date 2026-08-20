@@ -112,6 +112,9 @@
 - connect the sensor with the corresponding board to the UART interface
 - start a serial terminal and connect to the sensor
 - you can read the current value with the command "*C,1*" (**C**ontinious read every **1** second)
+- if the sensor was already calibrated (check with "*Cal,?*"), but has bad values you may like to calibrate it again
+  - Therefore you should clear current calibration first with the command "*Cal,clear*"
+  - Afterwards continue with the normal calibration process
 <br><br>**TODO: images**<br><br>
 - For calibration use two different calibration liquids
 - you need to execute the whole calibration routine at once:
@@ -132,6 +135,8 @@
     - keep in mind to enter the correct value depending on the current temperature of your liquid. There should be temperature tables provided by the liquid manufactor, as the conductivity is highly influenced by the temperature
   - response should be "*\*OK*"
   - the calibration is finished now
+  - disable reading: "*C,0*"
+  - response should be "*\*OK*"
   - you can check the calibration with the command "*Cal,?*", the response should be "*?Cal,2*" and "*\*OK*"
 
 ## BlueRobotics TSYS01
