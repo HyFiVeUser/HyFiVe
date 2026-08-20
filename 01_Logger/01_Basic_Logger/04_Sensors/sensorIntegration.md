@@ -108,12 +108,13 @@
 
 ## Atlas scientifig K0.1 | K1.0 | K10
 - the calibration is dependnt of the board and the sensor
-  - you need to change the board for each calibration, instead of unpluging the sensor
+  - you need to change the bundle of board and sensor for each calibration, instead of just switch the sensor
 - connect the sensor with the corresponding board to the UART interface
 - start a serial terminal and connect to the sensor
 - you can read the current value with the command "*C,1*" (**C**ontinious read every **1** second)
-- if the sensor was already calibrated (check with "*Cal,?*"), but has bad values you may like to calibrate it again
+- if the sensor was already calibrated (response to "*Cal,?*" is "*Cal,1*" or "*Cal,2*"), but has bad values you may like to calibrate it again
   - Therefore you should clear current calibration first with the command "*Cal,clear*"
+  - response should be "*\*OK*"
   - Afterwards continue with the normal calibration process
 <br><br>**TODO: images**<br><br>
 - For calibration use two different calibration liquids
@@ -125,13 +126,13 @@
   - response should be "*\*OK*"
   - insert sensor in the lower calibration liquid
   - wait for a stable value
-  - send command "*Cal,low,<value>*", where *<value>* is replaced by the conductivity of your probe in µS/cm
+  - send command "*Cal,low,[value]*", where *[value]* is replaced by the conductivity of your probe in µS/cm
     - keep in mind to enter the correct value depending on the current temperature of your liquid. There should be temperature tables provided by the liquid manufactor, as the conductivity is highly influenced by the temperature
   - response should be "*\*OK*"
   - remove the sensor from the first calibration liquid, clean and dry it
   - insert sensor in the higher calibration liquid
   - wait for a stable value
-  - send command "*Cal,high,<value>*", where *<value>* is replaced by the conductivity of your probe in µS/cm
+  - send command "*Cal,high,[value]*", where *[value]* is replaced by the conductivity of your probe in µS/cm
     - keep in mind to enter the correct value depending on the current temperature of your liquid. There should be temperature tables provided by the liquid manufactor, as the conductivity is highly influenced by the temperature
   - response should be "*\*OK*"
   - the calibration is finished now
