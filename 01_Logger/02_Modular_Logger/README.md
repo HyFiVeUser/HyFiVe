@@ -104,3 +104,28 @@ Example for Wi-Fi configuration:
     <td><img src="media/assembly(16).jpg" width="500"></td>
   </tr>
 </table>
+
+## 8. Vacuum Leak Test
+
+The following tools are required to perform the vacuum leak test:
+
+Mityvac Hand Operated Vacuum Pump
+https://bluerobotics.com/store/watertight-enclosures/enclosure-tools-supplies/vacuum-pump-kit-r2-rp/
+
+Vacuum Plug
+https://bluerobotics.com/store/watertight-enclosures/enclosure-tools-supplies/vacuum-plug/
+
+Pressure Relief Valve Backfill Adapter
+https://bluerobotics.com/store/watertight-enclosures/prv-m10-backfill-adapter/
+
+After completing the assembly, a vacuum leak test must be performed to verify the watertight integrity of the enclosure.
+
+1. Connect the vacuum pump to the enclosure using the appropriate adapter.
+<img src="media/assembly(17).jpg" width="300">
+
+2. The target vacuum level is 30 inHg VAC (approx. 1 bar pressure differential).
+<img src="media/assembly(18).jpg" width="300">
+
+3. Monitor the achieved vacuum level for approximately 24 hours.
+
+4. If the vacuum remains stable within the permissible tolerance, the leak test is considered successful.
