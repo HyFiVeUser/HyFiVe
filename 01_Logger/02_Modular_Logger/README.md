@@ -129,3 +129,28 @@ After completing the assembly, a vacuum leak test must be performed to verify th
 3. Monitor the achieved vacuum level for approximately 24 hours.
 
 4. If the vacuum remains stable within the permissible tolerance, the leak test is considered successful.
+
+## 9. Battery Pack Assembly (4S3P)
+
+The logger battery pack consists of 12 Sony/Murata US18650VTC6 cells in a 4S3P configuration.
+
+> **Safety:** Lithium-ion cells can cause fire or serious injury if short-circuited, damaged, incorrectly connected, or overheated. Pack assembly and spot welding must only be performed by a trained person with suitable equipment and fire-safety measures.
+
+### Materials and tools
+
+| Qty. | Description |
+|---:|---|
+| 1 | Spot welder suitable for battery cells (listed peak current: at least 650 A) |
+| 5 | 5-pin connector housing, Molex 43645-0500 |
+| 5 | Crimp contacts, AWG 24–20, Molex 43030-0003 |
+| 1 | Black hook-up wire, 1.0 mm² |
+| 1 | Red hook-up wire, 1.0 mm² |
+| 3 | Blue hook-up wire, 0.25 mm² |
+| 2 | 10 kΩ NTC thermistors, 103AT-2 |
+| 1 | Heat-shrink tubing, Ø95.5 mm × 1 m, 2:1 shrink ratio |
+| 1 | Nickel strip, 0.15 mm × 10 m |
+| 12 | Li-ion cells, US18650VTC6 |
+
+### Assembly
+
+<img src="media/assembly(19).jpg" width="300" alt="Five-group battery diagram; not applicable to the 4S3P logger battery pack">
