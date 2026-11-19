@@ -1,4 +1,4 @@
-# HyFiVe LED Signals
+# HyFiVe – LED Signals and Magnet Operation
 
 Technical reference for RGB hardware.
 
