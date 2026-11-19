@@ -10,7 +10,6 @@
 - [X] Batterie unter 15 %: Soll von „Interaction“ zu „Error“ geändert werden.
 - [X] "bad wifi" Nach Ablauf der Retry-Periode muss der Übertragungsfehlerzähler "mqttErrorCounter" zurückgesetzt werden.
 - [X] Das Magnet-Blinken muss auch bei „Fatal Error“ und „Logger Busy“ sichtbar sein.
-- [ ] Es muss entschieden werden, ob bei der Datenübertragung WetDet durchgeführt werden soll.
 - [X] Blinkcode 16 korrigiert
 - [X] fatalError: LED-Signal korrigiert siehe FW: 0.12
 - [X] mqttErrorCounter wird nach erfolgreichem Senden zurückgesetzt 
@@ -71,6 +70,8 @@
     
 
 ## Nice To Have
+- [ ] Möglichkeit, auf die OSBK-Firmware zu aktualisieren und anschließend wieder zur HyFiVe-Firmware zurückzuwechseln zu können.
+- [ ] Es muss entschieden werden, ob bei der Datenübertragung WetDet durchgeführt werden soll.
 - [x] Loglevel (Logging/Debugging) ohne Neukompilieren über einen Config-Parameter konfigurierbar machen.
 
 - LogLevel:
