@@ -21,6 +21,7 @@
 #include "DeepSleep.h"
 #include "LedManager.h"
 #include "MQTTManager.h"
+#include "NVSPreferences.h"
 #include "SDCard.h"
 #include "SensorManagement.h"
 #include "SystemVariables.h"
@@ -1182,8 +1183,19 @@ void monitorReedInputTask(void *parameter)
 {
   (void)parameter;
 
-  int lastState = HIGH;
-  lowStartMs    = 0;
+  constexpr uint32_t reedPollIntervalMs     = 50;
+  constexpr uint32_t magnetLedRepeatMs      = 1000;
+  constexpr uint32_t rgbConfigUpdateStartMs = 4000;
+  constexpr uint32_t redConfigUpdateStartMs = 2000;
+
+  const String hardwarePreference    = readPrefs(true);
+  const uint32_t configUpdateStartMs = hardwarePreference == "000001" ? rgbConfigUpdateStartMs : redConfigUpdateStartMs;
+  int lastState                      = HIGH;
+  uint32_t lastMagnetLedEventMs      = 0;
+  bool magnetLedEventSent            = false;
+  lowStartMs                         = 0;
+
+  Serial.printf("Magnet config update threshold: %lu ms (Prefs: %s)\n", configUpdateStartMs, hardwarePreference.c_str());
 
   while (true)
   {
@@ -1195,7 +1207,9 @@ void monitorReedInputTask(void *parameter)
     // Übergang HIGH -> LOW
     if (reedState == LOW && lastState != LOW)
     {
-      lowStartMs = now;
+      lowStartMs           = now;
+      magnetLedEventSent   = false;
+      lastMagnetLedEventMs = now;
       Serial.printf("Pin %u: LOW started\n", REED_INPUT_PIN);
     }
 
@@ -1205,12 +1219,17 @@ void monitorReedInputTask(void *parameter)
 
       statusReedInput.store(true);
 
-      Serial.println("Event: 1	Magnet detected");
-      ledBitMask |= 0b1000000000000000000;
-      ledControl(LedMode::magnetDetected);
-
       lowDurationMs = now - lowStartMs; // funktioniert auch bei millis()-Overflow
-      Serial.printf("Pin %u state: LOW for %lu ms \n", REED_INPUT_PIN, lowDurationMs);
+
+      if (!magnetLedEventSent || (now - lastMagnetLedEventMs) >= magnetLedRepeatMs)
+      {
+        Serial.println("Event: 1	Magnet detected");
+        ledBitMask |= 0b1000000000000000000;
+        ledControl(LedMode::magnetDetected);
+        Serial.printf("Pin %u state: LOW for %lu ms \n", REED_INPUT_PIN, lowDurationMs);
+        lastMagnetLedEventMs = now;
+        magnetLedEventSent   = true;
+      }
 
       if (lowDurationMs >= 25000)
       {
@@ -1220,7 +1239,7 @@ void monitorReedInputTask(void *parameter)
       }
 
       lastState = reedState;
-      vTaskDelay(pdMS_TO_TICKS(1000));
+      vTaskDelay(pdMS_TO_TICKS(reedPollIntervalMs));
       continue;
     }
     else
@@ -1231,13 +1250,13 @@ void monitorReedInputTask(void *parameter)
         const unsigned long lowDurationMs = now - lowStartMs;
         Serial.printf("Pin %u: HIGH (was LOW for %lu ms\n", REED_INPUT_PIN, lowDurationMs);
 
-        if (lowDurationMs >= 1000 && lowDurationMs <= 4000)
+        if (lowDurationMs >= 1000 && lowDurationMs < configUpdateStartMs)
         {
-          Serial.println(" < 4 sec.");
+          Serial.printf("Short magnet press (< %lu ms).\n", configUpdateStartMs);
           statusLED = true;
         }
 
-        if (lowDurationMs >= 4000 && lowDurationMs <= 9000)
+        else if (lowDurationMs >= configUpdateStartMs && lowDurationMs < 9000)
         {
           statusLED = false;
           Serial.println("Event: 9	start config update");
@@ -1251,7 +1270,7 @@ void monitorReedInputTask(void *parameter)
           statusConfigUpdate.store(true);
         }
 
-        if (lowDurationMs >= 9000 && lowDurationMs <= 14000)
+        else if (lowDurationMs >= 9000 && lowDurationMs < 14000)
         {
           statusLED = false;
           Serial.println("Event: 10	start reboot 03");
@@ -1267,7 +1286,7 @@ void monitorReedInputTask(void *parameter)
           ESP.restart();
         }
 
-        if (lowDurationMs >= 14000 && lowDurationMs <= 19000)
+        else if (lowDurationMs >= 14000 && lowDurationMs <= 19000)
         {
 
           interfaceSleep();
@@ -1296,7 +1315,7 @@ void monitorReedInputTask(void *parameter)
     }
 
     lastState = reedState;
-    vTaskDelay(pdMS_TO_TICKS(1000));
+    vTaskDelay(pdMS_TO_TICKS(reedPollIntervalMs));
   }
 }
 

@@ -776,6 +776,7 @@ static void ledTask(void *pvParameters)
 
 void ledInit()
 {
+  // setPrefs();      // Saves “000001” to the ESP32
   hwVariante();
   ledPMode();
 
