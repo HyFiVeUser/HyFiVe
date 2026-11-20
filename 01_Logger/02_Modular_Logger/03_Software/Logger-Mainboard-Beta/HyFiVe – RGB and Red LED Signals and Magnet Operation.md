@@ -71,7 +71,7 @@ after 25 seconds is performed while the magnet is still being held in place.
 |---:|---|---|
 | less than 1 s | No action | No action |
 | 1 to less than 2 s | Wake up / no action if already active | Wake up / no action if already active |
-| 2 to less than 4 s | Wake up / no action if already active | Start configuration update |
+| 2 to less than 5 s | Wake up / no action if already active | Start configuration update |
 | 5 to less than 10 s | Start configuration update | Hardware restart |
 | 10 to less than 15 s | Software restart | - |
 | 15 to 20 s inclusive | Deep Sleep | - |
