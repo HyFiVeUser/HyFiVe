@@ -7,6 +7,7 @@
 - [x] nach einem Reset kann die Deckbox vorübergehend eine falsche Uhrzeit zurückgeben, die vom Logger übernommen wird
 
 ## Wichtig
+- [ ] Sporadisches Deep-Sleep  der Logger: Einige Logger schlafen trotz konfigurierter 100 Minuten bereits nach wenigen Minuten ein. Nach erneutem Aufwecken bleiben sie regulär aktiv. Das Problem tritt unregelmäßig bei unterschiedlichen Loggern auf und ist bislang nicht reproduzierbar.
 - [X] Batterie unter 15 %: Soll von „Interaction“ zu „Error“ geändert werden.
 - [X] "bad wifi" Nach Ablauf der Retry-Periode muss der Übertragungsfehlerzähler "mqttErrorCounter" zurückgesetzt werden.
 - [X] Das Magnet-Blinken muss auch bei „Fatal Error“ und „Logger Busy“ sichtbar sein.
