@@ -62,7 +62,7 @@ The action is triggered when the magnet is removed. Only the restart after
 | Magnet duration | Action |
 |---:|---|
 | less than 1 s | No action |
-| 1 to less than 4 s | Short magnet contact |
+| 1 to less than 4 s | Wake up / no action if already active |
 | 5 to less than 9 s | Start configuration update |
 | 10 to less than 14 s | Software restart |
 | 15 to 19 s inclusive | Deep Sleep |
@@ -72,7 +72,7 @@ The action is triggered when the magnet is removed. Only the restart after
 ### Waking the logger from Deep Sleep
 
 1. Hold the magnet against the reed switch.
-2. Wait approximately **1 second**, or until the first green flash appears.
+2. Wait for the immediate LED response (normally a green flash).
 3. Remove the magnet.
 
 If the logger does not respond, it may be completely without power or its
