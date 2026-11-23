@@ -19,6 +19,45 @@
 
 RTC_DS3231 rtcDS3231;
 
+namespace
+{
+void adjustRtcPreservingInactivityDeadline(const DateTime &correctedTime)
+{
+  const uint32_t oldRtcNow = rtcDS3231.now().unixtime();
+  const uint32_t newRtcNow = correctedTime.unixtime();
+
+  const bool inactivityTimerArmed = !statusDeepSleep && secInactivityTimeoutSec != 0;
+  int64_t remainingSeconds        = 0;
+  uint32_t previousDeadline       = secInactivityTimeoutSec;
+
+  if (inactivityTimerArmed)
+  {
+    remainingSeconds = static_cast<int64_t>(secInactivityTimeoutSec) - static_cast<int64_t>(oldRtcNow);
+
+    if (remainingSeconds <= 0)
+    {
+      secInactivityTimeoutSec = newRtcNow;
+    }
+    else
+    {
+      const uint64_t adjustedDeadline = static_cast<uint64_t>(newRtcNow) + static_cast<uint64_t>(remainingSeconds);
+      secInactivityTimeoutSec         = adjustedDeadline > UINT32_MAX ? UINT32_MAX : static_cast<uint32_t>(adjustedDeadline);
+    }
+  }
+
+  rtcDS3231.adjust(correctedTime);
+
+  Serial.printf("RTC NTP correction: old=%lu new=%lu delta=%lld inactivity_armed=%d remaining=%lld deadline_old=%lu deadline_new=%lu\n",
+                static_cast<unsigned long>(oldRtcNow),
+                static_cast<unsigned long>(newRtcNow),
+                static_cast<long long>(newRtcNow) - static_cast<long long>(oldRtcNow),
+                inactivityTimerArmed ? 1 : 0,
+                static_cast<long long>(remainingSeconds),
+                static_cast<unsigned long>(previousDeadline),
+                static_cast<unsigned long>(secInactivityTimeoutSec));
+}
+} // namespace
+
 /**
  * @brief Initializes the RTC module.
  * @param wireInstance Pointer to the TwoWire instance for I2C communication.
@@ -67,7 +106,7 @@ bool synchronizeTimeWithNTP()
     }
 
     Log(LogCategoryRTC, LogLevelDEBUG, "Time synchronized.");
-    rtcDS3231.adjust(DateTime(timeinfo.tm_year + 1900, timeinfo.tm_mon + 1, timeinfo.tm_mday, timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec));
+    adjustRtcPreservingInactivityDeadline(DateTime(timeinfo.tm_year + 1900, timeinfo.tm_mon + 1, timeinfo.tm_mday, timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec));
     isNtpSynchronized = true;
     return true;
   }

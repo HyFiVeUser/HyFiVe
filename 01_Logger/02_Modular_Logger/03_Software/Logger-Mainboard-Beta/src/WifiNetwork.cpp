@@ -49,6 +49,11 @@ bool connectToWifiAndSyncNTP()
   {
     Log(LogCategoryWiFi, LogLevelDEBUG, "WLAN is still connected.");
     hasWifiConnection = true;
+
+    if (!isNtpSynchronized)
+    {
+      synchronizeTimeWithNTP();
+    }
     return true;
   }
   else
