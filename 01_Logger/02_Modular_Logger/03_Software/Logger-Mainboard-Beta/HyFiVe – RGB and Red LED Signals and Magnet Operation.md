@@ -59,24 +59,34 @@ The colors can be changed in the configuration. The assignment of signals to nor
 
 ## Magnet operation
 
-While the magnet is detected, the LED flashes once per second:
-0.2 seconds ON and 0.8 seconds OFF.
+While the magnet is detected, the LED flashes once per second: 0.2 seconds ON and 0.8 seconds OFF.
 
-The action is triggered when the magnet is removed. Only the hardware restart
-after 25 seconds is performed while the magnet is still being held in place.
+The action is triggered when the magnet is removed. Only the hardware restart after 23 seconds is performed while the magnet is still being held in place.
 
 ### Magnet timing by hardware variant
 
-| Magnet duration | RGB hardware | Red-only hardware |
+The following colors assume the default `ledColorConfig = 241`.
+
+#### RGB hardware
+
+| Magnet duration | Action | LED response |
 |---:|---|---|
-| less than 1 s | No action | No action |
-| 1 to less than 2 s | Wake up / no action if already active | Wake up / no action if already active |
-| 2 to less than 5 s | Wake up / no action if already active | Start configuration update |
-| 5 to less than 10 s | Start configuration update | Hardware restart |
-| 10 to less than 15 s | Software restart | - |
-| 15 to 20 s inclusive | Deep Sleep | - |
-| more than 20 to less than 25 s | No action | - |
-| 25 s or longer | Hardware restart | - |
+| less than 1 s | Wake up / no action | 🟢 0.2 s ON + 0.8 s OFF|
+| 1 to less than 5 s | No action if already active | 🟢 repeated while held: 0.2 s ON + 0.8 s OFF |
+| 5 to less than 10 s | Start configuration update | 🔵 2 × (0.2 s ON + 0.2 s OFF) + 3 s pause. |
+| 10 to less than 15 s | Software restart | 🔵 0.6 s ON + 0.2 s OFF |
+| 15 to 20 s inclusive | Deep Sleep |  🔴 1x (2x (0.2 s ON + 0.2 s OFF) + 3 s pause) + 2x (3x (0.2 s ON + 0.2 s OFF) + 3 s pause). |
+| more than 20 to less than 23 s | No action | 🟢 repeated while held: 0.2 s ON + 0.8 s OFF |
+| 23 s or longer | Hardware restart | No separate LED confirmation pattern. |
+
+#### Red-only hardware
+
+| Magnet duration | Action | LED response |
+|---:|---|---|
+| less than 1 s | Wake up / no action | 🔴  0.2 s ON + 0.8 s OFF |
+| 1 to less than 2 s | No action if already active | 🔴 repeated while held: 0.2 s ON + 0.8 s OFF |
+| 2 to less than 5 s | Start configuration update | 🔴 2 × (0.2 s ON + 0.2 s OFF) + 3 s pause. |
+| 5 s or longer | Hardware restart | No separate LED confirmation pattern. |
 
 ### Waking the logger from Deep Sleep
 
@@ -105,8 +115,8 @@ Connecting the power supply is also configured as a wake-up source.
 | No. | Priority | RGB color | Red-only color | Event | Blink pattern | Signal duration | Meaning / recommended action |
 |---:|---:|:---:|:---:|---|---|---|---|
 | 8 | 5 | 🔵 | 🔴 | Battery charging | `*` | 0.2 s ON + 3 s pause | Charging is in progress. |
-| 9 | 2 | 🔵 | 🔴 | Configuration update starts | `* *` | 2 × 0.2 s ON + 0.2 s OFF + 3 s pause | Leave the logger switched on and do not interrupt the process. |
-| 10 | 2 | 🔵 | 🔴 | Restart begins | `- -` | 2 × 0.6 s ON + 0.2 s OFF + 3 s pause | Wait until the logger is ready again. |
+| 9 | 2 | 🔵 | 🔴 | Configuration update starts | `* *` | 2 × (0.2 s ON + 0.2 s OFF) + 3 s pause | Leave the logger switched on and do not interrupt the process. |
+| 10 | 2 | 🔵 | 🔴 | Restart begins | `- -` | 2 × (0.6 s ON + 0.2 s OFF) + 3 s pause | Wait until the logger is ready again. |
 | 11 | 4 | 🔵 | 🔴 | Logger busy | `- *`, repeated | 0.6 s ON + 0.2 s OFF + 0.2 s ON + 3 s pause | A background process is running. Do not switch off or interrupt the logger. |
 | 12 | 2 | 🔵 | 🔴 | Startup or update completed | `_` | 2 s ON + 3 s pause | The logger is ready again. |
 
@@ -114,12 +124,12 @@ Connecting the power supply is also configured as a wake-up source.
 
 | No. | Priority | RGB color | Red-only color | Event | Blink pattern | Signal duration | Meaning / recommended action |
 |---:|---:|:---:|:---:|---|---|---|---|
-| 13 | 4 | 🔴 | 🔴 | Battery level low (below 15%) | `* *` | 2 × 0.2 s ON + 0.2 s OFF + 3 s pause | Charge the battery soon. |
-| 14 | 3 | 🔴 | 🔴 | Battery level critical (below 5%) | `- -` | 2 × 0.6 s ON + 0.2 s OFF + 3 s pause | Charge the battery as soon as possible. |
-| 15 | 6 | 🔴 | 🔴 | No connection to the deck box | `* - *` | 2 × 0.2 s ON + 0.6 s ON + 2 × 0.2 s OFF + 3 s pause | Check the deck box, distance, and wireless connection. |
+| 13 | 4 | 🔴 | 🔴 | Battery level low (below 15%) | `* *` | 2 × (0.2 s ON + 0.2 s OFF) + 3 s pause | Charge the battery soon. |
+| 14 | 3 | 🔴 | 🔴 | Battery level critical (below 5%) | `- -` | 2 × (0.6 s ON + 0.2 s OFF) + 3 s pause | Charge the battery as soon as possible. |
+| 15 | 6 | 🔴 | 🔴 | No connection to the deck box | `* - *` | 2 × (0.2 s ON + 0.6 s ON + 2 × 0.2 s OFF) + 3 s pause | Check the deck box, distance, and wireless connection. |
 | 16 | 1 | 🔴 | 🔴 | Sensor skipped | RGB: error-colored version of Event 3 or 4. Red-only: same physical pattern as Event 3 or 4. | At startup: 0.2 s ON + 0.2 s OFF, repeated for 30 seconds. During deployment: 0.2 s ON + 0.2 s OFF. | Check the sensor connection, configuration, and log file. On red-only hardware this event is not visually distinguishable. |
 | 17 | 1 | 🔴 | 🔴 | Fatal error | `* * * - - - * * *`, ten times | Per cycle: 6 × 0.2 s ON + 3 × 0.6 s ON + 9 × 0.2 s OFF = 4.8 s; 10 cycles | The logger restarts afterward. After the 10th cycle, the logger enters Deep Sleep. |
-| 18 | 3 | 🔴 | 🔴 | Time synchronization failed | three times `* * *` | Per cycle: 3 × 0.2 s ON + 2 × 0.2 s OFF + 3 s pause = 4.0 s; 3 cycles | Check the deck box and network connection. During magnet operation, this pattern confirms Deep Sleep. |
-| 19 | 3 | 🔴 | 🔴 | Configuration rejected | three times `- - -` | Per cycle: 3 × 0.6 s ON + 2 × 0.2 s OFF + 3 s pause = 5.2 s; 3 cycles | Check the configuration file. |
+| 18 | 3 | 🔴 | 🔴 | Time synchronization failed | three times `* * *` | Per cycle: 3 × (0.2 s ON + 2 × 0.2 s OFF) + 3 s pause | Check the deck box and network connection. During magnet operation, this pattern confirms Deep Sleep. |
+| 19 | 3 | 🔴 | 🔴 | Configuration rejected | three times `- - -` | Per cycle: 3 × (0.6 s ON + 2 × 0.2 s OFF) + 3 s pause | Check the configuration file. |
 
 
